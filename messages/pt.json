@@ -133,7 +133,11 @@
   },
   "projects": {
     "metaTitle": "Projetos - Flow Productions",
-    "metaDescription": "Explore os nossos projetos de Design, Marketing, Audiovisual e Animação"
+    "metaDescription": "Explore os nossos projetos de Design, Marketing, Audiovisual e Animação",
+    "pageLabel": "TRABALHOS QUE FALAM POR SI",
+    "title": "Projetos",
+    "titleHighlight": "Flow",
+    "description": "Do conceito à execução, fazemos as ideias ganhar forma e movimento. Este é o nosso portfólio de projetos, onde design, marketing, audiovisual e animação ganham vida."
   },
   "blog": {
     "metaTitle": "Blog Flow - Flow Productions",
@@ -142,13 +146,15 @@
   "contact": {
     "metaTitle": "Contactos - Flow Productions",
     "metaDescription": "Entre em contacto connosco",
-    "title": "Vamos pôr os teus projetos a fluir?",
+    "label": "CONTACTA-NOS",
+    "title": "Vamos pôr os teus projetos",
+    "titleHighlight": "a fluir?",
     "form": {
       "name": "Nome",
       "email": "Email",
-      "message": "Mensagem",
-      "consent": "Aceito que os meus dados sejam guardados e processados",
-      "submit": "Enviar",
+      "message": "Tem um projeto em mente?",
+      "consent": "Concordo que os meus dados submetidos sejam recolhidos e armazenados.",
+      "submit": "Entrar em Contacto",
       "success": "Mensagem enviada com sucesso!",
       "error": "Erro ao enviar mensagem. Tente novamente."
     }

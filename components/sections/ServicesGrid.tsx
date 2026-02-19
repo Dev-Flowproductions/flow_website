@@ -26,7 +26,7 @@ export default function ServicesGrid({ services, locale }: ServicesGridProps) {
   const sortedServices = [...services].sort((a, b) => a.order - b.order);
 
   return (
-    <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+    <StaggerContainer className="max-w-4xl mx-auto space-y-16">
       {sortedServices.map((service, index) => (
         <ServiceCard
           key={service.id}

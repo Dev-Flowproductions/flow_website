@@ -11,7 +11,7 @@ export default function Header({ locale }: { locale: string }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#EDEDED] backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -22,13 +22,9 @@ export default function Header({ locale }: { locale: string }) {
             </div>
           </Link>
 
-          {/* Center Navigation - Desktop */}
-          <div className="hidden lg:flex items-center justify-center flex-1">
+          {/* Center Navigation + CTA Button - Desktop */}
+          <div className="hidden lg:flex items-center gap-8">
             <MainNav />
-          </div>
-
-          {/* Right Side - CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
             <Link
               href="/contactos"
               className="px-6 py-2 border-2 border-black rounded-full text-sm font-medium hover:bg-black hover:text-white transition-colors"

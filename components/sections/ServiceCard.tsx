@@ -27,41 +27,38 @@ export default function ServiceCard({ service, locale, number }: ServiceCardProp
 
   return (
     <StaggerItem>
-      <motion.div
-        className="group"
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="border-l-4 border-black pl-6 py-4">
-          <div className="flex items-baseline gap-4 mb-6">
-            <span className="text-5xl md:text-6xl font-bold text-gray-200 group-hover:text-gray-300 transition-colors">
+      <div className="border-b border-gray-200 pb-8">
+        <div className="grid grid-cols-12 gap-8 items-start">
+          {/* Number - 2 columns */}
+          <div className="col-span-2">
+            <span className="text-7xl font-bold text-gray-200">
               {number}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold">{title}</h2>
           </div>
 
-          <StaggerContainer
-            className="space-y-3"
-            staggerDelay={0.05}
-          >
-            {sortedItems.map((item) => {
-              const label = item.label[locale] || item.label['pt'] || '';
-              return (
-                <motion.div
-                  key={item.id}
-                  variants={{
-                    hidden: { opacity: 0, x: -10 },
-                    visible: { opacity: 1, x: 0 },
-                  }}
-                  className="text-gray-700 hover:text-black transition-colors"
-                >
-                  {label}
-                </motion.div>
-              );
-            })}
-          </StaggerContainer>
+          {/* Title - 3 columns */}
+          <div className="col-span-3">
+            <h2 className="text-3xl font-bold pt-4">{title}</h2>
+          </div>
+
+          {/* Items in 2 columns - 7 columns total */}
+          <div className="col-span-7">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+              {sortedItems.map((item) => {
+                const label = item.label[locale] || item.label['pt'] || '';
+                return (
+                  <div
+                    key={item.id}
+                    className="text-sm text-gray-700 hover:text-black transition-colors"
+                  >
+                    {label}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </StaggerItem>
   );
 }

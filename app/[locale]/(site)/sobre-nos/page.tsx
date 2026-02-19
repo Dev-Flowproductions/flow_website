@@ -26,24 +26,13 @@ export default async function AboutPage({
 
   return (
     <div className="pt-20">
-      {/* Hero Section with Image Placeholder */}
-      <section className="relative h-[60vh] bg-gradient-to-br from-gray-100 to-gray-200">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-gray-400">
-            <svg className="w-32 h-32 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <p className="text-sm uppercase tracking-wider">Hero Image Placeholder</p>
-            <p className="text-xs text-gray-400 mt-2">About Us / Team Photo</p>
-          </div>
-        </div>
-        {/* Uncomment when image is ready:
+      {/* Hero Section with Image */}
+      <section className="relative min-h-[520px] bg-gradient-to-br from-gray-100 to-gray-200">
         <img
-          src="/images/about-hero.jpg"
+          src="/images/hero/about-us.jpg"
           alt="Flow Productions Team"
           className="w-full h-full object-cover"
         />
-        */}
       </section>
 
       {/* History Section - "Onde o Flow Começou" */}
@@ -178,26 +167,32 @@ export default async function AboutPage({
 
           {/* 3x3 Grid of Team Members */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((index) => (
-              <AnimateIn key={index} delay={0.1 * index}>
-                <div className="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden relative group">
-                  {/* Placeholder */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                    <div className="text-center text-gray-400">
-                      <svg className="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                      </svg>
-                      <p className="text-xs">Team Member {index}</p>
+            {[
+              { name: 'Ricardo Pedro', role: 'CEO | 2D Animator', slug: 'ricardo-pedro' },
+              { name: 'Verónica Guerreiro', role: 'Design Thinker | Project Manager', slug: 'veronica-guerreiro' },
+              { name: 'José Carvalho', role: 'CXO & UI Designer | AI Specialist', slug: 'jose-carvalho' },
+              { name: 'Mariana Rocha', role: 'CMO | Social Media Manager', slug: 'mariana-rocha' },
+              { name: 'Jéssica Sousa', role: 'Social Media Manager', slug: 'jessica-sousa' },
+              { name: 'António Fernandes', role: 'Design & Branding', slug: 'antonio-fernandes' },
+              { name: 'Maeva Ferrand', role: 'Branding & Design', slug: 'maeva-ferrand' },
+              { name: 'Inês Navrat', role: 'Filmmaker & Photographer', slug: 'ines-navrat' },
+              { name: 'Guilherme Bordoni', role: 'Video Producer', slug: 'guilherme-bordoni' },
+            ].map((member, index) => (
+              <AnimateIn key={index} delay={0.1 * (index + 1)}>
+                <a href={`/team/${member.slug}`} className="block">
+                  <div className="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden relative group cursor-pointer">
+                    <img
+                      src={`/images/team/member-${index + 1}.jpg`}
+                      alt={member.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                      <h3 className="text-white text-xl font-bold mb-1">{member.name}</h3>
+                      <p className="text-white/90 text-sm">{member.role}</p>
                     </div>
                   </div>
-                  {/* Uncomment when images are ready:
-                  <img
-                    src={`/images/team/member-${index}.jpg`}
-                    alt={`Team Member ${index}`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  */}
-                </div>
+                </a>
               </AnimateIn>
             ))}
           </div>
