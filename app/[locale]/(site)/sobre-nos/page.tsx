@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
+import { Link } from '@/i18n/routing';
 
 export async function generateMetadata({
   params,
@@ -179,7 +180,7 @@ export default async function AboutPage({
               { name: 'Guilherme Bordoni', role: 'Video Producer', slug: 'guilherme-bordoni' },
             ].map((member, index) => (
               <AnimateIn key={index} delay={0.1 * (index + 1)}>
-                <a href={`/team/${member.slug}`} className="block">
+                <Link href={`/team/${member.slug}`} className="block">
                   <div className="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden relative group cursor-pointer">
                     <img
                       src={`/images/team/member-${index + 1}.jpg`}
@@ -192,7 +193,7 @@ export default async function AboutPage({
                       <p className="text-white/90 text-sm">{member.role}</p>
                     </div>
                   </div>
-                </a>
+                </Link>
               </AnimateIn>
             ))}
           </div>
