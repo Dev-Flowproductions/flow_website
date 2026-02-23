@@ -73,17 +73,6 @@ export default async function HomePage({
       {/* Hero Section - Video Only */}
       <section className="relative h-screen w-full overflow-hidden">
         <div className="absolute inset-0 w-full h-full bg-gray-900">
-          {/* Video Placeholder */}
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
-            <div className="text-center text-white/20">
-              <svg className="w-24 h-24 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <p className="text-sm uppercase tracking-wider">Hero Video Placeholder</p>
-            </div>
-          </div>
-          {/* Uncomment when video is ready:
           <video
             autoPlay
             loop
@@ -91,9 +80,8 @@ export default async function HomePage({
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/videos/hero-video.mp4" type="video/mp4" />
+            <source src="/videos/hero/home.mp4" type="video/mp4" />
           </video>
-          */}
         </div>
       </section>
 

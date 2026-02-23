@@ -26,13 +26,13 @@ export default async function AboutPage({
   const t = await getTranslations({ locale, namespace: 'about' });
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero Section with Image */}
-      <section className="relative min-h-[520px] bg-gradient-to-br from-gray-100 to-gray-200">
+      <section className="relative h-screen w-full overflow-hidden bg-gray-200">
         <img
           src="/images/hero/about-us.jpg"
           alt="Flow Productions Team"
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
         />
       </section>
 

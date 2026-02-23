@@ -41,9 +41,9 @@ export default async function AudiovisualProjectsPage({
   }
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero Image with Text Overlay */}
-      <section className="relative min-h-[520px] bg-gradient-to-br from-gray-800 to-gray-900">
+      <section className="relative h-screen w-full overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white/20">
             <svg className="w-32 h-32 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

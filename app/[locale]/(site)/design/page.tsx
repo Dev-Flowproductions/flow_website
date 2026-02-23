@@ -41,13 +41,13 @@ export default async function DesignProjectsPage({
   }
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero Image */}
-      <section className="relative min-h-[520px] bg-gray-100">
+      <section className="relative h-screen w-full overflow-hidden bg-gray-100">
         <img
           src="/images/hero/design.jpg"
           alt="Design Flow Productions"
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
         />
       </section>
 

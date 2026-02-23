@@ -24,8 +24,10 @@ export async function createPost(formData: FormData) {
   const authorName = (formData.get('author_name') as string) || 'Flow Productions';
   const status = formData.get('status') as string;
   const mediaType = formData.get('media_type') as string;
+  const videoSource = formData.get('video_source') as string; // 'url' | 'file'
   const videoUrl = formData.get('video_url') as string;
   const imageFile = formData.get('image') as File | null;
+  const videoFile = formData.get('video_file') as File | null;
 
   const { data: post, error } = await supabase
     .from('blog_posts')
@@ -36,7 +38,7 @@ export async function createPost(formData: FormData) {
       author_name: authorName,
       status,
       media_type: mediaType,
-      video_url: mediaType === 'video' ? videoUrl : null,
+      video_url: mediaType === 'video' && videoSource === 'url' ? videoUrl : null,
       published_at: status === 'published' ? new Date().toISOString() : null,
     })
     .select()
@@ -61,6 +63,23 @@ export async function createPost(formData: FormData) {
     }
   }
 
+  if (mediaType === 'video' && videoSource === 'file' && videoFile && videoFile.size > 0) {
+    const ext = videoFile.name.split('.').pop() || 'mp4';
+    const path = `blog/videos/${post.id}.${ext}`;
+    const arrayBuffer = await videoFile.arrayBuffer();
+    const { error: uploadError } = await supabase.storage
+      .from('public-media')
+      .upload(path, arrayBuffer, { contentType: videoFile.type, upsert: true });
+
+    if (!uploadError) {
+      const { data: urlData } = supabase.storage.from('public-media').getPublicUrl(path);
+      await supabase
+        .from('blog_posts')
+        .update({ video_url: urlData.publicUrl })
+        .eq('id', post.id);
+    }
+  }
+
   revalidatePath('/[locale]/admin/posts', 'page');
   revalidatePath('/[locale]/(site)/blog', 'page');
 }
@@ -75,8 +94,10 @@ export async function updatePost(id: string, formData: FormData) {
   const authorName = (formData.get('author_name') as string) || 'Flow Productions';
   const status = formData.get('status') as string;
   const mediaType = formData.get('media_type') as string;
+  const videoSource = formData.get('video_source') as string; // 'url' | 'file'
   const videoUrl = formData.get('video_url') as string;
   const imageFile = formData.get('image') as File | null;
+  const videoFile = formData.get('video_file') as File | null;
 
   const updates: Record<string, unknown> = {
     title: { pt: titlePt },
@@ -85,7 +106,7 @@ export async function updatePost(id: string, formData: FormData) {
     author_name: authorName,
     status,
     media_type: mediaType,
-    video_url: mediaType === 'video' ? videoUrl : null,
+    video_url: mediaType === 'video' && videoSource === 'url' ? videoUrl : (mediaType === 'video' ? undefined : null),
   };
 
   if (status === 'published') {
@@ -113,6 +134,20 @@ export async function updatePost(id: string, formData: FormData) {
     }
   }
 
+  if (mediaType === 'video' && videoSource === 'file' && videoFile && videoFile.size > 0) {
+    const ext = videoFile.name.split('.').pop() || 'mp4';
+    const path = `blog/videos/${id}.${ext}`;
+    const arrayBuffer = await videoFile.arrayBuffer();
+    const { error: uploadError } = await supabase.storage
+      .from('public-media')
+      .upload(path, arrayBuffer, { contentType: videoFile.type, upsert: true });
+
+    if (!uploadError) {
+      const { data: urlData } = supabase.storage.from('public-media').getPublicUrl(path);
+      updates.video_url = urlData.publicUrl;
+    }
+  }
+
   const { error } = await supabase.from('blog_posts').update(updates).eq('id', id);
   if (error) throw new Error(error.message);
 
@@ -124,7 +159,10 @@ export async function deletePost(id: string) {
   const supabase = await createClient();
   if (!supabase) throw new Error('Supabase not configured');
 
-  await supabase.storage.from('public-media').remove([`blog/${id}.jpg`, `blog/${id}.png`, `blog/${id}.webp`]);
+  await supabase.storage.from('public-media').remove([
+    `blog/${id}.jpg`, `blog/${id}.png`, `blog/${id}.webp`,
+    `blog/videos/${id}.mp4`, `blog/videos/${id}.mov`, `blog/videos/${id}.webm`,
+  ]);
 
   const { error } = await supabase.from('blog_posts').delete().eq('id', id);
   if (error) throw new Error(error.message);
