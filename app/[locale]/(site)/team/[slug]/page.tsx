@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
 
 const teamMembers = [
   {
@@ -108,7 +109,10 @@ Com o Guilherme, as ideias ganham vida e uma boa dose de criatividade.`,
 ];
 
 export function generateStaticParams() {
-  return teamMembers.map((m) => ({ slug: m.slug }));
+  const locales = ['pt', 'en', 'fr'];
+  return locales.flatMap((locale) =>
+    teamMembers.map((m) => ({ locale, slug: m.slug }))
+  );
 }
 
 export async function generateMetadata({
@@ -116,7 +120,8 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
   const member = teamMembers.find((m) => m.slug === slug);
 
   if (!member) {
@@ -136,7 +141,8 @@ export default async function TeamMemberPage({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
   const member = teamMembers.find((m) => m.slug === slug);
 
   if (!member) {

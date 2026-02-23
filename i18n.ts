@@ -12,13 +12,16 @@ const messages = {
   fr,
 };
 
-export default getRequestConfig(async ({ locale }) => {
-  if (!routing.locales.includes(locale as any)) {
+export default getRequestConfig(async ({ requestLocale }) => {
+  let locale = await requestLocale;
+
+  if (!locale || !routing.locales.includes(locale as any)) {
     locale = routing.defaultLocale;
   }
 
   return {
     locale,
-    messages: messages[locale as keyof typeof messages],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    messages: messages[locale as keyof typeof messages] as any,
   };
 });

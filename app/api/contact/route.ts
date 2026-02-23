@@ -18,6 +18,10 @@ export async function POST(request: NextRequest) {
 
     const supabase = await createClient();
 
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
+    }
+
     const { error } = await supabase.from('contact_messages').insert({
       name: validatedData.name,
       email: validatedData.email,
