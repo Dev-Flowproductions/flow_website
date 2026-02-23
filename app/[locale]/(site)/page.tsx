@@ -54,10 +54,10 @@ export default async function HomePage({
         .order('order', { ascending: true });
       testimonials = testimonialsResponse.data;
 
-      // Fetch featured projects
+      // Fetch featured projects with tags
       const projectsResponse = await supabase
         .from('projects')
-        .select('*')
+        .select('id, title, slug, client_name, featured_image_path, gallery, project_project_tags(project_tags(key, label))')
         .eq('status', 'published')
         .eq('is_featured', true)
         .order('published_at', { ascending: false })
