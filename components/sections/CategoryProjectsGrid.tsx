@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@/i18n/routing';
-import type { ProjectWithTags } from '@/lib/projects';
+import type { ProjectWithTags, TagRecord } from '@/lib/projects';
 
 interface Props {
   projects: ProjectWithTags[];
@@ -23,9 +23,9 @@ export default function CategoryProjectsGrid({ projects, locale, emptyMessage }:
       {projects.map((project) => {
         const title = project.title?.[locale] || project.title?.['pt'] || 'Untitled';
         const slug  = project.slug?.[locale]  || project.slug?.['pt']  || project.id;
-        const tags  = project.project_project_tags
-          ?.map(r => r.project_tags)
-          .filter(Boolean) ?? [];
+        const tags = project.project_project_tags
+          ?.flatMap(r => Array.isArray(r.project_tags) ? r.project_tags : [r.project_tags])
+          .filter((t): t is TagRecord => t != null) ?? [];
         const hasVideo = !!project.gallery?.video_url;
 
         return (

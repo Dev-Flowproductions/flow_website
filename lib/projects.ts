@@ -1,5 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 
+export type TagRecord = { key: string; label: Record<string, string> };
+
 export type ProjectWithTags = {
   id: string;
   title: Record<string, string>;
@@ -7,7 +9,8 @@ export type ProjectWithTags = {
   client_name: string | null;
   featured_image_path: string | null;
   gallery: { video_url?: string } | null;
-  project_project_tags: { project_tags: { key: string; label: Record<string, string> } }[];
+  // Supabase returns the nested join as object or array depending on relationship direction
+  project_project_tags: { project_tags: TagRecord | TagRecord[] }[];
 };
 
 const CATEGORY_IDS: Record<string, string> = {

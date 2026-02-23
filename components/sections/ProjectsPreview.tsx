@@ -15,7 +15,8 @@ interface Project {
   client_name?: string;
   featured_image_path?: string;
   gallery?: { video_url?: string } | null;
-  project_project_tags?: { project_tags: Tag }[];
+  // Supabase returns project_tags as object or array depending on relationship cardinality
+  project_project_tags?: { project_tags: Tag | Tag[] }[];
 }
 
 interface ProjectsPreviewProps {
@@ -47,7 +48,9 @@ export default function ProjectsPreview({ projects, locale }: ProjectsPreviewPro
               {projects.slice(0, 6).map((project) => {
                 const title = project.title?.[locale] || project.title?.['pt'] || 'Untitled';
                 const slug  = project.slug?.[locale]  || project.slug?.['pt']  || project.id;
-                const tags  = project.project_project_tags?.map(r => r.project_tags).filter(Boolean) ?? [];
+                const tags  = project.project_project_tags
+                  ?.flatMap(r => Array.isArray(r.project_tags) ? r.project_tags : [r.project_tags])
+                  .filter((t): t is Tag => t != null) ?? [];
                 const hasVideo = !!project.gallery?.video_url;
 
                 return (
