@@ -8,58 +8,39 @@ export default function Footer({ locale }: { locale: string }) {
 
   return (
     <footer className="bg-white border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Single Row Layout */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-6">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="inline-block">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+
+          {/* Column 1 - Logo */}
+          <div>
+            <Link href="/" className="inline-block mb-0">
               <div className="flex flex-col leading-tight">
-                <span className="text-3xl font-bold tracking-tight">FLOW</span>
-                <span className="text-[9px] tracking-widest uppercase">PRODUCTIONS</span>
+                <span className="text-4xl font-black tracking-tight">FLOW</span>
+                <span className="text-[10px] tracking-[0.3em] uppercase text-gray-700">PRODUCTIONS</span>
               </div>
             </Link>
           </div>
 
-          {/* Address */}
-          <div className="flex-1">
-            <h4 className="font-semibold mb-2 text-sm">Endereço</h4>
-            <p className="text-sm text-gray-600 leading-relaxed max-w-xs">
+          {/* Column 2 - Address + Social */}
+          <div className="space-y-4">
+            <h4 className="font-semibold text-sm">Endereço</h4>
+            <p className="text-sm text-gray-600 leading-relaxed">
               {t('address')}
             </p>
-            <Link 
-              href="/sobre-nos" 
-              className="text-xs text-gray-400 hover:text-gray-600 transition-colors mt-1 inline-block"
+            <Link
+              href="/sobre-nos"
+              className="text-xs text-gray-400 hover:text-gray-600 transition-colors block"
             >
               Ficha do Projeto
             </Link>
-          </div>
 
-          {/* Email & Phone */}
-          <div className="flex-1">
-            <h4 className="font-semibold mb-2 text-sm">Email</h4>
-            <a
-              href={`mailto:${t('email')}`}
-              className="text-sm text-gray-600 hover:text-black transition-colors block mb-3"
-            >
-              {t('email')}
-            </a>
-            <a
-              href={`tel:${t('phone')}`}
-              className="text-xl font-semibold text-black hover:text-gray-700 transition-colors block"
-            >
-              {t('phone')}
-            </a>
-          </div>
-
-          {/* Social Media */}
-          <div className="flex-shrink-0">
-            <div className="flex space-x-2">
+            {/* Social Icons */}
+            <div className="flex gap-2 pt-2">
               <a
                 href="https://www.facebook.com/flowproductions.pt"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-black hover:bg-black hover:text-white transition-all"
+                className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:border-black hover:bg-black hover:text-white transition-all"
                 aria-label="Facebook"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -70,7 +51,7 @@ export default function Footer({ locale }: { locale: string }) {
                 href="https://www.instagram.com/flowproductions.pt"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-black hover:bg-black hover:text-white transition-all"
+                className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:border-black hover:bg-black hover:text-white transition-all"
                 aria-label="Instagram"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -81,7 +62,7 @@ export default function Footer({ locale }: { locale: string }) {
                 href="https://www.linkedin.com/company/flow-productions"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-black hover:bg-black hover:text-white transition-all"
+                className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:border-black hover:bg-black hover:text-white transition-all"
                 aria-label="LinkedIn"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -92,7 +73,7 @@ export default function Footer({ locale }: { locale: string }) {
                 href="https://www.youtube.com/@flowproductions"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-black hover:bg-black hover:text-white transition-all"
+                className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:border-black hover:bg-black hover:text-white transition-all"
                 aria-label="YouTube"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -101,18 +82,30 @@ export default function Footer({ locale }: { locale: string }) {
               </a>
             </div>
           </div>
+
+          {/* Column 3 - Email & Phone */}
+          <div className="space-y-4">
+            <h4 className="font-semibold text-sm">Email</h4>
+            <a
+              href={`mailto:${t('email')}`}
+              className="text-sm text-gray-600 hover:text-black transition-colors block underline"
+            >
+              {t('email')}
+            </a>
+            <a
+              href={`tel:${t('phone')}`}
+              className="text-2xl font-bold text-black hover:text-gray-700 transition-colors block mt-4"
+            >
+              {t('phone')}
+            </a>
+          </div>
+
         </div>
 
         {/* Bottom Border */}
-        <div className="border-t border-gray-200 pt-4">
-          <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
-            <p>{t('rights')}</p>
-            <a 
-              href={`tel:${t('phone')}`}
-              className="mt-2 md:mt-0 hover:text-gray-600 transition-colors"
-            >
-              tel: {t('phone')}
-            </a>
+        <div className="border-t border-gray-200 pt-6">
+          <div className="flex justify-end">
+            <p className="text-xs text-gray-400">{t('rights')}</p>
           </div>
         </div>
       </div>

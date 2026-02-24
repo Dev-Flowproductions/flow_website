@@ -2,51 +2,168 @@
 
 import { Link } from '@/i18n/routing';
 import { AnimateIn } from '@/components/ui/AnimateIn';
+import { useState } from 'react';
 
 export default function ContactCTA() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+    consent: false,
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '', consent: false });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
   return (
     <section className="py-20 px-4 bg-white">
-      <div className="max-w-4xl mx-auto text-center">
-        <AnimateIn>
-          <h2 className="text-3xl md:text-5xl font-bold mb-8">
-            Vamos pôr os teus projetos a fluir?
-          </h2>
-        </AnimateIn>
+      <div className="max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-16">
+          {/* Left - Info */}
+          <AnimateIn>
+            <div>
+              <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
+                Contacta-nos
+              </p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-12">
+                Vamos pôr os teus projetos a fluir?
+              </h2>
 
-        <AnimateIn delay={0.2}>
-          <div className="space-y-4 mb-8 text-gray-600">
-            <p>
-              <strong>Endereço:</strong><br />
-              Edifício Ualg Tec Campus, 8005-139 Faro
-            </p>
-            <p>
-              <strong>Telefone:</strong><br />
-              <a
-                href="tel:+351910814616"
-                className="hover:text-black transition-colors"
-              >
-                +351 910 814 616
-              </a>
-            </p>
-            <p>
-              <strong>Email:</strong><br />
-              <a
-                href="mailto:info@flowproductions.pt"
-                className="hover:text-black transition-colors"
-              >
-                info@flowproductions.pt
-              </a>
-            </p>
-          </div>
-        </AnimateIn>
+              <div className="space-y-6 text-gray-700">
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 mt-1 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <p>Edifício Ualg Tec Campus, 8005-139 Faro</p>
+                </div>
 
-        <AnimateIn delay={0.4}>
-          <Link href="/contactos">
-            <button className="px-8 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors">
-              Contacta-nos
-            </button>
-          </Link>
-        </AnimateIn>
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 mt-1 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <a href="tel:+351910814616" className="hover:text-black transition-colors font-semibold">
+                    +351 910 814 616
+                  </a>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 mt-1 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <a href="mailto:info@flowproductions.pt" className="hover:text-black transition-colors">
+                    info@flowproductions.pt
+                  </a>
+                </div>
+              </div>
+            </div>
+          </AnimateIn>
+
+          {/* Right - Form */}
+          <AnimateIn delay={0.2}>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name */}
+              <div className="relative">
+                <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Nome"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                  className="w-full pl-12 pr-4 py-3 border-b border-gray-300 focus:border-black outline-none transition-colors bg-transparent"
+                />
+              </div>
+
+              {/* Email */}
+              <div className="relative">
+                <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                  className="w-full pl-12 pr-4 py-3 border-b border-gray-300 focus:border-black outline-none transition-colors bg-transparent"
+                />
+              </div>
+
+              {/* Message */}
+              <div className="relative">
+                <svg className="absolute left-4 top-4 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                <textarea
+                  placeholder="Tem um projeto em mente?"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  rows={4}
+                  required
+                  className="w-full pl-12 pr-4 py-3 border-b border-gray-300 focus:border-black outline-none transition-colors resize-none bg-transparent"
+                />
+              </div>
+
+              {/* Consent */}
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="cta-consent"
+                  checked={formData.consent}
+                  onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
+                  required
+                  className="mt-1 w-4 h-4 cursor-pointer"
+                />
+                <label htmlFor="cta-consent" className="text-sm text-gray-700 cursor-pointer">
+                  Concordo que os meus dados submetidos sejam{' '}
+                  <span className="underline">recolhidos e armazenados</span>.
+                </label>
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="w-full md:w-auto px-8 py-3 bg-[rgb(250,59,30)] hover:bg-[rgb(230,39,10)] text-white rounded-full font-medium transition-colors flex items-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+                {status === 'loading' ? 'A enviar...' : 'Entrar em Contacto'}
+              </button>
+
+              {status === 'success' && (
+                <p className="text-green-600 text-sm">Mensagem enviada com sucesso!</p>
+              )}
+              {status === 'error' && (
+                <p className="text-red-600 text-sm">Erro ao enviar mensagem. Tente novamente.</p>
+              )}
+            </form>
+          </AnimateIn>
+        </div>
       </div>
     </section>
   );

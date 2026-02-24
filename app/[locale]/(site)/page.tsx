@@ -7,7 +7,6 @@ import ServicesPreview from '@/components/sections/ServicesPreview';
 import TestimonialCarousel from '@/components/sections/TestimonialCarousel';
 import ProjectsPreview from '@/components/sections/ProjectsPreview';
 import ContactCTA from '@/components/sections/ContactCTA';
-import NewsletterInline from '@/components/layout/NewsletterInline';
 
 export async function generateMetadata({
   params,
@@ -130,20 +129,21 @@ export default async function HomePage({
       )}
 
       {/* Testimonials Section */}
-      {testimonials && testimonials.length > 0 && (
-        <TestimonialCarousel testimonials={testimonials} locale={locale} />
-      )}
+      <TestimonialCarousel
+        testimonials={testimonials && testimonials.length > 0 ? testimonials : [
+          { id: '1', quote: { pt: 'Obrigado pela abordagem profissional da Flow ao nosso projeto! Foi um prazer trabalhar com a equipa!' }, person_name: 'André Oliveira', company_name: 'Zion Creative Artisans', avatar_path: '/images/testimonials/zion.png', order: 1 },
+          { id: '2', quote: { pt: 'Recebi muito mais do que estava à espera — encontrei uma identidade única para a minha marca.' }, person_name: 'Sandra Romão', company_name: 'Nature Soul Food', avatar_path: '/images/testimonials/nature-soul-food.jpg', order: 2 },
+          { id: '3', quote: { pt: 'Obrigado por conseguirem transmitir a nossa visão de forma tão acertiva.' }, person_name: 'Flávio Peña', company_name: 'Indassa', avatar_path: '/images/testimonials/indassa.png', order: 3 },
+          { id: '4', quote: { pt: 'Uma equipa extremamente criativa com ideias muito dinâmicas!' }, person_name: 'Margarida', company_name: 'Missão Condução', avatar_path: '/images/testimonials/missao.png', order: 4 },
+        ]}
+        locale={locale}
+      />
 
       {/* Projects Preview Section */}
-      {projects && (
-        <ProjectsPreview projects={projects} locale={locale} />
-      )}
+      <ProjectsPreview projects={[]} locale={locale} columns={2} showTitles={false} />
 
       {/* Contact CTA Section */}
       <ContactCTA />
-
-      {/* Newsletter Section */}
-      <NewsletterInline />
     </div>
   );
 }

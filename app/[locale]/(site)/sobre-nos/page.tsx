@@ -147,9 +147,6 @@ export default async function AboutPage({
 
       {/* Team Section - 9 Members Grid */}
       <section className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <AnimateIn>
-            <div className="text-center mb-16 relative">
               {/* Badge */}
               <div className="inline-block mb-6">
                 <div className="w-24 h-24 rounded-full bg-black text-white flex items-center justify-center">
@@ -160,6 +157,9 @@ export default async function AboutPage({
                   </div>
                 </div>
               </div>
+        <div className="max-w-6xl mx-auto">
+          <AnimateIn>
+            <div className="text-center mb-16 relative">
               <h2 className="text-4xl md:text-5xl font-bold">
                 {t('team.title')} <span className="text-gray-300">{t('team.titleHighlight')}</span>
               </h2>
@@ -167,7 +167,7 @@ export default async function AboutPage({
           </AnimateIn>
 
           {/* 3x3 Grid of Team Members */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3">
             {[
               { name: 'Ricardo Pedro', role: 'CEO | 2D Animator', slug: 'ricardo-pedro' },
               { name: 'Verónica Guerreiro', role: 'Design Thinker | Project Manager', slug: 'veronica-guerreiro' },
@@ -180,19 +180,19 @@ export default async function AboutPage({
               { name: 'Guilherme Bordoni', role: 'Video Producer', slug: 'guilherme-bordoni' },
             ].map((member, index) => (
               <AnimateIn key={index} delay={0.1 * (index + 1)}>
-                <Link href={`/team/${member.slug}`} className="block">
-                  <div className="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden relative group cursor-pointer">
+                <Link href={`/team/${member.slug}`} className="block group cursor-pointer">
+                  {/* Photo */}
+                  <div className="aspect-[4/3] overflow-hidden relative">
                     <img
                       src={`/images/team/member-${index + 1}.jpg`}
                       alt={member.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                      <h3 className="text-white text-xl font-bold mb-1">{member.name}</h3>
-                      <p className="text-white/90 text-sm">{member.role}</p>
-                    </div>
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
+                  {/* Grey bar */}
+                  <div className="bg-gray-300 h-8" />
                 </Link>
               </AnimateIn>
             ))}

@@ -78,65 +78,71 @@ export default async function ProjectsPage({
       {/* Projects Grid Section */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects && projects.length > 0 ? (
-              projects.map((project) => {
-                const title = project.title?.[locale] || project.title?.['pt'] || 'Untitled';
-                const projectSlug = project.slug?.[locale] || project.slug?.['pt'] || project.id;
-                const tags = project.project_project_tags
-                  ?.map((r: { project_tags: { key: string; label: Record<string, string> } }) => r.project_tags)
-                  .filter(Boolean) ?? [];
-                const hasVideo = !!project.gallery?.video_url;
-
-                return (
-                  <Link key={project.id} href={`/projetos/${projectSlug}`} className="group block">
-                    {/* Thumbnail */}
-                    <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden relative">
-                      {project.featured_image_path ? (
-                        <img
-                          src={project.featured_image_path}
-                          alt={title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-400">
-                          <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                        </div>
-                      )}
-                      {/* Video badge */}
-                      {hasVideo && (
-                        <span className="absolute top-3 right-3 bg-black/70 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                          Vídeo
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Tags */}
-                    {tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1 mb-2">
-                        {tags.map((tag: { key: string; label: Record<string, string> }) => (
-                          <span key={tag.key} className="text-[10px] font-semibold uppercase tracking-widest text-gray-400">
-                            {tag.label?.[locale] || tag.label?.['pt'] || tag.key}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    <h3 className="text-xl font-bold text-black group-hover:text-gray-600 transition-colors mb-1">{title}</h3>
-                    {project.client_name && (
-                      <p className="text-gray-500 text-sm">{project.client_name}</p>
-                    )}
-                  </Link>
-                );
-              })
-            ) : (
-              <div className="col-span-full text-center py-12">
-                <p className="text-gray-500">Em breve, novos projetos...</p>
-              </div>
-            )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { slug: 'ultima-gota',                  title: 'Última Gota',                   tags: 'Animação',                       img: '/images/projects/Ultima-Gota.webp' },
+              { slug: 'likewise',                     title: 'Likewise',                      tags: 'Animação',                       img: '/images/projects/likewise.jpg' },
+              { slug: 'dias-medievais-de-castro-marim', title: 'Dias Medievais de Castro Marim', tags: 'Content Writing, Vídeo',        img: '/images/projects/dias-medievais-de-castro-marim.webp' },
+              { slug: 'medwater',                     title: 'Medwater',                      tags: 'Animação',                       img: '/images/projects/medwater.webp' },
+              { slug: 'one-select-properties',        title: 'One Select Properties',         tags: 'Animação',                       img: '/images/projects/one-select-properties.jpg' },
+              { slug: 'neomarca',                     title: 'Neomarca',                      tags: 'Entrevistas',                    img: '/images/projects/neomarca.webp' },
+              { slug: 'mia',                          title: 'MIA',                           tags: 'Animação, Content Writing',      img: '/images/projects/mia.webp' },
+              { slug: 'witfy',                        title: 'Witfy',                         tags: 'Content Writing, Vídeo',         img: '/images/projects/witfy-video.jpg' },
+              { slug: 'pro-am-vilamoura',             title: 'PRO AM – Vilamoura',            tags: 'Content Writing, Vídeo',         img: '/images/projects/pro-am-vilamoura.jpeg' },
+              { slug: 'barturs',                      title: 'Barturs',                       tags: 'Animação',                       img: '/images/projects/barturs.png' },
+              { slug: 'lets-communicate',             title: "Let's Communicate",             tags: 'Animação',                       img: '/images/projects/lets-communicate.jpg' },
+              { slug: 'kipt',                         title: 'KIPT',                          tags: 'Animação',                       img: '/images/projects/kipt.webp' },
+              { slug: 'dental-hpa',                   title: 'DENTAL HPA',                    tags: 'Marketing',                      img: '/images/projects/dental-hpa.jpg' },
+              { slug: 'emjogo',                       title: 'EmJogo',                        tags: 'Animação',                       img: '/images/projects/emjogo.webp' },
+              { slug: 'albufeira-digital-nomads',     title: 'Albufeira Digital Nomads',      tags: 'Marketing',                      img: '/images/projects/albufeira-marketing.png' },
+              { slug: 'travel-tech-partners',         title: 'Travel Tech Partners',          tags: 'Animação',                       img: '/images/projects/travel-tech-partners.webp' },
+              { slug: 'toma-la-da-ca',                title: 'Toma lá, dá cá',               tags: 'Animação',                       img: '/images/projects/toma-la-da-ca.webp' },
+              { slug: 'kubidoce',                     title: 'Kubidoce',                      tags: 'Marketing',                      img: '/images/projects/kubidoce-marketing.png' },
+              { slug: 'rb-woodfinish',                title: 'RB Woodfinish',                 tags: 'Marketing',                      img: '/images/projects/rb-woodfinish.jpg' },
+              { slug: 'missao-conducao',              title: 'Missão Condução',               tags: 'Marketing',                      img: '/images/projects/missao-conducao.jpg' },
+              { slug: 'adm-24',                       title: "ADM 24'",                       tags: 'Marketing',                      img: '/images/projects/adm-24.jpg' },
+              { slug: 'nature-soul-food',             title: 'Nature Soul Food',              tags: 'Marketing',                      img: '/images/projects/nature-soul-food-marketing.jpg' },
+              { slug: 'jardim-aurora',                title: 'Jardim Aurora',                 tags: 'Marketing',                      img: '/images/projects/jardim-aurora-marketing.jpg' },
+              { slug: 'dom-jose-beach-hotel',         title: 'Dom José Beach Hotel',          tags: 'Content Writing, Vídeo',         img: '/images/projects/dom-jose-video.jpg' },
+              { slug: 'designer-outlet-algarve',      title: 'Designer Outlet Algarve',       tags: 'Vídeo',                          img: '/images/projects/designer-outlet-algarve.jpg' },
+              { slug: 'ibc-security',                 title: 'IBC Security',                  tags: 'Vídeo',                          img: '/images/projects/ibc-security.jpg' },
+              { slug: 'indasa',                       title: 'Indasa',                        tags: 'Vídeo',                          img: '/images/projects/indasa.jpg' },
+              { slug: 'rocamar-beach-hotel',          title: 'Rocamar Beach Hotel',           tags: 'Vídeo',                          img: '/images/projects/rocamar-beach-hotel.png' },
+              { slug: 'kubidoce',                     title: 'Kubidoce',                      tags: 'Vídeo',                          img: '/images/projects/kubidoce-video.jpg' },
+              { slug: 'odyssea',                      title: 'Odyssea',                       tags: 'Vídeo',                          img: '/images/projects/odyssea.jpg' },
+              { slug: 'the-originals',                title: 'The Originals',                 tags: 'Vídeo',                          img: '/images/projects/the-originals.jpg' },
+              { slug: 'ria-shopping',                 title: 'Ria Shopping',                  tags: 'Content Writing, Vídeo',         img: '/images/projects/ria-shopping.jpg' },
+              { slug: 'albufeira-digital-nomads',     title: 'Albufeira Digital Nomads',      tags: 'Vídeo',                          img: '/images/projects/albufeira-video.jpg' },
+              { slug: 'parque-mineiro-aljustrel',     title: 'Parque Mineiro Aljustrel',      tags: 'Vídeo',                          img: '/images/projects/parque-mineiro-aljustrel.webp' },
+              { slug: 'fujifilm',                     title: 'Fujifilm',                      tags: 'Vídeo',                          img: '/images/projects/fujifilm.jpg' },
+              { slug: 'algarseafood',                 title: 'Algarseafood',                  tags: 'Vídeo',                          img: '/images/projects/algarseafood.webp' },
+              { slug: 'zion-creative-artisans',       title: 'ZION Creative Artisans',        tags: 'Design',                         img: '/images/projects/zion-creative-artisans.webp' },
+              { slug: 'dom-jose-beach-hotel',         title: 'Dom José Beach Hotel',          tags: 'Design',                         img: '/images/projects/dom-jose-design.png' },
+              { slug: '100lixo',                      title: '100LIXO',                       tags: 'Design',                         img: '/images/projects/100lixo.png' },
+              { slug: 'witfy',                        title: 'Witfy',                         tags: 'Design',                         img: '/images/projects/witfy.png' },
+              { slug: 'albufeira-digital-nomads',     title: 'Albufeira Digital Nomads',      tags: 'Design',                         img: '/images/projects/albufeira-digital-nomads.png' },
+              { slug: 'urlegfix',                     title: 'URLEGFIX',                      tags: 'Design',                         img: '/images/projects/urlegfix.png' },
+              { slug: 'cesarius',                     title: 'Cesarius',                      tags: 'Design',                         img: '/images/projects/cesarius.jpg' },
+              { slug: 'jardim-aurora',                title: 'Jardim Aurora',                 tags: 'Design',                         img: '/images/projects/jardim-aurora-design.jpg' },
+              { slug: 'nature-soul-food',             title: 'Nature Soul Food',              tags: 'Design',                         img: '/images/projects/nature-soul-food.png' },
+              { slug: 'rocket-booster',               title: 'Rocket Booster',                tags: 'Design',                         img: '/images/projects/rocket-booster.png' },
+              { slug: 'pizza-lab',                    title: 'Pizza Lab',                     tags: 'Design',                         img: '/images/projects/pizza-lab.jpg' },
+            ].map((project, index) => (
+              <Link key={index} href={`/projetos/${project.slug}`} className="group block relative overflow-hidden">
+                <div className="aspect-[4/3] bg-gray-900 overflow-hidden relative">
+                  <img
+                    src={project.img}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center px-8">
+                    <h3 className="text-white text-xl font-bold mb-2">{project.title}</h3>
+                    <p className="text-gray-400 text-xs uppercase tracking-widest">{project.tags}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
