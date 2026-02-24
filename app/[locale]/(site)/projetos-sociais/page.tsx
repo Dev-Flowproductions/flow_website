@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { fetchProjectsByCategory } from '@/lib/projects';
-import CategoryProjectsGrid from '@/components/sections/CategoryProjectsGrid';
+import ProjectCarousel from '@/components/sections/ProjectCarousel';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -10,14 +9,27 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function ProjetosSociaisPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  const projects = await fetchProjectsByCategory('projetos-sociais');
+const socialProjects = [
+  { slug: 'liga-portuguesa-contra-o-cancro', title: 'Liga Portuguesa Contra o Cancro', img: '/images/projects/social-carousel/liga-portuguesa-contra-o-cancro.jpg' },
+  { slug: 'aequum',                          title: 'AeQuum',                          img: '/images/projects/social-carousel/aequum.jpg' },
+  { slug: 'hackathon',                       title: 'Hackathon Green',                 img: '/images/projects/social-carousel/hackathon.jpg' },
+  { slug: 'social-hackathon',               title: 'Social Hackathon',                img: '/images/projects/social-carousel/social-hackathon.jpg' },
+  { slug: 'refood',                          title: 'ReFood',                          img: '/images/projects/social-carousel/refood.jpg' },
+];
 
+const logos = [
+  { name: 'ZION',                    src: '/images/logos/zion.png' },
+  { name: 'Albufeira Digital Nomads', src: '/images/logos/albufeira-dn.png' },
+  { name: 'CM Albufeira',            src: '/images/logos/cm-albufeira.png' },
+  { name: 'Fujifilm',                src: '/images/logos/fujifilm.png' },
+  { name: 'Faro',                    src: '/images/logos/faro.png' },
+  { name: 'Inframoura',              src: '/images/logos/inframoura.png' },
+  { name: 'CCDR',                    src: '/images/logos/ccdr.png' },
+  { name: 'Nature Soul Food',        src: '/images/logos/nature.png' },
+  { name: 'New Balance',             src: '/images/logos/new-balance.png' },
+];
+
+export default async function ProjetosSociaisPage() {
   return (
     <div>
       {/* Hero */}
@@ -52,25 +64,42 @@ export default async function ProjetosSociaisPage({
                 <strong>justo</strong>, <strong>inclusivo</strong> e <strong>consciente</strong>.
               </p>
               <p>
-                Transformamos <strong>mensagens importantes</strong> em conteúdos <strong>claros</strong> e{' '}
+                Através destas iniciativas, colocamos a nossa <strong>equipa</strong> e o nosso{' '}
+                <strong>know-how</strong> ao serviço de projetos que merecem ser <strong>vistos</strong>,{' '}
+                <strong>ouvidos</strong> e <strong>partilhados</strong>. Transformamos{' '}
+                <strong>mensagens importantes</strong> em conteúdos <strong>claros</strong> e{' '}
                 <strong>envolventes</strong>, ajudando a dar <strong>visibilidade</strong> ao trabalho que
                 muitas vezes acontece longe dos <strong>holofotes</strong>.
+              </p>
+              <p>
+                Porque quando uma <strong>causa importa</strong>, a <strong>comunicação</strong> também
+                conta para <strong>informar</strong>, <strong>mobilizar</strong> e <strong>aproximar pessoas</strong>.
               </p>
             </div>
           </AnimateIn>
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <CategoryProjectsGrid
-              projects={projects}
-              locale={locale}
-              emptyMessage="Em breve, novos projetos sociais..."
-            />
-          </div>
+      {/* Projects Carousel */}
+      <ProjectCarousel projects={socialProjects} />
+
+      {/* Brands Logo Marquee */}
+      <section className="bg-black py-16 overflow-hidden">
+        <div className="animate-marquee">
+          {[...logos, ...logos].map((logo, i) => (
+            <div
+              key={i}
+              className="inline-flex items-center justify-center flex-shrink-0 mx-8"
+              style={{ height: '110px', width: '220px' }}
+            >
+              <img
+                src={logo.src}
+                alt={logo.name}
+                className="max-h-full max-w-full object-contain"
+                style={{ filter: 'brightness(0) invert(1)', opacity: 0.8 }}
+              />
+            </div>
+          ))}
         </div>
       </section>
     </div>
