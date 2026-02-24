@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
-import { AnimateIn } from '@/components/ui/AnimateIn';
-import { fetchProjectsByCategory } from '@/lib/projects';
-import CategoryProjectsGrid from '@/components/sections/CategoryProjectsGrid';
+import MultiSlideCarousel from '@/components/sections/MultiSlideCarousel';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -10,78 +8,46 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function AnimacaoProjectsPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  const projects = await fetchProjectsByCategory('animacao');
+const animacoesPromocionais = [
+  { slug: 'ultima-gota',           title: 'Última Gota',          tags: 'Animação',                  img: '/images/projects/animacao-carousel/ultima-gota.webp' },
+  { slug: 'likewise',              title: 'Likewise',             tags: 'Animação',                  img: '/images/projects/animacao-carousel/likewise.jpg' },
+  { slug: 'medwater',              title: 'Medwater',             tags: 'Animação',                  img: '/images/projects/animacao-carousel/medwater.webp' },
+  { slug: 'one-select-properties', title: 'One Select Properties',tags: 'Animação',                  img: '/images/projects/animacao-carousel/one-select.jpg' },
+  { slug: 'mia',                   title: 'MIA',                  tags: 'Animação, Content Writing', img: '/images/projects/animacao-carousel/mia.webp' },
+  { slug: 'barturs',               title: 'Barturs',              tags: 'Animação',                  img: '/images/projects/animacao-carousel/barturs.png' },
+  { slug: 'lets-communicate',      title: "Let's Communicate",    tags: 'Animação',                  img: '/images/projects/animacao-carousel/lets-communicate.jpg' },
+  { slug: 'kipt',                  title: 'KIPT',                 tags: 'Animação',                  img: '/images/projects/animacao-carousel/kipt.webp' },
+  { slug: 'emjogo',                title: 'EmJogo',               tags: 'Animação',                  img: '/images/projects/animacao-carousel/emjogo.webp' },
+  { slug: 'travel-tech-partners',  title: 'Travel Tech Partners', tags: 'Animação',                  img: '/images/projects/animacao-carousel/travel-tech-partners.webp' },
+  { slug: 'toma-la-da-ca',         title: 'Toma lá, dá cá',      tags: 'Animação',                  img: '/images/projects/animacao-carousel/toma-la-da-ca.webp' },
+];
 
+export default async function AnimacaoProjectsPage() {
   return (
     <div>
-      {/* Hero — dark until a hero image is provided */}
-      <section className="relative h-screen w-full overflow-hidden bg-gray-900" />
-
-      {/* Intro — same structure as all other category pages */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <AnimateIn>
-            <p className="text-xs uppercase tracking-widest text-gray-600 mb-4 text-center">
-              QUANDO A IMAGINAÇÃO GANHA MOVIMENTO
-            </p>
-            <h1 className="text-4xl md:text-6xl font-bold mb-12 text-center">
-              Flow <span className="text-gray-300">Animação</span>
-            </h1>
-          </AnimateIn>
-          <AnimateIn delay={0.2}>
-            <div className="space-y-6 text-gray-700 leading-relaxed">
-              <p>
-                Na <strong>Animação</strong>, damos vida a ideias que não cabem na realidade.
-              </p>
-              <p>
-                Criamos <strong>animações 2D, 3D e motion graphics</strong> que explicam conceitos complexos,
-                contam histórias e conquistam públicos em segundos.
-              </p>
-              <p>
-                Seja em vídeos animados explicativos, peças para redes sociais ou campanhas institucionais,
-                misturamos criatividade e técnica para que cada frame flua com energia e impacto. Aqui, o
-                impossível torna-se visível.
-              </p>
-            </div>
-          </AnimateIn>
-        </div>
+      {/* Hero — dark with centered text overlay */}
+      <section className="relative h-screen w-full bg-gray-900 flex flex-col items-center justify-center text-center px-8">
+        <p className="text-xs uppercase tracking-widest text-white/50 mb-4">
+          QUANDO A IMAGINAÇÃO GANHA MOVIMENTO
+        </p>
+        <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-8">
+          Flow <span className="text-white/25">Animação</span>
+        </h1>
+        <p className="text-white/60 text-base leading-relaxed max-w-xl">
+          Na <strong className="text-white/80">Animação</strong>, damos vida a ideias que não cabem na realidade.
+          Criamos <strong className="text-white/80">animações 2D, 3D e motion graphics</strong> que explicam
+          conceitos complexos, contam histórias e conquistam públicos em segundos. Seja em vídeos animados
+          explicativos, peças para redes sociais ou campanhas institucionais, misturamos criatividade e técnica
+          para que cada frame flua com energia e impacto. Aqui, o impossível torna-se visível.
+        </p>
       </section>
 
-      {/* Animações Promocionais */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <AnimateIn>
-            <h2 className="text-2xl md:text-3xl font-bold mb-10">
-              Animações <span className="text-gray-300">Promocionais</span>
-            </h2>
-          </AnimateIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <CategoryProjectsGrid
-              projects={projects}
-              locale={locale}
-              emptyMessage="Em breve, novos projetos de animação..."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Cobertura de Eventos — placeholder */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <AnimateIn>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Cobertura de <span className="text-gray-300">Eventos</span>
-            </h2>
-            <p className="text-gray-500">Em breve, novos trabalhos de cobertura de eventos...</p>
-          </AnimateIn>
-        </div>
-      </section>
+      {/* Animações Promocionais — dark carousel directly below hero */}
+      <MultiSlideCarousel
+        projects={animacoesPromocionais}
+        title="Animações Promocionais"
+        dark={true}
+      />
     </div>
   );
 }

@@ -7,6 +7,7 @@ export interface CarouselProject {
   slug: string;
   title: string;
   img: string;
+  tags?: string;
 }
 
 interface Props {
@@ -95,12 +96,23 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
                   <img
                     src={p.img}
                     alt={p.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-end p-3">
-                    <span className="text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center px-4">
+                    <p className="text-white font-bold text-base md:text-lg text-center leading-snug mb-1">
                       {p.title}
-                    </span>
+                    </p>
+                    {p.tags && (
+                      <p className="text-white/60 text-xs text-center">{p.tags}</p>
+                    )}
+                  </div>
+                  {/* Arrow button — always visible on hover */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-white/20 border border-white/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
                   </div>
                 </div>
               </Link>
