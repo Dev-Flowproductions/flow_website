@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import MultiSlideCarousel from '@/components/sections/MultiSlideCarousel';
+import YoutubeHero from '@/components/sections/YoutubeHero';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -51,21 +52,13 @@ const logos = [
 export default async function AudiovisualProjectsPage() {
   return (
     <div>
-      {/* Hero — dark with centered text + description overlaid */}
-      <section className="relative h-screen w-full bg-gray-900 flex flex-col items-center justify-center text-center px-8">
-        <p className="text-xs uppercase tracking-widest text-white/50 mb-4">
-          HISTÓRIAS QUE SE VÊEM, SE SENTEM E FICAM NA MEMÓRIA
-        </p>
-        <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-8">
-          Flow <span className="text-white/25">Audiovisual</span>
-        </h1>
-        <p className="text-white/60 text-base leading-relaxed max-w-xl">
-          No <strong className="text-white/80">Audiovisual</strong>, transformamos momentos em narrativas com impacto.
-          Produzimos <strong className="text-white/80">vídeos e fotografias publicitários, institucionais,
-          promocionais e de eventos</strong>, sempre com o objetivo de aproximar marcas de pessoas.
-          Da pré-produção à edição final, cuidamos de cada detalhe para que a mensagem flua com emoção, ritmo e autenticidade.
-        </p>
-      </section>
+      <YoutubeHero
+        videoId="GBRdrWdv6L8"
+        label="HISTÓRIAS QUE SE VÊEM, SE SENTEM E FICAM NA MEMÓRIA"
+        title="Flow"
+        titleAccent="Audiovisual"
+        description="No Audiovisual, transformamos momentos em narrativas com impacto. Produzimos vídeos e fotografias publicitários, institucionais, promocionais e de eventos, sempre com o objetivo de aproximar marcas de pessoas. Da pré-produção à edição final, cuidamos de cada detalhe para que a mensagem flua com emoção, ritmo e autenticidade."
+      />
 
       {/* Vídeos Promocionais — dark carousel, directly below hero */}
       <MultiSlideCarousel

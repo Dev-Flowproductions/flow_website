@@ -14,10 +14,11 @@ export default function Footer({ locale }: { locale: string }) {
           {/* Column 1 - Logo */}
           <div>
             <Link href="/" className="inline-block mb-0">
-              <div className="flex flex-col leading-tight">
-                <span className="text-4xl font-black tracking-tight">FLOW</span>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-gray-700">PRODUCTIONS</span>
-              </div>
+              <img
+                src="/Logotipo/Logo Preto-01.png"
+                alt="Flow Productions"
+                className="h-10 w-auto"
+              />
             </Link>
           </div>
 

@@ -16,10 +16,11 @@ export default function Header({ locale }: { locale: string }) {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <div className="flex flex-col leading-tight">
-              <span className="text-3xl font-bold tracking-tight">FLOW</span>
-              <span className="text-[10px] tracking-widest uppercase">PRODUCTIONS</span>
-            </div>
+            <img
+              src="/Logotipo/Logo Preto-01.png"
+              alt="Flow Productions"
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Center Navigation + CTA Button - Desktop */}

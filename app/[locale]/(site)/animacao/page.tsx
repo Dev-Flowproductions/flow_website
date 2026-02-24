@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import MultiSlideCarousel from '@/components/sections/MultiSlideCarousel';
+import YoutubeHero from '@/components/sections/YoutubeHero';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -25,22 +26,13 @@ const animacoesPromocionais = [
 export default async function AnimacaoProjectsPage() {
   return (
     <div>
-      {/* Hero — dark with centered text overlay */}
-      <section className="relative h-screen w-full bg-gray-900 flex flex-col items-center justify-center text-center px-8">
-        <p className="text-xs uppercase tracking-widest text-white/50 mb-4">
-          QUANDO A IMAGINAÇÃO GANHA MOVIMENTO
-        </p>
-        <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-8">
-          Flow <span className="text-white/25">Animação</span>
-        </h1>
-        <p className="text-white/60 text-base leading-relaxed max-w-xl">
-          Na <strong className="text-white/80">Animação</strong>, damos vida a ideias que não cabem na realidade.
-          Criamos <strong className="text-white/80">animações 2D, 3D e motion graphics</strong> que explicam
-          conceitos complexos, contam histórias e conquistam públicos em segundos. Seja em vídeos animados
-          explicativos, peças para redes sociais ou campanhas institucionais, misturamos criatividade e técnica
-          para que cada frame flua com energia e impacto. Aqui, o impossível torna-se visível.
-        </p>
-      </section>
+      <YoutubeHero
+        videoId="QEThcEBF8kY"
+        label="QUANDO A IMAGINAÇÃO GANHA MOVIMENTO"
+        title="Flow"
+        titleAccent="Animação"
+        description="Na Animação, damos vida a ideias que não cabem na realidade. Criamos animações 2D, 3D e motion graphics que explicam conceitos complexos, contam histórias e conquistam públicos em segundos. Seja em vídeos animados explicativos, peças para redes sociais ou campanhas institucionais, misturamos criatividade e técnica para que cada frame flua com energia e impacto. Aqui, o impossível torna-se visível."
+      />
 
       {/* Animações Promocionais — dark carousel directly below hero */}
       <MultiSlideCarousel
