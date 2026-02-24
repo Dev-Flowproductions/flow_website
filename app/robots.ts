@@ -10,6 +10,16 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/admin/', '/api/'],
       },
+      // Allow major AI/LLM crawlers explicitly (GEO)
+      { userAgent: 'GPTBot', allow: '/' },
+      { userAgent: 'ChatGPT-User', allow: '/' },
+      { userAgent: 'Google-Extended', allow: '/' },
+      { userAgent: 'PerplexityBot', allow: '/' },
+      { userAgent: 'ClaudeBot', allow: '/' },
+      { userAgent: 'Amazonbot', allow: '/' },
+      { userAgent: 'anthropic-ai', allow: '/' },
+      { userAgent: 'cohere-ai', allow: '/' },
+      { userAgent: 'CCBot', allow: '/' },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
   };

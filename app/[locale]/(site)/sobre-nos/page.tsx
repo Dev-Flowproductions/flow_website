@@ -2,6 +2,9 @@ import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
+import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
 export async function generateMetadata({
   params,
@@ -11,10 +14,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'about' });
 
-  return {
+  return getPageMetadata(locale, {
     title: t('metaTitle'),
     description: t('metaDescription'),
-  };
+    path: 'sobre-nos',
+    image: `${SITE_URL}/images/hero/about-us-og.jpg`,
+  });
 }
 
 export default async function AboutPage({
@@ -25,8 +30,14 @@ export default async function AboutPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'about' });
 
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: 'Flow Productions', url: `${SITE_URL}/${locale}` },
+    { name: t('metaTitle'), url: `${SITE_URL}/${locale}/sobre-nos` },
+  ]);
+
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Hero Section with Image */}
       <section className="relative h-screen w-full overflow-hidden bg-gray-200">
         <img

@@ -1,12 +1,22 @@
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
+import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'Projetos Sociais - Flow Productions',
-    description: 'Projetos Sociais da Flow Productions — Criatividade com impacto social',
-  };
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return getPageMetadata(locale, {
+    title: 'Projetos Sociais — Criatividade com Impacto Social',
+    description: 'Flow Productions apoia associações, iniciativas e eventos sociais com criatividade e comunicação. Transformamos mensagens importantes em conteúdos claros e envolventes.',
+    path: 'projetos-sociais',
+    image: `${SITE_URL}/images/hero/social-projects-og.jpg`,
+  });
 }
 
 const socialProjects = [
@@ -29,10 +39,36 @@ const logos = [
   { name: 'New Balance',             src: '/images/logos/new-balance.png' },
 ];
 
+const serviceSchema = serviceJsonLd({
+  name: 'Projetos Sociais e Comunicação para Causas',
+  description: 'Apoio criativo a associações, iniciativas e eventos com impacto social — design, vídeo e comunicação ao serviço de causas que importam.',
+  url: `${SITE_URL}/pt/projetos-sociais`,
+  serviceType: 'Social Impact Communication',
+});
+
+const faqSchema = faqJsonLd([
+  {
+    question: 'A Flow Productions trabalha com associações sem fins lucrativos?',
+    answer: 'Sim. Através do Flow Social, apoiamos associações e iniciativas com impacto social, disponibilizando serviços de design, vídeo e comunicação a preços especiais ou pro-bono, consoante o caso.',
+  },
+  {
+    question: 'Que tipo de projetos sociais já apoiaram?',
+    answer: 'Apoiámos projetos como a Liga Portuguesa Contra o Cancro, a ReFood, Hackathons de sustentabilidade e iniciativas de inclusão social. Cada projeto é abordado com o mesmo rigor criativo dos projetos comerciais.',
+  },
+]);
+
+const breadcrumbSchema = breadcrumbJsonLd([
+  { name: 'Flow Productions', url: `${SITE_URL}/pt` },
+  { name: 'Projetos Sociais', url: `${SITE_URL}/pt/projetos-sociais` },
+]);
+
 export default async function ProjetosSociaisPage() {
   return (
     <div>
-      {/* Hero */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       <section className="relative h-screen w-full overflow-hidden bg-gray-100">
         <img
           src="/images/hero/social-projects.jpg"
@@ -41,7 +77,6 @@ export default async function ProjetosSociaisPage() {
         />
       </section>
 
-      {/* Intro */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <AnimateIn>
@@ -80,10 +115,8 @@ export default async function ProjetosSociaisPage() {
         </div>
       </section>
 
-      {/* Projects Carousel */}
       <ProjectCarousel projects={socialProjects} />
 
-      {/* Brands Logo Marquee */}
       <section className="bg-black py-16 overflow-hidden">
         <div className="animate-marquee">
           {[...logos, ...logos].map((logo, i) => (

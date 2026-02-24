@@ -1,10 +1,31 @@
 import type { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
+import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Blog Flow – Flow Productions',
-  description: 'Artigos sobre design, marketing, audiovisual e criatividade.',
-};
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const titles: Record<string, string> = {
+    pt: 'Blog — Artigos sobre Design, Marketing e Criatividade',
+    en: 'Blog — Articles on Design, Marketing & Creativity',
+    fr: 'Blog — Articles sur le Design, Marketing et Créativité',
+  };
+  const descs: Record<string, string> = {
+    pt: 'Lê os artigos da Flow Productions sobre design, marketing digital, audiovisual, animação e criatividade. Insights e tendências do setor criativo.',
+    en: 'Read Flow Productions articles on design, digital marketing, audiovisual, animation and creativity. Insights and trends from the creative industry.',
+    fr: 'Lisez les articles de Flow Productions sur le design, marketing digital, audiovisuel, animation et créativité.',
+  };
+  return getPageMetadata(locale, {
+    title: titles[locale] || titles.pt,
+    description: descs[locale] || descs.pt,
+    path: 'blog',
+  });
+}
 
 const posts = [
   { slug: 'o-marketing-ja-mudou-a-tua-marca-acompanhou', title: 'O marketing já mudou. A tua marca acompanhou?', date: '2026-02-11', img: '/images/blog/marketing-supreme.jpg' },
@@ -27,9 +48,20 @@ function formatDate(dateStr: string) {
   });
 }
 
-export default function BlogPage() {
+export default async function BlogPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: 'Flow Productions', url: `${SITE_URL}/${locale}` },
+    { name: 'Blog', url: `${SITE_URL}/${locale}/blog` },
+  ]);
+
   return (
     <div className="pt-24 pb-20 px-4 bg-white min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-16">Blog Flow</h1>
 

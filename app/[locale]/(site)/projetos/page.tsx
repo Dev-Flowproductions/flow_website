@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
+import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
 export async function generateMetadata({
   params,
@@ -12,10 +15,11 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'projects' });
 
-  return {
+  return getPageMetadata(locale, {
     title: t('metaTitle'),
     description: t('metaDescription'),
-  };
+    path: 'projetos',
+  });
 }
 
 export default async function ProjectsPage({
@@ -47,8 +51,14 @@ export default async function ProjectsPage({
     }
   }
 
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: 'Flow Productions', url: `${SITE_URL}/${locale}` },
+    { name: t('metaTitle'), url: `${SITE_URL}/${locale}/projetos` },
+  ]);
+
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Hero Image Section */}
       <section className="relative h-screen w-full overflow-hidden bg-gray-100">
         <img

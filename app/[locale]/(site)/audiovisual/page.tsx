@@ -2,12 +2,22 @@ import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import MultiSlideCarousel from '@/components/sections/MultiSlideCarousel';
 import YoutubeHero from '@/components/sections/YoutubeHero';
+import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'Audiovisual - Flow Productions',
-    description: 'Projetos Audiovisuais da Flow Productions',
-  };
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return getPageMetadata(locale, {
+    title: 'Produção Audiovisual e Fotografia',
+    description: 'Flow Productions — produção audiovisual, vídeo publicitário e fotografia profissional em Portugal. Transformamos momentos em narrativas com impacto para marcas e eventos.',
+    path: 'audiovisual',
+    image: `${SITE_URL}/images/hero/audiovisual-og.jpg`,
+  });
 }
 
 const videosPromocionais = [
@@ -49,9 +59,40 @@ const logos = [
   { name: 'New Balance',             src: '/images/logos/new-balance.png' },
 ];
 
+const serviceSchema = serviceJsonLd({
+  name: 'Produção Audiovisual e Fotografia',
+  description: 'Produção de vídeos publicitários, institucionais, promocionais e de eventos, bem como fotografia profissional de produto e eventos.',
+  url: `${SITE_URL}/pt/audiovisual`,
+  serviceType: 'Audiovisual Production',
+});
+
+const faqSchema = faqJsonLd([
+  {
+    question: 'Que tipos de vídeo a Flow Productions produz?',
+    answer: 'Produzimos vídeos publicitários, institucionais, promocionais, de eventos, entrevistas e conteúdos para redes sociais. Tratamos de toda a produção: pré-produção, filmagem e edição final.',
+  },
+  {
+    question: 'A Flow Productions também faz fotografia profissional?',
+    answer: 'Sim. Realizamos sessões de fotografia de produto, fotografia corporativa, fotografia de eventos e fotografia de arquitetura e espaços.',
+  },
+  {
+    question: 'Trabalham em todo o Portugal ou apenas no Algarve?',
+    answer: 'A nossa base é em Faro, no Algarve, mas realizamos produções em todo o território nacional e no estrangeiro.',
+  },
+]);
+
+const breadcrumbSchema = breadcrumbJsonLd([
+  { name: 'Flow Productions', url: `${SITE_URL}/pt` },
+  { name: 'Audiovisual', url: `${SITE_URL}/pt/audiovisual` },
+]);
+
 export default async function AudiovisualProjectsPage() {
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       <YoutubeHero
         videoId="GBRdrWdv6L8"
         label="HISTÓRIAS QUE SE VÊEM, SE SENTEM E FICAM NA MEMÓRIA"
@@ -60,14 +101,12 @@ export default async function AudiovisualProjectsPage() {
         description="No Audiovisual, transformamos momentos em narrativas com impacto. Produzimos vídeos e fotografias publicitários, institucionais, promocionais e de eventos, sempre com o objetivo de aproximar marcas de pessoas. Da pré-produção à edição final, cuidamos de cada detalhe para que a mensagem flua com emoção, ritmo e autenticidade."
       />
 
-      {/* Vídeos Promocionais — dark carousel, directly below hero */}
       <MultiSlideCarousel
         projects={videosPromocionais}
         title="Vídeos Promocionais"
         dark={true}
       />
 
-      {/* Flow Fotografias — 2 rows × 3 columns grid */}
       <section className="bg-gray-50 py-16 px-8 md:px-12">
         <AnimateIn>
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
@@ -87,7 +126,6 @@ export default async function AudiovisualProjectsPage() {
         </div>
       </section>
 
-      {/* Brands Logo Marquee */}
       <section className="bg-black py-16 overflow-hidden">
         <div className="animate-marquee">
           {[...logos, ...logos].map((logo, i) => (

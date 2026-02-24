@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { Link } from '@/i18n/routing';
+import { getPageMetadata, creativeWorkJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
 export async function generateMetadata({
   params,
@@ -24,7 +27,12 @@ export async function generateMetadata({
   const title = project.title[locale] || project.title['pt'] || 'Projeto';
   const description = project.summary?.[locale] || project.summary?.['pt'] || '';
 
-  return { title: `${title} – Flow Productions`, description };
+  return getPageMetadata(locale, {
+    title,
+    description,
+    path: `projetos/${slug}`,
+    image: project.featured_image_path || undefined,
+  });
 }
 
 function getYouTubeEmbedUrl(url: string): string | null {
@@ -77,8 +85,25 @@ export default async function ProjectDetailPage({
 
   const publishedDate = project.published_at ? formatDate(project.published_at, locale) : '';
 
+  const creativeWorkSchema = creativeWorkJsonLd({
+    name: title,
+    description: summary,
+    url: `${SITE_URL}/${locale}/projetos/${slug}`,
+    image: project.featured_image_path || undefined,
+    dateCreated: project.published_at || undefined,
+    client: project.client_name || undefined,
+  });
+
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: 'Flow Productions', url: `${SITE_URL}/${locale}` },
+    { name: 'Projetos', url: `${SITE_URL}/${locale}/projetos` },
+    { name: title, url: `${SITE_URL}/${locale}/projetos/${slug}` },
+  ]);
+
   return (
     <div className="bg-white min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Header: two-column — meta left, image right */}
       <section className="pt-32 pb-0 px-4 bg-white">

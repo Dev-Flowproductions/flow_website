@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import ServicesGrid from '@/components/sections/ServicesGrid';
 import { AnimateIn } from '@/components/ui/AnimateIn';
+import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
 export async function generateMetadata({
   params,
@@ -11,25 +14,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'services' });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
-  return {
+  return getPageMetadata(locale, {
     title: t('metaTitle'),
     description: t('metaDescription'),
-    openGraph: {
-      title: t('metaTitle'),
-      description: t('metaDescription'),
-      url: `${siteUrl}/${locale}/servicos`,
-    },
-    alternates: {
-      canonical: `${siteUrl}/${locale}/servicos`,
-      languages: {
-        pt: `${siteUrl}/pt/servicos`,
-        en: `${siteUrl}/en/services`,
-        fr: `${siteUrl}/fr/services`,
-      },
-    },
-  };
+    path: 'servicos',
+  });
 }
 
 interface Service {
@@ -52,6 +42,10 @@ export default async function ServicesPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'services' });
   const supabase = await createClient();
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: 'Flow Productions', url: `${SITE_URL}/${locale}` },
+    { name: t('metaTitle'), url: `${SITE_URL}/${locale}/servicos` },
+  ]);
 
   let servicesData: Service[] = [];
 
@@ -78,6 +72,7 @@ export default async function ServicesPage({
 
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Hero Video Section */}
       <section className="relative h-screen w-full overflow-hidden bg-gray-900">
         <video

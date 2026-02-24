@@ -1,12 +1,22 @@
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
+import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'Design - Flow Productions',
-    description: 'Projetos de Design da Flow Productions',
-  };
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return getPageMetadata(locale, {
+    title: 'Design Gráfico e Identidade Visual',
+    description: 'Flow Productions — design gráfico, branding, identidade visual e criação de logótipos em Portugal. Damos rosto às marcas com criatividade e propósito.',
+    path: 'design',
+    image: `${SITE_URL}/images/hero/design-og.jpg`,
+  });
 }
 
 const logos = [
@@ -35,10 +45,40 @@ const designProjects = [
   { slug: 'pizza-lab',                title: 'Pizza Lab',                img: '/images/projects/design-carousel/pizza-lab-carousel.jpg' },
 ];
 
+const serviceSchema = serviceJsonLd({
+  name: 'Design Gráfico e Identidade Visual',
+  description: 'Criação de identidades visuais, logótipos, materiais gráficos e websites para marcas com consistência e impacto.',
+  url: `${SITE_URL}/pt/design`,
+  serviceType: 'Graphic Design',
+});
+
+const faqSchema = faqJsonLd([
+  {
+    question: 'O que inclui um projeto de identidade visual?',
+    answer: 'Um projeto de identidade visual inclui a criação do logótipo, definição da paleta de cores, tipografia, padrões gráficos e manual de marca. O objetivo é garantir consistência em todos os pontos de contacto da marca.',
+  },
+  {
+    question: 'A Flow Productions cria websites?',
+    answer: 'Sim. Desenvolvemos websites modernos e responsivos para empresas e marcas, com foco em experiência do utilizador, performance e identidade visual.',
+  },
+  {
+    question: 'Quanto custa criar um logótipo com a Flow Productions?',
+    answer: 'O custo varia consoante o âmbito do projeto. Contacte-nos para um orçamento personalizado em info@flowproductions.pt.',
+  },
+]);
+
+const breadcrumbSchema = breadcrumbJsonLd([
+  { name: 'Flow Productions', url: `${SITE_URL}/pt` },
+  { name: 'Design', url: `${SITE_URL}/pt/design` },
+]);
+
 export default async function DesignProjectsPage() {
   return (
     <div>
-      {/* Hero */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       <section className="relative h-screen w-full overflow-hidden bg-gray-100">
         <img
           src="/images/hero/design.jpg"
@@ -47,7 +87,6 @@ export default async function DesignProjectsPage() {
         />
       </section>
 
-      {/* Intro */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <AnimateIn>
@@ -72,10 +111,8 @@ export default async function DesignProjectsPage() {
         </div>
       </section>
 
-      {/* Projects Carousel */}
       <ProjectCarousel projects={designProjects} />
 
-      {/* Brands Logo Marquee — black strip */}
       <section className="bg-black py-16 overflow-hidden">
         <div className="animate-marquee">
           {[...logos, ...logos].map((logo, i) => (

@@ -1,12 +1,22 @@
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
+import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'Marketing - Flow Productions',
-    description: 'Projetos de Marketing da Flow Productions',
-  };
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return getPageMetadata(locale, {
+    title: 'Marketing Digital e Gestão de Redes Sociais',
+    description: 'Flow Productions — marketing digital, gestão de redes sociais e content writing em Portugal. Estratégias personalizadas que ligam marcas e pessoas com propósito.',
+    path: 'marketing',
+    image: `${SITE_URL}/images/hero/marketing-og.jpg`,
+  });
 }
 
 const redesSociais = [
@@ -41,10 +51,40 @@ const logos = [
   { name: 'New Balance',             src: '/images/logos/new-balance.png' },
 ];
 
+const serviceSchema = serviceJsonLd({
+  name: 'Marketing Digital e Gestão de Redes Sociais',
+  description: 'Planeamento e desenvolvimento de estratégias de marketing digital, gestão de redes sociais, campanhas e content writing para marcas.',
+  url: `${SITE_URL}/pt/marketing`,
+  serviceType: 'Digital Marketing',
+});
+
+const faqSchema = faqJsonLd([
+  {
+    question: 'O que inclui a gestão de redes sociais?',
+    answer: 'Inclui a criação de conteúdos (textos, imagens e vídeos), planeamento editorial, publicação e monitorização de resultados nas principais plataformas como Instagram, Facebook e LinkedIn.',
+  },
+  {
+    question: 'A Flow Productions faz campanhas de publicidade paga?',
+    answer: 'Sim. Gerimos campanhas de Meta Ads (Facebook e Instagram) e Google Ads, com segmentação de audiências e otimização contínua para maximizar o retorno do investimento.',
+  },
+  {
+    question: 'O que é content writing e como ajuda a minha marca?',
+    answer: 'Content writing é a criação de textos estratégicos para o seu website, blog, redes sociais ou newsletters. Conteúdo bem escrito melhora o SEO, aumenta a credibilidade da marca e aproxima clientes.',
+  },
+]);
+
+const breadcrumbSchema = breadcrumbJsonLd([
+  { name: 'Flow Productions', url: `${SITE_URL}/pt` },
+  { name: 'Marketing', url: `${SITE_URL}/pt/marketing` },
+]);
+
 export default async function MarketingProjectsPage() {
   return (
     <div>
-      {/* Hero */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       <section className="relative h-screen w-full overflow-hidden bg-gray-100">
         <img
           src="/images/hero/marketing.jpg"
@@ -53,7 +93,6 @@ export default async function MarketingProjectsPage() {
         />
       </section>
 
-      {/* Intro */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <AnimateIn>
@@ -79,7 +118,6 @@ export default async function MarketingProjectsPage() {
         </div>
       </section>
 
-      {/* Redes Sociais carousel */}
       <section className="bg-white pb-4">
         <div className="px-4 pb-2 text-center">
           <AnimateIn>
@@ -91,7 +129,6 @@ export default async function MarketingProjectsPage() {
         <ProjectCarousel projects={redesSociais} />
       </section>
 
-      {/* Content Writing carousel */}
       <section className="bg-gray-50 pb-4">
         <div className="px-4 pt-12 pb-2 text-center">
           <AnimateIn>
@@ -103,7 +140,6 @@ export default async function MarketingProjectsPage() {
         <ProjectCarousel projects={contentWriting} />
       </section>
 
-      {/* Brands Logo Marquee */}
       <section className="bg-black py-16 overflow-hidden">
         <div className="animate-marquee">
           {[...logos, ...logos].map((logo, i) => (
