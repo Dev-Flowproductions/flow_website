@@ -32,6 +32,15 @@ function getYouTubeEmbedUrl(url: string): string | null {
   return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=0&rel=0` : null;
 }
 
+function formatDate(dateStr: string, locale: string): string {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString(locale === 'pt' ? 'pt-PT' : 'en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
 export default async function ProjectDetailPage({
   params,
 }: {
@@ -57,6 +66,8 @@ export default async function ProjectDetailPage({
 
   const title   = project.title?.[locale]   || project.title?.['pt']   || 'Projeto';
   const summary = project.summary?.[locale] || project.summary?.['pt'] || '';
+  const content = project.content?.[locale] || project.content?.['pt'] || '';
+  const yearLabel = project.year_label || '';
 
   const videoUrl: string | null = project.gallery?.video_url || null;
   const embedUrl = videoUrl ? getYouTubeEmbedUrl(videoUrl) : null;
@@ -64,80 +75,85 @@ export default async function ProjectDetailPage({
   const tags: { key: string; label: Record<string, string> }[] =
     project.project_project_tags?.map((r: { project_tags: { key: string; label: Record<string, string> } }) => r.project_tags).filter(Boolean) ?? [];
 
+  const publishedDate = project.published_at ? formatDate(project.published_at, locale) : '';
+
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero — featured image */}
-      {project.featured_image_path && (
-        <div className="w-full h-[55vh] overflow-hidden">
-          <img
-            src={project.featured_image_path}
-            alt={title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-widest mb-8">
-          <Link href="/projetos" className="hover:text-black transition-colors">
-            Projetos
-          </Link>
-          <span>/</span>
-          <span className="text-gray-600">{title}</span>
-        </nav>
+      {/* Header: two-column — meta left, image right */}
+      <section className="pt-32 pb-0 px-4 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+            {/* Left: title + summary + meta */}
+            <div className="md:col-span-1">
+              <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight mb-6">
+                {title}
+              </h1>
 
-        {/* Tags */}
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {tags.map(tag => (
-              <span
-                key={tag.key}
-                className="text-[11px] font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1"
-              >
-                {tag.label?.[locale] || tag.label?.['pt'] || tag.key}
-              </span>
-            ))}
-          </div>
-        )}
+              {summary && (
+                <p className="text-base text-gray-500 leading-relaxed mb-8">
+                  {summary}
+                </p>
+              )}
 
-        {/* Title + client */}
-        <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight mb-2">
-          {title}
-        </h1>
-        {project.client_name && (
-          <p className="text-gray-500 text-base mb-8">{project.client_name}</p>
-        )}
+              {/* Meta: Cliente / Ano */}
+              <div className="space-y-3">
+                {project.client_name && (
+                  <div className="flex items-baseline gap-4">
+                    <span className="text-sm font-bold text-black w-20">Cliente</span>
+                    <span className="text-sm text-gray-500">{project.client_name}</span>
+                  </div>
+                )}
+                {yearLabel && (
+                  <div className="flex items-baseline gap-4">
+                    <span className="text-sm font-bold text-black w-20">Ano</span>
+                    <span className="text-sm text-gray-500">{yearLabel}</span>
+                  </div>
+                )}
+                {tags.length > 0 && (
+                  <div className="flex items-baseline gap-4">
+                    <span className="text-sm font-bold text-black w-20">Categoria</span>
+                    <span className="text-sm text-gray-500">
+                      {tags.map(tag => tag.label?.[locale] || tag.label?.['pt'] || tag.key).join(', ')}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
 
-        {/* Summary */}
-        {summary && (
-          <p className="text-lg text-gray-700 leading-relaxed mb-12">{summary}</p>
-        )}
+            {/* Right: featured image + video + description stacked */}
+            <div className="flex flex-col gap-4 md:col-span-2">
+              {project.featured_image_path && (
+                <div className="overflow-hidden">
+                  <img
+                    src={project.featured_image_path}
+                    alt={title}
+                    className="w-full object-cover"
+                  />
+                </div>
+              )}
 
-        {/* YouTube embed */}
-        {embedUrl && (
-          <div className="mb-12">
-            <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
-              <iframe
-                src={embedUrl}
-                title={title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-              />
+              {embedUrl && (
+                <div className="relative w-full aspect-video overflow-hidden">
+                  <iframe
+                    src={embedUrl}
+                    title={title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              )}
+
+              {content && (
+                <p className="text-sm text-gray-600 leading-relaxed pt-2">
+                  {content}
+                </p>
+              )}
             </div>
           </div>
-        )}
-
-        {/* Back link */}
-        <Link
-          href="/projetos"
-          className="inline-flex items-center gap-2 text-sm font-medium border-2 border-black rounded-full px-6 py-2 hover:bg-black hover:text-white transition-colors"
-        >
-          ← Todos os Projetos
-        </Link>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
