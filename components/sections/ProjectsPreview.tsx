@@ -2,6 +2,7 @@
 
 import { Link } from '@/i18n/routing';
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn';
+import { useTranslations } from 'next-intl';
 
 interface Tag {
   key: string;
@@ -71,6 +72,7 @@ const fallbackProjects = [
 ];
 
 export default function ProjectsPreview({ projects, locale, columns = 3, showTitles = true }: ProjectsPreviewProps) {
+  const t = useTranslations('home.projects');
   const hasRealProjects = projects.length > 0;
   const gridClass = columns === 2
     ? 'grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12'
@@ -83,13 +85,13 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
         <AnimateIn>
           <div className="text-center mb-16">
             <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">
-              Trabalhos que falam por si
+              {t('label')}
             </p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Projetos com <span className="text-gray-300">Flow</span>
+              {t('title')} <span className="text-gray-300">{t('titleHighlight')}</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Do conceito à execução, fazemos as ideias ganhar forma e movimento. Este é o nosso portfólio de projetos, onde design, marketing, audiovisual e animação ganham vida.
+              {t('description')}
             </p>
           </div>
         </AnimateIn>
@@ -124,7 +126,7 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
                       {hasVideo && (
                         <span className="absolute top-3 right-3 bg-black/70 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full flex items-center gap-1">
                           <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                          Vídeo
+                          {t('videoLabel')}
                         </span>
                       )}
                     </div>

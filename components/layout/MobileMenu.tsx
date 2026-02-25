@@ -13,7 +13,16 @@ export default function MobileMenu({
   onClose: () => void;
   locale: string;
 }) {
-  const t = useTranslations('nav');
+  const t    = useTranslations('nav');
+  const tCat = useTranslations('categories');
+
+  const projectCategories = [
+    { key: 'design',           labelKey: 'design'          },
+    { key: 'marketing',        labelKey: 'marketing'       },
+    { key: 'audiovisual',      labelKey: 'audiovisual'     },
+    { key: 'animacao',         labelKey: 'animacao'        },
+    { key: 'projetos-sociais', labelKey: 'projetosSociais' },
+  ];
 
   if (!isOpen) return null;
 
@@ -51,41 +60,16 @@ export default function MobileMenu({
             {t('projects')}
           </Link>
           <div className="pl-4 space-y-2">
-            <Link
-              href="/projetos/design"
-              onClick={onClose}
-              className="text-sm text-gray-600 hover:text-black block"
-            >
-              Design
-            </Link>
-            <Link
-              href="/projetos/marketing"
-              onClick={onClose}
-              className="text-sm text-gray-600 hover:text-black block"
-            >
-              Marketing
-            </Link>
-            <Link
-              href="/projetos/audiovisual"
-              onClick={onClose}
-              className="text-sm text-gray-600 hover:text-black block"
-            >
-              Audiovisual
-            </Link>
-            <Link
-              href="/projetos/animacao"
-              onClick={onClose}
-              className="text-sm text-gray-600 hover:text-black block"
-            >
-              Animação
-            </Link>
-            <Link
-              href="/projetos/projetos-sociais"
-              onClick={onClose}
-              className="text-sm text-gray-600 hover:text-black block"
-            >
-              Projetos Sociais
-            </Link>
+            {projectCategories.map((cat) => (
+              <Link
+                key={cat.key}
+                href={`/${cat.key}`}
+                onClick={onClose}
+                className="text-sm text-gray-600 hover:text-black block"
+              >
+                {tCat(cat.labelKey)}
+              </Link>
+            ))}
           </div>
         </div>
 

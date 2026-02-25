@@ -5,36 +5,31 @@ import { Link } from '@/i18n/routing';
 import { useState, useRef, useEffect } from 'react';
 
 export default function MainNav() {
-  const t = useTranslations('nav');
+  const t    = useTranslations('nav');
+  const tCat = useTranslations('categories');
   const [projectsOpen, setProjectsOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const projectCategories = [
-    { key: 'design', label: 'Design' },
-    { key: 'marketing', label: 'Marketing' },
-    { key: 'audiovisual', label: 'Audiovisual' },
-    { key: 'animacao', label: 'Animação' },
-    { key: 'projetos-sociais', label: 'Projetos Sociais' },
+    { key: 'design',          labelKey: 'design'          },
+    { key: 'marketing',       labelKey: 'marketing'       },
+    { key: 'audiovisual',     labelKey: 'audiovisual'     },
+    { key: 'animacao',        labelKey: 'animacao'        },
+    { key: 'projetos-sociais', labelKey: 'projetosSociais' },
   ];
 
   const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setProjectsOpen(true);
   };
 
   const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setProjectsOpen(false);
-    }, 200);
+    timeoutRef.current = setTimeout(() => setProjectsOpen(false), 200);
   };
 
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
 
@@ -75,19 +70,18 @@ export default function MainNav() {
           </svg>
         </Link>
 
-        {/* Dropdown Menu */}
         {projectsOpen && (
           <div className="absolute top-full left-0 pt-2 z-50">
             <div className="w-56 bg-white shadow-lg rounded-lg py-2 border border-gray-100">
-            {projectCategories.map((category) => (
-              <Link
-                key={category.key}
-                href={`/${category.key}`}
-                className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-              >
-                {category.label}
-              </Link>
-            ))}
+              {projectCategories.map((category) => (
+                <Link
+                  key={category.key}
+                  href={`/${category.key}`}
+                  className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                >
+                  {tCat(category.labelKey)}
+                </Link>
+              ))}
             </div>
           </div>
         )}

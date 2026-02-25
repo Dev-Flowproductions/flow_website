@@ -23,9 +23,10 @@ export default function Header({ locale }: { locale: string }) {
             />
           </Link>
 
-          {/* Center Navigation + CTA Button - Desktop */}
+          {/* Center Navigation + CTA + Language Switcher - Desktop */}
           <div className="hidden lg:flex items-center gap-8">
             <MainNav />
+            <LocaleSwitcher locale={locale} />
             <Link
               href="/contactos"
               className="px-6 py-2 border-2 border-black rounded-full text-sm font-medium hover:bg-black hover:text-white transition-colors"

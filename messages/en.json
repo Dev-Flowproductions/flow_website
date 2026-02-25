@@ -32,13 +32,16 @@
       "title": "Our services"
     },
     "testimonials": {
-      "title": "Brands that flow with us"
+      "title": "Brands that flow",
+      "titleHighlight": "with us"
     },
     "projects": {
       "label": "Work that speaks for itself",
-      "title": "Projects with Flow",
+      "title": "Projects with",
+      "titleHighlight": "Flow",
       "description": "From concept to execution, we make ideas take shape and movement. This is our portfolio of projects, where design, marketing, audiovisual and animation come to life.",
-      "cta": "See More"
+      "cta": "See More",
+      "videoLabel": "Video"
     }
   },
   "services": {
@@ -141,7 +144,11 @@
   },
   "blog": {
     "metaTitle": "Blog Flow - Flow Productions",
-    "metaDescription": "Articles and insights about creativity, design and marketing"
+    "metaDescription": "Articles and insights about creativity, design and marketing",
+    "contentLanguageNotice": "This article is only available in Portuguese.",
+    "contentComingSoon": "Content coming soon.",
+    "youMayAlsoLike": "You May Also Like",
+    "next": "Next"
   },
   "contact": {
     "metaTitle": "Contact - Flow Productions",
@@ -155,9 +162,24 @@
       "message": "Have a project in mind?",
       "consent": "I agree that my submitted data will be collected and stored.",
       "submit": "Get in Touch",
+      "loading": "Sending...",
       "success": "Message sent successfully!",
       "error": "Error sending message. Please try again."
     }
+  },
+  "projectDetail": {
+    "client": "Client",
+    "year": "Year",
+    "category": "Category",
+    "backToProjects": "Projects",
+    "noImage": "No image"
+  },
+  "categories": {
+    "design": "Design",
+    "marketing": "Marketing",
+    "audiovisual": "Audiovisual",
+    "animacao": "Animation",
+    "projetosSociais": "Social Projects"
   },
   "newsletter": {
     "title": "Subscribe to our newsletter!",
