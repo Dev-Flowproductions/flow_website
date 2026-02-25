@@ -131,10 +131,10 @@ export default async function HomePage({
       {/* Testimonials Section */}
       <TestimonialCarousel
         testimonials={testimonials && testimonials.length > 0 ? testimonials : [
-          { id: '1', quote: { pt: 'Obrigado pela abordagem profissional da Flow ao nosso projeto! Foi um prazer trabalhar com a equipa!' }, person_name: 'André Oliveira', company_name: 'Zion Creative Artisans', avatar_path: '/images/testimonials/zion.png', order: 1 },
-          { id: '2', quote: { pt: 'Recebi muito mais do que estava à espera — encontrei uma identidade única para a minha marca.' }, person_name: 'Sandra Romão', company_name: 'Nature Soul Food', avatar_path: '/images/testimonials/nature-soul-food.jpg', order: 2 },
-          { id: '3', quote: { pt: 'Obrigado por conseguirem transmitir a nossa visão de forma tão acertiva.' }, person_name: 'Flávio Peña', company_name: 'Indassa', avatar_path: '/images/testimonials/indassa.png', order: 3 },
-          { id: '4', quote: { pt: 'Uma equipa extremamente criativa com ideias muito dinâmicas!' }, person_name: 'Margarida', company_name: 'Missão Condução', avatar_path: '/images/testimonials/missao.png', order: 4 },
+          { id: '1', quote: { pt: 'Obrigado pela abordagem profissional da Flow ao nosso projeto! Foi um prazer trabalhar com a equipa!', en: 'Thank you for Flow\'s professional approach to our project! It was a pleasure working with the team!', fr: 'Merci pour l\'approche professionnelle de Flow sur notre projet ! Ce fut un plaisir de travailler avec l\'équipe !' }, person_name: 'André Oliveira', company_name: 'Zion Creative Artisans', avatar_path: '/images/testimonials/zion.png', order: 1 },
+          { id: '2', quote: { pt: 'Recebi muito mais do que estava à espera — encontrei uma identidade única para a minha marca.', en: 'I received much more than I expected — I found a unique identity for my brand.', fr: 'J\'ai reçu bien plus que ce à quoi je m\'attendais — j\'ai trouvé une identité unique pour ma marque.' }, person_name: 'Sandra Romão', company_name: 'Nature Soul Food', avatar_path: '/images/testimonials/nature-soul-food.jpg', order: 2 },
+          { id: '3', quote: { pt: 'Obrigado por conseguirem transmitir a nossa visão de forma tão acertiva.', en: 'Thank you for managing to convey our vision so precisely.', fr: 'Merci d\'avoir su transmettre notre vision de manière si précise.' }, person_name: 'Flávio Peña', company_name: 'Indassa', avatar_path: '/images/testimonials/indassa.png', order: 3 },
+          { id: '4', quote: { pt: 'Uma equipa extremamente criativa com ideias muito dinâmicas!', en: 'An extremely creative team with very dynamic ideas!', fr: 'Une équipe extrêmement créative avec des idées très dynamiques !' }, person_name: 'Margarida', company_name: 'Missão Condução', avatar_path: '/images/testimonials/missao.png', order: 4 },
         ]}
         locale={locale}
       />

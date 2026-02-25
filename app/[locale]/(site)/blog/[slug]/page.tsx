@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import { createClient } from '@/lib/supabase/server';
 import { getPageMetadata, articleJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { getTranslations } from 'next-intl/server';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -53,6 +54,7 @@ export default async function BlogPostPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  const t = await getTranslations({ locale, namespace: 'blog' });
   const supabase = await createClient();
 
   let post: {
@@ -134,6 +136,11 @@ export default async function BlogPostPage({
           {title}
         </h1>
 
+        {locale !== 'pt' && !post.content?.[locale] && post.content?.pt && (
+          <p className="text-sm text-gray-400 italic mb-6 border-l-2 border-gray-200 pl-3">
+            {t('contentLanguageNotice')}
+          </p>
+        )}
         {content ? (
           <div
             className="prose prose-lg max-w-none text-gray-700 leading-relaxed
@@ -144,7 +151,7 @@ export default async function BlogPostPage({
         ) : excerpt ? (
           <p className="text-gray-600 text-lg leading-relaxed">{excerpt}</p>
         ) : (
-          <p className="text-gray-400">Conteúdo em breve.</p>
+          <p className="text-gray-400">{t('contentComingSoon')}</p>
         )}
       </div>
 
@@ -157,7 +164,7 @@ export default async function BlogPostPage({
               className="group flex flex-col items-end gap-1"
             >
               <span className="text-xs uppercase tracking-widest text-gray-400 flex items-center gap-1">
-                Next <span className="text-gray-400">›</span>
+                {t('next')} <span className="text-gray-400">›</span>
               </span>
               <span className="text-sm font-bold text-black group-hover:text-gray-500 transition-colors text-right max-w-xs leading-snug">
                 {nextPost.title?.[locale] || nextPost.title?.pt}
@@ -171,7 +178,7 @@ export default async function BlogPostPage({
       {alsoLike.length > 0 && (
         <div className="border-t border-gray-100 py-14 px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-black mb-8">You May Also Like</h2>
+            <h2 className="text-2xl font-bold text-black mb-8">{t('youMayAlsoLike')}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {alsoLike.map((p) => {
                 const pSlug = p.slug?.[locale] || p.slug?.pt;

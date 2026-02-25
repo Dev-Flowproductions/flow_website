@@ -54,7 +54,7 @@ export default function ServicesPreview({ services, locale }: ServicesPreviewPro
               {t('label')}
             </p>
             <h2 className="text-4xl md:text-6xl font-bold">
-              Os nossos <span className="text-gray-300">serviços</span>
+              {t('title')}
             </h2>
           </div>
         </AnimateIn>

@@ -32,13 +32,16 @@
       "title": "Os nossos serviços"
     },
     "testimonials": {
-      "title": "Marcas que fluem connosco"
+      "title": "Marcas que fluem",
+      "titleHighlight": "connosco"
     },
     "projects": {
       "label": "Trabalhos que falam por si",
-      "title": "Projetos com Flow",
+      "title": "Projetos com",
+      "titleHighlight": "Flow",
       "description": "Do conceito à execução, fazemos as ideias ganhar forma e movimento. Este é o nosso portfólio de projetos, onde design, marketing, audiovisual e animação ganham vida.",
-      "cta": "Ver Mais"
+      "cta": "Ver Mais",
+      "videoLabel": "Vídeo"
     }
   },
   "services": {
@@ -141,7 +144,11 @@
   },
   "blog": {
     "metaTitle": "Blog Flow - Flow Productions",
-    "metaDescription": "Artigos e insights sobre criatividade, design e marketing"
+    "metaDescription": "Artigos e insights sobre criatividade, design e marketing",
+    "contentLanguageNotice": null,
+    "contentComingSoon": "Conteúdo em breve.",
+    "youMayAlsoLike": "Poderá também gostar",
+    "next": "Próximo"
   },
   "contact": {
     "metaTitle": "Contactos - Flow Productions",
@@ -155,9 +162,24 @@
       "message": "Tem um projeto em mente?",
       "consent": "Concordo que os meus dados submetidos sejam recolhidos e armazenados.",
       "submit": "Entrar em Contacto",
+      "loading": "A enviar...",
       "success": "Mensagem enviada com sucesso!",
       "error": "Erro ao enviar mensagem. Tente novamente."
     }
+  },
+  "projectDetail": {
+    "client": "Cliente",
+    "year": "Ano",
+    "category": "Categoria",
+    "backToProjects": "Projetos",
+    "noImage": "Sem imagem"
+  },
+  "categories": {
+    "design": "Design",
+    "marketing": "Marketing",
+    "audiovisual": "Audiovisual",
+    "animacao": "Animação",
+    "projetosSociais": "Projetos Sociais"
   },
   "newsletter": {
     "title": "Subscreva a nossa newsletter!",

@@ -3,8 +3,10 @@
 import { Link } from '@/i18n/routing';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function ContactCTA() {
+  const t = useTranslations('contact');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -43,10 +45,10 @@ export default function ContactCTA() {
           <AnimateIn>
             <div>
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
-                Contacta-nos
+                {t('label')}
               </p>
               <h2 className="text-4xl md:text-5xl font-bold mb-12">
-                Vamos pôr os teus projetos a fluir?
+                {t('title')} <span className="text-gray-300">{t('titleHighlight')}</span>
               </h2>
 
               <div className="space-y-6 text-gray-700">
@@ -89,7 +91,7 @@ export default function ContactCTA() {
                 </svg>
                 <input
                   type="text"
-                  placeholder="Nome"
+                  placeholder={t('form.name')}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
@@ -118,7 +120,7 @@ export default function ContactCTA() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
                 <textarea
-                  placeholder="Tem um projeto em mente?"
+                  placeholder={t('form.message')}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={4}
@@ -138,8 +140,7 @@ export default function ContactCTA() {
                   className="mt-1 w-4 h-4 cursor-pointer"
                 />
                 <label htmlFor="cta-consent" className="text-sm text-gray-700 cursor-pointer">
-                  Concordo que os meus dados submetidos sejam{' '}
-                  <span className="underline">recolhidos e armazenados</span>.
+                  {t('form.consent')}
                 </label>
               </div>
 
@@ -152,14 +153,14 @@ export default function ContactCTA() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
-                {status === 'loading' ? 'A enviar...' : 'Entrar em Contacto'}
+                {status === 'loading' ? t('form.loading') : t('form.submit')}
               </button>
 
               {status === 'success' && (
-                <p className="text-green-600 text-sm">Mensagem enviada com sucesso!</p>
+                <p className="text-green-600 text-sm">{t('form.success')}</p>
               )}
               {status === 'error' && (
-                <p className="text-red-600 text-sm">Erro ao enviar mensagem. Tente novamente.</p>
+                <p className="text-red-600 text-sm">{t('form.error')}</p>
               )}
             </form>
           </AnimateIn>

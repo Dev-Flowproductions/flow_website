@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -22,6 +23,7 @@ export default function TestimonialCarousel({
   testimonials,
   locale,
 }: TestimonialCarouselProps) {
+  const t = useTranslations('home.testimonials');
   const [currentIndex, setCurrentIndex] = useState(0);
   const sortedTestimonials = [...testimonials].sort((a, b) => a.order - b.order);
 
@@ -48,7 +50,7 @@ export default function TestimonialCarousel({
         {/* Title */}
         <AnimateIn>
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-20">
-            Marcas que fluem <span className="text-gray-300">connosco</span>
+            {t('title')} <span className="text-gray-300">{t('titleHighlight')}</span>
           </h2>
         </AnimateIn>
 
