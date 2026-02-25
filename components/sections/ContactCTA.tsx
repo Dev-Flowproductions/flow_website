@@ -40,14 +40,14 @@ export default function ContactCTA() {
   return (
     <section className="py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16">
           {/* Left - Info */}
           <AnimateIn>
             <div>
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
                 {t('label')}
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
                 {t('title')} <span className="text-gray-300">{t('titleHighlight')}</span>
               </h2>
 

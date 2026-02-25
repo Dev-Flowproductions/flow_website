@@ -42,14 +42,14 @@ export default function ContactPageClient() {
       {/* Contact Form Section */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-16">
             {/* Left Side - Contact Info */}
             <AnimateIn>
               <div>
                 <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
                   {t('label')}
                 </p>
-                <h1 className="text-4xl md:text-5xl font-bold mb-12">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
                   {t('title')} <span className="text-gray-300">{t('titleHighlight')}</span>
                 </h1>
 
@@ -187,7 +187,7 @@ export default function ContactPageClient() {
       </section>
 
       {/* Google Maps Section */}
-      <section className="h-[500px] w-full">
+      <section className="h-[300px] sm:h-[400px] md:h-[500px] w-full">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3185.2662381745863!2d-7.9242281248339825!3d37.027297854866276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd05537ec2bfa8f3%3A0x5aaba1c1931fc7b8!2sFlow%20Productions!5e0!3m2!1spt-PT!2spt!4v1771512792452!5m2!1spt-PT!2spt"
           width="100%"

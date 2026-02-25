@@ -53,7 +53,7 @@ export default function ServicesPreview({ services, locale }: ServicesPreviewPro
             <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
               {t('label')}
             </p>
-            <h2 className="text-4xl md:text-6xl font-bold">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold">
               {t('title')}
             </h2>
           </div>
@@ -63,7 +63,7 @@ export default function ServicesPreview({ services, locale }: ServicesPreviewPro
         <div className="border-t border-gray-200 mb-12" />
 
         {/* Services Grid - Centered */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-6xl mx-auto">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 max-w-6xl mx-auto">
           {sortedServices.map((service, index) => {
             const title = service.title[locale] || service.title['pt'];
             const description = serviceDescriptions[service.key]?.[locale] || 

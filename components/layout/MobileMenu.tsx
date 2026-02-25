@@ -2,16 +2,13 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import LocaleSwitcher from './LocaleSwitcher';
 
 export default function MobileMenu({
   isOpen,
   onClose,
-  locale,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  locale: string;
 }) {
   const t    = useTranslations('nav');
   const tCat = useTranslations('categories');
@@ -27,7 +24,7 @@ export default function MobileMenu({
   if (!isOpen) return null;
 
   return (
-    <div className="md:hidden fixed inset-0 top-16 bg-white z-40 p-6">
+    <div className="lg:hidden fixed inset-0 top-20 bg-white z-[9999] p-6 overflow-y-auto">
       <nav className="flex flex-col space-y-4">
         <Link
           href="/"
@@ -88,9 +85,6 @@ export default function MobileMenu({
           {t('contact')}
         </Link>
 
-        <div className="pt-4 border-t border-gray-200">
-          <LocaleSwitcher locale={locale} />
-        </div>
       </nav>
     </div>
   );
