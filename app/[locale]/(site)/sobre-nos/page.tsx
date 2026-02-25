@@ -39,7 +39,7 @@ export default async function AboutPage({
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Hero Section with Image */}
-      <section className="relative h-screen w-full overflow-hidden bg-gray-200">
+      <section className="relative min-h-[60vh] lg:min-h-screen w-full overflow-hidden bg-gray-200">
         <img
           src="/images/hero/about-us.jpg"
           alt="Flow Productions Team"
@@ -55,7 +55,7 @@ export default async function AboutPage({
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
                 {t('history.label')}
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
                 {t('history.title')} <span className="text-gray-300">{t('history.titleHighlight')}</span>
               </h2>
             </div>
@@ -91,7 +91,7 @@ export default async function AboutPage({
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
                 {t('mission.label')}
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
                 {t('mission.title')} <span className="text-gray-300">{t('mission.titleHighlight')}</span>
               </h2>
             </div>
@@ -158,9 +158,12 @@ export default async function AboutPage({
 
       {/* Team Section - 9 Members Grid */}
       <section className="py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <AnimateIn>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-12">
               {/* Badge */}
-              <div className="inline-block mb-6">
-                <div className="w-24 h-24 rounded-full bg-black text-white flex items-center justify-center">
+              <div className="flex-shrink-0">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-black text-white flex items-center justify-center">
                   <div className="text-center">
                     <p className="text-[10px] uppercase tracking-wider leading-tight">FLOW</p>
                     <p className="text-[8px] leading-tight">Creative</p>
@@ -168,17 +171,14 @@ export default async function AboutPage({
                   </div>
                 </div>
               </div>
-        <div className="max-w-6xl mx-auto">
-          <AnimateIn>
-            <div className="text-center mb-16 relative">
-              <h2 className="text-4xl md:text-5xl font-bold">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                 {t('team.title')} <span className="text-gray-300">{t('team.titleHighlight')}</span>
               </h2>
             </div>
           </AnimateIn>
 
-          {/* 3x3 Grid of Team Members */}
-          <div className="grid grid-cols-1 md:grid-cols-3">
+          {/* Team Members Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3">
             {[
               { name: 'Ricardo Pedro', role: 'CEO | 2D Animator', slug: 'ricardo-pedro' },
               { name: 'Verónica Guerreiro', role: 'Design Thinker | Project Manager', slug: 'veronica-guerreiro' },

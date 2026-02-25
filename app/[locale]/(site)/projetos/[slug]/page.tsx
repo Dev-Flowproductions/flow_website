@@ -117,9 +117,9 @@ export default async function ProjectDetailPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Header: two-column — meta left, image right */}
-      <section className="pt-32 pb-0 px-4 bg-white">
+      <section className="pt-24 md:pt-32 pb-0 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start">
             {/* Left: title + summary + meta */}
             <div className="md:col-span-1">
               <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight mb-6">

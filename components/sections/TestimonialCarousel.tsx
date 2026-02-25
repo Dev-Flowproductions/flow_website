@@ -55,7 +55,7 @@ export default function TestimonialCarousel({
         </AnimateIn>
 
         {/* Carousel */}
-        <div className="relative px-16">
+        <div className="relative px-8 sm:px-12 md:px-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
@@ -67,7 +67,7 @@ export default function TestimonialCarousel({
             >
               {/* Quote */}
               <div className="mb-12">
-                <p className="text-2xl md:text-3xl text-black font-normal leading-relaxed max-w-4xl mx-auto">
+                <p className="text-lg sm:text-2xl md:text-3xl text-black font-normal leading-relaxed max-w-4xl mx-auto">
                   {quote}
                 </p>
               </div>

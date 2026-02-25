@@ -69,7 +69,7 @@ export default async function ProjetosSociaisPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="relative h-screen w-full overflow-hidden bg-gray-100">
+      <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
         <img
           src="/images/hero/social-projects.jpg"
           alt="Projetos Sociais Flow Productions"

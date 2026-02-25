@@ -28,21 +28,21 @@ export default function ServiceCard({ service, locale, number }: ServiceCardProp
   return (
     <StaggerItem>
       <div className="border-b border-gray-200 pb-8">
-        <div className="grid grid-cols-12 gap-8 items-start">
-          {/* Number - 2 columns */}
-          <div className="col-span-2">
-            <span className="text-7xl font-bold text-gray-200">
+        <div className="flex flex-col gap-4 md:grid md:grid-cols-12 md:gap-8 md:items-start">
+          {/* Number */}
+          <div className="md:col-span-2">
+            <span className="text-5xl md:text-7xl font-bold text-gray-200">
               {number}
             </span>
           </div>
 
-          {/* Title - 3 columns */}
-          <div className="col-span-3">
-            <h2 className="text-3xl font-bold pt-4">{title}</h2>
+          {/* Title */}
+          <div className="md:col-span-3">
+            <h2 className="text-2xl md:text-3xl font-bold md:pt-4">{title}</h2>
           </div>
 
-          {/* Items in 2 columns - 7 columns total */}
-          <div className="col-span-7">
+          {/* Items */}
+          <div className="md:col-span-7">
             <div className="grid grid-cols-2 gap-x-8 gap-y-2">
               {sortedItems.map((item) => {
                 const label = item.label[locale] || item.label['pt'] || '';

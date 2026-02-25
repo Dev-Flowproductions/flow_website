@@ -79,7 +79,7 @@ export default async function DesignProjectsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="relative h-screen w-full overflow-hidden bg-gray-100">
+      <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
         <img
           src="/images/hero/design.jpg"
           alt="Design Flow Productions"
@@ -93,7 +93,7 @@ export default async function DesignProjectsPage() {
             <p className="text-xs uppercase tracking-widest text-gray-600 mb-4 text-center">
               ONDE AS IDEIAS GANHAM FORMA
             </p>
-            <h1 className="text-4xl md:text-6xl font-bold mb-12 text-center">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-12 text-center">
               Flow <span className="text-gray-300">Design</span>
             </h1>
           </AnimateIn>
@@ -116,11 +116,10 @@ export default async function DesignProjectsPage() {
       <section className="bg-black py-16 overflow-hidden">
         <div className="animate-marquee">
           {[...logos, ...logos].map((logo, i) => (
-            <div
-              key={i}
-              className="inline-flex items-center justify-center flex-shrink-0 mx-8"
-              style={{ height: '110px', width: '220px' }}
-            >
+          <div
+            key={i}
+            className="inline-flex items-center justify-center flex-shrink-0 mx-4 md:mx-8 h-16 w-36 md:h-[110px] md:w-[220px]"
+          >
               <img
                 src={logo.src}
                 alt={logo.name}

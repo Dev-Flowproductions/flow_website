@@ -85,7 +85,7 @@ export default async function MarketingProjectsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="relative h-screen w-full overflow-hidden bg-gray-100">
+      <section className="relative h-[60vh] md:h-screen w-full overflow-hidden bg-gray-100">
         <img
           src="/images/hero/marketing.jpg"
           alt="Marketing Flow Productions"

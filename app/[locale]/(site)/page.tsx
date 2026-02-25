@@ -70,7 +70,7 @@ export default async function HomePage({
   return (
     <div>
       {/* Hero Section - Video Only */}
-      <section className="relative h-screen w-full overflow-hidden">
+      <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden">
         <div className="absolute inset-0 w-full h-full bg-gray-900">
           <video
             autoPlay

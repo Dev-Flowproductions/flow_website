@@ -283,7 +283,7 @@ export default async function TeamMemberPage({
 
         {/* Photo + overlapping grey bio box */}
         {/* On mobile: stacked. On desktop: photo left, grey box overlaps from mid-photo */}
-        <div className="flex flex-col lg:block lg:relative lg:pb-16">
+        <div className="flex flex-col lg:block lg:relative lg:pb-16 lg:min-h-[600px]">
 
           {/* Photo */}
           <div className="lg:w-[48%] lg:relative lg:z-0">
@@ -297,8 +297,8 @@ export default async function TeamMemberPage({
           </div>
 
           {/* Grey bio box — on desktop: absolutely positioned, overlaps photo bottom-right */}
-          <div className="mt-6 lg:mt-0 lg:absolute lg:top-[28%] lg:right-0 lg:w-[62%] lg:z-10">
-            <div className="bg-[#ebebeb] p-7 sm:p-9 lg:p-10">
+          <div className="mt-6 lg:mt-0 lg:absolute lg:top-[28%] lg:right-0 lg:w-[58%] xl:w-[62%] lg:z-10">
+            <div className="bg-[#ebebeb] p-6 sm:p-8 lg:p-10">
               <div className="space-y-5 text-[#3d3d3d] leading-relaxed text-base sm:text-[1.05rem]">
                 {description
                   .split('\n\n')
