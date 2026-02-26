@@ -160,21 +160,9 @@ export default async function AboutPage({
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <AnimateIn>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-12">
-              {/* Badge */}
-              <div className="flex-shrink-0">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-black text-white flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-[10px] uppercase tracking-wider leading-tight">FLOW</p>
-                    <p className="text-[8px] leading-tight">Creative</p>
-                    <p className="text-[8px] leading-tight">Team</p>
-                  </div>
-                </div>
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-                {t('team.title')} <span className="text-gray-300">{t('team.titleHighlight')}</span>
-              </h2>
-            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center">
+              {t('team.title')} <span className="text-gray-300">{t('team.titleHighlight')}</span>
+            </h2>
           </AnimateIn>
 
           {/* Team Members Grid */}
