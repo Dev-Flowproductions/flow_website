@@ -185,10 +185,17 @@ export default async function AboutPage({
                     <img
                       src={`/images/team/member-${index + 1}.jpg`}
                       alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Hover overlay: dark layer + name/role (like flowproductions.pt/sobre-nos) */}
+                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-start justify-end text-left p-4">
+                      <span className="text-white font-bold text-lg md:text-xl mb-1">
+                        {member.name}
+                      </span>
+                      <span className="text-white/90 text-sm">
+                        {member.role}
+                      </span>
+                    </div>
                   </div>
                   {/* Grey bar */}
                   <div className="bg-gray-300 h-8" />
