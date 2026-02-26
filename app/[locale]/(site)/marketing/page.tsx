@@ -87,7 +87,7 @@ export default async function MarketingProjectsPage() {
 
       <section className="relative h-[60vh] md:h-screen w-full overflow-hidden bg-gray-100">
         <img
-          src="/images/hero/marketing.jpg"
+          src="/images/hero/marketing.png"
           alt="Marketing Flow Productions"
           className="absolute inset-0 w-full h-full object-cover"
         />
