@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
 import { createClient } from '@/lib/supabase/server';
+import { getTranslations } from 'next-intl/server';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -41,6 +42,7 @@ export default async function BlogPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'blog' });
   const supabase = await createClient();
 
   let posts: {
@@ -74,9 +76,16 @@ export default async function BlogPage({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           {posts.map((post) => {
             const title = post.title?.[locale] || post.title?.pt || '';
-            const slug = post.slug?.[locale] || post.slug?.pt || post.id;
-            return (
-              <Link key={post.id} href={`/blog/${slug}`} className="group block">
+            const slug =
+              post.slug?.[locale] ||
+              post.slug?.pt ||
+              post.slug?.en ||
+              post.slug?.fr ||
+              null;
+            const href = slug ? `/blog/${slug}` : null;
+
+            const card = (
+              <>
                 <div className="aspect-[16/10] overflow-hidden mb-4 bg-gray-100">
                   {post.featured_image_path ? (
                     <img
@@ -98,7 +107,17 @@ export default async function BlogPage({
                 <h2 className="text-lg font-bold text-black group-hover:text-gray-500 transition-colors leading-snug">
                   {title}
                 </h2>
+              </>
+            );
+
+            return href ? (
+              <Link key={post.id} href={href} className="group block">
+                {card}
               </Link>
+            ) : (
+              <div key={post.id} className="group block opacity-90 cursor-not-allowed" title={t('noSlugTitle')}>
+                {card}
+              </div>
             );
           })}
         </div>

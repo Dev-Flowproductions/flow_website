@@ -148,7 +148,8 @@
     "contentLanguageNotice": "This article is only available in Portuguese.",
     "contentComingSoon": "Content coming soon.",
     "youMayAlsoLike": "You May Also Like",
-    "next": "Next"
+    "next": "Next",
+    "noSlugTitle": "Post has no slug defined"
   },
   "contact": {
     "metaTitle": "Contact - Flow Productions",
