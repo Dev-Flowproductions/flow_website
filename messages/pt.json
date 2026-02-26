@@ -148,7 +148,8 @@
     "contentLanguageNotice": null,
     "contentComingSoon": "Conteúdo em breve.",
     "youMayAlsoLike": "Poderá também gostar",
-    "next": "Próximo"
+    "next": "Próximo",
+    "noSlugTitle": "Artigo sem slug definido"
   },
   "contact": {
     "metaTitle": "Contactos - Flow Productions",
