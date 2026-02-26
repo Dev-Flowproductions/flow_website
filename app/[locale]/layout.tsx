@@ -47,7 +47,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning className={poppins.variable}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/Logotipo/L_02.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
