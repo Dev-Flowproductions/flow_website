@@ -149,21 +149,26 @@ export default function TestimonialCarousel({
           )}
         </div>
 
-        {/* Dots Indicator */}
+        {/* Next Arrow */}
         {sortedTestimonials.length > 1 && (
-          <div className="flex justify-center gap-2 mt-12">
-            {sortedTestimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex
-                    ? 'bg-black w-8'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
+          <div className="flex justify-center mt-12">
+            <button
+              onClick={nextTestimonial}
+              aria-label="Next testimonial"
+              className="w-12 h-12 rounded-full bg-black flex items-center justify-center hover:bg-gray-800 transition-colors"
+            >
+              <svg
+                className="w-5 h-5 text-white"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
+            </button>
           </div>
         )}
       </div>

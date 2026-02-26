@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -40,6 +40,17 @@ export default function ContactCTA() {
   return (
     <section className="py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
+        {/* Contact Us image above the divider */}
+        <div className="flex justify-center mb-6 md:mb-8" aria-hidden>
+          <Image
+            src="/images/Contact-Us.png"
+            alt=""
+            width={200}
+            height={80}
+            className="h-auto w-auto max-h-20 md:max-h-24 object-contain"
+          />
+        </div>
+
         <div className="grid md:grid-cols-2 gap-8 md:gap-16">
           {/* Left - Info */}
           <AnimateIn>
