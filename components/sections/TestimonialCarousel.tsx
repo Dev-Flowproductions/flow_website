@@ -76,16 +76,16 @@ export default function TestimonialCarousel({
               <div className="flex flex-col items-center gap-4">
                 {/* Avatar */}
                 {currentTestimonial.avatar_path ? (
-                  <div className="w-20 h-20 rounded-full bg-gray-700 overflow-hidden">
+                  <div className="w-20 h-20 flex items-center justify-center">
                     <img
                       src={currentTestimonial.avatar_path}
                       alt={currentTestimonial.company_name}
-                      className="w-full h-full object-cover"
+                      className="max-w-full max-h-full object-contain"
                     />
                   </div>
                 ) : (
-                  <div className="w-20 h-20 rounded-full bg-gray-700 flex items-center justify-center">
-                    <span className="text-white text-2xl font-bold">
+                  <div className="w-20 h-20 flex items-center justify-center">
+                    <span className="text-gray-400 text-2xl font-bold">
                       {currentTestimonial.company_name.charAt(0)}
                     </span>
                   </div>
