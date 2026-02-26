@@ -41,7 +41,7 @@ export default async function AboutPage({
       {/* Hero Section with Image */}
       <section className="relative min-h-[60vh] lg:min-h-screen w-full overflow-hidden bg-gray-200">
         <img
-          src="/images/hero/about-us.jpg"
+          src="/images/hero/about-us.png"
           alt="Flow Productions Team"
           className="absolute inset-0 w-full h-full object-cover"
         />

@@ -72,7 +72,7 @@ export default async function ProjectsPage({
       {/* Hero Image Section */}
       <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
         <img
-          src="/images/hero/project.jpg"
+          src="/images/hero/project.png"
           alt="Projetos Flow Productions"
           className="absolute inset-0 w-full h-full object-cover"
         />

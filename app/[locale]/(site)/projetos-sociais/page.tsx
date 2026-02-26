@@ -71,7 +71,7 @@ export default async function ProjetosSociaisPage() {
 
       <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
         <img
-          src="/images/hero/social-projects.jpg"
+          src="/images/hero/social-projects.png"
           alt="Projetos Sociais Flow Productions"
           className="absolute inset-0 w-full h-full object-cover"
         />
