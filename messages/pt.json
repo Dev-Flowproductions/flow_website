@@ -193,7 +193,9 @@
     "year": "Ano",
     "category": "Categoria",
     "backToProjects": "Projetos",
-    "noImage": "Sem imagem"
+    "noImage": "Sem imagem",
+    "previousProject": "Anterior",
+    "nextProject": "Seguinte"
   },
   "categories": {
     "design": "Design",

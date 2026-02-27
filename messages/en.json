@@ -193,7 +193,9 @@
     "year": "Year",
     "category": "Category",
     "backToProjects": "Projects",
-    "noImage": "No image"
+    "noImage": "No image",
+    "previousProject": "Previous",
+    "nextProject": "Next"
   },
   "categories": {
     "design": "Design",
