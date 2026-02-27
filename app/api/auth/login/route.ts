@@ -1,9 +1,30 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
+
+const loginSchema = z.object({
+  email: z.string().min(1, 'Email is required').email('Invalid email format'),
+  password: z.string().min(1, 'Password is required'),
+});
 
 export async function POST(request: Request) {
-  const { email, password } = await request.json();
+  let email: string;
+  let password: string;
+  try {
+    const body = await request.json();
+    const parsed = loginSchema.parse(body);
+    email = parsed.email;
+    password = parsed.password;
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: 'Dados inválidos', details: err.errors },
+        { status: 400 }
+      );
+    }
+    return NextResponse.json({ error: 'Request body invalid' }, { status: 400 });
+  }
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

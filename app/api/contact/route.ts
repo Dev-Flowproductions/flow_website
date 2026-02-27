@@ -3,11 +3,20 @@ import { createClient } from '@/lib/supabase/server';
 import { z } from 'zod';
 
 const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
+  name: z.string().min(2, 'Name must be at least 2 characters').max(200, 'Name too long'),
   email: z.string().email('Invalid email address'),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
+  message: z.string().min(10, 'Message must be at least 10 characters').max(10000, 'Message too long'),
   consent: z.boolean().refine((val) => val === true, 'Consent is required'),
 });
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -57,10 +66,10 @@ ${validatedData.message}
           `,
           html: `
 <h2>Nova mensagem de contacto</h2>
-<p><strong>Nome:</strong> ${validatedData.name}</p>
-<p><strong>Email:</strong> ${validatedData.email}</p>
+<p><strong>Nome:</strong> ${escapeHtml(validatedData.name)}</p>
+<p><strong>Email:</strong> ${escapeHtml(validatedData.email)}</p>
 <p><strong>Mensagem:</strong></p>
-<p>${validatedData.message.replace(/\n/g, '<br>')}</p>
+<p>${escapeHtml(validatedData.message).replace(/\n/g, '<br>')}</p>
           `,
         });
       } catch (emailError) {
