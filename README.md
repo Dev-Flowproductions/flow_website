@@ -7,7 +7,7 @@ Website for Flow Productions — creative agency (design, marketing, audiovisual
 - **Next.js** (App Router)
 - **next-intl** (i18n: PT, EN, FR)
 - **Tailwind CSS**
-- **Supabase** (CMS: projects, blog, team)
+- **Supabase** (data: projects, blog, team)
 
 ## Setup
 
