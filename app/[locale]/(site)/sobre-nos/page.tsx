@@ -55,9 +55,9 @@ export default async function AboutPage({
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
                 {t('history.label')}
               </p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
                 {t('history.title')} <span className="text-gray-300">{t('history.titleHighlight')}</span>
-              </h2>
+              </h1>
             </div>
           </AnimateIn>
 
@@ -206,21 +206,7 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* References / Learn more — external citations for AEO */}
-      <section className="py-16 px-4 bg-gray-50" aria-labelledby="references-heading">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 id="references-heading" className="text-2xl md:text-3xl font-bold mb-6">
-            {t('references.title')}
-          </h2>
-          <p className="text-gray-600 mb-8">
-            <a href={t('references.link1Url')} target="_blank" rel="noopener noreferrer" className="underline hover:text-black">{t('references.link1Label')}</a>
-            {' · '}
-            <a href={t('references.link2Url')} target="_blank" rel="noopener noreferrer" className="underline hover:text-black">{t('references.link2Label')}</a>
-            {' · '}
-            <a href={t('references.link3Url')} target="_blank" rel="noopener noreferrer" className="underline hover:text-black">{t('references.link3Label')}</a>
-          </p>
-        </div>
-      </section>
+
     </div>
   );
 }

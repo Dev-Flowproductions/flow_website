@@ -108,10 +108,10 @@ export default async function HomePage({
                 <p className="text-sm uppercase tracking-wider mb-2 text-gray-600">
                   {t('team.label')}
                 </p>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold mb-6">
                   {t('team.title')}<br />
                   <span className="text-gray-400">{t('team.subtitle')}</span>
-                </h2>
+                </h1>
                 <p className="text-lg text-gray-700 leading-relaxed mb-8">
                   {t('team.description')}
                 </p>
