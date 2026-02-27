@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
 import { createClient } from '@/lib/supabase/server';
@@ -87,12 +88,14 @@ export default async function BlogPage({
 
             const card = (
               <>
-                <div className="aspect-[16/10] overflow-hidden mb-4 bg-gray-100">
+                <div className="aspect-[16/10] overflow-hidden mb-4 bg-gray-100 relative">
                   {post.featured_image_path ? (
-                    <img
+                    <Image
                       src={post.featured_image_path}
                       alt={title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-200" />

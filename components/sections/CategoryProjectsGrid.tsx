@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import type { ProjectWithTags, TagRecord } from '@/lib/projects';
 
@@ -33,10 +34,12 @@ export default function CategoryProjectsGrid({ projects, locale, emptyMessage }:
             {/* Thumbnail */}
             <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden relative">
               {project.featured_image_path ? (
-                <img
+                <Image
                   src={project.featured_image_path}
                   alt={title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-400">

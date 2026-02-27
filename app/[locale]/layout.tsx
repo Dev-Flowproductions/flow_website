@@ -49,10 +49,17 @@ export default async function LocaleLayout({
   const orgSchema = organizationJsonLd();
   const webSchema = websiteJsonLd();
 
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseOrigin = supabaseUrl ? new URL(supabaseUrl).origin : null;
+
   return (
     <html lang={locale} suppressHydrationWarning className={poppins.variable}>
       <head>
         <link rel="icon" type="image/png" href="/Logotipo/L_02.png" />
+        {supabaseOrigin && (
+          <link rel="preconnect" href={supabaseOrigin} />
+        )}
+        <link rel="preconnect" href="https://flagcdn.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}

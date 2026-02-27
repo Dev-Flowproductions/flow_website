@@ -1,13 +1,23 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { createClient } from '@/lib/supabase/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
 import ServicesPreview from '@/components/sections/ServicesPreview';
-import TestimonialCarousel from '@/components/sections/TestimonialCarousel';
 import ProjectsPreview from '@/components/sections/ProjectsPreview';
-import ContactCTA from '@/components/sections/ContactCTA';
 import { getPageMetadata } from '@/lib/seo';
+
+const TestimonialCarousel = dynamic(
+  () => import('@/components/sections/TestimonialCarousel'),
+  { ssr: true }
+);
+
+const ContactCTA = dynamic(
+  () => import('@/components/sections/ContactCTA'),
+  { ssr: true }
+);
 
 export async function generateMetadata({
   params,
@@ -80,6 +90,8 @@ export default async function HomePage({
             loop
             muted
             playsInline
+            preload="metadata"
+            poster="/images/hero/home-poster.jpg"
             className="w-full h-full object-cover"
           >
             <source src="/videos/hero/home.mp4" type="video/mp4" />
@@ -94,10 +106,13 @@ export default async function HomePage({
             {/* Team Image */}
             <AnimateIn>
               <div className="relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg overflow-hidden">
-                <img
+                <Image
                   src="/images/team/team-1.jpg"
                   alt="Flow Productions Team"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                  priority
                 />
               </div>
             </AnimateIn>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import { createClient } from '@/lib/supabase/server';
@@ -158,11 +159,14 @@ export default async function BlogPostPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero image */}
-      <div className="w-full pt-16 overflow-hidden">
-        <img
+      <div className="w-full pt-16 overflow-hidden relative aspect-[16/10] max-h-[70vh]">
+        <Image
           src={image}
           alt={title}
-          className="w-full max-h-[70vh] object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
         />
       </div>
 
@@ -234,12 +238,14 @@ export default async function BlogPostPage({
                 const pTitle = p.title?.[locale] || p.title?.pt;
                 return pSlug ? (
                   <Link key={p.id} href={`/blog/${pSlug}`} className="group block">
-                    <div className="aspect-[16/10] overflow-hidden mb-3 bg-gray-100">
+                    <div className="aspect-[16/10] overflow-hidden mb-3 bg-gray-100 relative">
                       {p.featured_image_path && (
-                        <img
+                        <Image
                           src={p.featured_image_path}
                           alt={pTitle}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          fill
+                          sizes="(max-width: 640px) 100vw, 50vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )}
                     </div>
@@ -249,12 +255,14 @@ export default async function BlogPostPage({
                   </Link>
                 ) : (
                   <div key={p.id} className="group block opacity-90">
-                    <div className="aspect-[16/10] overflow-hidden mb-3 bg-gray-100">
+                    <div className="aspect-[16/10] overflow-hidden mb-3 bg-gray-100 relative">
                       {p.featured_image_path && (
-                        <img
+                        <Image
                           src={p.featured_image_path}
                           alt={pTitle}
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(max-width: 640px) 100vw, 50vw"
+                          className="object-cover"
                         />
                       )}
                     </div>

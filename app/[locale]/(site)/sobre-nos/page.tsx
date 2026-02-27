@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
@@ -40,10 +41,13 @@ export default async function AboutPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Hero Section with Image */}
       <section className="relative min-h-[60vh] lg:min-h-screen w-full overflow-hidden bg-gray-200">
-        <img
+        <Image
           src="/images/hero/about-us.png"
           alt="Flow Productions Team"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
         />
       </section>
 
@@ -182,10 +186,12 @@ export default async function AboutPage({
                 <Link href={`/team/${member.slug}`} className="block group cursor-pointer">
                   {/* Photo */}
                   <div className="aspect-[4/3] overflow-hidden relative">
-                    <img
+                    <Image
                       src={`/images/team/member-${index + 1}.jpg`}
                       alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
                     {/* Hover overlay: dark layer + name/role (like flowproductions.pt/sobre-nos) */}
                     <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-start justify-end text-left p-4">

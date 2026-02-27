@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import MultiSlideCarousel from '@/components/sections/MultiSlideCarousel';
 import YoutubeHero from '@/components/sections/YoutubeHero';
@@ -115,11 +116,13 @@ export default async function AudiovisualProjectsPage() {
         </AnimateIn>
         <div className="grid grid-cols-3 gap-3 max-w-6xl mx-auto">
           {fotografias.slice(0, 6).map((p, i) => (
-            <div key={i} className="overflow-hidden bg-gray-200" style={{ aspectRatio: '4/3' }}>
-              <img
+            <div key={i} className="overflow-hidden bg-gray-200 relative" style={{ aspectRatio: '4/3' }}>
+              <Image
                 src={p.img}
                 alt={p.title}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                fill
+                sizes="(max-width: 768px) 50vw, 33vw"
+                className="object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
           ))}
@@ -131,13 +134,15 @@ export default async function AudiovisualProjectsPage() {
           {[...logos, ...logos].map((logo, i) => (
             <div
               key={i}
-              className="inline-flex items-center justify-center flex-shrink-0 mx-8"
+              className="inline-flex items-center justify-center flex-shrink-0 mx-8 relative"
               style={{ height: '110px', width: '220px' }}
             >
-              <img
+              <Image
                 src={logo.src}
                 alt={logo.name}
-                className="max-h-full max-w-full object-contain"
+                fill
+                sizes="220px"
+                className="object-contain"
                 style={{ filter: 'brightness(0) invert(1)', opacity: 0.8 }}
               />
             </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { useState } from 'react';
 import MainNav from './MainNav';
@@ -16,9 +17,11 @@ export default function Header({ locale }: { locale: string }) {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
-              <img
+              <Image
                 src="/Logotipo/Logo Preto-01.png"
                 alt="Flow Productions"
+                width={160}
+                height={40}
                 className="h-10 w-auto"
               />
             </Link>

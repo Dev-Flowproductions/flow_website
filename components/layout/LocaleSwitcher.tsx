@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { useTransition, useState, useEffect, useRef } from 'react';
 
@@ -45,7 +46,7 @@ export default function LocaleSwitcher({ locale }: { locale: string }) {
         disabled={isPending}
         className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-black/10 transition-colors whitespace-nowrap"
       >
-        <img src={active.flag} alt={active.label} width={20} height={14} className="rounded-sm object-cover" />
+        <Image src={active.flag} alt={active.label} width={20} height={14} className="rounded-sm object-cover" />
         <span>{active.label}</span>
         <svg
           className={`w-3 h-3 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
@@ -67,7 +68,7 @@ export default function LocaleSwitcher({ locale }: { locale: string }) {
               disabled={isPending}
               className="flex items-center gap-2 px-3 py-1.5 text-gray-800 text-xs font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap w-full"
             >
-              <img src={loc.flag} alt={loc.label} width={20} height={14} className="rounded-sm object-cover" />
+              <Image src={loc.flag} alt={loc.label} width={20} height={14} className="rounded-sm object-cover" />
               <span>{loc.label}</span>
             </button>
           ))}

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
@@ -196,11 +197,14 @@ export default async function ProjectDetailPage({
             {/* Right: featured image + video + description stacked */}
             <div className="flex flex-col gap-4 md:col-span-2">
               {project.featured_image_path && (
-                <div className="overflow-hidden">
-                  <img
+                <div className="overflow-hidden relative w-full aspect-[4/3]">
+                  <Image
                     src={project.featured_image_path}
                     alt={title}
-                    className="w-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 66vw"
+                    className="object-cover"
+                    priority
                   />
                 </div>
               )}

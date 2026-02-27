@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
@@ -70,10 +71,13 @@ export default async function ProjetosSociaisPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
-        <img
+        <Image
           src="/images/hero/social-projects.png"
           alt="Projetos Sociais Flow Productions"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
         />
       </section>
 
@@ -122,13 +126,15 @@ export default async function ProjetosSociaisPage() {
           {[...logos, ...logos].map((logo, i) => (
             <div
               key={i}
-              className="inline-flex items-center justify-center flex-shrink-0 mx-8"
+              className="inline-flex items-center justify-center flex-shrink-0 mx-8 relative"
               style={{ height: '110px', width: '220px' }}
             >
-              <img
+              <Image
                 src={logo.src}
                 alt={logo.name}
-                className="max-h-full max-w-full object-contain"
+                fill
+                sizes="220px"
+                className="object-contain"
                 style={{ filter: 'brightness(0) invert(1)', opacity: 0.8 }}
               />
             </div>
