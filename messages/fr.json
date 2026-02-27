@@ -42,6 +42,15 @@
       "description": "Du concept à l'exécution, nous donnons forme et mouvement aux idées. Ceci est notre portfolio de projets, où design, marketing, audiovisuel et animation prennent vie.",
       "cta": "Voir Plus",
       "videoLabel": "Vidéo"
+    },
+    "keyFacts": {
+      "title": "Flow en chiffres",
+      "since": "Depuis",
+      "sinceValue": "2018",
+      "projects": "Projets réalisés",
+      "projectsValue": "50+",
+      "languages": "Langues",
+      "languagesValue": "3"
     }
   },
   "services": {
@@ -49,6 +58,8 @@
     "metaDescription": "Découvrez nos services de Design, Marketing, Audiovisuel et Animation",
     "pageLabel": "Comment nous coulons",
     "title": "Nos services",
+    "whatWeOffer": "Que propose Flow Productions ?",
+    "intro": "Nous proposons design, marketing digital, production audiovisuelle et animation 2D/3D. Du branding au motion graphics, notre équipe à Faro apporte stratégie et créativité aux marques qui veulent se démarquer.",
     "design": {
       "title": "Design",
       "number": "01",
@@ -132,6 +143,15 @@
     "team": {
       "title": "Équipe Flow:",
       "titleHighlight": "le moteur créatif"
+    },
+    "references": {
+      "title": "En savoir plus",
+      "link1Label": "Faro (ville)",
+      "link1Url": "https://fr.wikipedia.org/wiki/Faro_(Portugal)",
+      "link2Label": "Algarve",
+      "link2Url": "https://fr.wikipedia.org/wiki/Algarve",
+      "link3Label": "UAlg Tec — Campus da Penha",
+      "link3Url": "https://www.ualg.pt/ualg-tec"
     }
   },
   "projects": {

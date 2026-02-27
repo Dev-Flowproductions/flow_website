@@ -55,9 +55,9 @@ export default async function AboutPage({
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
                 {t('history.label')}
               </p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
                 {t('history.title')} <span className="text-gray-300">{t('history.titleHighlight')}</span>
-              </h2>
+              </h1>
             </div>
           </AnimateIn>
 
@@ -205,6 +205,8 @@ export default async function AboutPage({
           </div>
         </div>
       </section>
+
+
     </div>
   );
 }

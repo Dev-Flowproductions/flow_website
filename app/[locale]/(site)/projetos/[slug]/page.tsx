@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, creativeWorkJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import Breadcrumb from '@/components/ui/Breadcrumb';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -63,6 +64,7 @@ export default async function ProjectDetailPage({
 }) {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'projectDetail' });
+  const tNav = await getTranslations({ locale, namespace: 'nav' });
   const supabase = await createClient();
   if (!supabase) notFound();
 
@@ -119,6 +121,13 @@ export default async function ProjectDetailPage({
       {/* Header: title centered on top, then two-column — meta left, image right */}
       <section className="pt-24 md:pt-32 pb-0 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
+          <Breadcrumb
+            items={[
+              { name: tNav('home'), href: '/' },
+              { name: t('backToProjects'), href: '/projetos' },
+              { name: title, href: `/projetos/${slug}` },
+            ]}
+            />
           <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight text-center mb-8 md:mb-12">
             {title}
           </h1>

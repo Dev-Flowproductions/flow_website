@@ -19,6 +19,7 @@ export async function generateMetadata({
     title: t('metaTitle'),
     description: t('metaDescription'),
     path: 'projetos',
+    keywords: ['portfólio projetos', 'design gráfico', 'marketing audiovisual', 'animação', 'casos de estudo', 'flow productions projetos'],
   });
 }
 
@@ -133,8 +134,8 @@ export default async function ProjectsPage({
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center px-8">
                         <h3 className="text-white text-xl font-bold mb-2">{title}</h3>
-                        <p className="text-gray-400 text-xs uppercase tracking-widest">
-                          {tagLabel ? `-, ${tagLabel}` : '-,'}
+                        <p className="text-gray-300 text-sm uppercase tracking-widest">
+                          {tagLabel ? `—, ${tagLabel}` : '—'}
                         </p>
                       </div>
                     </div>

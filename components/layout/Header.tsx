@@ -1,10 +1,10 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { useState } from 'react';
 import MainNav from './MainNav';
 import MobileMenu from './MobileMenu';
+import LocaleSwitcher from './LocaleSwitcher';
 
 export default function Header({ locale }: { locale: string }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -23,9 +23,10 @@ export default function Header({ locale }: { locale: string }) {
               />
             </Link>
 
-          {/* Center Navigation + CTA - Desktop */}
-          <div className="hidden lg:flex items-center gap-8">
+          {/* Center Navigation + CTA + Locale - Desktop */}
+          <div className="hidden lg:flex items-center gap-6">
             <MainNav />
+            <LocaleSwitcher locale={locale} />
             <Link
               href="/contactos"
               className="px-6 py-2 border-2 border-black rounded-full text-sm font-medium hover:bg-black hover:text-white transition-colors"
@@ -34,35 +35,38 @@ export default function Header({ locale }: { locale: string }) {
             </Link>
           </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden p-2"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            {/* Mobile: Locale + Hamburger */}
+            <div className="flex lg:hidden items-center gap-3">
+              <LocaleSwitcher locale={locale} />
+              <button
+                className="p-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle menu"
               >
-                {mobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  {mobileMenuOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </header>

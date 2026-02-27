@@ -26,6 +26,7 @@ export async function generateMetadata({
     title: titles[locale] || titles.pt,
     description: descs[locale] || descs.pt,
     path: 'blog',
+    keywords: ['blog criatividade', 'artigos design', 'marketing digital', 'tendências criativas', 'flow productions blog'],
   });
 }
 
@@ -104,9 +105,9 @@ export default async function BlogPage({
                   )}
                 </div>
 
-                <h2 className="text-lg font-bold text-black group-hover:text-gray-500 transition-colors leading-snug">
+                <h3 className="text-lg font-bold text-black group-hover:text-gray-500 transition-colors leading-snug">
                   {title}
-                </h2>
+                </h3>
               </>
             );
 

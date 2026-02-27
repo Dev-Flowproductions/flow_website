@@ -19,6 +19,7 @@ export async function generateMetadata({
     title: t('metaTitle'),
     description: t('metaDescription'),
     path: 'servicos',
+    keywords: ['serviços criativos', 'design', 'marketing digital', 'audiovisual', 'animação', 'branding', 'flow productions serviços'],
   });
 }
 
@@ -93,9 +94,15 @@ export default async function ServicesPage({
             <p className="text-sm uppercase tracking-wider text-center mb-4">
               {t('pageLabel')}
             </p>
-            <h1 className="text-4xl md:text-6xl font-bold text-center mb-16">
+            <h1 className="text-4xl md:text-6xl font-bold text-center mb-6">
               {t('title')}
             </h1>
+            <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-4">
+              {t('intro')}
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
+              {t('whatWeOffer')}
+            </h2>
           </AnimateIn>
 
           <ServicesGrid services={servicesData} locale={locale} />

@@ -148,7 +148,7 @@ export default function ContactCTA() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full md:w-auto px-8 py-3 bg-[rgb(250,59,30)] hover:bg-[rgb(230,39,10)] text-white rounded-full font-medium transition-colors flex items-center gap-2"
+                className="w-full md:w-auto px-8 py-3 bg-[#5b54a0] hover:bg-[#4a4480] text-white rounded-full font-medium transition-colors flex items-center gap-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

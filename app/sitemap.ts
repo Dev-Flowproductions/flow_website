@@ -56,9 +56,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
       if (posts) {
         blogUrls = posts.flatMap((post) => {
-          const slugPt = post.slug?.pt || post.slug;
-          const slugEn = post.slug?.en || slugPt;
-          const slugFr = post.slug?.fr || slugPt;
+          const slugPt = typeof post.slug === 'object' && post.slug !== null ? (post.slug as Record<string, string>).pt : post.slug;
+          const slugEn = typeof post.slug === 'object' && post.slug !== null ? (post.slug as Record<string, string>).en || slugPt : slugPt;
+          const slugFr = typeof post.slug === 'object' && post.slug !== null ? (post.slug as Record<string, string>).fr || slugPt : slugPt;
+          if (!slugPt || typeof slugPt !== 'string') return [];
           const lastMod = new Date(post.updated_at || post.published_at || Date.now());
           return [
             { url: `${SITE_URL}/pt/blog/${slugPt}`, lastModified: lastMod, changeFrequency: 'monthly' as ChangeFreq, priority: 0.7 },
@@ -77,9 +78,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
       if (projects) {
         projectUrls = projects.flatMap((project) => {
-          const slugPt = project.slug?.pt || project.slug;
-          const slugEn = project.slug?.en || slugPt;
-          const slugFr = project.slug?.fr || slugPt;
+          const slugPt = typeof project.slug === 'object' && project.slug !== null ? (project.slug as Record<string, string>).pt : project.slug;
+          const slugEn = typeof project.slug === 'object' && project.slug !== null ? (project.slug as Record<string, string>).en || slugPt : slugPt;
+          const slugFr = typeof project.slug === 'object' && project.slug !== null ? (project.slug as Record<string, string>).fr || slugPt : slugPt;
+          if (!slugPt || typeof slugPt !== 'string') return [];
           const lastMod = new Date(project.updated_at || project.published_at || Date.now());
           return [
             { url: `${SITE_URL}/pt/projetos/${slugPt}`, lastModified: lastMod, changeFrequency: 'monthly' as ChangeFreq, priority: 0.8 },
