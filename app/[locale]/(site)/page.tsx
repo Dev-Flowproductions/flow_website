@@ -126,29 +126,6 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* Key facts / Citation stats */}
-      <section className="py-16 px-4 bg-gray-50" aria-labelledby="key-facts-heading">
-        <div className="max-w-7xl mx-auto">
-          <h2 id="key-facts-heading" className="text-2xl md:text-3xl font-bold text-center mb-12">
-            {t('keyFacts.title')}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <AnimateIn delay={0}>
-              <p className="text-4xl md:text-5xl font-bold text-gray-900 mb-1">{t('keyFacts.sinceValue')}</p>
-              <p className="text-sm uppercase tracking-wider text-gray-600">{t('keyFacts.since')}</p>
-            </AnimateIn>
-            <AnimateIn delay={0.1}>
-              <p className="text-4xl md:text-5xl font-bold text-gray-900 mb-1">{t('keyFacts.projectsValue')}</p>
-              <p className="text-sm uppercase tracking-wider text-gray-600">{t('keyFacts.projects')}</p>
-            </AnimateIn>
-            <AnimateIn delay={0.2}>
-              <p className="text-4xl md:text-5xl font-bold text-gray-900 mb-1">{t('keyFacts.languagesValue')}</p>
-              <p className="text-sm uppercase tracking-wider text-gray-600">{t('keyFacts.languages')}</p>
-            </AnimateIn>
-          </div>
-        </div>
-      </section>
-
       {/* Services Preview Section */}
       {services && services.length > 0 && (
         <ServicesPreview services={services} locale={locale} />
