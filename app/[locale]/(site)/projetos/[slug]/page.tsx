@@ -116,22 +116,16 @@ export default async function ProjectDetailPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Header: two-column — meta left, image right */}
+      {/* Header: title centered on top, then two-column — meta left, image right */}
       <section className="pt-24 md:pt-32 pb-0 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight text-center mb-8 md:mb-12">
+            {title}
+          </h1>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start">
-            {/* Left: title + summary + meta */}
+            {/* Left: meta */}
             <div className="md:col-span-1">
-              <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight mb-6">
-                {title}
-              </h1>
-
-              {summary && (
-                <p className="text-base text-gray-500 leading-relaxed mb-8">
-                  {summary}
-                </p>
-              )}
-
               {/* Meta */}
               <div className="space-y-3">
                 {project.client_name && (
