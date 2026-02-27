@@ -149,13 +149,12 @@ export default function TestimonialCarousel({
           )}
         </div>
 
-        {/* Next Arrow */}
+        {/* Next Arrow (decorative) */}
         {sortedTestimonials.length > 1 && (
           <div className="flex justify-center mt-12">
-            <button
-              onClick={nextTestimonial}
-              aria-label="Next testimonial"
-              className="w-12 h-12 rounded-full bg-black flex items-center justify-center hover:bg-gray-800 transition-colors"
+            <div
+              aria-hidden
+              className="w-12 h-12 rounded-full bg-black flex items-center justify-center cursor-default"
             >
               <svg
                 className="w-5 h-5 text-white"
@@ -168,7 +167,7 @@ export default function TestimonialCarousel({
               >
                 <path d="M12 5v14M5 12l7 7 7-7" />
               </svg>
-            </button>
+            </div>
           </div>
         )}
       </div>
