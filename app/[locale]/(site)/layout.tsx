@@ -1,7 +1,12 @@
+import dynamic from 'next/dynamic';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
-import CopyPageAsMarkdown from '@/components/layout/CopyPageAsMarkdown';
+
+const CopyPageAsMarkdown = dynamic(
+  () => import('@/components/layout/CopyPageAsMarkdown'),
+  { ssr: true }
+);
 
 export default async function SiteLayout({
   children,

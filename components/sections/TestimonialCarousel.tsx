@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimateIn } from '@/components/ui/AnimateIn';
@@ -76,10 +77,12 @@ export default function TestimonialCarousel({
               <div className="flex flex-col items-center gap-4">
                 {/* Avatar */}
                 {currentTestimonial.avatar_path ? (
-                  <div className="w-20 h-20 rounded-full overflow-hidden flex items-center justify-center shrink-0">
-                    <img
+                  <div className="w-20 h-20 rounded-full overflow-hidden flex items-center justify-center shrink-0 relative">
+                    <Image
                       src={currentTestimonial.avatar_path}
                       alt={currentTestimonial.company_name}
+                      width={80}
+                      height={80}
                       className="w-full h-full object-cover"
                     />
                   </div>

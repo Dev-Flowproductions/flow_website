@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn';
 import { useTranslations } from 'next-intl';
@@ -111,10 +112,12 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
                   <Link href={`/projetos/${slug}`} className="group block">
                     <div className="aspect-[4/3] bg-gray-100 mb-4 overflow-hidden relative">
                       {project.featured_image_path ? (
-                        <img
+                        <Image
                           src={project.featured_image_path}
                           alt={title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-300">
@@ -159,11 +162,13 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
               return (
                 <StaggerItem key={project.id}>
                   <Link href={`/projetos/${project.slug.pt}`} className="group block">
-                    <div className="aspect-[4/3] bg-gray-100 mb-4 overflow-hidden">
-                      <img
+                    <div className="aspect-[4/3] bg-gray-100 mb-4 overflow-hidden relative">
+                      <Image
                         src={project.featured_image_path}
                         alt={project.title.pt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
                     {showTitles && (

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
@@ -80,10 +81,13 @@ export default async function DesignProjectsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
-        <img
+        <Image
           src="/images/hero/design.png"
           alt="Design Flow Productions"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
         />
       </section>
 
@@ -116,14 +120,16 @@ export default async function DesignProjectsPage() {
       <section className="bg-black py-16 overflow-hidden">
         <div className="animate-marquee">
           {[...logos, ...logos].map((logo, i) => (
-          <div
+            <div
             key={i}
-            className="inline-flex items-center justify-center flex-shrink-0 mx-4 md:mx-8 h-16 w-36 md:h-[110px] md:w-[220px]"
+            className="inline-flex items-center justify-center flex-shrink-0 mx-4 md:mx-8 h-16 w-36 md:h-[110px] md:w-[220px] relative"
           >
-              <img
+              <Image
                 src={logo.src}
                 alt={logo.name}
-                className="max-h-full max-w-full object-contain"
+                fill
+                sizes="140px"
+                className="object-contain"
                 style={{ filter: 'brightness(0) invert(1)', opacity: 0.8 }}
               />
             </div>

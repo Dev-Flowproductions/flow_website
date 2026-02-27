@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 
@@ -14,9 +15,11 @@ export default function Footer({ locale }: { locale: string }) {
           {/* Column 1 - Logo */}
           <div>
             <Link href="/" className="inline-block mb-0">
-              <img
+              <Image
                 src="/Logotipo/Logo Preto-01.png"
                 alt="Flow Productions"
+                width={160}
+                height={40}
                 className="h-10 w-auto"
               />
             </Link>
