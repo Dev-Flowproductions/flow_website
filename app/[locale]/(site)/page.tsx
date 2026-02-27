@@ -7,6 +7,7 @@ import ServicesPreview from '@/components/sections/ServicesPreview';
 import TestimonialCarousel from '@/components/sections/TestimonialCarousel';
 import ProjectsPreview from '@/components/sections/ProjectsPreview';
 import ContactCTA from '@/components/sections/ContactCTA';
+import { getPageMetadata } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -16,10 +17,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
 
-  return {
+  return getPageMetadata(locale, {
     title: 'Flow Productions',
     description: t('hero.description'),
-  };
+    path: '',
+    keywords: ['agência criativa Faro', 'design gráfico', 'marketing digital', 'produção audiovisual', 'animação 2D 3D', 'branding', 'motion graphics'],
+  });
 }
 
 export default async function HomePage({

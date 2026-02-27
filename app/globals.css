@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --font-system-ui: system-ui, -apple-system, sans-serif;
 }
@@ -90,3 +86,8 @@
   animation: marquee 45s linear infinite;
   will-change: transform;
 }
+
+/* Blog post rich-text content — override global heading scale */
+.blog-content h2 { font-size: 1.25rem !important; line-height: 1.75rem !important; }
+.blog-content h3 { font-size: 1rem    !important; line-height: 1.5rem  !important; }
+.blog-content h4 { font-size: 0.875rem !important; line-height: 1.25rem !important; }

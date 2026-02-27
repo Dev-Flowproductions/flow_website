@@ -19,6 +19,7 @@ export async function generateMetadata({
     title: t('metaTitle'),
     description: t('metaDescription'),
     path: 'servicos',
+    keywords: ['serviços criativos', 'design', 'marketing digital', 'audiovisual', 'animação', 'branding', 'flow productions serviços'],
   });
 }
 

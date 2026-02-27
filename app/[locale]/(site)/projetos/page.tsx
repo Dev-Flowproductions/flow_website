@@ -19,6 +19,7 @@ export async function generateMetadata({
     title: t('metaTitle'),
     description: t('metaDescription'),
     path: 'projetos',
+    keywords: ['portfólio projetos', 'design gráfico', 'marketing audiovisual', 'animação', 'casos de estudo', 'flow productions projetos'],
   });
 }
 
