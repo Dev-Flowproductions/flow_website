@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from '@/i18n/routing';
 
@@ -70,10 +71,12 @@ export default function DesignProjectCarousel() {
               >
                 <Link href={`/projetos/${p.slug}`} className="group block relative">
                   <div className="relative overflow-hidden bg-gray-50" style={{ aspectRatio: '4/3' }}>
-                    <img
+                    <Image
                       src={p.img}
                       alt={p.title}
-                      className="w-full h-full object-cover transition-opacity duration-500"
+                      fill
+                      sizes="55vw"
+                      className="object-cover transition-opacity duration-500"
                       style={{ opacity: isActive ? 1 : 0.45 }}
                     />
                     {/* ↗ link icon on hover */}

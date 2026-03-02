@@ -19,6 +19,8 @@ interface PageMetadataOptions {
   type?: 'website' | 'article';
   publishedTime?: string;
   modifiedTime?: string;
+  /** Page-specific keywords (merged with base keywords). */
+  keywords?: string[];
 }
 
 export function getPageMetadata(locale: string, options: PageMetadataOptions = {}): Metadata {
@@ -30,18 +32,23 @@ export function getPageMetadata(locale: string, options: PageMetadataOptions = {
     type = 'website',
     publishedTime,
     modifiedTime,
+    keywords: pageKeywords,
   } = options;
+
+  const baseKeywords = ['design', 'marketing digital', 'audiovisual', 'animação', 'agência criativa', 'Faro', 'Portugal', 'flow productions'];
+  const keywords = pageKeywords && pageKeywords.length > 0 ? [...pageKeywords, ...baseKeywords] : baseKeywords;
 
   const canonicalUrl = `${SITE_URL}/${locale}${path ? `/${path}` : ''}`;
   const resolvedTitle = title
     ? { absolute: `${title} | ${SITE_NAME}` }
     : { default: SITE_NAME, template: `%s | ${SITE_NAME}` };
+  const absoluteImage = image?.startsWith('http') ? image : image ? `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}` : DEFAULT_OG_IMAGE;
 
   return {
     metadataBase: new URL(SITE_URL),
     title: resolvedTitle,
     description,
-    keywords: ['design', 'marketing digital', 'audiovisual', 'animação', 'agência criativa', 'Faro', 'Portugal', 'flow productions'],
+    keywords,
     authors: [{ name: SITE_NAME, url: SITE_URL }],
     creator: SITE_NAME,
     publisher: SITE_NAME,
@@ -62,7 +69,7 @@ export function getPageMetadata(locale: string, options: PageMetadataOptions = {
       siteName: SITE_NAME,
       title: title || SITE_NAME,
       description,
-      images: [{ url: image, width: 1200, height: 630, alt: title || SITE_NAME }],
+      images: [{ url: absoluteImage, width: 1200, height: 630, alt: title || SITE_NAME }],
       ...(type === 'article' && publishedTime ? { publishedTime } : {}),
       ...(type === 'article' && modifiedTime ? { modifiedTime } : {}),
     },
@@ -72,7 +79,7 @@ export function getPageMetadata(locale: string, options: PageMetadataOptions = {
       creator: '@flowproductions',
       title: title || SITE_NAME,
       description,
-      images: [image],
+      images: [absoluteImage],
     },
     robots: {
       index: true,
@@ -171,7 +178,11 @@ export function articleJsonLd(opts: {
   image: string;
   datePublished: string;
   dateModified?: string;
+  authorName?: string;
 }) {
+  const author = opts.authorName
+    ? { '@type': 'Person' as const, name: opts.authorName }
+    : { '@type': 'Organization' as const, name: SITE_NAME, url: SITE_URL };
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -181,11 +192,7 @@ export function articleJsonLd(opts: {
     image: opts.image,
     datePublished: opts.datePublished,
     dateModified: opts.dateModified || opts.datePublished,
-    author: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
+    author,
     publisher: {
       '@type': 'Organization',
       name: SITE_NAME,

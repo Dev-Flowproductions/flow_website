@@ -1,12 +1,35 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/routing';
+import { Link, usePathname } from '@/i18n/routing';
 import { useState, useRef, useEffect } from 'react';
 
+const navLinkBase =
+  'text-sm font-medium hover:text-gray-600 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-black after:transition-all hover:after:w-full';
+
+function navLinkClass(href: string, pathname: string): string {
+  const isHome = href === '/';
+  const isProjects = href === '/projetos';
+  const isProjectCategory =
+    pathname === '/design' ||
+    pathname === '/marketing' ||
+    pathname === '/audiovisual' ||
+    pathname === '/animacao' ||
+    pathname === '/projetos-sociais';
+
+  let active = false;
+  if (isHome) active = pathname === '/' || pathname === '';
+  else if (isProjects) active = pathname === '/projetos' || isProjectCategory;
+  else active = pathname === href || pathname.startsWith(href + '/');
+
+  const showLine = active ? 'after:w-full' : 'after:w-0';
+  return `${navLinkBase} ${showLine}`;
+}
+
 export default function MainNav() {
-  const t    = useTranslations('nav');
+  const t = useTranslations('nav');
   const tCat = useTranslations('categories');
+  const pathname = usePathname();
   const [projectsOpen, setProjectsOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -35,22 +58,13 @@ export default function MainNav() {
 
   return (
     <nav className="flex items-center space-x-8">
-      <Link
-        href="/"
-        className="text-sm font-medium hover:text-gray-600 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-black after:transition-all hover:after:w-full"
-      >
+      <Link href="/" className={navLinkClass('/', pathname)}>
         {t('home')}
       </Link>
-      <Link
-        href="/sobre-nos"
-        className="text-sm font-medium hover:text-gray-600 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-black after:transition-all hover:after:w-full"
-      >
+      <Link href="/sobre-nos" className={navLinkClass('/sobre-nos', pathname)}>
         {t('about')}
       </Link>
-      <Link
-        href="/servicos"
-        className="text-sm font-medium hover:text-gray-600 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-black after:transition-all hover:after:w-full"
-      >
+      <Link href="/servicos" className={navLinkClass('/servicos', pathname)}>
         {t('services')}
       </Link>
 
@@ -62,7 +76,7 @@ export default function MainNav() {
       >
         <Link
           href="/projetos"
-          className="text-sm font-medium hover:text-gray-600 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-black after:transition-all hover:after:w-full flex items-center gap-1"
+          className={`${navLinkClass('/projetos', pathname)} flex items-center gap-1`}
         >
           {t('projects')}
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,10 +101,7 @@ export default function MainNav() {
         )}
       </div>
 
-      <Link
-        href="/blog"
-        className="text-sm font-medium hover:text-gray-600 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-black after:transition-all hover:after:w-full"
-      >
+      <Link href="/blog" className={navLinkClass('/blog', pathname)}>
         {t('blog')}
       </Link>
     </nav>

@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
@@ -19,6 +20,7 @@ export async function generateMetadata({
     title: t('metaTitle'),
     description: t('metaDescription'),
     path: 'projetos',
+    keywords: ['portfólio projetos', 'design gráfico', 'marketing audiovisual', 'animação', 'casos de estudo', 'flow productions projetos'],
   });
 }
 
@@ -71,10 +73,13 @@ export default async function ProjectsPage({
 
       {/* Hero Image Section */}
       <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
-        <img
-          src="/images/hero/project.jpg"
+        <Image
+          src="/images/hero/project.png"
           alt="Projetos Flow Productions"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
         />
       </section>
 
@@ -120,10 +125,12 @@ export default async function ProjectsPage({
                   >
                     <div className="aspect-[4/3] bg-gray-900 overflow-hidden relative">
                       {project.featured_image_path ? (
-                        <img
+                        <Image
                           src={project.featured_image_path}
                           alt={title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
                         <div className="w-full h-full bg-gray-800 flex items-center justify-center">
@@ -133,8 +140,8 @@ export default async function ProjectsPage({
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center px-8">
                         <h3 className="text-white text-xl font-bold mb-2">{title}</h3>
-                        <p className="text-gray-400 text-xs uppercase tracking-widest">
-                          {tagLabel ? `-, ${tagLabel}` : '-,'}
+                        <p className="text-gray-300 text-sm uppercase tracking-widest">
+                          {tagLabel ? `—, ${tagLabel}` : '—'}
                         </p>
                       </div>
                     </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from '@/i18n/routing';
 
@@ -93,10 +94,12 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
             >
               <Link href={`/projetos/${p.slug}`} className="group block">
                 <div className="relative overflow-hidden bg-gray-800" style={{ aspectRatio: '16/9' }}>
-                  <img
+                  <Image
                     src={p.img}
                     alt={p.title}
-                    className="w-full h-full object-cover transition-transform duration-500"
+                    fill
+                    sizes="33vw"
+                    className="object-cover transition-transform duration-500"
                   />
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center px-4">

@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
@@ -40,10 +41,13 @@ export default async function AboutPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Hero Section with Image */}
       <section className="relative min-h-[60vh] lg:min-h-screen w-full overflow-hidden bg-gray-200">
-        <img
-          src="/images/hero/about-us.jpg"
+        <Image
+          src="/images/hero/about-us.png"
           alt="Flow Productions Team"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
         />
       </section>
 
@@ -55,9 +59,9 @@ export default async function AboutPage({
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
                 {t('history.label')}
               </p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
                 {t('history.title')} <span className="text-gray-300">{t('history.titleHighlight')}</span>
-              </h2>
+              </h1>
             </div>
           </AnimateIn>
 
@@ -160,21 +164,9 @@ export default async function AboutPage({
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <AnimateIn>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-12">
-              {/* Badge */}
-              <div className="flex-shrink-0">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-black text-white flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-[10px] uppercase tracking-wider leading-tight">FLOW</p>
-                    <p className="text-[8px] leading-tight">Creative</p>
-                    <p className="text-[8px] leading-tight">Team</p>
-                  </div>
-                </div>
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-                {t('team.title')} <span className="text-gray-300">{t('team.titleHighlight')}</span>
-              </h2>
-            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center">
+              {t('team.title')} <span className="text-gray-300">{t('team.titleHighlight')}</span>
+            </h2>
           </AnimateIn>
 
           {/* Team Members Grid */}
@@ -194,13 +186,22 @@ export default async function AboutPage({
                 <Link href={`/team/${member.slug}`} className="block group cursor-pointer">
                   {/* Photo */}
                   <div className="aspect-[4/3] overflow-hidden relative">
-                    <img
+                    <Image
                       src={`/images/team/member-${index + 1}.jpg`}
                       alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Hover overlay: dark layer + name/role (like flowproductions.pt/sobre-nos) */}
+                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-start justify-end text-left p-4">
+                      <span className="text-white font-bold text-lg md:text-xl mb-1">
+                        {member.name}
+                      </span>
+                      <span className="text-white/90 text-sm">
+                        {member.role}
+                      </span>
+                    </div>
                   </div>
                   {/* Grey bar */}
                   <div className="bg-gray-300 h-8" />
@@ -210,6 +211,8 @@ export default async function AboutPage({
           </div>
         </div>
       </section>
+
+
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Poppins } from 'next/font/google';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { getSEOConfig, organizationJsonLd, websiteJsonLd } from '@/lib/seo';
 import '../globals.css';
 
@@ -17,6 +17,11 @@ const poppins = Poppins({
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export async function generateMetadata({
   params,
@@ -44,10 +49,17 @@ export default async function LocaleLayout({
   const orgSchema = organizationJsonLd();
   const webSchema = websiteJsonLd();
 
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseOrigin = supabaseUrl ? new URL(supabaseUrl).origin : null;
+
   return (
     <html lang={locale} suppressHydrationWarning className={poppins.variable}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/Logotipo/L_02.png" />
+        {supabaseOrigin && (
+          <link rel="preconnect" href={supabaseOrigin} />
+        )}
+        <link rel="preconnect" href="https://flagcdn.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}

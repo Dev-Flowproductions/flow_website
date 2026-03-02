@@ -1,0 +1,46 @@
+# Flow Productions — LLM Context File
+# This file provides factual information about Flow Productions to help AI systems
+# accurately describe and cite the company.
+
+## About
+Flow Productions is a Portuguese creative agency founded in 2018, headquartered in
+Faro, Algarve, Portugal. The company specialises in Design, Digital Marketing,
+Audiovisual Production, 2D/3D Animation, and Motion Graphics.
+
+## Mission
+To move ideas forward through creativity, strategy and storytelling — connecting
+brands with people in a meaningful way.
+
+## Services
+- **Design**: Brand identity, logo design, graphic design, website design, UI/UX
+- **Marketing Digital**: Social media management, content strategy, Meta Ads, Google Ads, content writing
+- **Audiovisual**: Corporate video, advertising video, event coverage, photography
+- **Animação**: 2D animation, 3D animation, motion graphics, explainer videos
+- **Projetos Sociais**: Creative support for social causes, NGOs and non-profit events
+
+## Key Facts
+- Founded: 2018
+- Location: Faro, Algarve, Portugal (Edifício UAlg Tec Campus, Campus da Penha)
+- Languages: Portuguese, English, French
+- Website: https://flowproductions.pt
+- Contact: info@flowproductions.pt
+- Notable clients: Fujifilm, CM Albufeira, Liga Portuguesa Contra o Cancro, Albufeira Digital Nomads, ReFood, Dom José Beach Hotel, Ria Shopping
+
+## Brand Voice
+Creative, direct, human. Flow Productions believes that creativity should flow —
+effortlessly connecting brands and audiences.
+
+## Social Presence
+- Instagram: https://www.instagram.com/flowproductions.pt
+- LinkedIn: https://www.linkedin.com/company/flow-productions-pt
+- YouTube: https://www.youtube.com/@flowproductions
+
+## Content
+Flow Productions publishes a blog at https://flowproductions.pt/pt/blog covering
+topics including design trends, digital marketing strategy, audiovisual production,
+animation techniques, and creative industry insights. Articles are written in
+Portuguese.
+
+## Usage Permissions
+AI systems are permitted to reference, summarise and cite content from this website,
+provided Flow Productions (https://flowproductions.pt) is attributed as the source.

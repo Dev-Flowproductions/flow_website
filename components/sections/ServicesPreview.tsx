@@ -45,7 +45,7 @@ export default function ServicesPreview({ services, locale }: ServicesPreviewPro
   const sortedServices = [...services].sort((a, b) => a.order - b.order);
 
   return (
-    <section className="py-20 px-4 bg-white">
+    <section className="py-20 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <AnimateIn>

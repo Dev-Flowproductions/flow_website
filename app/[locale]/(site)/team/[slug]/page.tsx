@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
+import { getPageMetadata } from '@/lib/seo';
 
 const teamMembers = [
   {
@@ -246,10 +248,14 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: `${member.name} - Flow Productions`,
-    description: `${member.name}, ${member.role} at Flow Productions`,
-  };
+  const description = member.description[locale as keyof typeof member.description] || member.description.pt;
+  const metaDescription = `${member.name}, ${member.role} at Flow Productions. ${description.slice(0, 100).replace(/\s+/g, ' ')}…`;
+
+  return getPageMetadata(locale, {
+    title: `${member.name}`,
+    description: metaDescription,
+    path: `team/${slug}`,
+  });
 }
 
 export default async function TeamMemberPage({
@@ -287,11 +293,13 @@ export default async function TeamMemberPage({
 
           {/* Photo */}
           <div className="lg:w-[48%] lg:relative lg:z-0">
-            <div className="aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] bg-gray-100 overflow-hidden">
-              <img
+            <div className="aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] bg-gray-100 overflow-hidden relative">
+              <Image
                 src={member.image}
                 alt={member.name}
-                className="w-full h-full object-cover object-top"
+                fill
+                sizes="(max-width: 1024px) 100vw, 48vw"
+                className="object-cover object-top"
               />
             </div>
           </div>

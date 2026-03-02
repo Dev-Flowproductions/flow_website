@@ -1,12 +1,23 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { createClient } from '@/lib/supabase/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
 import ServicesPreview from '@/components/sections/ServicesPreview';
-import TestimonialCarousel from '@/components/sections/TestimonialCarousel';
 import ProjectsPreview from '@/components/sections/ProjectsPreview';
-import ContactCTA from '@/components/sections/ContactCTA';
+import { getPageMetadata } from '@/lib/seo';
+
+const TestimonialCarousel = dynamic(
+  () => import('@/components/sections/TestimonialCarousel'),
+  { ssr: true }
+);
+
+const ContactCTA = dynamic(
+  () => import('@/components/sections/ContactCTA'),
+  { ssr: true }
+);
 
 export async function generateMetadata({
   params,
@@ -16,10 +27,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
 
-  return {
+  return getPageMetadata(locale, {
     title: 'Flow Productions',
     description: t('hero.description'),
-  };
+    path: '',
+    keywords: ['agência criativa Faro', 'design gráfico', 'marketing digital', 'produção audiovisual', 'animação 2D 3D', 'branding', 'motion graphics'],
+  });
 }
 
 export default async function HomePage({
@@ -77,6 +90,8 @@ export default async function HomePage({
             loop
             muted
             playsInline
+            preload="metadata"
+            poster="/images/hero/home-poster.jpg"
             className="w-full h-full object-cover"
           >
             <source src="/videos/hero/home.mp4" type="video/mp4" />
@@ -91,10 +106,13 @@ export default async function HomePage({
             {/* Team Image */}
             <AnimateIn>
               <div className="relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg overflow-hidden">
-                <img
+                <Image
                   src="/images/team/team-1.jpg"
                   alt="Flow Productions Team"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                  priority
                 />
               </div>
             </AnimateIn>
@@ -105,10 +123,10 @@ export default async function HomePage({
                 <p className="text-sm uppercase tracking-wider mb-2 text-gray-600">
                   {t('team.label')}
                 </p>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold mb-6">
                   {t('team.title')}<br />
                   <span className="text-gray-400">{t('team.subtitle')}</span>
-                </h2>
+                </h1>
                 <p className="text-lg text-gray-700 leading-relaxed mb-8">
                   {t('team.description')}
                 </p>

@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
 import { createClient } from '@/lib/supabase/server';
+import { getTranslations } from 'next-intl/server';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -25,6 +27,7 @@ export async function generateMetadata({
     title: titles[locale] || titles.pt,
     description: descs[locale] || descs.pt,
     path: 'blog',
+    keywords: ['blog criatividade', 'artigos design', 'marketing digital', 'tendências criativas', 'flow productions blog'],
   });
 }
 
@@ -41,6 +44,7 @@ export default async function BlogPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'blog' });
   const supabase = await createClient();
 
   let posts: {
@@ -74,15 +78,24 @@ export default async function BlogPage({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           {posts.map((post) => {
             const title = post.title?.[locale] || post.title?.pt || '';
-            const slug = post.slug?.[locale] || post.slug?.pt || post.id;
-            return (
-              <Link key={post.id} href={`/blog/${slug}`} className="group block">
-                <div className="aspect-[16/10] overflow-hidden mb-4 bg-gray-100">
+            const slug =
+              post.slug?.[locale] ||
+              post.slug?.pt ||
+              post.slug?.en ||
+              post.slug?.fr ||
+              null;
+            const href = slug ? `/blog/${slug}` : null;
+
+            const card = (
+              <>
+                <div className="aspect-[16/10] overflow-hidden mb-4 bg-gray-100 relative">
                   {post.featured_image_path ? (
-                    <img
+                    <Image
                       src={post.featured_image_path}
                       alt={title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-200" />
@@ -95,10 +108,20 @@ export default async function BlogPage({
                   )}
                 </div>
 
-                <h2 className="text-lg font-bold text-black group-hover:text-gray-500 transition-colors leading-snug">
+                <h3 className="text-lg font-bold text-black group-hover:text-gray-500 transition-colors leading-snug">
                   {title}
-                </h2>
+                </h3>
+              </>
+            );
+
+            return href ? (
+              <Link key={post.id} href={href} className="group block">
+                {card}
               </Link>
+            ) : (
+              <div key={post.id} className="group block opacity-90 cursor-not-allowed" title={t('noSlugTitle')}>
+                {card}
+              </div>
             );
           })}
         </div>

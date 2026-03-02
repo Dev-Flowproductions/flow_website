@@ -38,7 +38,7 @@ export default function ServiceCard({ service, locale, number }: ServiceCardProp
 
           {/* Title */}
           <div className="md:col-span-3">
-            <h2 className="text-2xl md:text-3xl font-bold md:pt-4">{title}</h2>
+            <h3 className="text-2xl md:text-3xl font-bold md:pt-4">{title}</h3>
           </div>
 
           {/* Items */}

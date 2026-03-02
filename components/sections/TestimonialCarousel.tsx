@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimateIn } from '@/components/ui/AnimateIn';
@@ -76,16 +77,18 @@ export default function TestimonialCarousel({
               <div className="flex flex-col items-center gap-4">
                 {/* Avatar */}
                 {currentTestimonial.avatar_path ? (
-                  <div className="w-20 h-20 rounded-full bg-gray-700 overflow-hidden">
-                    <img
+                  <div className="w-20 h-20 rounded-full overflow-hidden flex items-center justify-center shrink-0 relative">
+                    <Image
                       src={currentTestimonial.avatar_path}
                       alt={currentTestimonial.company_name}
+                      width={80}
+                      height={80}
                       className="w-full h-full object-cover"
                     />
                   </div>
                 ) : (
-                  <div className="w-20 h-20 rounded-full bg-gray-700 flex items-center justify-center">
-                    <span className="text-white text-2xl font-bold">
+                  <div className="w-20 h-20 rounded-full overflow-hidden flex items-center justify-center shrink-0 bg-gray-100">
+                    <span className="text-gray-400 text-2xl font-bold">
                       {currentTestimonial.company_name.charAt(0)}
                     </span>
                   </div>
@@ -149,21 +152,25 @@ export default function TestimonialCarousel({
           )}
         </div>
 
-        {/* Dots Indicator */}
+        {/* Next Arrow (decorative) */}
         {sortedTestimonials.length > 1 && (
-          <div className="flex justify-center gap-2 mt-12">
-            {sortedTestimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex
-                    ? 'bg-black w-8'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
+          <div className="flex justify-center mt-12">
+            <div
+              aria-hidden
+              className="w-12 h-12 rounded-full bg-black flex items-center justify-center cursor-default"
+            >
+              <svg
+                className="w-5 h-5 text-white"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
+            </div>
           </div>
         )}
       </div>
