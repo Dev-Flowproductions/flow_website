@@ -31,12 +31,14 @@ export default function Footer({ locale }: { locale: string }) {
             <p className="text-sm text-gray-600 leading-relaxed">
               {t('address')}
             </p>
-            <Link
-              href="/sobre-nos"
+            <a
+              href="https://flowproductions.pt/wp-content/uploads/2026/01/13587_Ficha-Webiste.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-xs text-gray-400 hover:text-gray-600 transition-colors block"
             >
               Ficha do Projeto
-            </Link>
+            </a>
 
             {/* Social Icons */}
             <div className="flex gap-2 pt-2">
