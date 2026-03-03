@@ -2,14 +2,22 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
+import { useMobileMenu } from '@/components/context/MobileMenuContext';
 
 const SGA_URL = 'https://sga.flowproductions.pt/';
 
 export default function SGAChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isOpen: mobileMenuOpen } = useMobileMenu();
 
   const open = useCallback(() => setIsOpen(true), []);
   const close = useCallback(() => setIsOpen(false), []);
+
+  useEffect(() => {
+    const handler = () => open();
+    window.addEventListener('open-sga-chat', handler);
+    return () => window.removeEventListener('open-sga-chat', handler);
+  }, [open]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -22,13 +30,13 @@ export default function SGAChatWidget() {
 
   return (
     <>
-      {/* Floating bubble — white icon on black */}
+      {/* Floating bubble — hidden when mobile menu is open */}
       <button
         type="button"
         onClick={open}
         aria-label="Abrir assistente Flowi - Strategic Growth Advisor"
         aria-expanded={isOpen}
-        className="fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-lg transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+        className={`fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-lg transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black ${mobileMenuOpen ? 'invisible pointer-events-none' : ''}`}
       >
         <Image
           src="/images/sga-chat-icon.png"

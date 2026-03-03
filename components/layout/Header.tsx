@@ -2,13 +2,13 @@
 
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
-import { useState } from 'react';
 import MainNav from './MainNav';
 import MobileMenu from './MobileMenu';
 import LocaleSwitcher from './LocaleSwitcher';
+import { useMobileMenu } from '@/components/context/MobileMenuContext';
 
 export default function Header({ locale }: { locale: string }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isOpen: mobileMenuOpen, setOpen: setMobileMenuOpen } = useMobileMenu();
 
   return (
     <>
@@ -77,7 +77,7 @@ export default function Header({ locale }: { locale: string }) {
       </header>
 
       {/* Rendered outside <header> so backdrop-blur stacking context doesn't trap the overlay */}
-      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
+      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} locale={locale} />
     </>
   );
 }
