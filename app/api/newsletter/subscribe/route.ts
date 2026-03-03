@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { sendMail, isSendGridConfigured } from '@/lib/sendgrid';
 import { z } from 'zod';
 
 const newsletterSchema = z.object({
@@ -44,23 +45,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (process.env.SENDGRID_API_KEY) {
-      try {
-        const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-        await sgMail.send({
-          to: validatedData.email,
-          from: process.env.CONTACT_INBOX_EMAIL || 'info@flowproductions.pt',
-          subject: 'Bem-vindo à Newsletter da Flow Productions',
-          text: `
+    if (isSendGridConfigured()) {
+      await sendMail({
+        to: validatedData.email,
+        subject: 'Bem-vindo à Newsletter da Flow Productions',
+        text: `
 Obrigado por subscrever a nossa newsletter!
 
 Irá receber as nossas últimas novidades e atualizações diretamente no seu email.
 
 Flow Productions
-          `,
-          html: `
+        `,
+        html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
   <h2>Bem-vindo à Newsletter da Flow Productions</h2>
   <p>Obrigado por subscrever a nossa newsletter!</p>
@@ -69,11 +65,8 @@ Flow Productions
   <p>Flow Productions<br>
   <a href="https://flowproductions.pt">flowproductions.pt</a></p>
 </div>
-          `,
-        });
-      } catch (emailError) {
-        console.error('SendGrid error:', emailError);
-      }
+        `,
+      });
     }
 
     return NextResponse.json(
