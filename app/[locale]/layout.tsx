@@ -60,7 +60,6 @@ export default async function LocaleLayout({
           <link rel="preconnect" href={supabaseOrigin} />
         )}
         <link rel="preconnect" href="https://flagcdn.com" />
-        <link rel="preconnect" href="https://sga.flowproductions.pt" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
