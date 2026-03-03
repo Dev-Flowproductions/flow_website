@@ -3,6 +3,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import SGAChatWidgetLoader from '@/components/widgets/SGAChatWidgetLoader';
+import { MobileMenuProvider } from '@/components/context/MobileMenuContext';
 
 const CopyPageAsMarkdown = dynamic(
   () => import('@/components/layout/CopyPageAsMarkdown'),
@@ -21,11 +22,13 @@ export default async function SiteLayout({
   return (
     <>
       <GoogleAnalytics />
-      <Header locale={locale} />
-      <main className="min-h-screen">{children}</main>
-      <Footer locale={locale} />
-      <CopyPageAsMarkdown />
-      <SGAChatWidgetLoader />
+      <MobileMenuProvider>
+        <Header locale={locale} />
+        <main className="min-h-screen">{children}</main>
+        <Footer locale={locale} />
+        <CopyPageAsMarkdown />
+        <SGAChatWidgetLoader />
+      </MobileMenuProvider>
     </>
   );
 }

@@ -2,19 +2,20 @@
 
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
-import { useState } from 'react';
 import MainNav from './MainNav';
 import MobileMenu from './MobileMenu';
 import LocaleSwitcher from './LocaleSwitcher';
+import { useMobileMenu } from '@/components/context/MobileMenuContext';
 
 export default function Header({ locale }: { locale: string }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isOpen: mobileMenuOpen, setOpen: setMobileMenuOpen } = useMobileMenu();
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#EDEDED] backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
               <Image
@@ -72,10 +73,11 @@ export default function Header({ locale }: { locale: string }) {
             </div>
           </div>
         </div>
+        </div>
       </header>
 
       {/* Rendered outside <header> so backdrop-blur stacking context doesn't trap the overlay */}
-      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
+      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} locale={locale} />
     </>
   );
 }
