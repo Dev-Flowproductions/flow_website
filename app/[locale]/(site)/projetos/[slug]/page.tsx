@@ -146,7 +146,7 @@ export default async function ProjectDetailPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Header: title centered on top, then two-column — meta left, image right */}
+      {/* Header: title centered over image area, then two-column — meta left, image right */}
       <section className="pt-24 md:pt-32 pb-0 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
           <Breadcrumb
@@ -155,12 +155,12 @@ export default async function ProjectDetailPage({
               { name: t('backToProjects'), href: '/projetos' },
               { name: title, href: `/projetos/${slug}` },
             ]}
-            />
-          <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight text-center mb-8 md:mb-12">
-            {title}
-          </h1>
-
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start">
+            {/* Title: centered over the 2-col image area on desktop */}
+            <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight text-center mb-8 md:mb-12 md:col-start-2 md:col-span-2">
+              {title}
+            </h1>
             {/* Left: meta */}
             <div className="md:col-span-1">
               {/* Meta */}
