@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { AnimateIn } from '@/components/ui/AnimateIn';
 import MultiSlideCarousel from '@/components/sections/MultiSlideCarousel';
 import YoutubeHero from '@/components/sections/YoutubeHero';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
@@ -76,13 +77,25 @@ export default async function AnimacaoProjectsPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <YoutubeHero
-        videoId="QEThcEBF8kY"
-        label={t('label')}
-        title={t('title')}
-        titleAccent={t('titleAccent')}
-        description={t('description')}
-      />
+      <YoutubeHero videoId="QEThcEBF8kY" />
+
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <AnimateIn>
+            <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
+              {t('label')}
+            </p>
+            <h1 className="text-4xl md:text-6xl font-bold mb-8">
+              {t('title')} <span className="text-gray-300">{t('titleAccent')}</span>
+            </h1>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-gray-700 text-base leading-relaxed max-w-2xl mx-auto">
+              {t('description')}
+            </p>
+          </AnimateIn>
+        </div>
+      </section>
 
       <MultiSlideCarousel
         projects={animacoesPromocionais}
