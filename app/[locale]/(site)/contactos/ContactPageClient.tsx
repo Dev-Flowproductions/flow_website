@@ -191,8 +191,7 @@ export default function ContactPageClient() {
                     className="mt-1 w-4 h-4"
                   />
                   <label htmlFor="consent" className="text-sm text-gray-700">
-                    Concordo que os meus dados submetidos sejam{' '}
-                    <span className="underline">recolhidos e armazenados</span>.
+                    {t('form.consent')}
                   </label>
                 </div>
 
@@ -204,7 +203,7 @@ export default function ContactPageClient() {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
-                  {status === 'loading' ? 'A enviar...' : t('form.submit')}
+                  {status === 'loading' ? t('form.loading') : t('form.submit')}
                 </button>
 
                 {status === 'success' && (

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
@@ -12,9 +13,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'socialProjects' });
   return getPageMetadata(locale, {
-    title: 'Projetos Sociais — Criatividade com Impacto Social',
-    description: 'Flow Productions apoia associações, iniciativas e eventos sociais com criatividade e comunicação. Transformamos mensagens importantes em conteúdos claros e envolventes.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     path: 'projetos-sociais',
     image: `${SITE_URL}/images/hero/social-projects-og.jpg`,
   });
@@ -63,7 +65,14 @@ const breadcrumbSchema = breadcrumbJsonLd([
   { name: 'Projetos Sociais', url: `${SITE_URL}/pt/projetos-sociais` },
 ]);
 
-export default async function ProjetosSociaisPage() {
+export default async function ProjetosSociaisPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'socialProjects' });
+
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
@@ -73,7 +82,7 @@ export default async function ProjetosSociaisPage() {
       <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
         <Image
           src="/images/hero/social-projects.png"
-          alt="Projetos Sociais Flow Productions"
+          alt={t('imageAlt')}
           fill
           sizes="100vw"
           className="object-cover"
@@ -85,36 +94,24 @@ export default async function ProjetosSociaisPage() {
         <div className="max-w-4xl mx-auto">
           <AnimateIn>
             <p className="text-xs uppercase tracking-widest text-gray-600 mb-4 text-center">
-              QUANDO A CRIATIVIDADE APOIA UMA CAUSA
+              {t('pageLabel')}
             </p>
             <h1 className="text-4xl md:text-6xl font-bold mb-12 text-center">
-              Flow <span className="text-gray-300">Social</span>
+              {t('title')} <span className="text-gray-300">{t('titleHighlight')}</span>
             </h1>
           </AnimateIn>
           <AnimateIn delay={0.2}>
-            <div className="space-y-6 text-gray-700 leading-relaxed">
-              <p>
-                Na Flow, gostamos de criar com <strong>impacto</strong> e acreditamos que a{' '}
-                <strong>criatividade</strong> também pode servir <strong>causas</strong>.
-              </p>
-              <p>
-                O <strong>Flow Social</strong> é a nossa forma de apoiar <strong>associações</strong>,{' '}
-                <strong>iniciativas</strong> e <strong>eventos</strong> que trabalham por um mundo mais{' '}
-                <strong>justo</strong>, <strong>inclusivo</strong> e <strong>consciente</strong>.
-              </p>
-              <p>
-                Através destas iniciativas, colocamos a nossa <strong>equipa</strong> e o nosso{' '}
-                <strong>know-how</strong> ao serviço de projetos que merecem ser <strong>vistos</strong>,{' '}
-                <strong>ouvidos</strong> e <strong>partilhados</strong>. Transformamos{' '}
-                <strong>mensagens importantes</strong> em conteúdos <strong>claros</strong> e{' '}
-                <strong>envolventes</strong>, ajudando a dar <strong>visibilidade</strong> ao trabalho que
-                muitas vezes acontece longe dos <strong>holofotes</strong>.
-              </p>
-              <p>
-                Porque quando uma <strong>causa importa</strong>, a <strong>comunicação</strong> também
-                conta para <strong>informar</strong>, <strong>mobilizar</strong> e <strong>aproximar pessoas</strong>.
-              </p>
-            </div>
+            <div
+              className="space-y-6 text-gray-700 leading-relaxed"
+              dangerouslySetInnerHTML={{
+                __html: [
+                  `<p>${t.raw('paragraph1')}</p>`,
+                  `<p>${t.raw('paragraph2')}</p>`,
+                  `<p>${t.raw('paragraph3')}</p>`,
+                  `<p>${t.raw('paragraph4')}</p>`,
+                ].join(''),
+              }}
+            />
           </AnimateIn>
         </div>
       </section>

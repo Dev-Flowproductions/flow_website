@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import type { ProjectWithTags, TagRecord } from '@/lib/projects';
 
@@ -11,10 +12,12 @@ interface Props {
 }
 
 export default function CategoryProjectsGrid({ projects, locale, emptyMessage }: Props) {
+  const t = useTranslations('projects');
+
   if (!projects || projects.length === 0) {
     return (
       <div className="col-span-full text-center py-12">
-        <p className="text-gray-500">{emptyMessage ?? 'Em breve, novos projetos...'}</p>
+        <p className="text-gray-500">{emptyMessage ?? t('emptyMessage')}</p>
       </div>
     );
   }
@@ -51,7 +54,7 @@ export default function CategoryProjectsGrid({ projects, locale, emptyMessage }:
               {hasVideo && (
                 <span className="absolute top-3 right-3 bg-black/70 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full flex items-center gap-1">
                   <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  Vídeo
+                  {t('videoLabel')}
                 </span>
               )}
             </div>
@@ -79,3 +82,4 @@ export default function CategoryProjectsGrid({ projects, locale, emptyMessage }:
     </>
   );
 }
+

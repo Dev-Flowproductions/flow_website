@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import MultiSlideCarousel from '@/components/sections/MultiSlideCarousel';
 import YoutubeHero from '@/components/sections/YoutubeHero';
@@ -13,9 +14,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'audiovisual' });
   return getPageMetadata(locale, {
-    title: 'Produção Audiovisual e Fotografia',
-    description: 'Flow Productions — produção audiovisual, vídeo publicitário e fotografia profissional em Portugal. Transformamos momentos em narrativas com impacto para marcas e eventos.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     path: 'audiovisual',
     image: `${SITE_URL}/images/hero/audiovisual-og.jpg`,
   });
@@ -87,7 +89,14 @@ const breadcrumbSchema = breadcrumbJsonLd([
   { name: 'Audiovisual', url: `${SITE_URL}/pt/audiovisual` },
 ]);
 
-export default async function AudiovisualProjectsPage() {
+export default async function AudiovisualProjectsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'audiovisual' });
+
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
@@ -96,22 +105,22 @@ export default async function AudiovisualProjectsPage() {
 
       <YoutubeHero
         videoId="GBRdrWdv6L8"
-        label="HISTÓRIAS QUE SE VÊEM, SE SENTEM E FICAM NA MEMÓRIA"
-        title="Flow"
-        titleAccent="Audiovisual"
-        description="No Audiovisual, transformamos momentos em narrativas com impacto. Produzimos vídeos e fotografias publicitários, institucionais, promocionais e de eventos, sempre com o objetivo de aproximar marcas de pessoas. Da pré-produção à edição final, cuidamos de cada detalhe para que a mensagem flua com emoção, ritmo e autenticidade."
+        label={t('label')}
+        title={t('title')}
+        titleAccent={t('titleAccent')}
+        description={t('description')}
       />
 
       <MultiSlideCarousel
         projects={videosPromocionais}
-        title="Vídeos Promocionais"
+        title={t('carouselTitle')}
         dark={true}
       />
 
       <section className="bg-gray-50 py-16 px-8 md:px-12">
         <AnimateIn>
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
-            Flow <span className="text-gray-300">Fotografias</span>
+            {t('photographyTitle')} <span className="text-gray-300">{t('photographyTitleHighlight')}</span>
           </h2>
         </AnimateIn>
         <div className="grid grid-cols-3 gap-3 max-w-6xl mx-auto">

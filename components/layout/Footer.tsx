@@ -27,7 +27,7 @@ export default function Footer({ locale }: { locale: string }) {
 
           {/* Column 2 - Address + Social */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-sm">Endereço</h4>
+            <h4 className="font-semibold text-sm">{t('addressLabel')}</h4>
             <p className="text-sm text-gray-600 leading-relaxed">
               {t('address')}
             </p>
@@ -37,7 +37,7 @@ export default function Footer({ locale }: { locale: string }) {
               rel="noopener noreferrer"
               className="text-xs text-gray-400 hover:text-gray-600 transition-colors block"
             >
-              Ficha do Projeto
+              {t('fichaDoProjeto')}
             </a>
 
             {/* Social Icons */}
@@ -91,7 +91,7 @@ export default function Footer({ locale }: { locale: string }) {
 
           {/* Column 3 - Email & Phone */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-sm">Email</h4>
+            <h4 className="font-semibold text-sm">{t('emailLabel')}</h4>
             <a
               href={`mailto:${t('email')}`}
               className="text-sm text-gray-600 hover:text-black transition-colors block underline"

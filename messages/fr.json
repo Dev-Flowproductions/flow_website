@@ -9,6 +9,9 @@
     "close": "Fermer"
   },
   "footer": {
+    "addressLabel": "Adresse",
+    "fichaDoProjeto": "Fiche du Projet",
+    "emailLabel": "Email",
     "address": "Edifício Ualg Tec, Campus da Penha, 8005-139 Faro",
     "email": "info@flowproductions.pt",
     "phone": "+351 910 814 616",
@@ -161,7 +164,9 @@
     "pageLabel": "TRAVAUX QUI PARLENT D'EUX-MÊMES",
     "title": "Projets",
     "titleHighlight": "Flow",
-    "description": "Du concept à l'exécution, nous donnons forme et mouvement aux idées. Ceci est notre portfolio de projets, où design, marketing, audiovisuel et animation prennent vie."
+    "description": "Du concept à l'exécution, nous donnons forme et mouvement aux idées. Ceci est notre portfolio de projets, où design, marketing, audiovisuel et animation prennent vie.",
+    "emptyMessage": "Nouveaux projets bientôt...",
+    "videoLabel": "Vidéo"
   },
   "blog": {
     "metaTitle": "Blog Flow - Flow Productions",
@@ -200,6 +205,63 @@
     "noImage": "Pas d'image",
     "previousProject": "Précédent",
     "nextProject": "Suivant"
+  },
+  "animacao": {
+    "metaTitle": "Animation 2D et Motion Graphics",
+    "metaDescription": "Flow Productions — animation 2D, 3D et motion graphics au Portugal. Nous créons des animations explicatives, des pièces pour les réseaux sociaux et des campagnes institutionnelles qui captivent les audiences.",
+    "label": "QUAND L'IMAGINATION PREND MOUVEMENT",
+    "title": "Flow",
+    "titleAccent": "Animation",
+    "description": "En Animation, nous donnons vie à des idées qui ne tiennent pas dans la réalité. Nous créons des animations 2D, 3D et motion graphics qui expliquent des concepts complexes, racontent des histoires et captivent les audiences en quelques secondes. Que ce soit dans des vidéos explicatives, des pièces pour les réseaux sociaux ou des campagnes institutionnelles, nous mêlons créativité et technique pour que chaque image coule avec énergie et impact. Ici, l'impossible devient visible.",
+    "carouselTitle": "Animations Promotionnelles"
+  },
+  "audiovisual": {
+    "metaTitle": "Production Audiovisuelle et Photographie",
+    "metaDescription": "Flow Productions — production audiovisuelle, vidéo publicitaire et photographie professionnelle au Portugal. Nous transformons les moments en récits percutants pour les marques et les événements.",
+    "label": "DES HISTOIRES QUI SE VOIENT, SE RESSENTENT ET RESTENT EN MÉMOIRE",
+    "title": "Flow",
+    "titleAccent": "Audiovisuel",
+    "description": "En Audiovisuel, nous transformons les moments en récits percutants. Nous produisons des vidéos et photographies publicitaires, institutionnelles, promotionnelles et événementielles, toujours dans l'objectif de rapprocher les marques des personnes. De la pré-production à la post-production finale, nous soignons chaque détail pour que le message coule avec émotion, rythme et authenticité.",
+    "carouselTitle": "Vidéos Promotionnelles",
+    "photographyTitle": "Flow",
+    "photographyTitleHighlight": "Photographies",
+    "imageAlt": "Flow Productions Audiovisuel"
+  },
+  "design": {
+    "metaTitle": "Design Graphique et Identité Visuelle",
+    "metaDescription": "Flow Productions — design graphique, branding, identité visuelle et création de logos au Portugal. Nous donnons un visage aux marques avec créativité et intention.",
+    "label": "LÀ OÙ LES IDÉES PRENNENT FORME",
+    "title": "Flow",
+    "titleHighlight": "Design",
+    "paragraph1": "Le <strong>Design</strong> est là où tout commence. C'est ici que nous donnons un visage aux marques à travers des <strong>identités visuelles, logos, sites web ou matériaux graphiques</strong> créés pour être mémorisés.",
+    "paragraph2": "Du premier croquis à la pièce finale, nous mêlons créativité et intention, garantissant que la communication coule avec cohérence.",
+    "imageAlt": "Flow Productions Design"
+  },
+  "socialProjects": {
+    "metaTitle": "Projets Sociaux — Créativité à Impact Social",
+    "metaDescription": "Flow Productions soutient associations, initiatives et événements sociaux avec créativité et communication. Nous transformons des messages importants en contenus clairs et engageants.",
+    "pageLabel": "QUAND LA CRÉATIVITÉ SOUTIENT UNE CAUSE",
+    "title": "Flow",
+    "titleHighlight": "Social",
+    "paragraph1": "Chez Flow, nous aimons créer avec <strong>impact</strong> et nous croyons que la <strong>créativité</strong> peut aussi servir des <strong>causes</strong>.",
+    "paragraph2": "<strong>Flow Social</strong> est notre façon de soutenir des <strong>associations</strong>, des <strong>initiatives</strong> et des <strong>événements</strong> qui œuvrent pour un monde plus <strong>juste</strong>, <strong>inclusif</strong> et <strong>conscient</strong>.",
+    "paragraph3": "À travers ces initiatives, nous mettons notre <strong>équipe</strong> et notre <strong>savoir-faire</strong> au service de projets qui méritent d'être <strong>vus</strong>, <strong>entendus</strong> et <strong>partagés</strong>. Nous transformons des <strong>messages importants</strong> en contenus <strong>clairs</strong> et <strong>engageants</strong>, aidant à donner de la <strong>visibilité</strong> au travail qui se passe souvent loin des <strong>projecteurs</strong>.",
+    "paragraph4": "Parce que quand une <strong>cause compte</strong>, la <strong>communication</strong> compte aussi pour <strong>informer</strong>, <strong>mobiliser</strong> et <strong>rapprocher les personnes</strong>.",
+    "imageAlt": "Flow Productions Projets Sociaux"
+  },
+  "marketing": {
+    "metaTitle": "Marketing Digital et Gestion des Réseaux Sociaux",
+    "metaDescription": "Flow Productions — marketing digital, gestion des réseaux sociaux et content writing au Portugal. Stratégies personnalisées qui connectent marques et personnes avec intention.",
+    "pageLabel": "STRATÉGIE ET CRÉATIVITÉ POUR FAIRE AVANCER LES MARQUES",
+    "title": "Flow",
+    "titleHighlight": "Marketing",
+    "paragraph1": "Le <strong>Marketing</strong> chez Flow est conçu pour connecter les marques et les personnes avec intention. Nous planifions et développons des <strong>stratégies personnalisées</strong>, des campagnes qui vivent aussi bien en digital qu'en offline, et des contenus qui font couler la communication dans toutes les directions.",
+    "paragraph2": "Le résultat ? Des marques plus fortes, plus visibles et plus humaines.",
+    "socialMediaTitle": "Réseaux",
+    "socialMediaTitleHighlight": "Sociaux",
+    "contentWritingTitle": "Content",
+    "contentWritingTitleHighlight": "Writing",
+    "imageAlt": "Flow Productions Marketing"
   },
   "categories": {
     "design": "Design",
