@@ -5,7 +5,8 @@
     "services": "Services",
     "projects": "Projects",
     "blog": "Blog Flow",
-    "contact": "Contact"
+    "contact": "Contact",
+    "close": "Close"
   },
   "footer": {
     "addressLabel": "Address",
@@ -186,7 +187,10 @@
       "name": "Name",
       "email": "Email",
       "message": "Have a project in mind?",
+      "messageHint": "Minimum 10 characters",
+      "messageTooShort": "Message must be at least 10 characters.",
       "consent": "I agree that my submitted data will be collected and stored.",
+      "consentRequired": "You must accept data collection to submit.",
       "submit": "Get in Touch",
       "loading": "Sending...",
       "success": "Message sent successfully!",

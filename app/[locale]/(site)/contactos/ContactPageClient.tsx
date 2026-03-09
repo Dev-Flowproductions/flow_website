@@ -4,6 +4,14 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 
+function getMessage(t: (key: string) => string, key: string, fallback: string): string {
+  try {
+    return t(key);
+  } catch {
+    return fallback;
+  }
+}
+
 export default function ContactPageClient() {
   const t = useTranslations('contact');
   const footer = useTranslations('footer');
@@ -14,10 +22,12 @@ export default function ContactPageClient() {
     consent: false,
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    setValidationError(null);
 
     try {
       const response = await fetch('/api/contact', {
@@ -26,13 +36,31 @@ export default function ContactPageClient() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json().catch(() => ({}));
+
       if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '', consent: false });
       } else {
+          if (response.status === 400 && Array.isArray(data.details) && data.details.length > 0) {
+            const first = data.details[0];
+            if (first.path?.[0] === 'message' && first.code === 'too_small') {
+              setValidationError(getMessage(t, 'form.messageTooShort', 'A mensagem deve ter pelo menos 10 caracteres.'));
+            } else if (first.path?.[0] === 'consent') {
+              setValidationError(getMessage(t, 'form.consentRequired', 'Tem de aceitar a recolha de dados para enviar.'));
+            } else {
+              setValidationError(first.message || t('form.error'));
+            }
+          } else {
+          setValidationError(null);
+        }
         setStatus('error');
       }
     } catch (error) {
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Contact submit error:', error);
+      }
+      setValidationError(null);
       setStatus('error');
     }
   };
@@ -143,9 +171,14 @@ export default function ContactPageClient() {
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={4}
                       required
+                      minLength={10}
                       className="w-full pl-12 pr-4 py-3 border-b border-gray-300 focus:border-black outline-none transition-colors resize-none"
+                      aria-describedby="message-hint"
                     />
                   </div>
+                  <p id="message-hint" className="mt-1 text-xs text-gray-500">
+                    {getMessage(t, 'form.messageHint', 'Mínimo 10 caracteres')}
+                  </p>
                 </div>
 
                 <div className="flex items-start gap-3">
@@ -177,7 +210,9 @@ export default function ContactPageClient() {
                   <p className="text-green-600">{t('form.success')}</p>
                 )}
                 {status === 'error' && (
-                  <p className="text-red-600">{t('form.error')}</p>
+                  <p className="text-red-600">
+                    {validationError ?? t('form.error')}
+                  </p>
                 )}
               </form>
             </AnimateIn>

@@ -1,12 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { sendMail, isSendGridConfigured } from '@/lib/sendgrid';
 import { z } from 'zod';
 
 const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters').max(200, 'Name too long'),
-  email: z.string().email('Invalid email address'),
-  message: z.string().min(10, 'Message must be at least 10 characters').max(10000, 'Message too long'),
-  consent: z.boolean().refine((val) => val === true, 'Consent is required'),
+  name: z.string().trim().min(2, 'Name must be at least 2 characters').max(200, 'Name too long'),
+  email: z.string().trim().email('Invalid email address'),
+  message: z.string().trim().min(10, 'Message must be at least 10 characters').max(10000, 'Message too long'),
+  consent: z
+    .union([z.boolean(), z.literal('true'), z.literal('on')])
+    .transform((v) => v === true || v === 'true' || v === 'on')
+    .refine((v) => v === true, 'Consent is required'),
 });
 
 function escapeHtml(s: string): string {
@@ -28,6 +32,7 @@ export async function POST(request: NextRequest) {
     const supabase = await createClient();
 
     if (!supabase) {
+      console.error('Contact API: Supabase not configured (missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY)');
       return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
     }
 
@@ -42,38 +47,37 @@ export async function POST(request: NextRequest) {
     });
 
     if (error) {
-      console.error('Supabase error:', error);
+      console.error('Supabase contact_messages insert error:', error.message, error.details);
       return NextResponse.json(
-        { error: 'Failed to save message' },
+        { error: 'Failed to save message', code: error.code },
         { status: 500 }
       );
     }
 
-    if (process.env.SENDGRID_API_KEY) {
+    if (isSendGridConfigured()) {
       try {
-        const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-        await sgMail.send({
-          to: process.env.CONTACT_INBOX_EMAIL || 'info@flowproductions.pt',
-          from: process.env.CONTACT_INBOX_EMAIL || 'info@flowproductions.pt',
+        const inbox = process.env.CONTACT_INBOX_EMAIL || 'info@flowproductions.pt';
+        await sendMail({
+          to: inbox,
           subject: `Nova mensagem de contacto: ${validatedData.name}`,
           text: `
 Nome: ${validatedData.name}
 Email: ${validatedData.email}
 Mensagem:
 ${validatedData.message}
-          `,
+        `,
           html: `
 <h2>Nova mensagem de contacto</h2>
 <p><strong>Nome:</strong> ${escapeHtml(validatedData.name)}</p>
 <p><strong>Email:</strong> ${escapeHtml(validatedData.email)}</p>
 <p><strong>Mensagem:</strong></p>
 <p>${escapeHtml(validatedData.message).replace(/\n/g, '<br>')}</p>
-          `,
+        `,
+          replyTo: validatedData.email,
         });
-      } catch (emailError) {
-        console.error('SendGrid error:', emailError);
+      } catch (emailErr) {
+        console.error('SendGrid error in contact route:', emailErr);
+        // Don't fail the request – message is already saved in DB
       }
     }
 
@@ -83,6 +87,7 @@ ${validatedData.message}
     );
   } catch (error) {
     if (error instanceof z.ZodError) {
+      console.error('Contact validation failed:', error.errors);
       return NextResponse.json(
         { error: 'Validation failed', details: error.errors },
         { status: 400 }

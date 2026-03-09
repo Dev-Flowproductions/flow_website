@@ -5,7 +5,8 @@
     "services": "Serviços",
     "projects": "Projetos",
     "blog": "Blog Flow",
-    "contact": "Contactos"
+    "contact": "Contactos",
+    "close": "Fechar"
   },
   "footer": {
     "addressLabel": "Endereço",
@@ -186,7 +187,10 @@
       "name": "Nome",
       "email": "Email",
       "message": "Tem um projeto em mente?",
+      "messageHint": "Mínimo 10 caracteres",
+      "messageTooShort": "A mensagem deve ter pelo menos 10 caracteres.",
       "consent": "Concordo que os meus dados submetidos sejam recolhidos e armazenados.",
+      "consentRequired": "Tem de aceitar a recolha de dados para enviar.",
       "submit": "Entrar em Contacto",
       "loading": "A enviar...",
       "success": "Mensagem enviada com sucesso!",

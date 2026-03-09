@@ -5,6 +5,14 @@ import { AnimateIn } from '@/components/ui/AnimateIn';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
+function getMessage(t: (key: string) => string, key: string, fallback: string): string {
+  try {
+    return t(key);
+  } catch {
+    return fallback;
+  }
+}
+
 export default function ContactCTA() {
   const t = useTranslations('contact');
   const [formData, setFormData] = useState({
@@ -14,10 +22,12 @@ export default function ContactCTA() {
     consent: false,
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    setValidationError(null);
 
     try {
       const response = await fetch('/api/contact', {
@@ -26,13 +36,28 @@ export default function ContactCTA() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json().catch(() => ({}));
+
       if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '', consent: false });
       } else {
+          if (response.status === 400 && Array.isArray(data.details) && data.details.length > 0) {
+          const first = data.details[0];
+          if (first.path?.[0] === 'message' && first.code === 'too_small') {
+            setValidationError(getMessage(t, 'form.messageTooShort', 'Message must be at least 10 characters.'));
+          } else if (first.path?.[0] === 'consent') {
+            setValidationError(getMessage(t, 'form.consentRequired', 'You must accept data collection to submit.'));
+          } else {
+            setValidationError(first.message || t('form.error'));
+          }
+        } else {
+          setValidationError(null);
+        }
         setStatus('error');
       }
     } catch (error) {
+      setValidationError(null);
       setStatus('error');
     }
   };
@@ -115,18 +140,25 @@ export default function ContactCTA() {
               </div>
 
               {/* Message */}
-              <div className="relative">
-                <svg className="absolute left-4 top-4 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <textarea
-                  placeholder={t('form.message')}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={4}
-                  required
-                  className="w-full pl-12 pr-4 py-3 border-b border-gray-300 focus:border-black outline-none transition-colors resize-none bg-transparent"
-                />
+              <div>
+                <div className="relative">
+                  <svg className="absolute left-4 top-4 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                  <textarea
+                    placeholder={t('form.message')}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    rows={4}
+                    required
+                    minLength={10}
+                    className="w-full pl-12 pr-4 py-3 border-b border-gray-300 focus:border-black outline-none transition-colors resize-none bg-transparent"
+                    aria-describedby="cta-message-hint"
+                  />
+                </div>
+                <p id="cta-message-hint" className="mt-1 text-xs text-gray-500">
+                  {getMessage(t, 'form.messageHint', 'Minimum 10 characters')}
+                </p>
               </div>
 
               {/* Consent */}
@@ -160,7 +192,9 @@ export default function ContactCTA() {
                 <p className="text-green-600 text-sm">{t('form.success')}</p>
               )}
               {status === 'error' && (
-                <p className="text-red-600 text-sm">{t('form.error')}</p>
+                <p className="text-red-600 text-sm">
+                  {validationError ?? t('form.error')}
+                </p>
               )}
             </form>
           </AnimateIn>
