@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
@@ -12,9 +13,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'marketing' });
   return getPageMetadata(locale, {
-    title: 'Marketing Digital e Gestão de Redes Sociais',
-    description: 'Flow Productions — marketing digital, gestão de redes sociais e content writing em Portugal. Estratégias personalizadas que ligam marcas e pessoas com propósito.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     path: 'marketing',
     image: `${SITE_URL}/images/hero/marketing-og.jpg`,
   });
@@ -79,7 +81,14 @@ const breadcrumbSchema = breadcrumbJsonLd([
   { name: 'Marketing', url: `${SITE_URL}/pt/marketing` },
 ]);
 
-export default async function MarketingProjectsPage() {
+export default async function MarketingProjectsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'marketing' });
+
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
@@ -89,7 +98,7 @@ export default async function MarketingProjectsPage() {
       <section className="relative h-[60vh] md:h-screen w-full overflow-hidden bg-gray-100">
         <Image
           src="/images/hero/marketing.png"
-          alt="Marketing Flow Productions"
+          alt={t('imageAlt')}
           fill
           sizes="100vw"
           className="object-cover"
@@ -101,23 +110,22 @@ export default async function MarketingProjectsPage() {
         <div className="max-w-4xl mx-auto">
           <AnimateIn>
             <p className="text-xs uppercase tracking-widest text-gray-600 mb-4 text-center">
-              ESTRATÉGIA E CRIATIVIDADE A MOVER MARCAS
+              {t('pageLabel')}
             </p>
             <h1 className="text-4xl md:text-6xl font-bold mb-12 text-center">
-              Flow <span className="text-gray-300">Marketing</span>
+              {t('title')} <span className="text-gray-300">{t('titleHighlight')}</span>
             </h1>
           </AnimateIn>
           <AnimateIn delay={0.2}>
-            <div className="space-y-6 text-gray-700 leading-relaxed">
-              <p>
-                O <strong>Marketing</strong> na Flow é pensado para ligar marcas e pessoas com propósito.
-                Planeamos e desenvolvemos <strong>estratégias personalizadas</strong>, campanhas que vivem
-                tanto no digital como no offline, e conteúdos que fazem a comunicação fluir em todas as direções.
-              </p>
-              <p>
-                O resultado? Marcas mais fortes, mais visíveis e mais humanas.
-              </p>
-            </div>
+            <div
+              className="space-y-6 text-gray-700 leading-relaxed"
+              dangerouslySetInnerHTML={{
+                __html: [
+                  `<p>${t.raw('paragraph1')}</p>`,
+                  `<p>${t.raw('paragraph2')}</p>`,
+                ].join(''),
+              }}
+            />
           </AnimateIn>
         </div>
       </section>
@@ -126,7 +134,7 @@ export default async function MarketingProjectsPage() {
         <div className="px-4 pb-2 text-center">
           <AnimateIn>
             <h2 className="text-2xl md:text-3xl font-bold">
-              Redes <span className="text-gray-300">Sociais</span>
+              {t('socialMediaTitle')} <span className="text-gray-300">{t('socialMediaTitleHighlight')}</span>
             </h2>
           </AnimateIn>
         </div>
@@ -137,7 +145,7 @@ export default async function MarketingProjectsPage() {
         <div className="px-4 pt-12 pb-2 text-center">
           <AnimateIn>
             <h2 className="text-2xl md:text-3xl font-bold">
-              Content <span className="text-gray-300">Writing</span>
+              {t('contentWritingTitle')} <span className="text-gray-300">{t('contentWritingTitleHighlight')}</span>
             </h2>
           </AnimateIn>
         </div>

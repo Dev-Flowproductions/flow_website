@@ -8,6 +8,9 @@
     "contact": "Contact"
   },
   "footer": {
+    "addressLabel": "Address",
+    "fichaDoProjeto": "Project Sheet",
+    "emailLabel": "Email",
     "address": "Edifício Ualg Tec, Campus da Penha, 8005-139 Faro",
     "email": "info@flowproductions.pt",
     "phone": "+351 910 814 616",
@@ -160,7 +163,9 @@
     "pageLabel": "WORK THAT SPEAKS FOR ITSELF",
     "title": "Projects",
     "titleHighlight": "Flow",
-    "description": "From concept to execution, we make ideas take shape and movement. This is our portfolio of projects, where design, marketing, audiovisual and animation come to life."
+    "description": "From concept to execution, we make ideas take shape and movement. This is our portfolio of projects, where design, marketing, audiovisual and animation come to life.",
+    "emptyMessage": "New projects coming soon...",
+    "videoLabel": "Video"
   },
   "blog": {
     "metaTitle": "Blog Flow - Flow Productions",
@@ -196,6 +201,63 @@
     "noImage": "No image",
     "previousProject": "Previous",
     "nextProject": "Next"
+  },
+  "animacao": {
+    "metaTitle": "2D Animation and Motion Graphics",
+    "metaDescription": "Flow Productions — 2D, 3D animation and motion graphics in Portugal. We create explainer animations, social media pieces and institutional campaigns that captivate audiences.",
+    "label": "WHEN IMAGINATION GAINS MOVEMENT",
+    "title": "Flow",
+    "titleAccent": "Animation",
+    "description": "In Animation, we bring ideas to life that don't fit in reality. We create 2D, 3D and motion graphics animations that explain complex concepts, tell stories and captivate audiences in seconds. Whether in explainer videos, social media pieces or institutional campaigns, we blend creativity and technique so that every frame flows with energy and impact. Here, the impossible becomes visible.",
+    "carouselTitle": "Promotional Animations"
+  },
+  "audiovisual": {
+    "metaTitle": "Audiovisual Production and Photography",
+    "metaDescription": "Flow Productions — audiovisual production, advertising video and professional photography in Portugal. We transform moments into impactful narratives for brands and events.",
+    "label": "STORIES THAT ARE SEEN, FELT AND REMEMBERED",
+    "title": "Flow",
+    "titleAccent": "Audiovisual",
+    "description": "In Audiovisual, we transform moments into impactful narratives. We produce advertising, institutional, promotional and event videos and photos, always with the goal of bringing brands and people closer. From pre-production to final editing, we take care of every detail so that the message flows with emotion, rhythm and authenticity.",
+    "carouselTitle": "Promotional Videos",
+    "photographyTitle": "Flow",
+    "photographyTitleHighlight": "Photography",
+    "imageAlt": "Flow Productions Audiovisual"
+  },
+  "design": {
+    "metaTitle": "Graphic Design and Visual Identity",
+    "metaDescription": "Flow Productions — graphic design, branding, visual identity and logo creation in Portugal. We give brands a face with creativity and purpose.",
+    "label": "WHERE IDEAS TAKE SHAPE",
+    "title": "Flow",
+    "titleHighlight": "Design",
+    "paragraph1": "<strong>Design</strong> is where it all begins. This is where we give brands a face through <strong>visual identities, logos, websites or graphic materials</strong> created to be remembered.",
+    "paragraph2": "From the first sketch to the final piece, we mix creativity with purpose, ensuring communication flows with consistency.",
+    "imageAlt": "Flow Productions Design"
+  },
+  "socialProjects": {
+    "metaTitle": "Social Projects — Creativity with Social Impact",
+    "metaDescription": "Flow Productions supports associations, initiatives and social events with creativity and communication. We transform important messages into clear and engaging content.",
+    "pageLabel": "WHEN CREATIVITY SUPPORTS A CAUSE",
+    "title": "Flow",
+    "titleHighlight": "Social",
+    "paragraph1": "At Flow, we love creating with <strong>impact</strong> and we believe that <strong>creativity</strong> can also serve <strong>causes</strong>.",
+    "paragraph2": "<strong>Flow Social</strong> is our way of supporting <strong>associations</strong>, <strong>initiatives</strong> and <strong>events</strong> that work for a more <strong>just</strong>, <strong>inclusive</strong> and <strong>conscious</strong> world.",
+    "paragraph3": "Through these initiatives, we put our <strong>team</strong> and our <strong>know-how</strong> at the service of projects that deserve to be <strong>seen</strong>, <strong>heard</strong> and <strong>shared</strong>. We transform <strong>important messages</strong> into <strong>clear</strong> and <strong>engaging</strong> content, helping to give <strong>visibility</strong> to work that often happens away from the <strong>spotlight</strong>.",
+    "paragraph4": "Because when a <strong>cause matters</strong>, <strong>communication</strong> also counts to <strong>inform</strong>, <strong>mobilize</strong> and <strong>bring people together</strong>.",
+    "imageAlt": "Flow Productions Social Projects"
+  },
+  "marketing": {
+    "metaTitle": "Digital Marketing and Social Media Management",
+    "metaDescription": "Flow Productions — digital marketing, social media management and content writing in Portugal. Personalized strategies that connect brands and people with purpose.",
+    "pageLabel": "STRATEGY AND CREATIVITY MOVING BRANDS",
+    "title": "Flow",
+    "titleHighlight": "Marketing",
+    "paragraph1": "<strong>Marketing</strong> at Flow is designed to connect brands and people with purpose. We plan and develop <strong>personalized strategies</strong>, campaigns that live both online and offline, and content that makes communication flow in all directions.",
+    "paragraph2": "The result? Stronger, more visible and more human brands.",
+    "socialMediaTitle": "Social",
+    "socialMediaTitleHighlight": "Media",
+    "contentWritingTitle": "Content",
+    "contentWritingTitleHighlight": "Writing",
+    "imageAlt": "Flow Productions Marketing"
   },
   "categories": {
     "design": "Design",

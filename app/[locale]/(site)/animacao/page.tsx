@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import MultiSlideCarousel from '@/components/sections/MultiSlideCarousel';
 import YoutubeHero from '@/components/sections/YoutubeHero';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
@@ -11,9 +12,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'animacao' });
   return getPageMetadata(locale, {
-    title: 'Animação 2D e Motion Graphics',
-    description: 'Flow Productions — animação 2D, 3D e motion graphics em Portugal. Criamos animações explicativas, peças para redes sociais e campanhas institucionais que conquistam audiências.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     path: 'animacao',
     image: `${SITE_URL}/images/hero/animacao-og.jpg`,
   });
@@ -60,7 +62,14 @@ const breadcrumbSchema = breadcrumbJsonLd([
   { name: 'Animação', url: `${SITE_URL}/pt/animacao` },
 ]);
 
-export default async function AnimacaoProjectsPage() {
+export default async function AnimacaoProjectsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'animacao' });
+
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
@@ -69,15 +78,15 @@ export default async function AnimacaoProjectsPage() {
 
       <YoutubeHero
         videoId="QEThcEBF8kY"
-        label="QUANDO A IMAGINAÇÃO GANHA MOVIMENTO"
-        title="Flow"
-        titleAccent="Animação"
-        description="Na Animação, damos vida a ideias que não cabem na realidade. Criamos animações 2D, 3D e motion graphics que explicam conceitos complexos, contam histórias e conquistam públicos em segundos. Seja em vídeos animados explicativos, peças para redes sociais ou campanhas institucionais, misturamos criatividade e técnica para que cada frame flua com energia e impacto. Aqui, o impossível torna-se visível."
+        label={t('label')}
+        title={t('title')}
+        titleAccent={t('titleAccent')}
+        description={t('description')}
       />
 
       <MultiSlideCarousel
         projects={animacoesPromocionais}
-        title="Animações Promocionais"
+        title={t('carouselTitle')}
         dark={true}
       />
     </div>

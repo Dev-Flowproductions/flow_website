@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
@@ -12,9 +13,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'design' });
   return getPageMetadata(locale, {
-    title: 'Design Gráfico e Identidade Visual',
-    description: 'Flow Productions — design gráfico, branding, identidade visual e criação de logótipos em Portugal. Damos rosto às marcas com criatividade e propósito.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     path: 'design',
     image: `${SITE_URL}/images/hero/design-og.jpg`,
   });
@@ -73,7 +75,14 @@ const breadcrumbSchema = breadcrumbJsonLd([
   { name: 'Design', url: `${SITE_URL}/pt/design` },
 ]);
 
-export default async function DesignProjectsPage() {
+export default async function DesignProjectsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'design' });
+
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
@@ -83,7 +92,7 @@ export default async function DesignProjectsPage() {
       <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
         <Image
           src="/images/hero/design.png"
-          alt="Design Flow Productions"
+          alt={t('imageAlt')}
           fill
           sizes="100vw"
           className="object-cover"
@@ -95,22 +104,22 @@ export default async function DesignProjectsPage() {
         <div className="max-w-4xl mx-auto">
           <AnimateIn>
             <p className="text-xs uppercase tracking-widest text-gray-600 mb-4 text-center">
-              ONDE AS IDEIAS GANHAM FORMA
+              {t('label')}
             </p>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-12 text-center">
-              Flow <span className="text-gray-300">Design</span>
+              {t('title')} <span className="text-gray-300">{t('titleHighlight')}</span>
             </h1>
           </AnimateIn>
           <AnimateIn delay={0.2}>
-            <div className="space-y-6 text-gray-700 leading-relaxed">
-              <p>
-                O <strong>Design</strong> é onde tudo começa. É aqui que damos rosto às marcas através de{' '}
-                <strong>identidades visuais, logótipos, websites ou materiais gráficos</strong> criados para serem lembrados.
-              </p>
-              <p>
-                Do primeiro rascunho à peça final, misturamos criatividade com propósito, garantindo que a comunicação flui com consistência.
-              </p>
-            </div>
+            <div
+              className="space-y-6 text-gray-700 leading-relaxed"
+              dangerouslySetInnerHTML={{
+                __html: [
+                  `<p>${t.raw('paragraph1')}</p>`,
+                  `<p>${t.raw('paragraph2')}</p>`,
+                ].join(''),
+              }}
+            />
           </AnimateIn>
         </div>
       </section>
@@ -121,9 +130,9 @@ export default async function DesignProjectsPage() {
         <div className="animate-marquee">
           {[...logos, ...logos].map((logo, i) => (
             <div
-            key={i}
-            className="inline-flex items-center justify-center flex-shrink-0 mx-4 md:mx-8 h-16 w-36 md:h-[110px] md:w-[220px] relative"
-          >
+              key={i}
+              className="inline-flex items-center justify-center flex-shrink-0 mx-4 md:mx-8 h-16 w-36 md:h-[110px] md:w-[220px] relative"
+            >
               <Image
                 src={logo.src}
                 alt={logo.name}
