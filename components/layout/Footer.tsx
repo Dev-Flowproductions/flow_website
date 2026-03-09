@@ -13,7 +13,7 @@ export default function Footer({ locale }: { locale: string }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
 
           {/* Column 1 - Logo */}
-          <div>
+          <div className="flex justify-center md:justify-start">
             <Link href="/" className="inline-block mb-0">
               <Image
                 src="/Logotipo/Logo Preto-01.png"
@@ -26,7 +26,7 @@ export default function Footer({ locale }: { locale: string }) {
           </div>
 
           {/* Column 2 - Address + Social */}
-          <div className="space-y-4">
+          <div className="space-y-4 text-center md:text-left">
             <h4 className="font-semibold text-sm">{t('addressLabel')}</h4>
             <p className="text-sm text-gray-600 leading-relaxed">
               {t('address')}
@@ -41,7 +41,7 @@ export default function Footer({ locale }: { locale: string }) {
             </a>
 
             {/* Social Icons */}
-            <div className="flex gap-2 pt-2">
+            <div className="flex gap-2 pt-2 justify-center md:justify-start">
               <a
                 href="https://www.facebook.com/flowproductions.pt"
                 target="_blank"
@@ -90,7 +90,7 @@ export default function Footer({ locale }: { locale: string }) {
           </div>
 
           {/* Column 3 - Email & Phone */}
-          <div className="space-y-4">
+          <div className="space-y-4 text-center md:text-left">
             <h4 className="font-semibold text-sm">{t('emailLabel')}</h4>
             <a
               href={`mailto:${t('email')}`}

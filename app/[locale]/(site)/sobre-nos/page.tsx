@@ -66,7 +66,7 @@ export default async function AboutPage({
           </AnimateIn>
 
           <AnimateIn delay={0.2}>
-            <div className="space-y-6 text-gray-700 leading-relaxed">
+            <div className="space-y-6 text-gray-700 leading-relaxed text-center md:text-left">
               <p className="text-base md:text-lg">
                 {t('history.paragraph1')}
               </p>
@@ -108,9 +108,9 @@ export default async function AboutPage({
           <div className="space-y-16">
             {/* Mission */}
             <AnimateIn delay={0.1}>
-              <div className="grid md:grid-cols-12 gap-8 items-start">
+              <div className="grid md:grid-cols-12 gap-8 items-start text-center md:text-left">
                 <div className="md:col-span-3">
-                  <div className="flex items-start gap-6">
+                  <div className="flex items-start gap-6 justify-center md:justify-start">
                     <span className="text-6xl font-bold text-gray-200">01</span>
                     <h3 className="text-2xl font-bold pt-3">{t('mission.mission.title')}</h3>
                   </div>
@@ -125,9 +125,9 @@ export default async function AboutPage({
 
             {/* Vision */}
             <AnimateIn delay={0.2}>
-              <div className="grid md:grid-cols-12 gap-8 items-start">
+              <div className="grid md:grid-cols-12 gap-8 items-start text-center md:text-left">
                 <div className="md:col-span-3">
-                  <div className="flex items-start gap-6">
+                  <div className="flex items-start gap-6 justify-center md:justify-start">
                     <span className="text-6xl font-bold text-gray-200">02</span>
                     <h3 className="text-2xl font-bold pt-3">{t('mission.vision.title')}</h3>
                   </div>
@@ -142,9 +142,9 @@ export default async function AboutPage({
 
             {/* Values */}
             <AnimateIn delay={0.3}>
-              <div className="grid md:grid-cols-12 gap-8 items-start">
+              <div className="grid md:grid-cols-12 gap-8 items-start text-center md:text-left">
                 <div className="md:col-span-3">
-                  <div className="flex items-start gap-6">
+                  <div className="flex items-start gap-6 justify-center md:justify-start">
                     <span className="text-6xl font-bold text-gray-200">03</span>
                     <h3 className="text-2xl font-bold pt-3">{t('mission.values.title')}</h3>
                   </div>

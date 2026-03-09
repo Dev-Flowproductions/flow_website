@@ -102,7 +102,7 @@ export default async function ProjetosSociaisPage({
           </AnimateIn>
           <AnimateIn delay={0.2}>
             <div
-              className="space-y-6 text-gray-700 leading-relaxed"
+              className="space-y-6 text-gray-700 leading-relaxed text-center md:text-left"
               dangerouslySetInnerHTML={{
                 __html: [
                   `<p>${t.raw('paragraph1')}</p>`,
