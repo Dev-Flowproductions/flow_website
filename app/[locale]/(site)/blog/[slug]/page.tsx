@@ -231,7 +231,7 @@ export default async function BlogPostPage({
       {alsoLike.length > 0 && (
         <div className="border-t border-gray-100 py-14 px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-black mb-8">{t('youMayAlsoLike')}</h2>
+            <h2 className="text-2xl font-bold text-black mb-8 text-center">{t('youMayAlsoLike')}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {alsoLike.map((p) => {
                 const pSlug = p.slug?.[locale] || p.slug?.pt || p.slug?.en || p.slug?.fr;

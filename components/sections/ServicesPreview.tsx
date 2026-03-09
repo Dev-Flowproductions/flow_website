@@ -73,7 +73,7 @@ export default function ServicesPreview({ services, locale }: ServicesPreviewPro
             return (
               <StaggerItem key={service.id}>
                 <Link href="/servicos" className="group block">
-                  <div className="space-y-4 text-left">
+                  <div className="space-y-4 text-center sm:text-left">
                     {/* Number */}
                     <div className="text-7xl font-bold text-gray-200 group-hover:text-gray-300 transition-colors">
                       {number}

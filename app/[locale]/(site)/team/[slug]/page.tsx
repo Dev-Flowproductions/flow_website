@@ -278,7 +278,7 @@ export default async function TeamMemberPage({
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
 
         {/* Title block */}
-        <div className="mb-8 lg:mb-10">
+        <div className="mb-8 lg:mb-10 text-center lg:text-left">
           <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-gray-500 mb-2">
             {member.role}
           </p>
