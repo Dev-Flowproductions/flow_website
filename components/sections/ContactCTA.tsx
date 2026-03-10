@@ -183,7 +183,8 @@ export default function ContactCTA() {
                 className="w-full md:w-auto px-8 py-3 bg-[#5b54a0] hover:bg-[#4a4480] text-white rounded-full font-medium transition-colors flex items-center gap-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M22 2L11 13" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M22 2L15 22 11 13 2 9l20-7z" />
                 </svg>
                 {status === 'loading' ? t('form.loading') : t('form.submit')}
               </button>
