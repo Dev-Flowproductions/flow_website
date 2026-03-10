@@ -91,7 +91,6 @@ export default async function HomePage({
             muted
             playsInline
             preload="metadata"
-            poster="/images/hero/home-poster.jpg"
             className="w-full h-full object-cover"
           >
             <source src="/videos/hero/home.mp4" type="video/mp4" />
