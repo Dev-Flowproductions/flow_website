@@ -27,18 +27,18 @@ export default function ServiceCard({ service, locale, number }: ServiceCardProp
 
   return (
     <StaggerItem>
-      <div className="border-b border-gray-200 pb-8">
-        <div className="flex flex-col gap-4 md:grid md:grid-cols-12 md:gap-8 md:items-start">
-          {/* Number */}
+      <div className="border-b border-gray-200 pb-12">
+        <div className="flex flex-col gap-4 md:grid md:grid-cols-12 md:gap-8 md:items-baseline">
+          {/* Number — baseline-aligned with title */}
           <div className="md:col-span-2">
-            <span className="text-5xl md:text-7xl font-bold text-gray-200">
+            <span className="text-5xl md:text-7xl font-bold text-gray-200 leading-none">
               {number}
             </span>
           </div>
 
           {/* Title */}
           <div className="md:col-span-3">
-            <h3 className="text-2xl md:text-3xl font-bold md:pt-4">{title}</h3>
+            <h3 className="text-2xl md:text-3xl font-bold">{title}</h3>
           </div>
 
           {/* Items */}

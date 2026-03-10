@@ -105,7 +105,7 @@ export default async function AudiovisualProjectsPage({
 
       <YoutubeHero videoId="GBRdrWdv6L8" />
 
-      <section className="py-20 px-4 bg-white">
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <AnimateIn>
             <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
@@ -135,9 +135,9 @@ export default async function AudiovisualProjectsPage({
             {t('photographyTitle')} <span className="text-gray-300">{t('photographyTitleHighlight')}</span>
           </h2>
         </AnimateIn>
-        <div className="grid grid-cols-3 gap-3 max-w-6xl mx-auto">
+        <div className="grid grid-cols-3 gap-4 max-w-6xl mx-auto">
           {fotografias.slice(0, 6).map((p, i) => (
-            <div key={i} className="overflow-hidden bg-gray-200 relative" style={{ aspectRatio: '4/3' }}>
+            <div key={i} className="overflow-hidden bg-gray-200 relative aspect-square">
               <Image
                 src={p.img}
                 alt={p.title}
