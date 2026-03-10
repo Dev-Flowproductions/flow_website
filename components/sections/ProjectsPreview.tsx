@@ -110,7 +110,7 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
               return (
                 <StaggerItem key={project.id}>
                   <Link href={`/projetos/${slug}`} className="group block">
-                    <div className="aspect-[4/3] bg-gray-100 mb-4 overflow-hidden relative">
+                    <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
                       {project.featured_image_path ? (
                         <Image
                           src={project.featured_image_path}
@@ -162,7 +162,7 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
               return (
                 <StaggerItem key={project.id}>
                   <Link href={`/projetos/${project.slug.pt}`} className="group block">
-                    <div className="aspect-[4/3] bg-gray-100 mb-4 overflow-hidden relative">
+                    <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
                       <Image
                         src={project.featured_image_path}
                         alt={project.title.pt}
