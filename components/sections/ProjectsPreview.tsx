@@ -76,8 +76,8 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
   const t = useTranslations('home.projects');
   const hasRealProjects = projects.length > 0;
   const gridClass = columns === 2
-    ? 'grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12'
-    : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12';
+    ? 'grid grid-cols-1 md:grid-cols-2 gap-4'
+    : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
 
   return (
     <section className="py-20 px-4 bg-white">

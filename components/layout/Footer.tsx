@@ -100,7 +100,7 @@ export default function Footer({ locale }: { locale: string }) {
             </a>
             <a
               href={`tel:${t('phone')}`}
-              className="text-2xl font-bold text-black hover:text-gray-700 transition-colors block mt-4"
+              className="text-sm font-bold text-black hover:text-gray-700 transition-colors block mt-2"
             >
               {t('phone')}
             </a>

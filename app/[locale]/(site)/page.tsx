@@ -119,7 +119,7 @@ export default async function HomePage({
 
             {/* Content */}
             <AnimateIn delay={0.2}>
-              <div className="text-center lg:text-left">
+              <div className="text-center">
                 <p className="text-sm uppercase tracking-wider mb-2 text-gray-600">
                   {t('team.label')}
                 </p>
@@ -130,7 +130,7 @@ export default async function HomePage({
                 <p className="text-lg text-gray-700 leading-relaxed mb-8">
                   {t('team.description')}
                 </p>
-                <div className="flex justify-center lg:justify-start">
+                <div className="flex justify-center">
                   <Link href="/sobre-nos">
                     <button className="px-8 py-3 border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition-colors text-lg font-medium">
                       {t('team.cta')}

@@ -104,15 +104,15 @@ export default async function AboutPage({
           {/* Divider Line */}
           <div className="border-t border-gray-300 mb-16" />
 
-          {/* Mission, Vision, Values Grid */}
-          <div className="space-y-16">
+          {/* Mission, Vision, Values Grid — equal gap between each row */}
+          <div className="space-y-12">
             {/* Mission */}
             <AnimateIn delay={0.1}>
-              <div className="grid md:grid-cols-12 gap-8 items-start text-center md:text-left">
+              <div className="grid md:grid-cols-12 gap-8 items-baseline text-center md:text-left">
                 <div className="md:col-span-3">
-                  <div className="flex items-start gap-6 justify-center md:justify-start">
-                    <span className="text-6xl font-bold text-gray-200">01</span>
-                    <h3 className="text-2xl font-bold pt-3">{t('mission.mission.title')}</h3>
+                  <div className="flex items-baseline gap-4 justify-center md:justify-start">
+                    <span className="text-6xl font-bold text-gray-200 leading-none">01</span>
+                    <h3 className="text-2xl font-bold">{t('mission.mission.title')}</h3>
                   </div>
                 </div>
                 <div className="md:col-span-9">
@@ -123,13 +123,16 @@ export default async function AboutPage({
               </div>
             </AnimateIn>
 
+            {/* Divider */}
+            <div className="border-t border-gray-200" />
+
             {/* Vision */}
             <AnimateIn delay={0.2}>
-              <div className="grid md:grid-cols-12 gap-8 items-start text-center md:text-left">
+              <div className="grid md:grid-cols-12 gap-8 items-baseline text-center md:text-left">
                 <div className="md:col-span-3">
-                  <div className="flex items-start gap-6 justify-center md:justify-start">
-                    <span className="text-6xl font-bold text-gray-200">02</span>
-                    <h3 className="text-2xl font-bold pt-3">{t('mission.vision.title')}</h3>
+                  <div className="flex items-baseline gap-4 justify-center md:justify-start">
+                    <span className="text-6xl font-bold text-gray-200 leading-none">02</span>
+                    <h3 className="text-2xl font-bold">{t('mission.vision.title')}</h3>
                   </div>
                 </div>
                 <div className="md:col-span-9">
@@ -140,13 +143,16 @@ export default async function AboutPage({
               </div>
             </AnimateIn>
 
+            {/* Divider */}
+            <div className="border-t border-gray-200" />
+
             {/* Values */}
             <AnimateIn delay={0.3}>
-              <div className="grid md:grid-cols-12 gap-8 items-start text-center md:text-left">
+              <div className="grid md:grid-cols-12 gap-8 items-baseline text-center md:text-left">
                 <div className="md:col-span-3">
-                  <div className="flex items-start gap-6 justify-center md:justify-start">
-                    <span className="text-6xl font-bold text-gray-200">03</span>
-                    <h3 className="text-2xl font-bold pt-3">{t('mission.values.title')}</h3>
+                  <div className="flex items-baseline gap-4 justify-center md:justify-start">
+                    <span className="text-6xl font-bold text-gray-200 leading-none">03</span>
+                    <h3 className="text-2xl font-bold">{t('mission.values.title')}</h3>
                   </div>
                 </div>
                 <div className="md:col-span-9">
@@ -169,7 +175,7 @@ export default async function AboutPage({
             </h2>
           </AnimateIn>
 
-          {/* Team Members Grid */}
+          {/* Team Members Grid — square images (aspect-square) */}
           <div className="grid grid-cols-2 md:grid-cols-3">
             {[
               { name: 'Ricardo Pedro', role: 'CEO | 2D Animator', slug: 'ricardo-pedro' },
@@ -184,16 +190,16 @@ export default async function AboutPage({
             ].map((member, index) => (
               <AnimateIn key={index} delay={0.1 * (index + 1)}>
                 <Link href={`/team/${member.slug}`} className="block group cursor-pointer">
-                  {/* Photo */}
-                  <div className="aspect-[4/3] overflow-hidden relative">
+                  {/* Square photo */}
+                  <div className="aspect-square overflow-hidden relative">
                     <Image
                       src={`/images/team/member-${index + 1}.jpg`}
                       alt={member.name}
                       fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 768px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
-                    {/* Hover overlay: dark layer + name/role (like flowproductions.pt/sobre-nos) */}
+                    {/* Hover overlay */}
                     <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-start justify-end text-left p-4">
                       <span className="text-white font-bold text-lg md:text-xl mb-1">
                         {member.name}
@@ -203,8 +209,6 @@ export default async function AboutPage({
                       </span>
                     </div>
                   </div>
-                  {/* Grey bar */}
-                  <div className="bg-gray-300 h-8" />
                 </Link>
               </AnimateIn>
             ))}

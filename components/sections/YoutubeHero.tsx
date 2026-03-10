@@ -33,6 +33,9 @@ export default function YoutubeHero({ videoId, label, title, titleAccent, descri
         />
       </div>
 
+      {/* Gradient fade at the bottom — always present */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
+
       {hasOverlayText && (
         <>
           {/* Dark overlay so text is legible */}

@@ -74,8 +74,8 @@ export default async function ServicesPage({
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      {/* Hero Video Section — equal space top (clear header) and bottom */}
-      <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-900 pt-20 pb-20">
+      {/* Hero Video Section */}
+      <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-900">
         <video
           autoPlay
           loop
