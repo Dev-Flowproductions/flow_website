@@ -184,7 +184,7 @@ export default async function BlogPostPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero image */}
-      <div className="relative min-h-[60vh] lg:min-h-screen w-full overflow-hidden bg-gray-200">
+      <div className="relative h-[62vh] lg:h-[82vh] w-full overflow-hidden bg-gray-200">
         <Image
           src={image}
           alt={title}
