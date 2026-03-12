@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getPageMetadata, articleJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import { getTranslations } from 'next-intl/server';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import { marked } from 'marked';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -126,7 +127,11 @@ export default async function BlogPostPage({
 
   const title = post.title?.[locale] || post.title?.pt || '';
   const excerpt = post.excerpt?.[locale] || post.excerpt?.pt || '';
-  const content = post.content?.[locale] || post.content?.pt || '';
+  const contentRaw = post.content?.[locale] || post.content?.pt || '';
+  // Parse markdown to HTML if the content looks like markdown (not already HTML)
+  const content = contentRaw && !contentRaw.trimStart().startsWith('<')
+    ? await marked(contentRaw, { gfm: true, breaks: true })
+    : contentRaw;
   const image = post.featured_image_path || '/images/og-default.jpg';
 
   const currentIndex = allPosts.findIndex((p) =>
