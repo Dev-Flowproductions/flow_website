@@ -10,35 +10,6 @@ function getServiceClient() {
   return createClient(url, key, { auth: { persistSession: false } });
 }
 
-type PublishEvent = {
-  event: 'cms.post.published';
-  post: {
-    id: string;
-    slug: string;
-    title: string;
-    excerpt: string;
-    content_md: string;
-    seo_title: string | null;
-    meta_description: string | null;
-    json_ld: object | null;
-    cover_image_url: string | null;
-    locale: string;
-  };
-  timestamp: string;
-};
-
-type DeleteEvent = {
-  event: 'cms.post.deleted';
-  post: {
-    id: string;
-    slug: string;
-    locale?: string;
-  };
-  timestamp: string;
-};
-
-type WebhookBody = PublishEvent | DeleteEvent;
-
 export async function POST(req: NextRequest) {
   // Verify secret
   if (WEBHOOK_SECRET) {
@@ -48,7 +19,8 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  let body: WebhookBody;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let body: Record<string, any>;
   try {
     body = await req.json();
   } catch {
@@ -62,35 +34,47 @@ export async function POST(req: NextRequest) {
   }
 
   // ── DELETE ────────────────────────────────────────────────────────────────
-  if (body.event === 'cms.post.deleted') {
-    const { post } = body;
-    if (!post?.id && !post?.slug) {
-      return NextResponse.json({ error: 'Missing post id or slug' }, { status: 400 });
+  // Supports both:
+  //   { action: "delete", slug: "..." }          (CMS format)
+  //   { event: "cms.post.deleted", post: {...} } (event format)
+  const isDelete =
+    body.action === 'delete' ||
+    body.event === 'cms.post.deleted';
+
+  if (isDelete) {
+    const slug: string | undefined = body.slug ?? body.post?.slug;
+    const cmsId: string | undefined = body.id ?? body.post?.id;
+
+    if (!slug && !cmsId) {
+      return NextResponse.json({ error: 'Missing slug or id' }, { status: 400 });
     }
 
-    // Try by cms_id first, then by slug across all locales
     let rowId: string | null = null;
 
-    const byCmsId = await supabase
-      .from('blog_posts')
-      .select('id')
-      .eq('cms_id', post.id)
-      .maybeSingle();
-    if (byCmsId.data) rowId = byCmsId.data.id;
+    // Try cms_id first (stable across locales)
+    if (cmsId) {
+      const byCmsId = await supabase
+        .from('blog_posts')
+        .select('id')
+        .eq('cms_id', cmsId)
+        .maybeSingle();
+      if (byCmsId.data) rowId = byCmsId.data.id;
+    }
 
-    if (!rowId && post.slug) {
+    // Fall back to matching slug across all locales
+    if (!rowId && slug) {
       for (const l of ['pt', 'en', 'fr']) {
         const bySlug = await supabase
           .from('blog_posts')
           .select('id')
-          .eq(`slug->>${l}`, post.slug)
+          .eq(`slug->>${l}`, slug)
           .maybeSingle();
         if (bySlug.data) { rowId = bySlug.data.id; break; }
       }
     }
 
     if (!rowId) {
-      console.warn(`[blog-webhook] Delete: no post found for id="${post.id}" slug="${post.slug}"`);
+      console.warn(`[blog-webhook] Delete: no post found for cmsId="${cmsId}" slug="${slug}"`);
       return NextResponse.json({ ok: true, action: 'not_found' });
     }
 
@@ -104,8 +88,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'DB delete failed', detail: error.message }, { status: 500 });
     }
 
-    console.log(`[blog-webhook] Deleted post id="${rowId}"`);
-    return NextResponse.json({ ok: true, action: 'deleted' });
+    console.log(`[blog-webhook] Deleted post id="${rowId}" slug="${slug}"`);
+    return NextResponse.json({ ok: true, action: 'deleted', deleted: slug });
   }
 
   // ── PUBLISH ───────────────────────────────────────────────────────────────
@@ -113,25 +97,32 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, message: 'Event ignored' });
   }
 
-  const { post } = body;
-  const locale = post.locale || 'pt';
+  const post = body.post;
+  const locale: string = post?.locale || 'pt';
 
   // Find an existing row — try by cms_id first (stable across locales),
   // then fall back to searching every locale slug so EN/FR additions merge into the PT row.
   const selectFields = 'id, slug, title, content, excerpt, featured_image_path';
 
-  let existing: { id: string; slug: Record<string, string>; title: Record<string, string>; content: Record<string, string>; excerpt: Record<string, string>; featured_image_path: string | null } | null = null;
+  let existing: {
+    id: string;
+    slug: Record<string, string>;
+    title: Record<string, string>;
+    content: Record<string, string>;
+    excerpt: Record<string, string>;
+    featured_image_path: string | null;
+  } | null = null;
 
-  // 1. Try cms_id column if it exists
-  const byCmsId = await supabase
-    .from('blog_posts')
-    .select(selectFields)
-    .eq('cms_id', post.id)
-    .maybeSingle();
-  if (byCmsId.data) existing = byCmsId.data;
+  if (post?.id) {
+    const byCmsId = await supabase
+      .from('blog_posts')
+      .select(selectFields)
+      .eq('cms_id', post.id)
+      .maybeSingle();
+    if (byCmsId.data) existing = byCmsId.data;
+  }
 
-  // 2. Try matching the slug in any locale
-  if (!existing) {
+  if (!existing && post?.slug) {
     for (const l of ['pt', 'en', 'fr']) {
       const bySlug = await supabase
         .from('blog_posts')
@@ -145,7 +136,6 @@ export async function POST(req: NextRequest) {
   const now = new Date().toISOString();
 
   if (existing) {
-    // Merge into the existing JSONB columns for this locale
     const { error } = await supabase
       .from('blog_posts')
       .update({
@@ -172,7 +162,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, action: 'updated', slug: post.slug });
   }
 
-  // No existing post — insert a new one
   const { error } = await supabase
     .from('blog_posts')
     .insert({
