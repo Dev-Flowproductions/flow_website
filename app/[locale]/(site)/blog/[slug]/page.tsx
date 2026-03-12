@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getPageMetadata, articleJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import { getTranslations } from 'next-intl/server';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import { marked } from 'marked';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -95,14 +96,34 @@ export default async function BlogPostPage({
 
   if (supabase) {
     const selectFields = 'id, title, excerpt, content, featured_image_path, published_at, updated_at, author_name, slug';
-    const bySlug = await supabase
+
+    // Try current locale first, then fall back to any locale slug match
+    const byLocaleSlug = await supabase
       .from('blog_posts')
       .select(selectFields)
       .eq(`slug->>${locale}`, slug)
       .eq('status', 'published')
       .maybeSingle();
-    post = bySlug.data;
+    post = byLocaleSlug.data;
 
+    // If not found by current locale, try all other locales (post may only have pt/en/fr slug)
+    if (!post) {
+      const otherLocales = ['pt', 'en', 'fr'].filter((l) => l !== locale);
+      for (const l of otherLocales) {
+        const byOtherSlug = await supabase
+          .from('blog_posts')
+          .select(selectFields)
+          .eq(`slug->>${l}`, slug)
+          .eq('status', 'published')
+          .maybeSingle();
+        if (byOtherSlug.data) {
+          post = byOtherSlug.data;
+          break;
+        }
+      }
+    }
+
+    // Last resort: try by UUID
     if (!post && isUuid(slug)) {
       const byId = await supabase
         .from('blog_posts')
@@ -126,7 +147,11 @@ export default async function BlogPostPage({
 
   const title = post.title?.[locale] || post.title?.pt || '';
   const excerpt = post.excerpt?.[locale] || post.excerpt?.pt || '';
-  const content = post.content?.[locale] || post.content?.pt || '';
+  const contentRaw = post.content?.[locale] || post.content?.pt || '';
+  // Parse markdown to HTML if the content looks like markdown (not already HTML)
+  const content = contentRaw && !contentRaw.trimStart().startsWith('<')
+    ? await marked(contentRaw, { gfm: true, breaks: true })
+    : contentRaw;
   const image = post.featured_image_path || '/images/og-default.jpg';
 
   const currentIndex = allPosts.findIndex((p) =>
@@ -159,13 +184,13 @@ export default async function BlogPostPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero image */}
-      <div className="w-full pt-16 overflow-hidden relative aspect-[16/10] max-h-[70vh]">
+      <div className="relative min-h-[60vh] lg:min-h-screen w-full overflow-hidden bg-gray-200">
         <Image
           src={image}
           alt={title}
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-top"
           priority
         />
       </div>

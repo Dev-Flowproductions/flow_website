@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
 import { createClient } from '@/lib/supabase/server';
 import { getTranslations } from 'next-intl/server';
@@ -73,11 +73,17 @@ export default async function BlogPage({
     <div className="pt-24 pb-20 px-4 bg-white min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-16">Blog Flow</h1>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-16 text-center md:text-left">Blog Flow</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           {posts.map((post) => {
-            const title = post.title?.[locale] || post.title?.pt || '';
+            /* Pick best available locale — requested first, then any fallback */
+            const title =
+              post.title?.[locale] ||
+              post.title?.pt ||
+              post.title?.en ||
+              post.title?.fr ||
+              '';
             const slug =
               post.slug?.[locale] ||
               post.slug?.pt ||
@@ -88,7 +94,7 @@ export default async function BlogPage({
 
             const card = (
               <>
-                <div className="aspect-[16/10] overflow-hidden mb-4 bg-gray-100 relative">
+                <div className="aspect-video overflow-hidden mb-4 bg-gray-100 relative">
                   {post.featured_image_path ? (
                     <Image
                       src={post.featured_image_path}
@@ -102,13 +108,13 @@ export default async function BlogPage({
                   )}
                 </div>
 
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center gap-3 mb-2 justify-center md:justify-start">
                   {post.published_at && (
                     <p className="text-xs text-gray-400">{formatDate(post.published_at, locale)}</p>
                   )}
                 </div>
 
-                <h3 className="text-lg font-bold text-black group-hover:text-gray-500 transition-colors leading-snug">
+                <h3 className="text-lg font-bold text-black group-hover:text-gray-500 transition-colors leading-snug text-center md:text-left">
                   {title}
                 </h3>
               </>
