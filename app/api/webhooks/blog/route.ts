@@ -77,7 +77,6 @@ export async function POST(req: NextRequest) {
         featured_image_path: post.cover_image_url ?? existing.featured_image_path ?? null,
         seo_title:           post.seo_title ?? null,
         meta_description:    post.meta_description ?? null,
-        json_ld:             post.json_ld ?? null,
         status:              'published',
         updated_at:          now,
       })
@@ -103,7 +102,6 @@ export async function POST(req: NextRequest) {
       featured_image_path: post.cover_image_url ?? null,
       seo_title:           post.seo_title ?? null,
       meta_description:    post.meta_description ?? null,
-      json_ld:             post.json_ld ?? null,
       status:              'published',
       published_at:        now,
       updated_at:          now,
