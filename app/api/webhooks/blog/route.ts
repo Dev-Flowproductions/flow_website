@@ -19,13 +19,18 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let body: Record<string, any>;
+  let body: Record<string, unknown>;
   try {
-    body = await req.json();
+    body = await req.json() as Record<string, unknown>;
   } catch {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
+
+  const bodyAction = body.action as string | undefined;
+  const bodyEvent  = body.event  as string | undefined;
+  const bodyPost   = body.post   as Record<string, unknown> | undefined;
+  const bodySlug   = (body.slug  ?? bodyPost?.slug)  as string | undefined;
+  const bodyCmsId  = (body.id    ?? bodyPost?.id)    as string | undefined;
 
   const supabase = getServiceClient();
   if (!supabase) {
@@ -37,13 +42,11 @@ export async function POST(req: NextRequest) {
   // Supports both:
   //   { action: "delete", slug: "..." }          (CMS format)
   //   { event: "cms.post.deleted", post: {...} } (event format)
-  const isDelete =
-    body.action === 'delete' ||
-    body.event === 'cms.post.deleted';
+  const isDelete = bodyAction === 'delete' || bodyEvent === 'cms.post.deleted';
 
   if (isDelete) {
-    const slug: string | undefined = body.slug ?? body.post?.slug;
-    const cmsId: string | undefined = body.id ?? body.post?.id;
+    const slug  = bodySlug;
+    const cmsId = bodyCmsId;
 
     if (!slug && !cmsId) {
       return NextResponse.json({ error: 'Missing slug or id' }, { status: 400 });
@@ -93,15 +96,13 @@ export async function POST(req: NextRequest) {
   }
 
   // ── PUBLISH ───────────────────────────────────────────────────────────────
-  if (body.event !== 'cms.post.published') {
+  if (bodyEvent !== 'cms.post.published') {
     return NextResponse.json({ ok: true, message: 'Event ignored' });
   }
 
-  const post = body.post;
-  const locale: string = post?.locale || 'pt';
+  const post = bodyPost;
+  const locale: string = (post?.locale as string) || 'pt';
 
-  // Find an existing row — try by cms_id first (stable across locales),
-  // then fall back to searching every locale slug so EN/FR additions merge into the PT row.
   const selectFields = 'id, slug, title, content, excerpt, featured_image_path';
 
   let existing: {
@@ -117,7 +118,7 @@ export async function POST(req: NextRequest) {
     const byCmsId = await supabase
       .from('blog_posts')
       .select(selectFields)
-      .eq('cms_id', post.id)
+      .eq('cms_id', post.id as string)
       .maybeSingle();
     if (byCmsId.data) existing = byCmsId.data;
   }
@@ -127,7 +128,7 @@ export async function POST(req: NextRequest) {
       const bySlug = await supabase
         .from('blog_posts')
         .select(selectFields)
-        .eq(`slug->>${l}`, post.slug)
+        .eq(`slug->>${l}`, post.slug as string)
         .maybeSingle();
       if (bySlug.data) { existing = bySlug.data; break; }
     }
@@ -139,15 +140,15 @@ export async function POST(req: NextRequest) {
     const { error } = await supabase
       .from('blog_posts')
       .update({
-        cms_id:              post.id,
-        title:               { ...existing.title,   [locale]: post.title },
-        content:             { ...existing.content, [locale]: post.content_md },
-        excerpt:             { ...existing.excerpt, [locale]: post.excerpt },
-        slug:                { ...(existing.slug ?? {}), [locale]: post.slug },
-        featured_image_path: post.cover_image_url ?? existing.featured_image_path ?? null,
-        seo_title:           post.seo_title ?? null,
-        meta_description:    post.meta_description ?? null,
-        json_ld:             post.json_ld ?? null,
+        cms_id:              post?.id,
+        title:               { ...existing.title,   [locale]: post?.title },
+        content:             { ...existing.content, [locale]: post?.content_md },
+        excerpt:             { ...existing.excerpt, [locale]: post?.excerpt },
+        slug:                { ...(existing.slug ?? {}), [locale]: post?.slug },
+        featured_image_path: (post?.cover_image_url as string | null) ?? existing.featured_image_path ?? null,
+        seo_title:           (post?.seo_title as string | null) ?? null,
+        meta_description:    (post?.meta_description as string | null) ?? null,
+        json_ld:             (post?.json_ld as object | null) ?? null,
         status:              'published',
         updated_at:          now,
       })
@@ -158,22 +159,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'DB update failed', detail: error.message }, { status: 500 });
     }
 
-    console.log(`[blog-webhook] Updated post "${post.slug}" (${locale})`);
-    return NextResponse.json({ ok: true, action: 'updated', slug: post.slug });
+    console.log(`[blog-webhook] Updated post "${post?.slug}" (${locale})`);
+    return NextResponse.json({ ok: true, action: 'updated', slug: post?.slug });
   }
 
   const { error } = await supabase
     .from('blog_posts')
     .insert({
-      cms_id:              post.id,
-      title:               { [locale]: post.title },
-      content:             { [locale]: post.content_md },
-      excerpt:             { [locale]: post.excerpt },
-      slug:                { [locale]: post.slug },
-      featured_image_path: post.cover_image_url ?? null,
-      seo_title:           post.seo_title ?? null,
-      meta_description:    post.meta_description ?? null,
-      json_ld:             post.json_ld ?? null,
+      cms_id:              post?.id,
+      title:               { [locale]: post?.title },
+      content:             { [locale]: post?.content_md },
+      excerpt:             { [locale]: post?.excerpt },
+      slug:                { [locale]: post?.slug },
+      featured_image_path: (post?.cover_image_url as string | null) ?? null,
+      seo_title:           (post?.seo_title as string | null) ?? null,
+      meta_description:    (post?.meta_description as string | null) ?? null,
+      json_ld:             (post?.json_ld as object | null) ?? null,
       status:              'published',
       published_at:        now,
       updated_at:          now,
@@ -184,6 +185,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'DB insert failed', detail: error.message }, { status: 500 });
   }
 
-  console.log(`[blog-webhook] Inserted post "${post.slug}" (${locale})`);
-  return NextResponse.json({ ok: true, action: 'inserted', slug: post.slug });
+  console.log(`[blog-webhook] Inserted post "${post?.slug}" (${locale})`);
+  return NextResponse.json({ ok: true, action: 'inserted', slug: post?.slug });
 }
