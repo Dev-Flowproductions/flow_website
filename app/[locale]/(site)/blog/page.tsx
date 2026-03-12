@@ -60,8 +60,15 @@ export default async function BlogPage({
       .from('blog_posts')
       .select('id, title, slug, featured_image_path, published_at')
       .eq('status', 'published')
+      .not('title', 'is', null)
+      .not('slug', 'is', null)
       .order('published_at', { ascending: false });
-    posts = data || [];
+    posts = (data || []).filter((p) => {
+      // Skip posts with no resolvable title or slug
+      const hasTitle = p.title?.pt || p.title?.en || p.title?.fr;
+      const hasSlug  = p.slug?.pt  || p.slug?.en  || p.slug?.fr;
+      return hasTitle && hasSlug;
+    });
   }
 
   const breadcrumbSchema = breadcrumbJsonLd([
