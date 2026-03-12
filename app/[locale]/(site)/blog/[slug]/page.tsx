@@ -96,14 +96,34 @@ export default async function BlogPostPage({
 
   if (supabase) {
     const selectFields = 'id, title, excerpt, content, featured_image_path, published_at, updated_at, author_name, slug';
-    const bySlug = await supabase
+
+    // Try current locale first, then fall back to any locale slug match
+    const byLocaleSlug = await supabase
       .from('blog_posts')
       .select(selectFields)
       .eq(`slug->>${locale}`, slug)
       .eq('status', 'published')
       .maybeSingle();
-    post = bySlug.data;
+    post = byLocaleSlug.data;
 
+    // If not found by current locale, try all other locales (post may only have pt/en/fr slug)
+    if (!post) {
+      const otherLocales = ['pt', 'en', 'fr'].filter((l) => l !== locale);
+      for (const l of otherLocales) {
+        const byOtherSlug = await supabase
+          .from('blog_posts')
+          .select(selectFields)
+          .eq(`slug->>${l}`, slug)
+          .eq('status', 'published')
+          .maybeSingle();
+        if (byOtherSlug.data) {
+          post = byOtherSlug.data;
+          break;
+        }
+      }
+    }
+
+    // Last resort: try by UUID
     if (!post && isUuid(slug)) {
       const byId = await supabase
         .from('blog_posts')
