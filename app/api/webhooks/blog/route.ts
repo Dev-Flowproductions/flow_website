@@ -56,12 +56,31 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
   }
 
-  // Check if a post with this slug already exists for this locale
-  const { data: existing } = await supabase
+  // Find an existing row for this post — try by cms_id first (stable across locales),
+  // then fall back to searching every locale slug so EN/FR additions merge into the PT row.
+  const selectFields = 'id, slug, title, content, excerpt, featured_image_path';
+
+  let existing: { id: string; slug: Record<string, string>; title: Record<string, string>; content: Record<string, string>; excerpt: Record<string, string>; featured_image_path: string | null } | null = null;
+
+  // 1. Try cms_id column if it exists
+  const byCmsId = await supabase
     .from('blog_posts')
-    .select('id, slug, title, content, excerpt, featured_image_path')
-    .eq(`slug->>${locale}`, post.slug)
+    .select(selectFields)
+    .eq('cms_id', post.id)
     .maybeSingle();
+  if (byCmsId.data) existing = byCmsId.data;
+
+  // 2. Try matching the slug in any locale
+  if (!existing) {
+    for (const l of ['pt', 'en', 'fr']) {
+      const bySlug = await supabase
+        .from('blog_posts')
+        .select(selectFields)
+        .eq(`slug->>${l}`, post.slug)
+        .maybeSingle();
+      if (bySlug.data) { existing = bySlug.data; break; }
+    }
+  }
 
   const now = new Date().toISOString();
 
@@ -70,6 +89,7 @@ export async function POST(req: NextRequest) {
     const { error } = await supabase
       .from('blog_posts')
       .update({
+        cms_id:              post.id,
         title:               { ...existing.title,   [locale]: post.title },
         content:             { ...existing.content, [locale]: post.content_md },
         excerpt:             { ...existing.excerpt, [locale]: post.excerpt },
@@ -96,6 +116,7 @@ export async function POST(req: NextRequest) {
   const { error } = await supabase
     .from('blog_posts')
     .insert({
+      cms_id:              post.id,
       title:               { [locale]: post.title },
       content:             { [locale]: post.content_md },
       excerpt:             { [locale]: post.excerpt },
