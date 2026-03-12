@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { useTransition, useState, useEffect, useRef } from 'react';
+import { useSlugMap } from '@/components/context/SlugMapContext';
 
 const locales = [
   { code: 'pt', label: 'PT', flag: 'https://flagcdn.com/w20/pt.png' },
@@ -10,12 +11,22 @@ const locales = [
   { code: 'fr', label: 'FR', flag: 'https://flagcdn.com/w20/fr.png' },
 ];
 
-export default function LocaleSwitcher({ locale }: { locale: string }) {
+export default function LocaleSwitcher({
+  locale,
+  slugMap: slugMapProp,
+}: {
+  locale: string;
+  slugMap?: Record<string, string>;
+}) {
   const router        = useRouter();
   const pathname      = usePathname();
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const { slugMap: slugMapCtx } = useSlugMap();
+
+  // Context (set by blog post page) takes priority over prop
+  const slugMap = slugMapCtx ?? slugMapProp ?? null;
 
   const active = locales.find((l) => l.code === locale) ?? locales[0];
   const others = locales.filter((l) => l.code !== locale);
@@ -23,6 +34,15 @@ export default function LocaleSwitcher({ locale }: { locale: string }) {
   function switchLocale(nextLocale: string) {
     setOpen(false);
     startTransition(() => {
+      if (slugMap) {
+        // On blog post pages: navigate to the translated slug if available,
+        // otherwise fall back to the current slug (cross-locale lookup handles it server-side)
+        const targetSlug = slugMap[nextLocale] || slugMap[locale] || slugMap.pt;
+        if (targetSlug) {
+          router.push(`/blog/${targetSlug}`, { locale: nextLocale });
+          return;
+        }
+      }
       router.replace(pathname, { locale: nextLocale });
     });
   }

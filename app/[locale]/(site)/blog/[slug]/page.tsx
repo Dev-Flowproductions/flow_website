@@ -7,6 +7,7 @@ import { getPageMetadata, articleJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import { getTranslations } from 'next-intl/server';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { marked } from 'marked';
+import RegisterSlugMap from '@/components/blog/RegisterSlugMap';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -180,6 +181,7 @@ export default async function BlogPostPage({
 
   return (
     <div className="bg-white min-h-screen">
+      <RegisterSlugMap slugMap={post.slug ?? {}} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
