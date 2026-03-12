@@ -184,13 +184,13 @@ export default async function BlogPostPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero image */}
-      <div className="w-full pt-16 overflow-hidden relative aspect-[16/10] max-h-[70vh]">
+      <div className="relative min-h-[60vh] lg:min-h-screen w-full overflow-hidden bg-gray-200">
         <Image
           src={image}
           alt={title}
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-top"
           priority
         />
       </div>
