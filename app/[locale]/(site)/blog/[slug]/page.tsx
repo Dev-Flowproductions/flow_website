@@ -185,14 +185,15 @@ export default async function BlogPostPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Hero image */}
-      <div className="relative h-[62vh] lg:h-[82vh] w-full overflow-hidden bg-gray-200">
+      {/* Hero image - Hidden on mobile */}
+      <div className="hidden md:block relative w-full overflow-hidden bg-gray-200">
         <Image
           src={image}
           alt={title}
-          fill
+          width={1920}
+          height={600}
           sizes="100vw"
-          className="object-cover object-top"
+          className="w-full h-auto"
           priority
         />
       </div>

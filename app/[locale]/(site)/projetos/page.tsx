@@ -71,14 +71,15 @@ export default async function ProjectsPage({
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Hero Image Section */}
-      <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
+      {/* Hero Image Section - Hidden on mobile */}
+      <section className="hidden md:block relative w-full overflow-hidden bg-gray-100">
         <Image
           src="/images/hero/project.png"
           alt="Projetos Flow Productions"
-          fill
+          width={1920}
+          height={600}
           sizes="100vw"
-          className="object-cover"
+          className="w-full h-auto"
           priority
         />
       </section>

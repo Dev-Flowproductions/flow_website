@@ -39,14 +39,15 @@ export default async function AboutPage({
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      {/* Hero Section with Image */}
-      <section className="relative min-h-[60vh] lg:min-h-screen w-full overflow-hidden bg-gray-200">
+      {/* Hero Section with Image - Hidden on mobile */}
+      <section className="hidden md:block relative w-full overflow-hidden bg-gray-200">
         <Image
           src="/images/hero/about-us.png"
           alt="Flow Productions Team"
-          fill
+          width={1920}
+          height={600}
           sizes="100vw"
-          className="object-cover"
+          className="w-full h-auto"
           priority
         />
       </section>

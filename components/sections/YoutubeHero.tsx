@@ -14,7 +14,7 @@ export default function YoutubeHero({ videoId, label, title, titleAccent, descri
   const hasOverlayText = label || title || description;
 
   return (
-    <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-900">
+    <section className="hidden md:block relative h-[50vh] lg:h-[70vh] w-full overflow-hidden bg-gray-900">
       {/* YouTube iframe — scaled to cover full viewport */}
       <div className="absolute inset-0 pointer-events-none">
         <iframe
