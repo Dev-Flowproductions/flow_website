@@ -41,7 +41,7 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
 
   return (
     <div
-      className={`py-10 ${dark ? 'bg-gray-900' : 'bg-gray-50'}`}
+      className={`py-10 ${dark ? 'bg-gradient-to-b from-gray-900 to-gray-500' : 'bg-gray-50'}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
