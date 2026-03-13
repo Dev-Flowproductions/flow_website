@@ -114,7 +114,7 @@ export default async function MartechPage({
               <ScrollToDiagnostic className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
                   {t('ctaDiagnostic')}
               </ScrollToDiagnostic>
-              <ScrollToDiagnostic targetId="services" className="px-8 py-3 border-2 border-[#5b54a0] text-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors font-medium">
+              <ScrollToDiagnostic targetId="services" center={false} className="px-8 py-3 border-2 border-[#5b54a0] text-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors font-medium">
                   {t('ctaSecondary')}
               </ScrollToDiagnostic>
             </div>
