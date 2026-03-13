@@ -84,14 +84,14 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <AnimateIn>
-          <div className="text-center mb-16">
+          <div className="text-center lg:text-left mb-16">
             <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">
               {t('label')}
             </p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               {t('title')} <span className="text-gray-300">{t('titleHighlight')}</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl lg:max-w-none">
               {t('description')}
             </p>
           </div>
