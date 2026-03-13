@@ -83,15 +83,15 @@ export default async function HomePage({
   return (
     <div>
       {/* Hero Section - Video Only, Hidden on mobile */}
-      <section className="hidden md:block relative h-[50vh] lg:h-[70vh] w-full overflow-hidden">
-        <div className="absolute inset-0 w-full h-full bg-gray-900">
+      <section className="hidden md:block relative w-full overflow-hidden bg-gray-900">
+        <div className="relative w-full" style={{ paddingBottom: '40%' }}>
           <video
             autoPlay
             loop
             muted
             playsInline
             preload="metadata"
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
           >
             <source src="/videos/hero/home.mp4" type="video/mp4" />
           </video>

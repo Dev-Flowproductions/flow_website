@@ -14,45 +14,44 @@ export default function YoutubeHero({ videoId, label, title, titleAccent, descri
   const hasOverlayText = label || title || description;
 
   return (
-    <section className="hidden md:block relative h-[50vh] lg:h-[70vh] w-full overflow-hidden bg-gray-900">
-      {/* YouTube iframe — scaled to cover full viewport */}
-      <div className="absolute inset-0 pointer-events-none">
-        <iframe
-          src={embedUrl}
-          allow="autoplay; encrypted-media"
-          allowFullScreen={false}
-          className="absolute top-1/2 left-1/2"
-          style={{
-            width: '100vw',
-            height: '56.25vw',
-            minHeight: '100vh',
-            minWidth: '177.78vh',
-            transform: 'translate(-50%, -50%)',
-            border: 'none',
-          }}
-        />
+    <section className="hidden md:block relative w-full overflow-hidden bg-gray-900">
+      {/* Responsive container with 16:9 aspect ratio cropped to ~40% height */}
+      <div className="relative w-full" style={{ paddingBottom: '40%' }}>
+        {/* YouTube iframe — scaled to cover */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <iframe
+            src={embedUrl}
+            allow="autoplay; encrypted-media"
+            allowFullScreen={false}
+            className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-full min-w-[177.78%]"
+            style={{
+              transform: 'translate(-50%, -50%)',
+              border: 'none',
+            }}
+          />
+        </div>
+
+        {/* Gradient fade at the bottom — always present */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
+
+        {hasOverlayText && (
+          <>
+            {/* Dark overlay so text is legible */}
+            <div className="absolute inset-0 bg-black/50" />
+
+            {/* Text — centered */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
+              {label && <p className="text-xs uppercase tracking-widest text-white/50 mb-4">{label}</p>}
+              {title && (
+                <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+                  {title} {titleAccent && <span className="text-white/25">{titleAccent}</span>}
+                </h1>
+              )}
+              {description && <p className="text-white/60 text-base leading-relaxed max-w-xl">{description}</p>}
+            </div>
+          </>
+        )}
       </div>
-
-      {/* Gradient fade at the bottom — always present */}
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
-
-      {hasOverlayText && (
-        <>
-          {/* Dark overlay so text is legible */}
-          <div className="absolute inset-0 bg-black/50" />
-
-          {/* Text — centered */}
-          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-8">
-            {label && <p className="text-xs uppercase tracking-widest text-white/50 mb-4">{label}</p>}
-            {title && (
-              <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white leading-tight mb-8">
-                {title} {titleAccent && <span className="text-white/25">{titleAccent}</span>}
-              </h1>
-            )}
-            {description && <p className="text-white/60 text-base leading-relaxed max-w-xl">{description}</p>}
-          </div>
-        </>
-      )}
     </section>
   );
 }
