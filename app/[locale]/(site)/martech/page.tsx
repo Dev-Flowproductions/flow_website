@@ -316,7 +316,7 @@ export default async function MartechPage({
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('caseStudyCta.title')}</h2>
             <p className="text-xl text-white/80 mb-8">{t('caseStudyCta.description')}</p>
             <a href="#diagnostico">
-              <button className="px-10 py-4 bg-white text-[#5b54a0] rounded-full hover:bg-gray-100 transition-colors font-semibold text-lg">
+              <button className="px-10 py-4 bg-yellow-400 text-black rounded-full hover:bg-yellow-300 transition-colors font-semibold text-lg">
                 {t('ctaDiagnostic')}
               </button>
             </a>
