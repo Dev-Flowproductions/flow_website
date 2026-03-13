@@ -199,7 +199,8 @@ const texts: Record<string, Record<string, string>> = {
     recommendationBeginner: 'A tua empresa tem muito espaço para crescer com MarTech. Recomendamos começar por uma auditoria completa ao ecossistema digital.',
     recommendationIntermediate: 'Tens uma base, mas há oportunidades significativas de melhoria. Vamos identificar os quick wins e criar um roadmap.',
     recommendationAdvanced: 'Estás no bom caminho! Vamos ver como podemos otimizar ainda mais e preparar-te para o futuro com IA.',
-    ctaButton: 'Falar com um especialista',
+    flowiCta: 'Fala com a Flowi para perceber melhor',
+    ctaButton: 'Falar com a Flowi',
     restartButton: 'Fazer novamente',
     freeLabel: 'Grátis',
     noSignup: 'Sem cadastro',
@@ -219,7 +220,8 @@ const texts: Record<string, Record<string, string>> = {
     recommendationBeginner: 'Your company has a lot of room to grow with MarTech. We recommend starting with a complete audit of your digital ecosystem.',
     recommendationIntermediate: "You have a foundation, but there are significant improvement opportunities. Let's identify quick wins and create a roadmap.",
     recommendationAdvanced: "You're on the right track! Let's see how we can optimize further and prepare you for the future with AI.",
-    ctaButton: 'Talk to an expert',
+    flowiCta: 'Talk to Flowi to learn more',
+    ctaButton: 'Talk to Flowi',
     restartButton: 'Do it again',
     freeLabel: 'Free',
     noSignup: 'No signup',
@@ -239,7 +241,8 @@ const texts: Record<string, Record<string, string>> = {
     recommendationBeginner: 'Votre entreprise a beaucoup de place pour grandir avec MarTech. Nous recommandons de commencer par un audit complet de votre écosystème digital.',
     recommendationIntermediate: 'Vous avez une base, mais il y a des opportunités d\'amélioration significatives. Identifions les quick wins et créons une roadmap.',
     recommendationAdvanced: 'Vous êtes sur la bonne voie! Voyons comment nous pouvons optimiser davantage et vous préparer pour l\'avenir avec l\'IA.',
-    ctaButton: 'Parler à un expert',
+    flowiCta: 'Parlez à Flowi pour en savoir plus',
+    ctaButton: 'Parler à Flowi',
     restartButton: 'Refaire',
     freeLabel: 'Gratuit',
     noSignup: 'Sans inscription',
@@ -284,8 +287,12 @@ export default function MartechDiagnostic({ locale }: DiagnosticProps) {
 
   const level = getLevel();
 
+  const openFlowi = () => {
+    window.dispatchEvent(new Event('open-sga-chat'));
+  };
+
   return (
-    <section id="diagnostico" className="py-20 px-4 bg-gradient-to-br from-[#5b54a0] to-[#3d3875]">
+    <section id="diagnostico" className="py-20 px-4 bg-gray-50">
       <div className="max-w-3xl mx-auto">
         <AnimatePresence mode="wait">
           {step === 'start' && (
@@ -296,28 +303,28 @@ export default function MartechDiagnostic({ locale }: DiagnosticProps) {
               exit={{ opacity: 0, y: -20 }}
               className="text-center"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.title}</h2>
-              <p className="text-xl text-white/80 mb-8">{t.subtitle}</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t.title}</h2>
+              <p className="text-xl text-gray-600 mb-8">{t.subtitle}</p>
 
               <div className="flex justify-center gap-6 mb-10">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-white">30s</div>
-                  <div className="text-sm text-white/60">{t.seconds}</div>
+                  <div className="text-4xl font-bold text-[#5b54a0]">30s</div>
+                  <div className="text-sm text-gray-500">{t.seconds}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-white">6</div>
-                  <div className="text-sm text-white/60">{t.questionOf.toLowerCase()}s</div>
+                  <div className="text-4xl font-bold text-[#5b54a0]">6</div>
+                  <div className="text-sm text-gray-500">{t.questionOf.toLowerCase()}s</div>
                 </div>
               </div>
 
               <button
                 onClick={handleStart}
-                className="px-10 py-4 bg-white text-[#5b54a0] rounded-full hover:bg-gray-100 transition-colors font-semibold text-lg shadow-lg"
+                className="px-10 py-4 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-semibold text-lg shadow-lg"
               >
                 {t.startButton}
               </button>
 
-              <div className="flex justify-center gap-4 mt-6 text-sm text-white/60">
+              <div className="flex justify-center gap-4 mt-6 text-sm text-gray-500">
                 <span>{t.freeLabel}</span>
                 <span>·</span>
                 <span>{t.noSignup}</span>
@@ -410,16 +417,21 @@ export default function MartechDiagnostic({ locale }: DiagnosticProps) {
                 </span>
               </div>
 
-              <p className="text-gray-600 mb-8 max-w-md mx-auto">
+              <p className="text-gray-600 mb-6 max-w-md mx-auto">
                 {level.recommendation}
               </p>
 
+              <p className="text-gray-800 font-medium mb-6">
+                {t.flowiCta}
+              </p>
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href={`/${locale}/contactos`}>
-                  <button className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
-                    {t.ctaButton}
-                  </button>
-                </a>
+                <button
+                  onClick={openFlowi}
+                  className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium"
+                >
+                  {t.ctaButton}
+                </button>
                 <button
                   onClick={handleStart}
                   className="px-8 py-3 border-2 border-gray-300 text-gray-600 rounded-full hover:border-gray-400 transition-colors font-medium"
