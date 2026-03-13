@@ -15,8 +15,8 @@ export default function YoutubeHero({ videoId, label, title, titleAccent, descri
 
   return (
     <section className="hidden md:block relative w-full overflow-hidden bg-gray-900">
-      {/* Responsive container with 16:9 aspect ratio cropped to ~40% height */}
-      <div className="relative w-full" style={{ paddingBottom: '40%' }}>
+      {/* Responsive container matching image banner aspect ratio */}
+      <div className="relative w-full" style={{ paddingBottom: '31.25%' }}>
         {/* YouTube iframe — scaled to cover */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <iframe

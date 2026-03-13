@@ -76,7 +76,7 @@ export default async function ServicesPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Hero Video Section - Hidden on mobile */}
       <section className="hidden md:block relative w-full overflow-hidden bg-gray-900">
-        <div className="relative w-full" style={{ paddingBottom: '40%' }}>
+        <div className="relative w-full" style={{ paddingBottom: '31.25%' }}>
           <video
             autoPlay
             loop
