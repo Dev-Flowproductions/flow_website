@@ -56,7 +56,7 @@ export default async function AboutPage({
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <AnimateIn>
-            <div className="text-center mb-12">
+            <div className="text-center lg:text-left mb-12">
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
                 {t('history.label')}
               </p>
