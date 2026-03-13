@@ -188,7 +188,7 @@ export default async function MartechPage({
           <AnimateIn delay={0.4}>
             <p className="text-xl font-semibold">{t('symptoms.cta')}</p>
             <a href="#diagnostico">
-              <button className="mt-6 px-8 py-3 bg-white text-[#5b54a0] rounded-full hover:bg-gray-100 transition-colors font-medium">
+              <button className="mt-6 px-8 py-3 bg-yellow-400 text-black rounded-full hover:bg-yellow-300 transition-colors font-medium">
                 {t('ctaDiagnostic')}
               </button>
             </a>
