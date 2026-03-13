@@ -48,7 +48,7 @@ export default function ServicesGrid({ services, locale }: ServicesGridProps) {
   });
 
   return (
-    <StaggerContainer className="max-w-4xl lg:max-w-none space-y-12">
+    <StaggerContainer className="max-w-4xl mx-auto space-y-12">
       {allServices.map((service, index) => (
         <ServiceCard
           key={service.id}
