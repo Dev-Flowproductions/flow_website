@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
-import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
+import { getPageMetadata, breadcrumbJsonLd, faqJsonLd } from '@/lib/seo';
 import MartechDiagnostic from '@/components/martech/MartechDiagnostic';
 import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
 
@@ -45,6 +45,8 @@ export default async function MartechPage({
   const howWeWorkSteps = t.raw('howWeWork.steps') as Array<{ title: string; description: string }>;
   const faqs = t.raw('faqs.items') as Array<{ question: string; answer: string }>;
 
+  const faqSchema = faqJsonLd(faqs);
+
   const servicesData = [
     { key: 'aeo', hasDescription: false },
     { key: 'demandGen', hasDescription: true },
@@ -57,6 +59,7 @@ export default async function MartechPage({
   return (
     <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       {/* Hero Section with Image - Hidden on mobile */}
       <section className="hidden md:block relative w-full overflow-hidden bg-[#5b54a0]">
