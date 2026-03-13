@@ -72,7 +72,7 @@ export default async function ServicesPage({
   }
 
   return (
-    <div>
+    <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Hero Video Section - Hidden on mobile */}
       <section className="hidden md:block relative w-full overflow-hidden bg-gray-900">
@@ -90,7 +90,7 @@ export default async function ServicesPage({
       </section>
 
       {/* Content Section */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <AnimateIn>
             <p className="text-sm uppercase tracking-wider text-center mb-4">
