@@ -36,14 +36,14 @@ export default function SGAChatWidget() {
         onClick={open}
         aria-label="Abrir assistente Flowi - Strategic Growth Advisor"
         aria-expanded={isOpen}
-        className={`fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-lg transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black ${mobileMenuOpen ? 'invisible pointer-events-none' : ''}`}
+        className={`fixed bottom-6 right-6 z-[9999] flex h-16 w-16 items-center justify-center rounded-full shadow-lg transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#5b54a0] focus:ring-offset-2 overflow-hidden ${mobileMenuOpen ? 'invisible pointer-events-none' : ''}`}
       >
         <Image
-          src="/images/sga-chat-icon.png"
-          alt=""
-          width={28}
-          height={28}
-          className="h-7 w-7 object-contain"
+          src="/images/flowi-avatar.png"
+          alt="Flowi"
+          width={64}
+          height={64}
+          className="h-full w-full object-cover"
         />
       </button>
 
