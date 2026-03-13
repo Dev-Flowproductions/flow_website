@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
@@ -56,28 +57,37 @@ export default async function MartechPage({
     <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] lg:min-h-[80vh] w-full overflow-hidden bg-gradient-to-br from-[#5b54a0] to-[#3d3875] flex items-center">
-        <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-          <AnimateIn>
-            <p className="text-sm uppercase tracking-widest text-white/60 mb-4">
-              {t('hero.label')}
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              {t('hero.title')}
-            </h1>
-            <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
-              {t('hero.subtitle')}
-            </p>
-          </AnimateIn>
-        </div>
+      {/* Hero Section with Image */}
+      <section className="relative min-h-[60vh] lg:min-h-screen w-full overflow-hidden bg-gray-200">
+        <Image
+          src="/images/hero/martech banner.jpg"
+          alt="MarTech"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
       </section>
 
       {/* Intro Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <AnimateIn>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('intro.title')}</h2>
+            <div className="text-center mb-12">
+              <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
+                {t('hero.label')}
+              </p>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                {t('hero.title')}
+              </h1>
+              <p className="text-xl text-gray-600">
+                {t('hero.subtitle')}
+              </p>
+            </div>
+          </AnimateIn>
+
+          <AnimateIn delay={0.1}>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">{t('intro.title')}</h2>
             <p className="text-xl text-[#5b54a0] font-medium mb-8">{t('intro.description')}</p>
             <p className="text-gray-700 text-lg mb-4">{t('intro.paragraph1')}</p>
             <p className="text-gray-700 text-lg mb-8">{t('intro.paragraph2')}</p>
