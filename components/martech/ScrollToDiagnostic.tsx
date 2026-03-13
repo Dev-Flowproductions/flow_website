@@ -3,11 +3,12 @@
 interface ScrollToDiagnosticProps {
   children: React.ReactNode;
   className?: string;
+  targetId?: string;
 }
 
-export default function ScrollToDiagnostic({ children, className }: ScrollToDiagnosticProps) {
+export default function ScrollToDiagnostic({ children, className, targetId = 'diagnostico' }: ScrollToDiagnosticProps) {
   const handleClick = () => {
-    const element = document.getElementById('diagnostico');
+    const element = document.getElementById(targetId);
     if (element) {
       const elementRect = element.getBoundingClientRect();
       const elementHeight = elementRect.height;
