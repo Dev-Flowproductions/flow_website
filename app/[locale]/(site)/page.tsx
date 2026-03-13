@@ -180,12 +180,14 @@ export default async function HomePage({
             </AnimateIn>
 
             <AnimateIn delay={0.2}>
-              <div className="bg-white p-8 rounded-2xl shadow-lg">
-                <h3 className="text-xl font-bold mb-4">{t('martech.servicesTitle')}</h3>
-                <p className="text-sm uppercase tracking-wider text-[#5b54a0] font-semibold mb-3">MarTech</p>
-                <p className="text-gray-600">
-                  {t('martech.servicesDescription')}
-                </p>
+              <div className="relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/martech/martech-hero.jpg"
+                  alt="MarTech & AI"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
             </AnimateIn>
           </div>
