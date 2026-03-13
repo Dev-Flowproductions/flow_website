@@ -73,7 +73,7 @@ export default async function MartechPage({
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <AnimateIn>
-            <div className="text-center mb-12">
+            <div className="mb-12">
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
                 {t('hero.label')}
               </p>
