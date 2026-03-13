@@ -173,7 +173,7 @@ export default async function HomePage({
                 </p>
                 <Link href="/martech">
                   <button className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors text-lg font-medium">
-                    {t('martech.cta')} →
+                    {t('martech.cta')}
                   </button>
                 </Link>
               </div>
