@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "Sobre Nós",
     "services": "Serviços",
+    "martech": "MarTech",
     "projects": "Projetos",
     "blog": "Blog Flow",
     "contact": "Contactos",
@@ -55,6 +56,21 @@
       "projectsValue": "50+",
       "languages": "Idiomas",
       "languagesValue": "3"
+    },
+    "martech": {
+      "label": "MARTECH & INTELIGÊNCIA ARTIFICIAL",
+      "title": "A forma como as pessoas descobrem marcas está a mudar.",
+      "subtitle": "O marketing também.",
+      "description": "Combinamos estratégia, dados e Inteligência Artificial para criar sistemas que:",
+      "bullets": [
+        "geram procura real",
+        "automatizam processos",
+        "tornam o crescimento mais previsível"
+      ],
+      "paragraph": "Do Demand Generation (non-gated) a websites preparados para motores de IA, ajudamos médias e grandes empresas a trabalhar com mais eficiência e menos ruído.",
+      "cta": "Explorar MarTech",
+      "servicesTitle": "Os Nossos Serviços MarTech",
+      "servicesDescription": "Criamos infraestruturas digitais que ligam estratégia, tecnologia e dados. Tudo pensado para tornar o crescimento mais previsível, conciso e eficiente."
     }
   },
   "services": {
@@ -111,6 +127,18 @@
         "Animação Corporativa e Educativa",
         "Animação Publicitária e Social Media",
         "Efeitos Especiais"
+      ]
+    },
+    "martech": {
+      "title": "MarTech",
+      "number": "05",
+      "items": [
+        "Websites preparados para AEO, GEO e SEO",
+        "Non-gated Demand Gen",
+        "Estratégia \"Go-to-Market\"",
+        "LLM Advertisement & Paid Media",
+        "Landing Pages & AI Offers",
+        "AI Agents MKT e Vendas"
       ]
     }
   },
@@ -276,5 +304,235 @@
     "submit": "Subscrever",
     "success": "Obrigado pela subscrição!",
     "error": "Erro ao subscrever. Tente novamente."
+  },
+  "martech": {
+    "metaTitle": "MarTech - Tecnologia ao Serviço do Marketing",
+    "metaDescription": "Arrumamos a casa do marketing: dados, automações e relatórios. Do website às campanhas, tudo a falar a mesma língua.",
+    "hero": {
+      "label": "MARTECH",
+      "title": "Tecnologia ao serviço do Marketing da tua Empresa",
+      "subtitle": "Arrumamos a casa do marketing: dados, automações e relatórios."
+    },
+    "intro": {
+      "title": "Pomos o teu marketing a fluir",
+      "description": "Website, campanhas, leads e vendas — tudo a falar a mesma língua.",
+      "paragraph1": "Em médias e grandes empresas, o bloqueio no marketing raramente é \"falta de ideias\". Normalmente é falta de ligação: ferramentas soltas, dados desencontrados, relatórios morosos e automações que complicam em vez de ajudar.",
+      "paragraph2": "Nós entramos aí: arrumamos a base, montamos o sistema e aceleramos o crescimento."
+    },
+    "problems": {
+      "title": "O que resolvemos (na prática):",
+      "items": [
+        "Ferramentas que contam uma história diferente (e ninguém sabe qual é a verdadeira)",
+        "Leads que se perdem entre marketing e vendas",
+        "Websites não estão a ser encontrados (nem no Google, nem nas respostas por IA)",
+        "Campanhas pagas a gastar sem visão do que está a gerar valor",
+        "Landing pages e ofertas que existem, mas não convertem",
+        "Equipa a perder tempo em tarefas repetidas que podiam estar automatizadas"
+      ]
+    },
+    "ctaPrimary": "Marcar diagnóstico MarTech",
+    "ctaSecondary": "Descobrir serviços MarTech",
+    "whatIs": {
+      "title": "O que é MarTech?",
+      "description": "MarTech é o nome que se dá a soluções tecnológicas para melhorar o marketing da tua empresa. Na prática, é a parte \"invisível\" que decide se o resto funciona: tecnologia + dados + processos.",
+      "subtitle": "Em português simples: MarTech garante que…",
+      "bullets": [
+        "o website atrai as pessoas certas,",
+        "as campanhas têm direção e medição,",
+        "as landing pages convertem,",
+        "os leads chegam ao sítio certo (e com contexto),",
+        "e a equipa consegue decidir com números em que dá para confiar."
+      ],
+      "aiNote": "E sim, inclui IA, mas com pés e cabeça. IA sem base (dados, tracking, processos) só dá resultados… inconsistentes, difíceis de repetir e difíceis de escalar."
+    },
+    "whyNeed": {
+      "title": "Por que é que precisas dos nossos serviços",
+      "subtitle": "(o que está a mudar)",
+      "intro": "O jogo mudou. E as empresas estão a sentir isso de forma bem prática:",
+      "points": [
+        {
+          "title": "A forma como as pessoas pesquisam já não é só \"Google e pronto\".",
+          "description": "Hoje, muita gente pesquisa e decide com ajuda de motores e assistentes com IA. Se o teu conteúdo e o teu site não estão preparados para isso, ficas fora do radar."
+        },
+        {
+          "title": "Medir ficou mais exigente.",
+          "description": "Privacidade, consentimento e plataformas cada vez mais fechadas tornam o tracking \"antigo\" menos fiável."
+        },
+        {
+          "title": "Mais canais = mais complexidade.",
+          "description": "Website, CRM, automação, anúncios, conteúdos, eventos, parceiros. Tudo soma. E se não estiver ligado, cresces em cima de fricção."
+        },
+        {
+          "title": "A pressão por eficiência aumentou.",
+          "description": "Menos tempo para \"testar por testar\". Mais necessidade de sistemas que permitam aprender rápido e repetir o que funciona."
+        },
+        {
+          "title": "A ideia de \"pedir o email primeiro\" já nem sempre é o melhor caminho.",
+          "description": "Em B2B (especialmente em ciclos longos), o mercado quer valor antes de conversa. É aqui que entra Non-gated Demand Gen: criar procura sem bloquear tudo atrás de formulários — e captar leads no momento certo."
+        }
+      ],
+      "conclusion": "No fundo: não se trata de ter mais ferramentas. Trata-se de ter um sistema que aguenta o crescimento."
+    },
+    "symptoms": {
+      "title": "Sintomas da tua empresa",
+      "subtitle": "Alguma vez já disseste estas frases?",
+      "items": [
+        "\"A minha marca não aparece como resposta no ChatGPT / Gemini.\"",
+        "\"Temos automações, mas ninguém sabe bem o que está a acontecer.\"",
+        "\"Para montar um relatório decente, é preciso juntar dados de vários sítios e perco tempo\"",
+        "\"Invisto em ads, mas quase que não tenho novas leads\"",
+        "\"Não tenho capacidade de responder a todos os potenciais clientes atempadamente.\"",
+        "\"O tráfego caiu de repente e ninguém sabe porquê.\"",
+        "\"O Google Analytics mostra menos visitas / menos conversões do que antes.\""
+      ],
+      "cta": "Se isto te soa familiar, está na altura de falarmos."
+    },
+    "servicesSection": {
+      "title": "Serviços",
+      "aeo": {
+        "title": "Websites preparados para AEO, GEO e SEO",
+        "subtitle": "Objetivo: não basta aparecer — é preciso ser encontrado e ser resposta.",
+        "items": [
+          "SEO: otimizar para aparecer na pesquisa tradicional (Google).",
+          "AEO (Answer Engine Optimization): estruturar o conteúdo para ser a resposta (FAQs, respostas diretas, snippets).",
+          "GEO (Generative Engine Optimization): preparar conteúdo e estrutura para ser entendido, citado e recomendado por motores de IA."
+        ],
+        "deliverables": [
+          "arquitetura do site pensada para intenção de pesquisa",
+          "páginas com estrutura clara (o que é / para quem é / como funciona / FAQs)",
+          "otimização técnica e editorial para performance, legibilidade e indexação",
+          "conteúdo preparado para respostas rápidas (AEO) e descoberta por IA (GEO)"
+        ],
+        "cta": "Saber mais sobre Otimização para AEO, GEO e SEO"
+      },
+      "demandGen": {
+        "title": "Non-Gated Demand Gen Orchestration",
+        "subtitle": "Objetivo: gerar procura sem depender de \"formulário primeiro, valor depois\".",
+        "description": "Isto não é \"não captar leads\". É captar leads melhor: no momento certo, com contexto e com menos fricção.",
+        "deliverables": [
+          "plano de conteúdos e distribuição (site + social + email + parcerias + paid)",
+          "cadência editorial e campanhas que trabalham em conjunto (orquestração)",
+          "ofertas e experiências que puxam conversas (sem pedir tudo logo à entrada)",
+          "medição do que realmente mexe no funil (não só métricas de vaidade)"
+        ],
+        "cta": "Saber mais sobre Demand Gen"
+      },
+      "gtm": {
+        "title": "Estratégia \"Go to Market\"",
+        "subtitle": "Objetivo: Alinhar oferta, mensagem e canais para entrar/escalar com clareza e sem atrito",
+        "deliverables": [
+          "posicionamento e proposta de valor (sem frases vagas)",
+          "mensagens por público (quem decide vs quem usa)",
+          "mapa de canais e plano de lançamento",
+          "prioridades: o que fazer agora vs o que fica para depois"
+        ],
+        "cta": "Saber mais sobre Estratégias \"Go-to-Market\""
+      },
+      "paidMedia": {
+        "title": "LLM Advertisement & Paid Media",
+        "subtitle": "Objetivo: investir em paid media com controlo e intenção e acompanhar a evolução de canais com IA.",
+        "deliverables": [
+          "estratégia de campanhas (Search, Social, Display — conforme o caso)",
+          "estrutura de testes e otimização contínua",
+          "landing pages alinhadas com anúncios",
+          "experimentação responsável em formatos emergentes ligados a motores com IA"
+        ],
+        "cta": "Saber mais sobre LLM Advertisement & Paid Media"
+      },
+      "landingPages": {
+        "title": "Landing Pages & AI Offers",
+        "subtitle": "Objetivo: transformar tráfego em ação.",
+        "deliverables": [
+          "landing pages rápidas, claras e focadas numa ação",
+          "oferta com valor real (auditoria, diagnóstico, checklist, demo guiada, etc.)",
+          "AI Offers: experiências simples com IA que ajudam o utilizador (e ajudam a tua equipa)"
+        ],
+        "cta": "Saber mais sobre Landing Pages e AI Offers"
+      },
+      "aiAgents": {
+        "title": "AI Agents (Marketing e Vendas)",
+        "subtitle": "Objetivo: reduzir a fricção e acelerar as respostas sem tirar o humano do sítio certo.",
+        "deliverables": [
+          "agentes que respondem a perguntas frequentes (com a tua informação, do teu jeito)",
+          "qualificação inicial de leads (com critérios definidos)",
+          "handoff para vendas com contexto (o que a pessoa viu, pediu, perguntou)",
+          "agentes internos para a equipa (ex.: resumo de leads, preparação de follow-ups, apoio a propostas)",
+          "governança: limites, validação, logs e melhoria contínua"
+        ],
+        "cta": "Saber mais sobre AI Agents"
+      }
+    },
+    "howWeWork": {
+      "title": "Como trabalhamos",
+      "intro": "Somos diretos: primeiro arrumamos a base, depois aceleramos. E fazemos isto por fases, com transparência total.",
+      "steps": [
+        {
+          "title": "Kick-off e contexto",
+          "description": "Objetivos, equipas envolvidas, o que é \"sucesso\" para vocês."
+        },
+        {
+          "title": "Auditoria e mapa",
+          "description": "O que está ligado, o que não está, onde se perde informação, onde há risco."
+        },
+        {
+          "title": "Desenho da solução",
+          "description": "Antes de implementar, deixamos claro: o que vai mudar, porquê e como se valida."
+        },
+        {
+          "title": "Implementação por prioridades",
+          "description": "Integrações, medição, automações em blocos pequenos, para não parar a operação."
+        },
+        {
+          "title": "Testes e validação",
+          "description": "Nada passa para \"feito\" sem confirmação. Queremos confiança, não fé."
+        },
+        {
+          "title": "Handover e melhoria contínua",
+          "description": "Documentação, formação e um plano para manter tudo saudável."
+        }
+      ]
+    },
+    "faqs": {
+      "title": "FAQs",
+      "items": [
+        {
+          "question": "O que é MarTech?",
+          "answer": "MarTech é a combinação de marketing e tecnologia para melhorar a forma como as empresas atraem clientes, analisam dados e automatizam processos. Inclui ferramentas, estratégias e integrações que permitem tornar o marketing mais eficiente, mensurável e escalável. Na Flow, usamos MarTech para ligar estratégia, dados e automação, criando sistemas que ajudam marcas a gerar procura real e a tomar decisões com mais clareza."
+        },
+        {
+          "question": "O que é Demand Generation?",
+          "answer": "Demand Generation é uma abordagem de marketing focada em criar procura pelo produto ou serviço, em vez de apenas captar leads. Em vez de depender de formulários e campanhas agressivas, esta estratégia aposta em conteúdo educativo, posicionamento e autoridade, atraindo clientes que já chegam informados e interessados. O resultado é um pipeline mais qualificado e um custo de aquisição de clientes mais eficiente."
+        },
+        {
+          "question": "O que significa AEO e como se relaciona com SEO?",
+          "answer": "AEO significa Answer Engine Optimization. Enquanto o SEO tradicional otimiza websites para aparecer nos resultados de pesquisa do Google, o AEO prepara o conteúdo para ser recomendado diretamente por motores de resposta baseados em IA, como ChatGPT, Gemini ou Perplexity. Na prática, significa estruturar informação, contexto e dados para que os sistemas de inteligência artificial consigam entender, citar e recomendar a tua marca como fonte confiável."
+        },
+        {
+          "question": "Por que é importante preparar um website para motores de IA?",
+          "answer": "Cada vez mais pessoas pesquisam através de assistentes de inteligência artificial, e não apenas em motores de busca tradicionais. Se um website não estiver estruturado para estas novas interfaces, pode tornar-se invisível para uma parte crescente do tráfego digital. Preparar um website para motores de IA significa criar conteúdo claro, bem estruturado e tecnicamente otimizado, aumentando a probabilidade de ser citado ou recomendado por essas ferramentas."
+        },
+        {
+          "question": "O que são agentes de IA no marketing?",
+          "answer": "Agentes de IA são sistemas inteligentes que executam tarefas de forma autónoma ou semiautónoma. No contexto de marketing e operações, podem ajudar a qualificar oportunidades de negócio, responder a perguntas de potenciais clientes, automatizar processos repetitivos e apoiar equipas comerciais. Quando treinados com o contexto da marca, estes agentes funcionam como assistentes digitais que trabalham 24 horas por dia."
+        },
+        {
+          "question": "Como a MarTech ajuda a reduzir o custo de aquisição de clientes?",
+          "answer": "Uma das maiores vantagens da MarTech é permitir tomar decisões com base em dados reais. Ao integrar ferramentas, analisar comportamento do utilizador e automatizar processos, é possível identificar canais que geram melhores resultados, eliminar desperdício em campanhas pouco eficazes e melhorar a qualificação de oportunidades. Tudo isto contribui para reduzir o CAC (Customer Acquisition Cost) e tornar o crescimento mais previsível."
+        },
+        {
+          "question": "Quanto tempo demora implementar uma estratégia MarTech?",
+          "answer": "Depende do nível de maturidade digital da empresa. Algumas melhorias, como auditorias técnicas ou otimizações de website, podem ser implementadas em poucas semanas. Já integrações mais profundas de ferramentas, automação e agentes de IA podem desenvolver-se ao longo de vários meses. Na Flow, começamos normalmente por um diagnóstico e implementação inicial, que permite criar uma base sólida para evoluções futuras."
+        },
+        {
+          "question": "Como saber se a minha empresa precisa de MarTech?",
+          "answer": "Se a tua empresa enfrenta desafios como dificuldade em perceber de onde vêm os clientes, processos de marketing ou vendas muito manuais, dependência excessiva de anúncios pagos ou falta de visibilidade sobre o retorno das campanhas, então é provável que exista espaço para melhorar através de uma estratégia MarTech. O primeiro passo costuma ser uma auditoria ao ecossistema digital e às ferramentas atuais, para identificar oportunidades de otimização."
+        }
+      ]
+    },
+    "caseStudyCta": {
+      "title": "Queres ver um caso semelhante ao teu?",
+      "description": "Partilhamos exemplos e abordagens (com o nível de detalhe apropriado) numa sessão rápida para veres como isto se aplica à tua realidade.",
+      "cta": "Marcar diagnóstico MarTech"
+    }
   }
 }

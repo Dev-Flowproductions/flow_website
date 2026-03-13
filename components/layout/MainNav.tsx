@@ -67,6 +67,9 @@ export default function MainNav() {
       <Link href="/servicos" className={navLinkClass('/servicos', pathname)}>
         {t('services')}
       </Link>
+      <Link href="/martech" className={navLinkClass('/martech', pathname)}>
+        {t('martech')}
+      </Link>
 
       {/* Projects with Dropdown */}
       <div

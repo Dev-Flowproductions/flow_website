@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "About Us",
     "services": "Services",
+    "martech": "MarTech",
     "projects": "Projects",
     "blog": "Blog Flow",
     "contact": "Contact",
@@ -55,6 +56,21 @@
       "projectsValue": "50+",
       "languages": "Languages",
       "languagesValue": "3"
+    },
+    "martech": {
+      "label": "MARTECH & ARTIFICIAL INTELLIGENCE",
+      "title": "The way people discover brands is changing.",
+      "subtitle": "Marketing too.",
+      "description": "We combine strategy, data and Artificial Intelligence to create systems that:",
+      "bullets": [
+        "generate real demand",
+        "automate processes",
+        "make growth more predictable"
+      ],
+      "paragraph": "From Demand Generation (non-gated) to AI-ready websites, we help medium and large companies work with more efficiency and less noise.",
+      "cta": "Explore MarTech",
+      "servicesTitle": "Our MarTech Services",
+      "servicesDescription": "We create digital infrastructures that connect strategy, technology and data. Everything designed to make growth more predictable, concise and efficient."
     }
   },
   "services": {
@@ -111,6 +127,18 @@
         "Corporate and Educational Animation",
         "Advertising and Social Media Animation",
         "Special Effects"
+      ]
+    },
+    "martech": {
+      "title": "MarTech",
+      "number": "05",
+      "items": [
+        "AEO, GEO & SEO-Ready Websites",
+        "Non-gated Demand Gen",
+        "Go-to-Market Strategy",
+        "LLM Advertisement & Paid Media",
+        "Landing Pages & AI Offers",
+        "AI Agents for MKT & Sales"
       ]
     }
   },
@@ -276,5 +304,235 @@
     "submit": "Subscribe",
     "success": "Thank you for subscribing!",
     "error": "Error subscribing. Please try again."
+  },
+  "martech": {
+    "metaTitle": "MarTech - Technology at the Service of Marketing",
+    "metaDescription": "We organize your marketing house: data, automations and reports. From website to campaigns, everything speaking the same language.",
+    "hero": {
+      "label": "MARTECH",
+      "title": "Technology at the Service of Your Company's Marketing",
+      "subtitle": "We organize your marketing house: data, automations and reports."
+    },
+    "intro": {
+      "title": "We make your marketing flow",
+      "description": "Website, campaigns, leads and sales — all speaking the same language.",
+      "paragraph1": "In medium and large companies, the marketing bottleneck is rarely \"lack of ideas\". It's usually lack of connection: disconnected tools, mismatched data, slow reports and automations that complicate instead of help.",
+      "paragraph2": "That's where we come in: we organize the foundation, build the system and accelerate growth."
+    },
+    "problems": {
+      "title": "What we solve (in practice):",
+      "items": [
+        "Tools telling different stories (and nobody knows which one is true)",
+        "Leads getting lost between marketing and sales",
+        "Websites not being found (neither on Google nor in AI responses)",
+        "Paid campaigns spending without visibility on what's generating value",
+        "Landing pages and offers that exist but don't convert",
+        "Team losing time on repeated tasks that could be automated"
+      ]
+    },
+    "ctaPrimary": "Book MarTech Diagnosis",
+    "ctaSecondary": "Discover MarTech Services",
+    "whatIs": {
+      "title": "What is MarTech?",
+      "description": "MarTech is the name given to technological solutions to improve your company's marketing. In practice, it's the \"invisible\" part that decides if everything else works: technology + data + processes.",
+      "subtitle": "In plain English: MarTech ensures that…",
+      "bullets": [
+        "the website attracts the right people,",
+        "campaigns have direction and measurement,",
+        "landing pages convert,",
+        "leads reach the right place (with context),",
+        "and the team can make decisions with numbers they can trust."
+      ],
+      "aiNote": "And yes, it includes AI, but with feet on the ground. AI without a foundation (data, tracking, processes) only delivers results… inconsistent, hard to repeat and hard to scale."
+    },
+    "whyNeed": {
+      "title": "Why you need our services",
+      "subtitle": "(what's changing)",
+      "intro": "The game has changed. And companies are feeling it in very practical ways:",
+      "points": [
+        {
+          "title": "The way people search is no longer just \"Google and done\".",
+          "description": "Today, many people search and decide with the help of AI-powered engines and assistants. If your content and website aren't prepared for this, you're off the radar."
+        },
+        {
+          "title": "Measuring has become more demanding.",
+          "description": "Privacy, consent and increasingly closed platforms make \"old\" tracking less reliable."
+        },
+        {
+          "title": "More channels = more complexity.",
+          "description": "Website, CRM, automation, ads, content, events, partners. It all adds up. And if it's not connected, you grow on top of friction."
+        },
+        {
+          "title": "The pressure for efficiency has increased.",
+          "description": "Less time for \"testing for the sake of testing\". More need for systems that allow learning fast and repeating what works."
+        },
+        {
+          "title": "The idea of \"asking for the email first\" isn't always the best path anymore.",
+          "description": "In B2B (especially in long cycles), the market wants value before conversation. This is where Non-gated Demand Gen comes in: creating demand without blocking everything behind forms — and capturing leads at the right moment."
+        }
+      ],
+      "conclusion": "Bottom line: it's not about having more tools. It's about having a system that can handle growth."
+    },
+    "symptoms": {
+      "title": "Your company's symptoms",
+      "subtitle": "Have you ever said these phrases?",
+      "items": [
+        "\"My brand doesn't appear as an answer in ChatGPT / Gemini.\"",
+        "\"We have automations, but nobody really knows what's happening.\"",
+        "\"To build a decent report, I need to gather data from multiple places and waste time\"",
+        "\"I invest in ads, but I barely get new leads\"",
+        "\"I don't have the capacity to respond to all potential customers in time.\"",
+        "\"Traffic dropped suddenly and nobody knows why.\"",
+        "\"Google Analytics shows fewer visits / fewer conversions than before.\""
+      ],
+      "cta": "If this sounds familiar, it's time we talked."
+    },
+    "servicesSection": {
+      "title": "Services",
+      "aeo": {
+        "title": "AEO, GEO & SEO-Ready Websites",
+        "subtitle": "Objective: it's not enough to appear — you need to be found and be the answer.",
+        "items": [
+          "SEO: optimize to appear in traditional search (Google).",
+          "AEO (Answer Engine Optimization): structure content to be the answer (FAQs, direct answers, snippets).",
+          "GEO (Generative Engine Optimization): prepare content and structure to be understood, cited and recommended by AI engines."
+        ],
+        "deliverables": [
+          "site architecture designed for search intent",
+          "pages with clear structure (what it is / who it's for / how it works / FAQs)",
+          "technical and editorial optimization for performance, readability and indexing",
+          "content prepared for quick answers (AEO) and AI discovery (GEO)"
+        ],
+        "cta": "Learn more about AEO, GEO and SEO Optimization"
+      },
+      "demandGen": {
+        "title": "Non-Gated Demand Gen Orchestration",
+        "subtitle": "Objective: generate demand without depending on \"form first, value later\".",
+        "description": "This isn't \"not capturing leads\". It's capturing leads better: at the right moment, with context and less friction.",
+        "deliverables": [
+          "content and distribution plan (site + social + email + partnerships + paid)",
+          "editorial cadence and campaigns working together (orchestration)",
+          "offers and experiences that pull conversations (without asking for everything at the start)",
+          "measurement of what actually moves the funnel (not just vanity metrics)"
+        ],
+        "cta": "Learn more about Demand Gen"
+      },
+      "gtm": {
+        "title": "Go-to-Market Strategy",
+        "subtitle": "Objective: Align offer, message and channels to enter/scale with clarity and no friction",
+        "deliverables": [
+          "positioning and value proposition (no vague phrases)",
+          "messages by audience (who decides vs who uses)",
+          "channel map and launch plan",
+          "priorities: what to do now vs what comes later"
+        ],
+        "cta": "Learn more about Go-to-Market Strategies"
+      },
+      "paidMedia": {
+        "title": "LLM Advertisement & Paid Media",
+        "subtitle": "Objective: invest in paid media with control and intention and follow the evolution of AI-powered channels.",
+        "deliverables": [
+          "campaign strategy (Search, Social, Display — as appropriate)",
+          "testing structure and continuous optimization",
+          "landing pages aligned with ads",
+          "responsible experimentation in emerging formats linked to AI engines"
+        ],
+        "cta": "Learn more about LLM Advertisement & Paid Media"
+      },
+      "landingPages": {
+        "title": "Landing Pages & AI Offers",
+        "subtitle": "Objective: transform traffic into action.",
+        "deliverables": [
+          "fast, clear landing pages focused on one action",
+          "offer with real value (audit, diagnosis, checklist, guided demo, etc.)",
+          "AI Offers: simple AI experiences that help the user (and help your team)"
+        ],
+        "cta": "Learn more about Landing Pages and AI Offers"
+      },
+      "aiAgents": {
+        "title": "AI Agents (Marketing & Sales)",
+        "subtitle": "Objective: reduce friction and accelerate responses without removing the human from the right place.",
+        "deliverables": [
+          "agents that answer frequently asked questions (with your information, your way)",
+          "initial lead qualification (with defined criteria)",
+          "handoff to sales with context (what the person saw, asked, requested)",
+          "internal agents for the team (e.g.: lead summary, follow-up preparation, proposal support)",
+          "governance: limits, validation, logs and continuous improvement"
+        ],
+        "cta": "Learn more about AI Agents"
+      }
+    },
+    "howWeWork": {
+      "title": "How we work",
+      "intro": "We're direct: first we organize the foundation, then we accelerate. And we do this in phases, with total transparency.",
+      "steps": [
+        {
+          "title": "Kick-off and context",
+          "description": "Objectives, teams involved, what \"success\" means for you."
+        },
+        {
+          "title": "Audit and map",
+          "description": "What's connected, what's not, where information is lost, where there's risk."
+        },
+        {
+          "title": "Solution design",
+          "description": "Before implementing, we make clear: what will change, why and how it's validated."
+        },
+        {
+          "title": "Implementation by priorities",
+          "description": "Integrations, measurement, automations in small blocks, so operations don't stop."
+        },
+        {
+          "title": "Testing and validation",
+          "description": "Nothing goes to \"done\" without confirmation. We want confidence, not faith."
+        },
+        {
+          "title": "Handover and continuous improvement",
+          "description": "Documentation, training and a plan to keep everything healthy."
+        }
+      ]
+    },
+    "faqs": {
+      "title": "FAQs",
+      "items": [
+        {
+          "question": "What is MarTech?",
+          "answer": "MarTech is the combination of marketing and technology to improve how companies attract customers, analyze data and automate processes. It includes tools, strategies and integrations that make marketing more efficient, measurable and scalable. At Flow, we use MarTech to connect strategy, data and automation, creating systems that help brands generate real demand and make decisions with more clarity."
+        },
+        {
+          "question": "What is Demand Generation?",
+          "answer": "Demand Generation is a marketing approach focused on creating demand for the product or service, rather than just capturing leads. Instead of relying on forms and aggressive campaigns, this strategy focuses on educational content, positioning and authority, attracting customers who arrive already informed and interested. The result is a more qualified pipeline and a more efficient customer acquisition cost."
+        },
+        {
+          "question": "What does AEO mean and how does it relate to SEO?",
+          "answer": "AEO stands for Answer Engine Optimization. While traditional SEO optimizes websites to appear in Google search results, AEO prepares content to be recommended directly by AI-based answer engines like ChatGPT, Gemini or Perplexity. In practice, it means structuring information, context and data so that artificial intelligence systems can understand, cite and recommend your brand as a reliable source."
+        },
+        {
+          "question": "Why is it important to prepare a website for AI engines?",
+          "answer": "More and more people search through artificial intelligence assistants, not just traditional search engines. If a website isn't structured for these new interfaces, it can become invisible to a growing portion of digital traffic. Preparing a website for AI engines means creating clear, well-structured and technically optimized content, increasing the likelihood of being cited or recommended by these tools."
+        },
+        {
+          "question": "What are AI agents in marketing?",
+          "answer": "AI agents are intelligent systems that perform tasks autonomously or semi-autonomously. In the context of marketing and operations, they can help qualify business opportunities, answer questions from potential customers, automate repetitive processes and support sales teams. When trained with the brand's context, these agents work as digital assistants that work 24 hours a day."
+        },
+        {
+          "question": "How does MarTech help reduce customer acquisition cost?",
+          "answer": "One of the biggest advantages of MarTech is enabling decisions based on real data. By integrating tools, analyzing user behavior and automating processes, it's possible to identify channels that generate better results, eliminate waste on ineffective campaigns and improve opportunity qualification. All of this contributes to reducing CAC (Customer Acquisition Cost) and making growth more predictable."
+        },
+        {
+          "question": "How long does it take to implement a MarTech strategy?",
+          "answer": "It depends on the company's level of digital maturity. Some improvements, like technical audits or website optimizations, can be implemented in a few weeks. More in-depth tool integrations, automation and AI agents can develop over several months. At Flow, we usually start with a diagnosis and initial implementation, which allows creating a solid foundation for future evolutions."
+        },
+        {
+          "question": "How do I know if my company needs MarTech?",
+          "answer": "If your company faces challenges like difficulty understanding where customers come from, very manual marketing or sales processes, excessive dependence on paid ads or lack of visibility on campaign returns, then there's likely room for improvement through a MarTech strategy. The first step is usually an audit of the digital ecosystem and current tools, to identify optimization opportunities."
+        }
+      ]
+    },
+    "caseStudyCta": {
+      "title": "Want to see a case similar to yours?",
+      "description": "We share examples and approaches (with the appropriate level of detail) in a quick session so you can see how this applies to your reality.",
+      "cta": "Book MarTech Diagnosis"
+    }
   }
 }

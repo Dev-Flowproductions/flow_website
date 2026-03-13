@@ -103,6 +103,9 @@ export default function MobileMenu({
           <Link href="/servicos" onClick={onClose} className={linkClass('/servicos')}>
             {t('services')}
           </Link>
+          <Link href="/martech" onClick={onClose} className={linkClass('/martech')}>
+            {t('martech')}
+          </Link>
 
           <div className="pt-1">
             <div className={`flex items-center gap-1 py-2 ${isActive('/projetos') ? 'text-white' : 'text-gray-400'}`}>

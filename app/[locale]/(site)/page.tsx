@@ -142,6 +142,56 @@ export default async function HomePage({
         </div>
       </section>
 
+      {/* MarTech & AI Section */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <AnimateIn>
+              <div>
+                <p className="text-sm uppercase tracking-wider mb-4 text-gray-500">
+                  {t('martech.label')}
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold mb-2">
+                  {t('martech.title')}
+                </h2>
+                <p className="text-3xl md:text-4xl font-bold text-gray-400 mb-6">
+                  {t('martech.subtitle')}
+                </p>
+                <p className="text-lg text-gray-700 mb-4">
+                  {t('martech.description')}
+                </p>
+                <ul className="text-lg text-gray-700 mb-6 space-y-2">
+                  {(t.raw('martech.bullets') as string[]).map((item: string, i: number) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-[#5b54a0] mt-1">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-gray-600 mb-8">
+                  {t('martech.paragraph')}
+                </p>
+                <Link href="/martech">
+                  <button className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors text-lg font-medium">
+                    {t('martech.cta')} →
+                  </button>
+                </Link>
+              </div>
+            </AnimateIn>
+
+            <AnimateIn delay={0.2}>
+              <div className="bg-white p-8 rounded-2xl shadow-lg">
+                <h3 className="text-xl font-bold mb-4">{t('martech.servicesTitle')}</h3>
+                <p className="text-sm uppercase tracking-wider text-[#5b54a0] font-semibold mb-3">MarTech</p>
+                <p className="text-gray-600">
+                  {t('martech.servicesDescription')}
+                </p>
+              </div>
+            </AnimateIn>
+          </div>
+        </div>
+      </section>
+
       {/* Services Preview Section */}
       {services && services.length > 0 && (
         <ServicesPreview services={services} locale={locale} />
