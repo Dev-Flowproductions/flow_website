@@ -185,7 +185,7 @@ export default async function BlogPostPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Hero image - Hidden on mobile */}
+      {/* Hero image - Full width on desktop */}
       <div className="hidden md:block relative w-full overflow-hidden bg-gray-200">
         <Image
           src={image}
@@ -199,7 +199,7 @@ export default async function BlogPostPage({
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto px-4 py-14">
+      <div className="max-w-3xl mx-auto px-4 pt-8 md:pt-14 pb-14">
         <Breadcrumb
           items={[
             { name: tNav('home'), href: '/' },
@@ -207,10 +207,23 @@ export default async function BlogPostPage({
             { name: title, href: `/blog/${canonicalSlug}` },
           ]}
         />
+
+        {/* Mobile hero image - below breadcrumb */}
+        <div className="md:hidden relative w-full aspect-video overflow-hidden bg-gray-200 rounded-xl my-6">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+
         {post.published_at && (
           <p className="text-sm text-gray-400 mb-4">{formatDate(post.published_at, locale)}</p>
         )}
-        <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight mb-10">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight mb-8 md:mb-10">
           {title}
         </h1>
 
