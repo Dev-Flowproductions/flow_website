@@ -45,8 +45,12 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Header: title centered, arrows right */}
-      <div className="flex items-center justify-between px-8 md:px-12 mb-6">
+      {/* Header: title truly centered, arrows balanced with a matching spacer on the left */}
+      <div className="flex items-center px-8 md:px-12 mb-6">
+        <div className="flex items-center gap-2 flex-shrink-0 invisible" aria-hidden="true">
+          <div className="w-9 h-9" />
+          <div className="w-9 h-9" />
+        </div>
         <h2 className={`text-xl md:text-2xl font-bold flex-1 text-center ${dark ? 'text-white' : 'text-black'}`}>
           {title}
         </h2>
