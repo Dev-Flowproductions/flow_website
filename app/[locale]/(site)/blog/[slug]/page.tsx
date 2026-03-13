@@ -223,7 +223,7 @@ export default async function BlogPostPage({
         {post.published_at && (
           <p className="text-sm text-gray-400 mb-4">{formatDate(post.published_at, locale)}</p>
         )}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight mb-8 md:mb-10">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight mb-8 md:mb-10 break-words">
           {title}
         </h1>
 
