@@ -61,16 +61,24 @@
     font-size: 14px !important;
     font-weight: 600 !important;
     line-height: 16.8px !important;
-    transition: transform 0.15s ease-out, background-color 0.2s ease, box-shadow 0.2s ease;
   }
+}
 
-  button:active,
-  [type='button']:active,
-  [type='submit']:active,
-  [type='reset']:active,
-  .btn:active {
-    transform: scale(0.95);
-  }
+/* Button press animation - separate layer to avoid specificity issues */
+button,
+[type='button'],
+[type='submit'],
+[type='reset'],
+.btn {
+  transition: transform 0.15s ease-out, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+}
+
+button:active,
+[type='button']:active,
+[type='submit']:active,
+[type='reset']:active,
+.btn:active {
+  transform: scale(0.95) !important;
 }
 
 @layer utilities {
