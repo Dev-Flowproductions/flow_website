@@ -268,11 +268,11 @@ export default async function MartechPage({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {howWeWorkSteps.map((step, i) => (
-              <AnimateIn key={i} delay={i * 0.1}>
-                <div className="bg-white p-6 rounded-xl shadow-sm">
+              <AnimateIn key={i} delay={i * 0.1} className="h-full">
+                <div className="bg-white p-6 rounded-xl shadow-sm h-full flex flex-col">
                   <p className="text-sm text-[#5b54a0] font-bold mb-2">{i + 1}.</p>
                   <h3 className="font-bold text-lg mb-2">{step.title}</h3>
-                  <p className="text-gray-600 text-sm">{step.description}</p>
+                  <p className="text-gray-600 text-sm flex-1">{step.description}</p>
                 </div>
               </AnimateIn>
             ))}
