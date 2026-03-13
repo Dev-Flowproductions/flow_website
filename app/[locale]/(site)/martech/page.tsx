@@ -5,6 +5,7 @@ import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
 import MartechDiagnostic from '@/components/martech/MartechDiagnostic';
+import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -110,11 +111,9 @@ export default async function MartechPage({
 
           <AnimateIn delay={0.2}>
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
-              <a href="#diagnostico">
-                <button className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
+              <ScrollToDiagnostic className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
                   {t('ctaDiagnostic')}
-                </button>
-              </a>
+              </ScrollToDiagnostic>
               <a href="#services">
                 <button className="px-8 py-3 border-2 border-[#5b54a0] text-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors font-medium">
                   {t('ctaSecondary')}
@@ -198,11 +197,9 @@ export default async function MartechPage({
 
           <AnimateIn delay={0.4}>
             <p className="text-xl font-semibold">{t('symptoms.cta')}</p>
-            <a href="#diagnostico">
-              <button className="mt-6 px-8 py-3 bg-yellow-400 text-black rounded-full hover:bg-yellow-300 transition-colors font-medium">
+            <ScrollToDiagnostic className="mt-6 px-8 py-3 bg-yellow-400 text-black rounded-full hover:bg-yellow-300 transition-colors font-medium">
                 {t('ctaDiagnostic')}
-              </button>
-            </a>
+            </ScrollToDiagnostic>
           </AnimateIn>
         </div>
       </section>
@@ -326,11 +323,9 @@ export default async function MartechPage({
           <AnimateIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('caseStudyCta.title')}</h2>
             <p className="text-xl text-white/80 mb-8">{t('caseStudyCta.description')}</p>
-            <a href="#diagnostico">
-              <button className="px-10 py-4 bg-yellow-400 text-black rounded-full hover:bg-yellow-300 transition-colors font-semibold text-lg">
+            <ScrollToDiagnostic className="px-10 py-4 bg-yellow-400 text-black rounded-full hover:bg-yellow-300 transition-colors font-semibold text-lg">
                 {t('ctaDiagnostic')}
-              </button>
-            </a>
+            </ScrollToDiagnostic>
           </AnimateIn>
         </div>
       </section>
