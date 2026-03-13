@@ -100,7 +100,7 @@ export default async function MartechPage({
               <ul className="space-y-3">
                 {problems.map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-gray-700">
-                    <span className="text-red-500 mt-1">✗</span>
+                    <span className="text-[#5b54a0] mt-1">✗</span>
                     <span>{item}</span>
                   </li>
                 ))}
