@@ -182,7 +182,7 @@ export default async function HomePage({
             <AnimateIn delay={0.2}>
               <div className="relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/martech/martech-hero.jpg"
+                  src="/images/martech.jpg"
                   alt="MarTech & AI"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
