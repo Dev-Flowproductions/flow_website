@@ -84,7 +84,7 @@ export default async function HomePage({
     <div>
       {/* Hero Section - Video Only, Hidden on mobile */}
       <section className="hidden md:block relative w-full overflow-hidden bg-gray-900">
-        <div className="relative w-full" style={{ paddingBottom: '31.25%' }}>
+        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
           <video
             autoPlay
             loop
