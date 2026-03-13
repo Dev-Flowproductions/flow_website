@@ -93,16 +93,16 @@ export default async function ServicesPage({
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <AnimateIn>
-            <p className="text-sm uppercase tracking-wider text-center mb-4">
+            <p className="text-sm uppercase tracking-wider text-center lg:text-left mb-4">
               {t('pageLabel')}
             </p>
-            <h1 className="text-4xl md:text-6xl font-bold text-center mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-center lg:text-left mb-6">
               {t('title')}
             </h1>
-            <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-16">
+            <p className="text-lg text-gray-700 text-center lg:text-left max-w-3xl lg:max-w-none mb-16">
               {t('intro')}
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-center lg:text-left mb-12">
               {t('whatWeOffer')}
             </h2>
           </AnimateIn>
