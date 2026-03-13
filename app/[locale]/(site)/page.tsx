@@ -147,7 +147,7 @@ export default async function HomePage({
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <AnimateIn>
-              <div>
+              <div className="text-center lg:text-left">
                 <p className="text-sm uppercase tracking-wider mb-4 text-gray-500">
                   {t('martech.label')}
                 </p>
@@ -160,7 +160,7 @@ export default async function HomePage({
                 <p className="text-lg text-gray-700 mb-4">
                   {t('martech.description')}
                 </p>
-                <ul className="text-lg text-gray-700 mb-6 space-y-2">
+                <ul className="text-lg text-gray-700 mb-6 space-y-2 inline-block text-left">
                   {(t.raw('martech.bullets') as string[]).map((item: string, i: number) => (
                     <li key={i} className="flex items-start gap-2">
                       <span className="text-[#5b54a0] mt-1">•</span>
@@ -171,11 +171,13 @@ export default async function HomePage({
                 <p className="text-gray-600 mb-8">
                   {t('martech.paragraph')}
                 </p>
-                <Link href="/martech">
-                  <button className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors text-lg font-medium">
-                    {t('martech.cta')}
-                  </button>
-                </Link>
+                <div className="flex justify-center lg:justify-start">
+                  <Link href="/martech">
+                    <button className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors text-lg font-medium">
+                      {t('martech.cta')}
+                    </button>
+                  </Link>
+                </div>
               </div>
             </AnimateIn>
 
