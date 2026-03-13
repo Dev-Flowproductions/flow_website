@@ -79,13 +79,15 @@ export default async function ProjetosSociaisPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-100">
+      {/* Hero - Hidden on mobile */}
+      <section className="hidden md:block relative w-full overflow-hidden bg-gray-100">
         <Image
           src="/images/hero/social-projects.png"
           alt={t('imageAlt')}
-          fill
+          width={1920}
+          height={600}
           sizes="100vw"
-          className="object-cover"
+          className="w-full h-auto"
           priority
         />
       </section>

@@ -74,17 +74,19 @@ export default async function ServicesPage({
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      {/* Hero Video Section */}
-      <section className="relative h-[60vh] lg:h-screen w-full overflow-hidden bg-gray-900">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/videos/hero/services.mp4" type="video/mp4" />
-        </video>
+      {/* Hero Video Section - Hidden on mobile */}
+      <section className="hidden md:block relative w-full overflow-hidden bg-gray-900">
+        <div className="relative w-full" style={{ paddingBottom: '40%' }}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/videos/hero/services.mp4" type="video/mp4" />
+          </video>
+        </div>
       </section>
 
       {/* Content Section */}

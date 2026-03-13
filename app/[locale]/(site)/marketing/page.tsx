@@ -95,13 +95,15 @@ export default async function MarketingProjectsPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <section className="relative h-[60vh] md:h-screen w-full overflow-hidden bg-gray-100">
+      {/* Hero - Hidden on mobile */}
+      <section className="hidden md:block relative w-full overflow-hidden bg-gray-100">
         <Image
           src="/images/hero/marketing.png"
           alt={t('imageAlt')}
-          fill
+          width={1920}
+          height={600}
           sizes="100vw"
-          className="object-cover"
+          className="w-full h-auto"
           priority
         />
       </section>
