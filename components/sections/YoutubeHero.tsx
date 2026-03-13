@@ -48,23 +48,24 @@ export default function YoutubeHero({ videoId, label, title, titleAccent, descri
             />
           </div>
 
-          {/* Gradient fade at the bottom — always present */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
+          {/* Netflix-style gradient overlays */}
+          {/* Left side gradient - dark to transparent */}
+          <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-black via-black/70 to-transparent pointer-events-none" />
+          
+          {/* Bottom gradient */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
 
           {hasOverlayText && (
             <>
-              {/* Dark overlay so text is legible */}
-              <div className="absolute inset-0 bg-black/50" />
-
-              {/* Text — centered */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
-                {label && <p className="text-xs uppercase tracking-widest text-white/50 mb-4">{label}</p>}
+              {/* Text — left aligned like Netflix */}
+              <div className="absolute inset-0 flex flex-col justify-center text-left px-12 lg:px-20 max-w-3xl">
+                {label && <p className="text-xs uppercase tracking-widest text-white/60 mb-4">{label}</p>}
                 {title && (
-                  <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-                    {title} {titleAccent && <span className="text-white/25">{titleAccent}</span>}
+                  <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
+                    {title} {titleAccent && <span className="text-white/30">{titleAccent}</span>}
                   </h1>
                 )}
-                {description && <p className="text-white/60 text-base leading-relaxed max-w-xl">{description}</p>}
+                {description && <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl">{description}</p>}
               </div>
             </>
           )}
