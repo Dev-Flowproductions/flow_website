@@ -173,7 +173,7 @@ export default async function HomePage({
                 </p>
                 <div className="flex justify-center lg:justify-start">
                   <Link href="/martech">
-                    <button className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors text-lg font-medium">
+                    <button className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors text-lg font-medium border-2 border-[#5b54a0] hover:border-[#4a4480]">
                       {t('martech.cta')}
                     </button>
                   </Link>
