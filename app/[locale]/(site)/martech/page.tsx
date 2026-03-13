@@ -58,14 +58,15 @@ export default async function MartechPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero Section with Image */}
-      <section className="relative min-h-[60vh] lg:min-h-screen w-full overflow-hidden bg-gray-200">
+      <section className="relative w-full overflow-hidden bg-[#5b54a0]">
         <Image
           src="/images/hero/martech banner.jpg"
           alt="MarTech"
-          fill
+          width={1920}
+          height={600}
           priority
           sizes="100vw"
-          className="object-cover"
+          className="w-full h-auto"
         />
       </section>
 
