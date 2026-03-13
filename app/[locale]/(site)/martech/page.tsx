@@ -73,7 +73,7 @@ export default async function MartechPage({
 
       {/* Intro Section */}
       <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center md:text-left">
           <AnimateIn>
             <div className="mb-12">
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
@@ -110,7 +110,7 @@ export default async function MartechPage({
           </AnimateIn>
 
           <AnimateIn delay={0.2}>
-            <div className="flex flex-col sm:flex-row gap-4 mt-10">
+            <div className="flex flex-col sm:flex-row gap-4 mt-10 items-center md:items-start">
               <ScrollToDiagnostic className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
                   {t('ctaDiagnostic')}
               </ScrollToDiagnostic>
@@ -124,7 +124,7 @@ export default async function MartechPage({
 
       {/* What is MarTech Section */}
       <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center md:text-left">
           <AnimateIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('whatIs.title')}</h2>
             <p className="text-gray-700 text-lg mb-6">{t('whatIs.description')}</p>
@@ -146,7 +146,7 @@ export default async function MartechPage({
 
       {/* Why You Need Section */}
       <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center md:text-left">
           <AnimateIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-2">
               {t('whyNeed.title')}
@@ -177,7 +177,7 @@ export default async function MartechPage({
 
       {/* Symptoms Section */}
       <section className="py-20 px-4 bg-[#5b54a0] text-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center md:text-left">
           <AnimateIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('symptoms.title')}</h2>
             <p className="text-xl text-white/80 mb-8">{t('symptoms.subtitle')}</p>
