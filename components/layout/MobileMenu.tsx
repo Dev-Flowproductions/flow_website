@@ -17,8 +17,10 @@ export default function MobileMenu({
 }) {
   const t = useTranslations('nav');
   const tCat = useTranslations('categories');
+  const tMartech = useTranslations('martechNav');
   const pathname = usePathname();
   const [projectsOpen, setProjectsOpen] = useState(false);
+  const [martechOpen, setMartechOpen] = useState(false);
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/' || pathname === '';
@@ -41,6 +43,15 @@ export default function MobileMenu({
     { key: 'audiovisual', labelKey: 'audiovisual' },
     { key: 'animacao', labelKey: 'animacao' },
     { key: 'projetos-sociais', labelKey: 'projetosSociais' },
+  ];
+
+  const martechServices = [
+    { key: 'aeo-seo-geo',          labelKey: 'aeoSeoGeo'        },
+    { key: 'non-gated-demand-gen', labelKey: 'nonGatedDemandGen'},
+    { key: 'go-to-market',         labelKey: 'goToMarket'       },
+    { key: 'paid-media',           labelKey: 'paidMedia'        },
+    { key: 'landing-pages',        labelKey: 'landingPages'     },
+    { key: 'ai-agents',            labelKey: 'aiAgents'         },
   ];
 
   // Lock body scroll when menu is open so only the menu panel scrolls
@@ -103,9 +114,48 @@ export default function MobileMenu({
           <Link href="/servicos" onClick={onClose} className={linkClass('/servicos')}>
             {t('services')}
           </Link>
-          <Link href="/martech" onClick={onClose} className={linkClass('/martech')}>
-            {t('martech')}
-          </Link>
+
+          <div className="pt-1">
+            <div className={`flex items-center gap-1 py-2 ${isActive('/martech') ? 'text-white' : 'text-gray-400'}`}>
+              <Link
+                href="/martech"
+                onClick={onClose}
+                className={`${linkClass('/martech')} inline-block`}
+              >
+                {t('martech')}
+              </Link>
+              <button
+                type="button"
+                onClick={() => setMartechOpen((o) => !o)}
+                className="p-1 -m-1 text-gray-400 hover:text-gray-200 transition-colors shrink-0"
+                aria-expanded={martechOpen}
+                aria-label={martechOpen ? 'Fechar submenu' : 'Abrir submenu'}
+              >
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${martechOpen ? 'rotate-90' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+            {martechOpen && (
+              <div className="pl-4 mt-1 space-y-1 border-l border-gray-700 ml-2">
+                {martechServices.map((service) => (
+                  <Link
+                    key={service.key}
+                    href={`/martech/${service.key}`}
+                    onClick={onClose}
+                    className="block py-2 text-sm text-gray-400 hover:text-gray-200 transition-colors"
+                  >
+                    {tMartech(service.labelKey)}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div className="pt-1">
             <div className={`flex items-center gap-1 py-2 ${isActive('/projetos') ? 'text-white' : 'text-gray-400'}`}>

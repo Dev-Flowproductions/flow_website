@@ -535,5 +535,317 @@
       "description": "Partilhamos exemplos e abordagens (com o nível de detalhe apropriado) numa sessão rápida para veres como isto se aplica à tua realidade.",
       "cta": "Marcar diagnóstico MarTech"
     }
+  },
+  "martechNav": {
+    "aeoSeoGeo": "AEO, GEO e SEO",
+    "nonGatedDemandGen": "Non-Gated Demand Gen",
+    "goToMarket": "Go-to-Market",
+    "paidMedia": "Paid Media & LLM Ads",
+    "landingPages": "Landing Pages & AI Offers",
+    "aiAgents": "AI Agents"
+  },
+  "martechAeo": {
+    "metaTitle": "Websites otimizados para AEO, GEO e SEO",
+    "metaDescription": "Preparamos o teu website para aparecer no Google e para ser entendido, citado e recomendado por motores de IA.",
+    "hero": {
+      "label": "MARTECH / AEO · GEO · SEO",
+      "title": "Websites otimizados para AEO, GEO e SEO",
+      "subtitle": "Ser encontrado é bom. Ser a resposta é melhor."
+    },
+    "intro": {
+      "text": "Preparamos o teu website para aparecer no Google e para ser entendido, citado e recomendado por motores de IA."
+    },
+    "whatIs": {
+      "title": "O que é SEO, AEO e GEO (sem complicar)",
+      "items": [
+        { "term": "SEO", "description": "Otimizar para aparecer na pesquisa tradicional (Google)." },
+        { "term": "AEO (Answer Engine Optimization)", "description": "Estruturar o conteúdo para ser a resposta (FAQs, respostas diretas, snippets)." },
+        { "term": "GEO (Generative Engine Optimization)", "description": "Preparar conteúdo e contexto para ser entendido e citado por motores de IA." }
+      ]
+    },
+    "forWho": {
+      "title": "Para quem é este serviço?",
+      "subtitle": "Isto é para empresas que:",
+      "items": [
+        "têm muito conteúdo, muitas áreas e pouca consistência",
+        "sentem que o vosso site existe, mas não converte",
+        "querem aparecer também em respostas de IA (ChatGPT/Gemini/Perplexity)",
+        "precisam de uma base que aguente crescimento e equipas diferentes"
+      ]
+    },
+    "audit": {
+      "title": "Ainda não tens a certeza se precisas mesmo deste serviço? We've got you!",
+      "description": "Experimenta a nossa ferramenta de auditoria, WebAudit, e vê como o teu website flui. É 100% gratuita, sem compromisso e com termos \"leigo-friendly\".",
+      "cta": "Auditar Agora"
+    },
+    "delivers": {
+      "title": "O que entregamos",
+      "items": [
+        "Arquitetura por intenção de pesquisa",
+        "Páginas com estrutura clara",
+        "Otimização técnica",
+        "Otimização editorial",
+        "Conteúdo preparado para AEO/GEO"
+      ]
+    },
+    "improvements": {
+      "title": "O que vais melhorar",
+      "items": [
+        "Mais visibilidade orgânica com consistência",
+        "Páginas que respondem melhor às perguntas reais do mercado",
+        "Menos \"conteúdo bonito\" e mais conteúdo útil",
+        "Uma base que aguenta novas páginas, novas equipas e novas ofertas"
+      ]
+    },
+    "cta1": "Marcar conversa",
+    "cta2": "Auditar o meu site (grátis)"
+  },
+  "martechDemandGen": {
+    "metaTitle": "Non-Gated Demand Gen",
+    "metaDescription": "Cria procura sem bloquear tudo atrás de formulários. Em B2B, isto aumenta confiança e a qualidade dos leads.",
+    "hero": {
+      "label": "MARTECH / DEMAND GEN",
+      "title": "Non-Gated Demand Gen",
+      "subtitle": "Procura primeiro. Leads melhores depois."
+    },
+    "intro": {
+      "text": "Non-gated demand gen é criar procura sem bloquear tudo atrás de formulários. Em B2B, isto aumenta confiança e a qualidade: as pessoas chegam mais informadas e a equipa comercial perde menos tempo."
+    },
+    "forWho": {
+      "title": "Para quem é este serviço?",
+      "subtitle": "Para empresas que:",
+      "items": [
+        "dependem demasiado de paid content para ter leads",
+        "têm ciclo de venda longo e precisam de confiança",
+        "têm conteúdo, mas não têm consistência nem distribuição",
+        "sentem que leads gated chegam frias / pouco qualificadas"
+      ]
+    },
+    "delivers": {
+      "title": "O que entregamos",
+      "items": [
+        "Estratégia de temas por intenção (o que o mercado quer resolver)",
+        "Plano de conteúdos + distribuição (site, social, email, parceiros, paid)",
+        "Cadência editorial com objetivos claros",
+        "Ofertas e experiências úteis",
+        "Medição do que mexe no funil (procura, conversas, qualidade)"
+      ]
+    },
+    "diagnostic": {
+      "title": "Não tens a certeza se Non-Gated Demand Gen faz sentido para ti?",
+      "description": "Faz este diagnóstico gratuito e sem compromisso. Em poucos minutos, recebes um plano de ação com sugestões ajustadas ao teu negócio para perceberes onde estás a perder procura e o que fazer a seguir.",
+      "cta": "Fazer diagnóstico (grátis) →"
+    },
+    "improvements": {
+      "title": "O que vai melhorar",
+      "items": [
+        "Mais procura orgânica e \"aquecimento\" do mercado",
+        "Conversas com contexto e efetivação",
+        "Menos dependência cega de anúncios",
+        "Ritmo consistente"
+      ]
+    }
+  },
+  "martechGtm": {
+    "metaTitle": "Estratégia Go-to-Market",
+    "metaDescription": "O plano para levar uma oferta ao mercado com clareza: o que vendes, para quem, porquê tu, e como chegas às pessoas certas.",
+    "hero": {
+      "label": "MARTECH / GO-TO-MARKET",
+      "title": "Estratégia Go-to-Market",
+      "subtitle": "Para entrar, lançar ou escalar sem atrito"
+    },
+    "intro": {
+      "text": "Go-to-Market é o plano para levar uma oferta ao mercado com clareza: o que vendes, para quem, porquê tu, e como chegas às pessoas certas."
+    },
+    "whenItMakesSense": {
+      "title": "Quando faz sentido:",
+      "items": [
+        "Lançamento de um novo produto/serviço",
+        "Reposicionamento da marca",
+        "Entrada num novo segmento",
+        "Crescimento da marca travado",
+        "Equipa comercial a dizer \"não dá para explicar isto rápido\""
+      ]
+    },
+    "diagnostic": {
+      "title": "Não tens a certeza se precisas de uma Estratégia Go-to-Market?",
+      "description": "Faz este diagnóstico gratuito e sem compromisso. Em poucos minutos, recebes um plano de ação com sugestões ajustadas ao teu negócio para perceberes se faz sentido trabalhar um Go-to-Market agora (e por onde começar).",
+      "cta": "Fazer diagnóstico (grátis) →"
+    },
+    "delivers": {
+      "title": "O que entregamos",
+      "items": [
+        "Posicionamento e proposta de valor",
+        "Mensagens por público (quem decide vs quem usa)",
+        "Narrativa simples + provas",
+        "Mapa de canais e plano por fases",
+        "Prioridades: o que fazer agora vs depois (para não dispersar)"
+      ]
+    },
+    "improvements": {
+      "title": "O que vai melhorar",
+      "items": [
+        "Mensagem mais clara (internamente e para o mercado)",
+        "Menos fricção no site, em campanhas e em vendas",
+        "Maior consistência entre equipas",
+        "Decisões mais rápidas sobre onde investir"
+      ]
+    }
+  },
+  "martechPaidMedia": {
+    "metaTitle": "LLM Advertisement & Paid Media",
+    "metaDescription": "Gerimos paid media com uma regra simples: cada euro investido tem de ensinar algo.",
+    "hero": {
+      "label": "MARTECH / PAID MEDIA",
+      "title": "LLM Advertisement & Paid Media",
+      "subtitle": "Cada euro investido tem de ensinar algo."
+    },
+    "intro": {
+      "text": "Gerimos paid media com uma regra simples: cada euro investido tem de ensinar algo. Estratégia, testes bem montados, landing pages alinhadas e reporting claro para saber o que está (ou não) a funcionar e porquê."
+    },
+    "whatIncludes": {
+      "title": "O que isto inclui",
+      "items": [
+        "Pesquisa e estrutura de campanhas",
+        "Criativos e mensagens por intenção",
+        "Testes contínuos",
+        "Landing pages alinhadas com anúncios",
+        "Reporting que responde a perguntas reais"
+      ]
+    },
+    "forWho": {
+      "title": "Para quem é este serviço?",
+      "items": [
+        "Empresas a investir em anúncios sem clareza do retorno",
+        "Equipas que precisam de previsibilidade",
+        "Marcas que querem experimentar formatos emergentes ligados a motores de IA com critério"
+      ]
+    },
+    "audit": {
+      "title": "Não tens a certeza se os teus anúncios estão a dar retorno?",
+      "description": "Faz esta auditoria gratuita e sem compromisso. Em poucos minutos, recebes um plano de ação com sugestões ajustadas ao teu negócio para perceberes onde estás a desperdiçar budget e o que vale mais a pena corrigir primeiro.",
+      "cta": "Fazer auditoria (grátis) →"
+    },
+    "delivers": {
+      "title": "O que entregamos",
+      "items": [
+        "Estratégia de campanhas + estrutura de conta",
+        "Plano de testes (criativo, mensagem, segmentação, oferta)",
+        "Otimização contínua por sinais (qualidade, intenção, custo, conversão)",
+        "Ligação a CRM quando possível (para qualidade, não só quantidade)",
+        "Recomendações de oferta e landing page para subir conversão"
+      ]
+    }
+  },
+  "martechLandingPages": {
+    "metaTitle": "Landing Pages & AI Offers",
+    "metaDescription": "Criamos landing pages focadas numa ação e ofertas que realmente ajudam o utilizador a avançar.",
+    "hero": {
+      "label": "MARTECH / LANDING PAGES",
+      "title": "Landing Pages & AI Offers",
+      "subtitle": "Tráfego sem ação é só movimento."
+    },
+    "intro": {
+      "text": "Criamos landing pages focadas numa ação e ofertas que realmente ajudam o utilizador a avançar. Quando faz sentido, usamos AI offers (experiências simples com IA) para aumentar utilidade, clareza e conversão."
+    },
+    "whatIsAiOffer": {
+      "title": "O que é uma AI Offer",
+      "text": "Uma AI offer é uma experiência rápida que ajuda a pessoa a tomar uma decisão, seja ela realizar um diagnóstico, comprar algo, gerar um briefing ou um guia personalizado."
+    },
+    "forWho": {
+      "title": "Para quem é este serviço?",
+      "subtitle": "Este serviço é para empresas que:",
+      "items": [
+        "têm tráfego (orgânico ou pago) mas a conversão não acompanha",
+        "sentem que a landing page não está a explicar e convencer",
+        "têm várias campanhas e cada uma leva para uma página genérica",
+        "precisam de uma oferta clara (diagnóstico, proposta, demo, contacto) mas não sabem o que escolher",
+        "querem testar AI offers"
+      ]
+    },
+    "diagnostic": {
+      "title": "Não tens a certeza se a tua landing page está a fazer o trabalho dela?",
+      "description": "Faz este diagnóstico gratuito e sem compromisso. Em poucos minutos, recebes um plano de ação ajustado ao teu negócio.",
+      "cta": "Fazer diagnóstico (grátis) →"
+    },
+    "actionPlan": {
+      "title": "Se ainda não tens uma landing page e queres saber como a fazer da melhor forma, damos-te um plano de ação gratuito de forma simples, rápida e eficaz, contendo:",
+      "items": [
+        "Os tópicos essenciais que a tua landing page tem de ter",
+        "Sugestões de estrutura (ordem das secções e foco da mensagem)",
+        "Recomendações de copy (o que dizer de forma simples e direta)",
+        "Ideias de oferta (o que faz sentido pedir / prometer / entregar)",
+        "E, se fizer sentido para o teu caso, o tipo de AI Offer mais útil"
+      ],
+      "cta": "Gerar plano de ação →"
+    },
+    "delivers": {
+      "title": "O que entregamos",
+      "items": [
+        "Landing pages rápidas, claras e orientadas à ação",
+        "Copy simples e direta",
+        "Estrutura para AEO (quando relevante)",
+        "Oferta com valor real",
+        "AI offers quando acrescentam utilidade"
+      ]
+    }
+  },
+  "martechAiAgents": {
+    "metaTitle": "AI Agents para Marketing e Vendas",
+    "metaDescription": "AI agents que respondem perguntas, qualificam pedidos, apoiam follow-ups e ajudam equipas internas com contexto, regras e controlo.",
+    "hero": {
+      "label": "MARTECH / AI AGENTS",
+      "title": "AI Agents para Marketing e Vendas",
+      "subtitle": "Respostas rápidas, qualificação melhor, menos tarefas repetidas."
+    },
+    "intro": {
+      "text": "AI agents são assistentes que executam tarefas de forma autónoma ou semi-autónoma: responder perguntas, qualificar pedidos, apoiar follow-ups e ajudar equipas internas. O valor está em fazer isto com contexto, regras e controlo."
+    },
+    "whatIsAgent": {
+      "title": "O que é um agente de IA?",
+      "subtitle": "É um \"colega digital\" que:",
+      "items": [
+        "Responde com a informação certa",
+        "Segue regras (o que pode e não pode dizer)",
+        "Regista o que aconteceu",
+        "Passa a bola ao humano quando é preciso"
+      ]
+    },
+    "forWho": {
+      "title": "Para quem é este serviço?",
+      "subtitle": "Este serviço é para empresas que:",
+      "items": [
+        "recebem muitos pedidos e não conseguem responder a tempo",
+        "têm equipas a perder horas em tarefas repetidas (responder o mesmo, copiar/colar, resumir, encaminhar)",
+        "querem qualificar leads melhor antes de passar para vendas",
+        "precisam de consistência na informação (para não haver \"cada pessoa diz uma coisa\")",
+        "querem usar IA com regras e controlo (sem riscos desnecessários)"
+      ]
+    },
+    "diagnostic": {
+      "title": "Não tens a certeza quais AI Agents fariam diferença no teu negócio?",
+      "description": "Faz este diagnóstico gratuito e sem compromisso. Em poucos minutos, recebes um plano de ação com recomendações dos agentes que mais impacto teriam na tua operação, com base no teu contexto.",
+      "cta": "Descobrir os AI Agents ideais →",
+      "receives": {
+        "title": "O que vais receber:",
+        "items": [
+          "Sugestões de AI Agents por área (marketing, vendas, suporte, equipa interna)",
+          "Os casos de uso mais óbvios",
+          "O que cada agente precisa para funcionar bem",
+          "Prioridades: o que implementar primeiro e porquê",
+          "Nota de controlo: limites, handoff humano e governança recomendada"
+        ]
+      }
+    },
+    "delivers": {
+      "title": "O que entregamos",
+      "items": [
+        "Agente para perguntas frequentes (site, produto, serviço, suporte)",
+        "Qualificação inicial de leads com critérios definidos",
+        "Handoff para vendas com contexto",
+        "Agentes internos para a equipa",
+        "Governança: limites, validação, logs e melhoria contínua"
+      ]
+    }
   }
 }

@@ -535,5 +535,317 @@
       "description": "We share examples and approaches (with the appropriate level of detail) in a quick session so you can see how this applies to your reality.",
       "cta": "Book MarTech Diagnosis"
     }
+  },
+  "martechNav": {
+    "aeoSeoGeo": "AEO, GEO & SEO",
+    "nonGatedDemandGen": "Non-Gated Demand Gen",
+    "goToMarket": "Go-to-Market Strategy",
+    "paidMedia": "Paid Media & LLM Ads",
+    "landingPages": "Landing Pages & AI Offers",
+    "aiAgents": "AI Agents"
+  },
+  "martechAeo": {
+    "metaTitle": "Websites optimised for AEO, GEO and SEO",
+    "metaDescription": "We prepare your website to appear on Google and to be understood, cited and recommended by AI engines.",
+    "hero": {
+      "label": "MARTECH / AEO · GEO · SEO",
+      "title": "Websites optimised for AEO, GEO and SEO",
+      "subtitle": "Being found is good. Being the answer is better."
+    },
+    "intro": {
+      "text": "We prepare your website to appear on Google and to be understood, cited and recommended by AI engines."
+    },
+    "whatIs": {
+      "title": "What is SEO, AEO and GEO (without the jargon)",
+      "items": [
+        { "term": "SEO", "description": "Optimise to appear in traditional search (Google)." },
+        { "term": "AEO (Answer Engine Optimization)", "description": "Structure content to be the answer (FAQs, direct answers, snippets)." },
+        { "term": "GEO (Generative Engine Optimization)", "description": "Prepare content and context to be understood and cited by AI engines." }
+      ]
+    },
+    "forWho": {
+      "title": "Who is this service for?",
+      "subtitle": "This is for companies that:",
+      "items": [
+        "have lots of content, many areas and little consistency",
+        "feel your site exists but doesn't convert",
+        "want to appear in AI answers (ChatGPT/Gemini/Perplexity)",
+        "need a foundation that can handle growth and different teams"
+      ]
+    },
+    "audit": {
+      "title": "Not sure if you really need this service? We've got you!",
+      "description": "Try our audit tool, WebAudit, and see how your website flows. It's 100% free, no commitment and with \"plain-language\" terms.",
+      "cta": "Audit Now"
+    },
+    "delivers": {
+      "title": "What we deliver",
+      "items": [
+        "Architecture by search intent",
+        "Pages with clear structure",
+        "Technical optimisation",
+        "Editorial optimisation",
+        "Content prepared for AEO/GEO"
+      ]
+    },
+    "improvements": {
+      "title": "What you will improve",
+      "items": [
+        "More organic visibility with consistency",
+        "Pages that better answer the market's real questions",
+        "Less \"pretty content\" and more useful content",
+        "A foundation that supports new pages, new teams and new offers"
+      ]
+    },
+    "cta1": "Book a conversation",
+    "cta2": "Audit my site (free)"
+  },
+  "martechDemandGen": {
+    "metaTitle": "Non-Gated Demand Gen",
+    "metaDescription": "Create demand without gating everything behind forms. In B2B, this increases trust and lead quality.",
+    "hero": {
+      "label": "MARTECH / DEMAND GEN",
+      "title": "Non-Gated Demand Gen",
+      "subtitle": "Demand first. Better leads after."
+    },
+    "intro": {
+      "text": "Non-gated demand gen is creating demand without locking everything behind forms. In B2B, this increases trust and quality: people arrive better informed and the sales team wastes less time."
+    },
+    "forWho": {
+      "title": "Who is this service for?",
+      "subtitle": "For companies that:",
+      "items": [
+        "rely too heavily on paid content for leads",
+        "have a long sales cycle and need trust",
+        "have content, but no consistency or distribution",
+        "feel gated leads arrive cold / poorly qualified"
+      ]
+    },
+    "delivers": {
+      "title": "What we deliver",
+      "items": [
+        "Topic strategy by intent (what the market wants to solve)",
+        "Content plan + distribution (site, social, email, partners, paid)",
+        "Editorial cadence with clear objectives",
+        "Useful offers and experiences",
+        "Measurement of what moves the funnel (demand, conversations, quality)"
+      ]
+    },
+    "diagnostic": {
+      "title": "Not sure if Non-Gated Demand Gen makes sense for you?",
+      "description": "Take this free, no-commitment diagnostic. In a few minutes, you'll receive an action plan with tailored suggestions to understand where you're losing demand and what to do next.",
+      "cta": "Take diagnostic (free) →"
+    },
+    "improvements": {
+      "title": "What will improve",
+      "items": [
+        "More organic demand and market \"warming\"",
+        "Conversations with context and completion",
+        "Less blind dependence on ads",
+        "Consistent rhythm"
+      ]
+    }
+  },
+  "martechGtm": {
+    "metaTitle": "Go-to-Market Strategy",
+    "metaDescription": "The plan to bring an offer to market with clarity: what you sell, for whom, why you, and how to reach the right people.",
+    "hero": {
+      "label": "MARTECH / GO-TO-MARKET",
+      "title": "Go-to-Market Strategy",
+      "subtitle": "To enter, launch or scale without friction"
+    },
+    "intro": {
+      "text": "Go-to-Market is the plan to bring an offer to market with clarity: what you sell, for whom, why you, and how you reach the right people."
+    },
+    "whenItMakesSense": {
+      "title": "When it makes sense:",
+      "items": [
+        "Launching a new product/service",
+        "Brand repositioning",
+        "Entering a new segment",
+        "Stalled brand growth",
+        "Sales team saying \"we can't explain this quickly\""
+      ]
+    },
+    "diagnostic": {
+      "title": "Not sure if you need a Go-to-Market Strategy?",
+      "description": "Take this free, no-commitment diagnostic. In a few minutes, you'll receive an action plan with tailored suggestions to understand if it makes sense to work on a Go-to-Market now (and where to start).",
+      "cta": "Take diagnostic (free) →"
+    },
+    "delivers": {
+      "title": "What we deliver",
+      "items": [
+        "Positioning and value proposition",
+        "Messages by audience (decision-makers vs users)",
+        "Simple narrative + proof",
+        "Channel map and phased plan",
+        "Priorities: what to do now vs later (to avoid spreading thin)"
+      ]
+    },
+    "improvements": {
+      "title": "What will improve",
+      "items": [
+        "Clearer message (internally and for the market)",
+        "Less friction on the site, in campaigns and in sales",
+        "Greater consistency between teams",
+        "Faster decisions about where to invest"
+      ]
+    }
+  },
+  "martechPaidMedia": {
+    "metaTitle": "LLM Advertisement & Paid Media",
+    "metaDescription": "We manage paid media with one simple rule: every euro invested must teach something.",
+    "hero": {
+      "label": "MARTECH / PAID MEDIA",
+      "title": "LLM Advertisement & Paid Media",
+      "subtitle": "Every euro invested must teach something."
+    },
+    "intro": {
+      "text": "We manage paid media with one simple rule: every euro invested must teach something. Strategy, well-structured tests, aligned landing pages and clear reporting to know what is (or isn't) working and why."
+    },
+    "whatIncludes": {
+      "title": "What this includes",
+      "items": [
+        "Campaign research and structure",
+        "Creatives and messages by intent",
+        "Continuous testing",
+        "Landing pages aligned with ads",
+        "Reporting that answers real questions"
+      ]
+    },
+    "forWho": {
+      "title": "Who is this service for?",
+      "items": [
+        "Companies investing in ads without clarity on return",
+        "Teams that need predictability",
+        "Brands wanting to experiment with emerging formats linked to AI engines with criteria"
+      ]
+    },
+    "audit": {
+      "title": "Not sure if your ads are delivering return?",
+      "description": "Take this free, no-commitment audit. In a few minutes, you'll receive an action plan with tailored suggestions to understand where you're wasting budget and what's worth fixing first.",
+      "cta": "Take audit (free) →"
+    },
+    "delivers": {
+      "title": "What we deliver",
+      "items": [
+        "Campaign strategy + account structure",
+        "Test plan (creative, message, segmentation, offer)",
+        "Continuous optimisation by signals (quality, intent, cost, conversion)",
+        "CRM connection when possible (for quality, not just quantity)",
+        "Offer and landing page recommendations to increase conversion"
+      ]
+    }
+  },
+  "martechLandingPages": {
+    "metaTitle": "Landing Pages & AI Offers",
+    "metaDescription": "We create landing pages focused on one action and offers that genuinely help users move forward.",
+    "hero": {
+      "label": "MARTECH / LANDING PAGES",
+      "title": "Landing Pages & AI Offers",
+      "subtitle": "Traffic without action is just movement."
+    },
+    "intro": {
+      "text": "We create landing pages focused on one action and offers that genuinely help users move forward. When it makes sense, we use AI offers (simple AI experiences) to increase utility, clarity and conversion."
+    },
+    "whatIsAiOffer": {
+      "title": "What is an AI Offer",
+      "text": "An AI offer is a fast experience that helps people make a decision — whether that's running a diagnostic, buying something, generating a brief or a personalised guide."
+    },
+    "forWho": {
+      "title": "Who is this service for?",
+      "subtitle": "This service is for companies that:",
+      "items": [
+        "have traffic (organic or paid) but conversion doesn't follow",
+        "feel the landing page isn't explaining and convincing",
+        "have multiple campaigns and each leads to a generic page",
+        "need a clear offer (diagnostic, proposal, demo, contact) but don't know which to choose",
+        "want to test AI offers"
+      ]
+    },
+    "diagnostic": {
+      "title": "Not sure if your landing page is doing its job?",
+      "description": "Take this free, no-commitment diagnostic. In a few minutes, you'll receive a tailored action plan for your business.",
+      "cta": "Take diagnostic (free) →"
+    },
+    "actionPlan": {
+      "title": "If you don't yet have a landing page and want to know how to build it properly, we give you a free action plan in a simple, quick and effective way, containing:",
+      "items": [
+        "The essential topics your landing page must have",
+        "Structure suggestions (section order and message focus)",
+        "Copy recommendations (what to say simply and directly)",
+        "Offer ideas (what makes sense to ask / promise / deliver)",
+        "And, if it makes sense for your case, the most useful type of AI Offer"
+      ],
+      "cta": "Generate action plan →"
+    },
+    "delivers": {
+      "title": "What we deliver",
+      "items": [
+        "Fast, clear, action-oriented landing pages",
+        "Simple and direct copy",
+        "AEO structure (when relevant)",
+        "Offer with real value",
+        "AI offers when they add utility"
+      ]
+    }
+  },
+  "martechAiAgents": {
+    "metaTitle": "AI Agents for Marketing and Sales",
+    "metaDescription": "AI agents that answer questions, qualify requests, support follow-ups and help internal teams with context, rules and control.",
+    "hero": {
+      "label": "MARTECH / AI AGENTS",
+      "title": "AI Agents for Marketing and Sales",
+      "subtitle": "Fast answers, better qualification, fewer repeated tasks."
+    },
+    "intro": {
+      "text": "AI agents are assistants that execute tasks autonomously or semi-autonomously: answering questions, qualifying requests, supporting follow-ups and helping internal teams. The value lies in doing this with context, rules and control."
+    },
+    "whatIsAgent": {
+      "title": "What is an AI agent?",
+      "subtitle": "It's a \"digital colleague\" that:",
+      "items": [
+        "Answers with the right information",
+        "Follows rules (what it can and cannot say)",
+        "Records what happened",
+        "Passes to the human when needed"
+      ]
+    },
+    "forWho": {
+      "title": "Who is this service for?",
+      "subtitle": "This service is for companies that:",
+      "items": [
+        "receive many requests and can't respond in time",
+        "have teams losing hours on repeated tasks (answering the same thing, copy/paste, summarising, routing)",
+        "want to qualify leads better before passing to sales",
+        "need consistency in information (so no one says something different)",
+        "want to use AI with rules and control (without unnecessary risks)"
+      ]
+    },
+    "diagnostic": {
+      "title": "Not sure which AI Agents would make a difference in your business?",
+      "description": "Take this free, no-commitment diagnostic. In a few minutes, you'll receive an action plan with recommendations for the agents that would have the most impact on your operation, based on your context.",
+      "cta": "Discover the ideal AI Agents →",
+      "receives": {
+        "title": "What you'll receive:",
+        "items": [
+          "AI Agent suggestions by area (marketing, sales, support, internal team)",
+          "The most obvious use cases",
+          "What each agent needs to work well",
+          "Priorities: what to implement first and why",
+          "Control note: limits, human handoff and recommended governance"
+        ]
+      }
+    },
+    "delivers": {
+      "title": "What we deliver",
+      "items": [
+        "Agent for frequently asked questions (site, product, service, support)",
+        "Initial lead qualification with defined criteria",
+        "Handoff to sales with context",
+        "Internal agents for the team",
+        "Governance: limits, validation, logs and continuous improvement"
+      ]
+    }
   }
 }
