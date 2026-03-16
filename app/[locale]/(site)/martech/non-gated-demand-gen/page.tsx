@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
+import DemandGenDiagnostic from '@/components/martech/DemandGenDiagnostic';
+import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -104,12 +106,9 @@ export default async function NonGatedDemandGenPage({
             <div className="bg-[#5b54a0]/5 border border-[#5b54a0]/20 rounded-2xl p-8">
               <p className="font-semibold text-lg mb-3">{t('diagnostic.title')}</p>
               <p className="text-gray-700 mb-6">{t('diagnostic.description')}</p>
-              <Link
-                href="/contactos"
-                className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium"
-              >
+              <ScrollToDiagnostic className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
                 {t('diagnostic.cta')}
-              </Link>
+              </ScrollToDiagnostic>
             </div>
           </AnimateIn>
         </div>
@@ -131,6 +130,8 @@ export default async function NonGatedDemandGenPage({
           </AnimateIn>
         </div>
       </section>
+
+      <DemandGenDiagnostic locale={locale} />
     </div>
   );
 }

@@ -777,7 +777,63 @@
         "Offer ideas (what makes sense to ask / promise / deliver)",
         "And, if it makes sense for your case, the most useful type of AI Offer"
       ],
-      "cta": "Generate action plan →"
+      "cta": "Generate action plan →",
+      "generating": "Generating your plan...",
+      "close": "Close",
+      "sectionTitle": "Your landing page action plan",
+      "sectionSubtitle": "A quick guide to building a landing page that converts.",
+      "sections": [
+        {
+          "title": "The essential topics your landing page must have",
+          "points": [
+            "A clear headline that answers what the visitor is looking for",
+            "The problem or need you address (in 1–2 sentences)",
+            "Your solution or offer (what you provide and why you)",
+            "Social proof or credibility (testimonials, numbers, case studies)",
+            "A single primary call-to-action (CTA)",
+            "Contact details or a clear way to follow up"
+          ]
+        },
+        {
+          "title": "Structure suggestions (section order and message focus)",
+          "points": [
+            "Lead with the benefit or outcome, not your company story",
+            "Order: problem → solution → proof → action",
+            "One idea per section; avoid walls of text",
+            "Keep the CTA visible above the fold and repeat at the end",
+            "Stay focused: one offer, one goal per page"
+          ]
+        },
+        {
+          "title": "Copy recommendations (what to say simply and directly)",
+          "points": [
+            "Use active voice and second person («you», «your»)",
+            "Short sentences; avoid jargon and empty adjectives",
+            "Highlight numbers and concrete results when you have them",
+            "The CTA should say exactly what happens next (e.g. «Book a demo», «Get the guide»)",
+            "If space allows, add a line that reduces friction (e.g. «No commitment», «Takes 2 minutes»)"
+          ]
+        },
+        {
+          "title": "Offer ideas (what makes sense to ask / promise / deliver)",
+          "points": [
+            "Match the offer to intent: someone who wants to «learn more» gets a guide; someone who wants to «try» gets a demo",
+            "High-value offers: diagnostic, personalised plan, strategy session (in exchange for qualified contact)",
+            "Promise and deliver: what you promise on the button should be what they get in the next step",
+            "Avoid asking for too much at once; one field (e.g. email) may be enough to start"
+          ]
+        },
+        {
+          "title": "The most useful type of AI Offer for your case",
+          "points": [
+            "Diagnostic or quiz: the visitor answers questions and gets a personalised result (recommended for B2B and services)",
+            "Calculator or simulator: useful when value depends on inputs (e.g. savings, sizing)",
+            "Content generator: brief, plan outline or tailored summary (creates commitment and qualification)",
+            "Chatbot or assistant: answers FAQs and hands off to a human when it makes sense",
+            "Choose a format that delivers immediate value and naturally qualifies the lead"
+          ]
+        }
+      ]
     },
     "delivers": {
       "title": "What we deliver",

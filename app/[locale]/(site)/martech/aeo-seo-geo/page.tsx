@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
+import AeoSeoGeoDiagnostic from '@/components/martech/AeoSeoGeoDiagnostic';
+import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -105,12 +107,9 @@ export default async function AeoSeoGeoPage({
             <div className="mt-10 bg-[#5b54a0]/5 border border-[#5b54a0]/20 rounded-2xl p-8">
               <p className="font-semibold text-lg mb-3">{t('audit.title')}</p>
               <p className="text-gray-700 mb-6">{t('audit.description')}</p>
-              <Link
-                href="/contactos"
-                className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium"
-              >
+              <ScrollToDiagnostic className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
                 {t('audit.cta')}
-              </Link>
+              </ScrollToDiagnostic>
             </div>
           </AnimateIn>
         </div>
@@ -158,16 +157,15 @@ export default async function AeoSeoGeoPage({
               >
                 {t('cta1')}
               </Link>
-              <Link
-                href="/contactos"
-                className="px-8 py-3 border-2 border-[#5b54a0] text-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors font-medium"
-              >
+              <ScrollToDiagnostic className="px-8 py-3 border-2 border-[#5b54a0] text-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors font-medium">
                 {t('cta2')}
-              </Link>
+              </ScrollToDiagnostic>
             </div>
           </AnimateIn>
         </div>
       </section>
+
+      <AeoSeoGeoDiagnostic locale={locale} />
     </div>
   );
 }

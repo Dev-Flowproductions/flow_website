@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
+import AiAgentsDiagnostic from '@/components/martech/AiAgentsDiagnostic';
+import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -111,12 +113,9 @@ export default async function AiAgentsPage({
             <div className="bg-[#5b54a0]/5 border border-[#5b54a0]/20 rounded-2xl p-8">
               <p className="font-semibold text-lg mb-3">{t('diagnostic.title')}</p>
               <p className="text-gray-700 mb-6">{t('diagnostic.description')}</p>
-              <Link
-                href="/contactos"
-                className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium mb-8"
-              >
+              <ScrollToDiagnostic className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium mb-8">
                 {t('diagnostic.cta')}
-              </Link>
+              </ScrollToDiagnostic>
               <div className="mt-6 pt-6 border-t border-[#5b54a0]/20">
                 <p className="font-semibold mb-4">{t('diagnostic.receives.title')}</p>
                 <ul className="space-y-2">
@@ -149,6 +148,8 @@ export default async function AiAgentsPage({
           </AnimateIn>
         </div>
       </section>
+
+      <AiAgentsDiagnostic locale={locale} />
     </div>
   );
 }

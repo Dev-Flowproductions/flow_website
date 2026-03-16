@@ -777,7 +777,63 @@
         "Idées d'offre (ce qui fait sens de demander / promettre / livrer)",
         "Et, si ça fait sens pour votre cas, le type d'AI Offer le plus utile"
       ],
-      "cta": "Générer un plan d'action →"
+      "cta": "Générer un plan d'action →",
+      "generating": "Génération de votre plan...",
+      "close": "Fermer",
+      "sectionTitle": "Votre plan d'action landing page",
+      "sectionSubtitle": "Guide rapide pour construire une landing page qui convertit.",
+      "sections": [
+        {
+          "title": "Les sujets essentiels que votre landing page doit avoir",
+          "points": [
+            "Un headline clair qui répond à ce que le visiteur cherche",
+            "Le problème ou besoin que vous adressez (en 1–2 phrases)",
+            "Votre solution ou offre (ce que vous proposez et pourquoi vous)",
+            "Preuve sociale ou crédibilité (témoignages, chiffres, études de cas)",
+            "Une seule call-to-action (CTA) principale",
+            "Coordonnées ou moyen clair de suivi"
+          ]
+        },
+        {
+          "title": "Suggestions de structure (ordre des sections et focus du message)",
+          "points": [
+            "Commencez par le bénéfice ou le résultat, pas par l'histoire de l'entreprise",
+            "Ordre : problème → solution → preuve → action",
+            "Une idée par section ; évitez les murs de texte",
+            "Gardez la CTA visible au-dessus de la ligne de flottaison et répétez en fin de page",
+            "Restez focalisé : une offre, un objectif par page"
+          ]
+        },
+        {
+          "title": "Recommandations de copy (quoi dire de manière simple et directe)",
+          "points": [
+            "Voix active et deuxième personne (« vous », « votre »)",
+            "Phrases courtes ; évitez le jargon et les adjectifs vides",
+            "Mettez en avant les chiffres et résultats concrets quand vous en avez",
+            "La CTA doit dire exactement ce qui se passe ensuite (ex. « Réserver une démo », « Recevoir le guide »)",
+            "Si la place le permet, une ligne qui réduit la friction (ex. « Sans engagement », « En 2 minutes »)"
+          ]
+        },
+        {
+          "title": "Idées d'offre (ce qui fait sens de demander / promettre / livrer)",
+          "points": [
+            "Alignez l'offre sur l'intention : qui veut « en savoir plus » reçoit un guide ; qui veut « tester » reçoit une démo",
+            "Offres à forte valeur : diagnostic, plan personnalisé, session stratégique (en échange d'un contact qualifié)",
+            "Promettez et tenez : ce que vous promettez sur le bouton doit être ce que vous livrez à l'étape suivante",
+            "Évitez de demander trop d'un coup ; un champ (ex. email) peut suffire pour commencer"
+          ]
+        },
+        {
+          "title": "Le type d'AI Offer le plus utile pour votre cas",
+          "points": [
+            "Diagnostic ou quiz : le visiteur répond à des questions et reçoit un résultat personnalisé (recommandé pour B2B et services)",
+            "Calculateur ou simulateur : utile quand la valeur dépend des entrées (ex. économies, dimensionnement)",
+            "Générateur de contenu : brief, ébauche de plan ou résumé sur mesure (crée engagement et qualification)",
+            "Chatbot ou assistant : répond aux FAQs et passe le relais à un humain quand il faut",
+            "Choisissez un format qui délivre une valeur immédiate et qualifie naturellement le lead"
+          ]
+        }
+      ]
     },
     "delivers": {
       "title": "Ce que nous livrons",
