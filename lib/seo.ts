@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
+const SITE_URL = 'https://flowproductions.pt';
 const SITE_NAME = 'Flow Productions';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/og-default.jpg`;
 

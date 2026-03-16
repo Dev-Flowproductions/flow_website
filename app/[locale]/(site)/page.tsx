@@ -27,8 +27,14 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
 
+  const titles: Record<string, string> = {
+    pt: 'Agência Criativa em Faro — Design, Marketing & Audiovisual',
+    en: 'Creative Agency in Faro — Design, Marketing & Audiovisual',
+    fr: 'Agence Créative à Faro — Design, Marketing & Audiovisuel',
+  };
+
   return getPageMetadata(locale, {
-    title: 'Flow Productions',
+    title: titles[locale] || titles.pt,
     description: t('hero.description'),
     path: '',
     keywords: ['agência criativa Faro', 'design gráfico', 'marketing digital', 'produção audiovisual', 'animação 2D 3D', 'branding', 'motion graphics'],
