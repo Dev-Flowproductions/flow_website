@@ -8,13 +8,21 @@ const SGA_URL = 'https://sga.flowproductions.pt/';
 
 export default function SGAChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [diagnosticContext, setDiagnosticContext] = useState<Record<string, unknown> | null>(null);
   const { isOpen: mobileMenuOpen } = useMobileMenu();
 
   const open = useCallback(() => setIsOpen(true), []);
-  const close = useCallback(() => setIsOpen(false), []);
+  const close = useCallback(() => {
+    setIsOpen(false);
+    setDiagnosticContext(null);
+  }, []);
 
   useEffect(() => {
-    const handler = () => open();
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ diagnosticContext?: Record<string, unknown> }>).detail;
+      if (detail?.diagnosticContext) setDiagnosticContext(detail.diagnosticContext);
+      open();
+    };
     window.addEventListener('open-sga-chat', handler);
     return () => window.removeEventListener('open-sga-chat', handler);
   }, [open]);
@@ -95,7 +103,11 @@ export default function SGAChatWidget() {
             </div>
             <div className="relative min-h-0 flex-1">
               <iframe
-                src={SGA_URL}
+                src={
+                  diagnosticContext
+                    ? `${SGA_URL}?diagnostic=${encodeURIComponent(JSON.stringify(diagnosticContext))}`
+                    : SGA_URL
+                }
                 title="Flowi - Strategic Growth Advisor"
                 className="absolute inset-0 h-full w-full border-0"
                 allow="microphone"

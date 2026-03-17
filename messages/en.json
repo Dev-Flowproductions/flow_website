@@ -546,7 +546,7 @@
   },
   "martechAeo": {
     "metaTitle": "Websites optimised for AEO, GEO and SEO",
-    "metaDescription": "We prepare your website to appear on Google and to be understood, cited and recommended by AI engines.",
+    "metaDescription": "Websites optimised for Google and AI engines: SEO, AEO and GEO. Structure, content and technical optimisation to be found and cited.",
     "hero": {
       "label": "MARTECH / AEO · GEO · SEO",
       "title": "Websites optimised for AEO, GEO and SEO",
@@ -598,11 +598,20 @@
       ]
     },
     "cta1": "Book a conversation",
-    "cta2": "Audit my site (free)"
+    "cta2": "Audit my site (free)",
+    "faqSectionTitle": "Frequently asked questions",
+    "backToMartech": "Explore MarTech",
+    "schemaFaqs": [
+      { "question": "What is SEO, AEO and GEO?", "answer": "SEO is optimisation for traditional search (Google). AEO structures content to be the answer (FAQs, snippets). GEO prepares content to be understood and cited by AI engines like ChatGPT or Perplexity." },
+      { "question": "Who is AEO and GEO optimisation for?", "answer": "Companies with lots of content and little consistency, who want to appear in AI answers and need a foundation that supports growth and multiple teams." },
+      { "question": "What does the AEO/GEO/SEO website service include?", "answer": "Architecture by search intent, pages with clear structure, technical and editorial optimisation, and content prepared for AEO and GEO." },
+      { "question": "What is the difference between AEO and GEO?", "answer": "AEO focuses on being the answer in formats like FAQs and snippets (e.g. Google's answer box). GEO focuses on being cited and recommended by generative engines (ChatGPT, Perplexity, Gemini)." },
+      { "question": "Can I audit my site for free?", "answer": "Yes. Flow offers the WebAudit tool, 100% free and no commitment, so you can see how your website performs in terms of flow and structure." }
+    ]
   },
   "martechDemandGen": {
     "metaTitle": "Non-Gated Demand Gen",
-    "metaDescription": "Create demand without gating everything behind forms. In B2B, this increases trust and lead quality.",
+    "metaDescription": "Create demand without forms. In B2B it increases trust and lead quality. Content and distribution that warm the market.",
     "hero": {
       "label": "MARTECH / DEMAND GEN",
       "title": "Non-Gated Demand Gen",
@@ -644,11 +653,77 @@
         "Less blind dependence on ads",
         "Consistent rhythm"
       ]
-    }
+    },
+    "faqSectionTitle": "Frequently asked questions",
+    "backToMartech": "Explore MarTech",
+    "schemaFaqs": [
+      { "question": "What is Non-Gated Demand Gen?", "answer": "Creating demand without gating everything behind forms. In B2B it increases trust and lead quality: people arrive better informed and sales teams waste less time." },
+      { "question": "Who is Non-Gated Demand Gen for?", "answer": "Companies that rely too heavily on paid content for leads, have long sales cycles, have content but no consistency or distribution, or feel gated leads arrive cold or poorly qualified." },
+      { "question": "What do you deliver in Demand Gen?", "answer": "Topic strategy by intent, content plan and distribution, editorial cadence with clear objectives, useful offers and measurement of what moves the funnel." },
+      { "question": "Does demand gen without forms mean losing leads?", "answer": "No. The goal is to warm the market with useful content first; leads who then request contact or a resource are better informed and qualified, which saves the sales team time." },
+      { "question": "How long until we see results?", "answer": "It depends on the starting point. In B2B with long cycles, it's normal to see more demand and qualified conversations within weeks; consistent funnel impact within a few months." }
+    ]
+  },
+  "demandGenTool": {
+    "title": "Non-Gated demand diagnostic",
+    "intro": "Answer a few questions to get a tailored action plan: where you're losing demand and what to do next.",
+    "subtitle": "Discover in a couple of minutes where you're losing demand and what to do next.",
+    "stepOf": "Question",
+    "of": "of",
+    "startButton": "Start diagnostic",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Get my action plan",
+    "freeLabel": "Free",
+    "noSignup": "No signup",
+    "stepsCount": "10",
+    "questions": "questions",
+    "selectAllApply": "Select all that apply",
+    "loading": "Analysing your answers...",
+    "errorSubmit": "Something went wrong. Please try again.",
+    "errorRequired": "This field is required.",
+    "suggestFromWebsite": "Suggest from website",
+    "suggestFromWebsiteLoading": "Analysing website…",
+    "suggestFromWebsiteError": "Could not get suggestions. You can type your own.",
+    "fields": {
+      "websiteUrl": "Company website",
+      "industry": "Industry / business type",
+      "mainOffer": "Main offer",
+      "salesCycle": "Average sales cycle",
+      "leadSources": "How do you currently generate most leads?",
+      "publishingConsistency": "Do you publish educational content consistently?",
+      "distributionChannels": "Where do you distribute your content today?",
+      "preSalesContentAccess": "What happens before someone talks to sales?",
+      "measurementMethods": "How do you currently measure demand quality?",
+      "biggestChallenge": "What is your biggest current challenge?"
+    },
+    "options": {
+      "salesCycle": { "under1": "Less than 1 month", "1to3": "1 to 3 months", "3to6": "3 to 6 months", "over6": "More than 6 months" },
+      "leadSources": { "paidAds": "Paid ads", "gatedContent": "Gated content", "organicSearch": "Organic search", "referrals": "Referrals", "socialMedia": "Social media", "outboundSales": "Outbound sales", "emailMarketing": "Email marketing", "partners": "Partners" },
+      "publishingConsistency": { "weekly": "Yes, weekly or more", "sometimes": "Yes, sometimes", "rarely": "Rarely", "never": "Almost never" },
+      "distributionChannels": { "website": "Website/blog", "linkedin": "LinkedIn", "instagram": "Instagram", "email": "Email", "partners": "Partner channels", "paid": "Paid promotion", "youtube": "YouTube/video", "nowhere": "Nowhere consistently" },
+      "preSalesContentAccess": { "free": "They can access useful content freely", "behindForm": "Most useful content is behind a form", "little": "There is very little supporting content", "notSure": "Not sure" },
+      "measurementMethods": { "leadVolume": "Lead volume", "mqls": "MQLs", "salesConversations": "Sales conversations", "pipeline": "Pipeline contribution", "closeRate": "Close rate", "contentEngagement": "Content engagement", "websiteBehaviour": "Website behaviour", "notMeasured": "We do not measure clearly" },
+      "biggestChallenge": { "lowQuality": "Low lead quality", "paidTraffic": "Too much reliance on paid traffic", "longCycle": "Long sales cycle", "weakTrust": "Weak trust and authority", "inconsistentContent": "Inconsistent content", "poorDistribution": "Poor distribution", "unclearRoi": "Unclear ROI" }
+    },
+    "result": {
+      "scoreLabel": "Demand generation readiness score",
+      "maturityLabel": "Maturity level",
+      "summaryLabel": "Summary",
+      "frictionsLabel": "Top friction points",
+      "leaksLabel": "Where demand is leaking",
+      "actionsLabel": "Priority actions",
+      "ctaButton": "Get a tailored demand gen action plan with our AI adviser",
+      "downloadPdf": "Download PDF report",
+      "pdfViewPageLink": "View full page and take the diagnostic again"
+    },
+    "maturity": { "early": "Early", "emerging": "Emerging", "structured": "Structured", "advanced": "Advanced" },
+    "severity": { "low": "Low", "medium": "Medium", "high": "High" },
+    "pdfFilename": "non-gated-demand-diagnostic-report.pdf"
   },
   "martechGtm": {
     "metaTitle": "Go-to-Market Strategy",
-    "metaDescription": "The plan to bring an offer to market with clarity: what you sell, for whom, why you, and how to reach the right people.",
+    "metaDescription": "Plan to bring an offer to market: what you sell, for whom, why you and how you reach the right people. Launch or reposition.",
     "hero": {
       "label": "MARTECH / GO-TO-MARKET",
       "title": "Go-to-Market Strategy",
@@ -690,11 +765,129 @@
         "Greater consistency between teams",
         "Faster decisions about where to invest"
       ]
-    }
+    },
+    "faqSectionTitle": "Frequently asked questions",
+    "backToMartech": "Explore MarTech",
+    "schemaFaqs": [
+      { "question": "What is a Go-to-Market strategy?", "answer": "The plan to bring an offer to market with clarity: what you sell, for whom, why you, and how you reach the right people. It makes sense for launches, repositioning or entering new segments." },
+      { "question": "When does a Go-to-Market strategy make sense?", "answer": "When launching a new product or service, repositioning the brand, entering a new segment, when growth is stalled or when sales struggle to explain the offer quickly." },
+      { "question": "What does the Go-to-Market service include?", "answer": "Positioning and value proposition, messages by audience, simple narrative with proof, channel map and phased plan, and priorities (what to do now vs later)." },
+      { "question": "Is Go-to-Market only for launches?", "answer": "No. It also makes sense for brand repositioning, entering a new segment, when growth is stalled or when sales and marketing can't explain the offer consistently." },
+      { "question": "How do I know where to start?", "answer": "With Flow's free diagnostic you get an action plan with suggestions to understand if working on Go-to-Market makes sense now and what the first step should be." }
+    ]
+  },
+  "gtmReadinessTool": {
+    "title": "Go-to-Market readiness diagnostic",
+    "subtitle": "Discover in a few minutes whether it makes sense to work on Go-to-Market now and where to start.",
+    "stepOf": "Question",
+    "of": "of",
+    "startButton": "Start diagnostic",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Get my action plan",
+    "freeLabel": "Free",
+    "noSignup": "No signup",
+    "stepsCount": "10",
+    "questions": "questions",
+    "loading": "Analysing your answers...",
+    "errorSubmit": "Something went wrong. Please try again.",
+    "errorRequired": "This field is required.",
+    "suggestFromWebsiteLoading": "Analysing website…",
+    "suggestFromWebsiteError": "Could not get suggestions. You can type your own.",
+    "fields": {
+      "websiteUrl": "Company website",
+      "offerDescription": "What are you bringing to market?",
+      "currentSituation": "What best describes your current situation?",
+      "offerClarity": "How clearly can your team explain the offer in one sentence?",
+      "targetAudience": "Who are you mainly trying to reach?",
+      "audienceMessaging": "Do decision-makers and end users need different messaging?",
+      "biggestChallenge": "What is your biggest current Go-to-Market challenge?",
+      "currentChannels": "Which channels are you currently relying on most?",
+      "proofLevel": "Do you already have proof points that support the offer?",
+      "teamAlignment": "How aligned are marketing and sales on the offer and message?"
+    },
+    "options": {
+      "currentSituation": { "launching": "Launching a new offer", "repositioning": "Repositioning an existing offer", "entering": "Entering a new market or segment", "scaling": "Trying to scale an existing motion", "notSure": "Not sure" },
+      "offerClarity": { "very": "Very clearly", "somewhat": "Somewhat clearly", "difficulty": "With difficulty", "notClearly": "Not clearly at all" },
+      "audienceMessaging": { "yesDefined": "Yes, and we have that defined", "yesNotDefined": "Yes, but it is not clearly defined", "no": "No", "notSure": "Not sure" },
+      "biggestChallenge": { "positioning": "Unclear positioning", "valueProp": "Weak value proposition", "complex": "Message too complex", "channels": "Wrong channels", "conversion": "Poor conversion from interest to conversation", "misalignment": "Internal misalignment", "priorities": "Too many priorities at once" },
+      "currentChannels": { "website": "Website", "organic": "Organic search", "social": "Social media", "paid": "Paid ads", "outbound": "Outbound sales", "email": "Email", "partners": "Partners", "events": "Events" },
+      "proofLevel": { "strong": "Yes, strong proof", "some": "Some proof, but not organised", "little": "Very little proof", "no": "No" },
+      "teamAlignment": { "highly": "Highly aligned", "mostly": "Mostly aligned", "partially": "Partially aligned", "poorly": "Poorly aligned" }
+    },
+    "result": {
+      "scoreLabel": "Go-to-Market readiness score",
+      "readinessLabel": "Readiness level",
+      "summaryLabel": "Summary",
+      "frictionsLabel": "Top friction points",
+      "clarityGapsLabel": "Clarity gaps",
+      "actionsLabel": "Priority actions",
+      "ctaButton": "Get a tailored Go-to-Market action plan with our AI adviser",
+      "downloadPdf": "Download PDF report",
+      "pdfViewPageLink": "View full page and take the diagnostic again"
+    },
+    "readinessLevel": { "early": "Early", "forming": "Forming", "readyToRefine": "Ready to refine", "marketReady": "Market-ready" },
+    "severity": { "low": "Low", "medium": "Medium", "high": "High" },
+    "selectAllApply": "Select all that apply"
+  },
+  "paidMediaWasteAudit": {
+    "title": "Paid media waste audit",
+    "subtitle": "Find out in a few minutes where you're wasting budget and what's worth fixing first.",
+    "stepOf": "Question",
+    "of": "of",
+    "startButton": "Start audit",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Get my action plan",
+    "freeLabel": "Free",
+    "noSignup": "No signup",
+    "stepsCount": "10",
+    "questions": "questions",
+    "loading": "Analysing your audit...",
+    "errorSubmit": "Something went wrong. Please try again.",
+    "suggestFromWebsiteLoading": "Analysing website…",
+    "suggestFromWebsiteError": "Could not get suggestions. You can continue and type your own.",
+    "fields": {
+      "websiteUrl": "Company website",
+      "landingPageUrl": "Main landing page used in campaigns",
+      "landingPageUrlHint": "Optional. We can use your company website if left blank.",
+      "monthlyAdSpend": "Monthly ad spend",
+      "channels": "Which channels are you currently using?",
+      "campaignGoal": "What is the main goal of your campaigns?",
+      "successMetrics": "How do you currently judge campaign success?",
+      "testingDiscipline": "Are you testing creatives, messaging, or targeting regularly?",
+      "adLandingAlignment": "How aligned are your ads and landing pages?",
+      "postLeadTracking": "Do you track what happens after the lead is generated?",
+      "biggestChallenge": "What is your biggest current paid media challenge?"
+    },
+    "options": {
+      "monthlyAdSpend": { "under1k": "Less than €1,000", "1kTo5k": "€1,000 to €5,000", "5kTo15k": "€5,000 to €15,000", "over15k": "More than €15,000" },
+      "channels": { "googleAds": "Google Ads", "linkedInAds": "LinkedIn Ads", "metaAds": "Meta Ads", "youtubeAds": "YouTube Ads", "display": "Display/programmatic", "other": "Other" },
+      "campaignGoal": { "leads": "Lead generation", "meetings": "Booked meetings", "sales": "Sales", "awareness": "Awareness", "traffic": "Traffic", "notDefined": "Not clearly defined" },
+      "successMetrics": { "clicks": "Clicks", "ctr": "CTR", "cpc": "CPC", "leads": "Leads", "bookedCalls": "Booked calls", "pipeline": "Pipeline", "revenue": "Revenue", "leadQuality": "Lead quality", "notSure": "We are not sure" },
+      "testingDiscipline": { "yesClear": "Yes, with a clear method", "yesInconsistent": "Yes, but inconsistently", "rarely": "Rarely", "almostNever": "Almost never" },
+      "adLandingAlignment": { "highly": "Highly aligned", "somewhat": "Somewhat aligned", "mismatched": "Often mismatched", "notSure": "Not sure" },
+      "postLeadTracking": { "yesCrm": "Yes, through CRM and sales stages", "partly": "Partly", "basic": "Only basic lead tracking", "no": "No" },
+      "biggestChallenge": { "highCpl": "High cost per lead", "lowQuality": "Low lead quality", "poorConversion": "Poor conversion rate", "weakReporting": "Weak reporting clarity", "unclearTargeting": "Unclear targeting", "weakCreatives": "Weak creatives", "landingUnderperform": "Landing page underperformance", "cannotScale": "Cannot scale predictably" }
+    },
+    "result": {
+      "scoreLabel": "Paid media efficiency score",
+      "auditLevelLabel": "Audit level",
+      "summaryLabel": "Summary",
+      "wasteRisksLabel": "Top waste risks",
+      "blockersLabel": "Performance blockers",
+      "actionsLabel": "Priority actions",
+      "ctaButton": "Get a tailored paid media action plan with our AI adviser",
+      "downloadPdf": "Download PDF report",
+      "pdfViewPageLink": "View full page and take the audit again"
+    },
+    "auditLevel": { "inefficient": "Inefficient", "unstable": "Unstable", "improving": "Improving", "efficientScalable": "Efficient and scalable" },
+    "severity": { "low": "Low", "medium": "Medium", "high": "High" },
+    "selectAllApply": "Select all that apply"
   },
   "martechPaidMedia": {
     "metaTitle": "LLM Advertisement & Paid Media",
-    "metaDescription": "We manage paid media with one simple rule: every euro invested must teach something.",
+    "metaDescription": "Paid media with one rule: every euro invested must teach something. Strategy, tests, landing pages and clear reporting. Google Ads, Meta.",
     "hero": {
       "label": "MARTECH / PAID MEDIA",
       "title": "LLM Advertisement & Paid Media",
@@ -735,11 +928,96 @@
         "CRM connection when possible (for quality, not just quantity)",
         "Offer and landing page recommendations to increase conversion"
       ]
-    }
+    },
+    "faqSectionTitle": "Frequently asked questions",
+    "backToMartech": "Explore MarTech",
+    "schemaFaqs": [
+      { "question": "What is LLM Advertisement and Paid Media?", "answer": "Managing paid channels (Google Ads, Meta, etc.) with the rule that every euro invested must teach something: strategy, well-structured tests, aligned landing pages and clear reporting." },
+      { "question": "Who is the Paid Media service for?", "answer": "Companies investing in ads without clarity on return, teams that need predictability, and brands that want to test formats linked to AI engines with a clear framework." },
+      { "question": "What do you deliver in Paid Media?", "answer": "Campaign strategy and account structure, test plan (creative, message, segmentation, offer), continuous optimisation and CRM connection when possible." },
+      { "question": "What does \"every euro must teach something\" mean?", "answer": "It means every campaign and test is designed to generate learning (what works, for whom, in which context), not just clicks. That way we optimise with data and reduce waste." },
+      { "question": "Do you audit ad accounts?", "answer": "Yes. Flow offers a free, no-commitment audit to identify where you're wasting budget and what to fix first." }
+    ]
+  },
+  "landingPageAiOfferTool": {
+    "title": "Landing page diagnostic and action plan",
+    "subtitle": "Find out in a few minutes how to improve your landing page or plan a new one.",
+    "choosePath": "Choose your path",
+    "pathAudit": "I already have a landing page",
+    "pathPlan": "I don't have a landing page yet",
+    "stepOf": "Question",
+    "of": "of",
+    "startButton": "Start",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Get my result",
+    "freeLabel": "Free",
+    "noSignup": "No signup",
+    "loading": "Analysing your answers...",
+    "errorSubmit": "Something went wrong. Please try again.",
+    "suggestFromWebsiteLoading": "Analysing website…",
+    "suggestFromWebsiteError": "Could not get suggestions. You can type your own.",
+    "selectAllApply": "Select all that apply",
+    "audit": {
+      "fields": {
+        "landingPageUrl": "Landing page URL",
+        "pageGoal": "Main goal of the page",
+        "trafficSources": "Main traffic source",
+        "biggestIssue": "What is your biggest issue right now?",
+        "multipleCampaignsToSamePage": "Do you send multiple campaigns to the same page?",
+        "testingDiscipline": "Do you currently test headlines, offers, or CTAs?",
+        "actionClarity": "How clear is the page action for the visitor?"
+      },
+      "options": {
+        "pageGoal": { "leads": "Lead generation", "meeting": "Booked meeting", "demo": "Demo request", "purchase": "Purchase", "download": "Download", "contact": "Contact request" },
+        "traffic": { "googleAds": "Google Ads", "linkedInAds": "LinkedIn Ads", "metaAds": "Meta Ads", "organic": "Organic search", "email": "Email", "social": "Social media", "direct": "Direct", "partner": "Partner traffic" },
+        "biggestIssue": { "lowConversion": "Low conversion rate", "dropoffs": "Too many drop-offs", "unclearMessage": "Message is unclear", "weakOffer": "Offer is weak", "generic": "Page feels generic", "trafficMismatch": "Traffic does not match the page", "notSure": "Not sure" },
+        "multiple": { "yes": "Yes", "sometimes": "Sometimes", "no": "No" },
+        "testing": { "regularly": "Yes, regularly", "occasionally": "Yes, occasionally", "rarely": "Rarely", "no": "No" },
+        "actionClarity": { "very": "Very clear", "somewhat": "Somewhat clear", "unclear": "Unclear", "notSure": "Not sure" }
+      }
+    },
+    "plan": {
+      "fields": {
+        "websiteUrl": "Company website",
+        "websiteUrlHint": "Optional. We use it to tailor suggestions.",
+        "pageGoal": "What is the main thing you want the page to achieve?",
+        "offerDescription": "What are you offering?",
+        "targetAudience": "Who is the page for?",
+        "trafficSources": "What traffic will come to this page?",
+        "desiredNextAction": "What do you think the user should do next?",
+        "offerClarity": "How clear is your current offer?",
+        "aiOfferInterest": "Are you interested in using an AI Offer?"
+      },
+      "options": {
+        "pageGoal": { "leads": "Generate leads", "meetings": "Book meetings", "sell": "Sell a product or service", "demo": "Promote a demo", "validate": "Validate an offer", "launch": "Capture interest for a new launch" },
+        "traffic": { "paid": "Paid ads", "organic": "Organic search", "social": "Social media", "email": "Email", "outbound": "Outbound campaigns", "referrals": "Referrals", "notSure": "Not sure yet" },
+        "nextAction": { "quote": "Request a quote", "call": "Book a call", "demo": "Request a demo", "buy": "Buy now", "guide": "Get a guide or plan", "diagnostic": "Complete a short diagnostic", "notSure": "Not sure" },
+        "offerClarity": { "very": "Very clear", "somewhat": "Somewhat clear", "unclear": "Unclear", "exploring": "Still exploring" },
+        "aiInterest": { "yes": "Yes", "maybe": "Maybe", "no": "No", "notSure": "Not sure what that means" }
+      }
+    },
+    "result": {
+      "scoreLabel": "Score",
+      "resultLevelLabel": "Result level",
+      "summaryLabel": "Summary",
+      "blockersLabel": "Top conversion blockers",
+      "actionsLabel": "Priority actions",
+      "essentialTopicsLabel": "Essential topics your page should include",
+      "structureLabel": "Suggested page structure",
+      "copyLabel": "Copy recommendations",
+      "offerRecLabel": "Offer recommendation",
+      "aiOfferLabel": "AI offer recommendation",
+      "ctaButton": "Get a tailored landing page action plan with our AI adviser",
+      "downloadPdf": "Download PDF report",
+      "pdfViewPageLink": "View full page and take the tool again"
+    },
+    "resultLevel": { "weak": "Weak", "mixed": "Mixed", "promising": "Promising", "strong": "Strong" },
+    "severity": { "low": "Low", "medium": "Medium", "high": "High" }
   },
   "martechLandingPages": {
     "metaTitle": "Landing Pages & AI Offers",
-    "metaDescription": "We create landing pages focused on one action and offers that genuinely help users move forward.",
+    "metaDescription": "Landing pages focused on one action and AI offers that help users move forward. Conversion, copy and structure for campaigns that sell.",
     "hero": {
       "label": "MARTECH / LANDING PAGES",
       "title": "Landing Pages & AI Offers",
@@ -844,11 +1122,76 @@
         "Offer with real value",
         "AI offers when they add utility"
       ]
-    }
+    },
+    "faqSectionTitle": "Frequently asked questions",
+    "backToMartech": "Explore MarTech",
+    "schemaFaqs": [
+      { "question": "What is an AI Offer?", "answer": "An AI offer is a short experience that helps someone make a decision: run a diagnostic, buy something, generate a brief or a personalised guide. It increases utility and conversion." },
+      { "question": "Who are landing pages and AI Offers for?", "answer": "Companies with traffic (organic or paid) but conversion doesn't follow, who feel the page doesn't explain or convince, or have multiple campaigns leading to one generic page." },
+      { "question": "What do you deliver in Landing Pages?", "answer": "Fast, action-oriented landing pages, simple direct copy, AEO structure when relevant and AI offers when they add utility." },
+      { "question": "Is a landing page the same as a homepage?", "answer": "No. A landing page has a single goal (e.g. download a guide, book a demo, request contact). A homepage serves multiple goals; for paid or specific campaigns, a dedicated landing page converts better." },
+      { "question": "Can I get a free action plan for landing pages?", "answer": "Yes. If you don't yet have a landing page, Flow generates a free action plan with essential topics, structure, copy and the most useful type of AI Offer for your case." }
+    ]
+  },
+  "aiAgentOpportunityTool": {
+    "title": "AI agent opportunity diagnostic",
+    "subtitle": "Find out in a few minutes which AI agents would make the biggest difference in your business and what to do first.",
+    "stepOf": "Question",
+    "of": "of",
+    "startButton": "Start diagnostic",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Get my action plan",
+    "freeLabel": "Free",
+    "noSignup": "No signup",
+    "stepsCount": "10",
+    "questions": "questions",
+    "loading": "Analysing your operation...",
+    "errorSubmit": "Something went wrong. Please try again.",
+    "suggestFromWebsiteLoading": "Analysing website…",
+    "suggestFromWebsiteError": "Could not get suggestions. You can continue without.",
+    "selectAllApply": "Select all that apply",
+    "fields": {
+      "websiteUrl": "Company website",
+      "websiteUrlHint": "Optional. We use it to tailor recommendations.",
+      "weeklyInboundVolume": "How many inbound requests or enquiries do you handle each week?",
+      "overloadedAreas": "Which areas feel most overloaded today?",
+      "currentHandlingState": "What happens most often when a new lead or request arrives?",
+      "ruleClarity": "How clearly are your qualification criteria or response rules defined?",
+      "consistencyNeeds": "Where would consistency matter most?",
+      "biggestChallenge": "What is your biggest current challenge?",
+      "handoffImportance": "How comfortable are you with human handoff when needed?",
+      "knowledgeReadiness": "Do you already have useful knowledge sources or process documents?",
+      "firstPhasePriority": "What matters most in the first phase?"
+    },
+    "options": {
+      "weeklyInboundVolume": { "under10": "Less than 10", "10to50": "10 to 50", "50to200": "50 to 200", "over200": "More than 200" },
+      "overloadedAreas": { "recurring": "Answering recurring questions", "qualifying": "Qualifying leads", "followUp": "Follow-up after first contact", "admin": "Internal admin tasks", "support": "Support or customer service", "routing": "Routing requests to the right person", "summarising": "Summarising meetings or conversations" },
+      "currentHandlingState": { "manual": "A person handles it manually from start to finish", "partial": "There is a partial process, but it is inconsistent", "someAutomation": "There is some automation, but it lacks context", "notSure": "Not sure" },
+      "ruleClarity": { "very": "Very clearly defined", "partly": "Partly defined", "informal": "Mostly informal", "notDefined": "Not defined" },
+      "consistencyNeeds": { "website": "Website and inbound questions", "leadQual": "Lead qualification", "support": "Support responses", "internal": "Internal team requests", "followUp": "Follow-up communication", "handoff": "Handoff to sales" },
+      "biggestChallenge": { "slowResponse": "Slow response time", "poorQuality": "Poor lead quality", "repetitive": "Too much repetitive work", "inconsistent": "Inconsistent information", "missedFollowUp": "Missed follow-up", "manualRouting": "Too much manual routing", "aiRisk": "Concern about AI risk or loss of control" },
+      "handoffImportance": { "essential": "Essential in many cases", "important": "Important in some cases", "occasional": "Only needed occasionally", "notSure": "Not sure" },
+      "knowledgeReadiness": { "organised": "Yes, well organised", "scattered": "Yes, but scattered", "limited": "Very limited", "no": "No" },
+      "firstPhasePriority": { "savingTime": "Saving time", "leadQuality": "Improving lead quality", "responseSpeed": "Improving response speed", "reducingInconsistency": "Reducing inconsistency", "reducingRisk": "Reducing operational risk" }
+    },
+    "result": {
+      "scoreLabel": "AI agent opportunity score",
+      "readinessLabel": "Readiness level",
+      "summaryLabel": "Summary",
+      "opportunitiesLabel": "Top opportunity areas",
+      "recommendedAgentsLabel": "Recommended AI agents",
+      "prioritiesLabel": "Implementation priorities",
+      "governanceLabel": "Governance and handoff",
+      "ctaButton": "Get a tailored AI agent action plan with our AI adviser",
+      "downloadPdf": "Download PDF report",
+      "pdfViewPageLink": "View full page and take the diagnostic again"
+    },
+    "readinessLevel": { "early": "Early", "emerging": "Emerging", "readyToPilot": "Ready to pilot", "readyToImplement": "Ready to implement" }
   },
   "martechAiAgents": {
     "metaTitle": "AI Agents for Marketing and Sales",
-    "metaDescription": "AI agents that answer questions, qualify requests, support follow-ups and help internal teams with context, rules and control.",
+    "metaDescription": "AI agents for marketing and sales: questions, lead qualification, follow-ups and internal teams. With context, rules and control.",
     "hero": {
       "label": "MARTECH / AI AGENTS",
       "title": "AI Agents for Marketing and Sales",
@@ -902,6 +1245,15 @@
         "Internal agents for the team",
         "Governance: limits, validation, logs and continuous improvement"
       ]
-    }
+    },
+    "faqSectionTitle": "Frequently asked questions",
+    "backToMartech": "Explore MarTech",
+    "schemaFaqs": [
+      { "question": "What is an AI Agent?", "answer": "An assistant that runs tasks autonomously or semi-autonomously: answering questions, qualifying requests, supporting follow-ups and helping internal teams, with context, rules and control." },
+      { "question": "Who are AI Agents for?", "answer": "Companies that receive many requests and can't respond in time, have teams losing hours on repeated tasks, want to qualify leads before sales or need consistency in the information they give out." },
+      { "question": "What do you deliver in AI Agents?", "answer": "Agent for FAQs, initial lead qualification, handoff to sales with context, internal agents for the team and governance (limits, validation, logs)." },
+      { "question": "Does an AI Agent replace people?", "answer": "No. The goal is to automate repeated tasks and qualify before handing off to a human. The agent follows rules, records what happened and hands off when a human decision or relationship is needed." },
+      { "question": "How do I know which agents make sense for me?", "answer": "With Flow's free diagnostic you get recommendations for the agents with the most impact on your operation, implementation priorities and a note on control and governance." }
+    ]
   }
 }

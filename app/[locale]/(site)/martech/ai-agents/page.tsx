@@ -1,9 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { Link } from '@/i18n/routing';
-import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
-import AiAgentsDiagnostic from '@/components/martech/AiAgentsDiagnostic';
+import { getPageMetadata, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo';
+import AiAgentOpportunityDiagnostic from '@/components/martech/AiAgentOpportunityDiagnostic';
+import MartechFaqSection from '@/components/martech/MartechFaqSection';
 import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -37,6 +37,14 @@ export default async function AiAgentsPage({
     { name: 'MarTech', url: `${SITE_URL}/${locale}/martech` },
     { name: t('hero.title'), url: `${SITE_URL}/${locale}/martech/ai-agents` },
   ]);
+  const schemaFaqs = t.raw('schemaFaqs') as Array<{ question: string; answer: string }>;
+  const faqSchema = faqJsonLd(schemaFaqs);
+  const serviceSchema = serviceJsonLd({
+    name: t('hero.title'),
+    description: t('metaDescription'),
+    url: `${SITE_URL}/${locale}/martech/ai-agents`,
+    serviceType: 'AI Agent',
+  });
 
   const whatIsItems = t.raw('whatIsAgent.items') as string[];
   const forWhoItems = t.raw('forWho.items') as string[];
@@ -46,6 +54,8 @@ export default async function AiAgentsPage({
   return (
     <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       {/* Intro Section */}
       <section className="py-20 px-4 bg-white">
@@ -113,7 +123,7 @@ export default async function AiAgentsPage({
             <div className="bg-[#5b54a0]/5 border border-[#5b54a0]/20 rounded-2xl p-8">
               <p className="font-semibold text-lg mb-3">{t('diagnostic.title')}</p>
               <p className="text-gray-700 mb-6">{t('diagnostic.description')}</p>
-              <ScrollToDiagnostic className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium mb-8">
+              <ScrollToDiagnostic targetId="ai-agent-opportunity-diagnostic" className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium mb-8">
                 {t('diagnostic.cta')}
               </ScrollToDiagnostic>
               <div className="mt-6 pt-6 border-t border-[#5b54a0]/20">
@@ -149,7 +159,9 @@ export default async function AiAgentsPage({
         </div>
       </section>
 
-      <AiAgentsDiagnostic locale={locale} />
+      <MartechFaqSection faqs={schemaFaqs} sectionTitle={t('faqSectionTitle')} />
+
+      <AiAgentOpportunityDiagnostic locale={locale} />
     </div>
   );
 }

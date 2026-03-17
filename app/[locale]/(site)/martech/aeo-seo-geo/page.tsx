@@ -2,9 +2,10 @@ import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
-import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
-import AeoSeoGeoDiagnostic from '@/components/martech/AeoSeoGeoDiagnostic';
-import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
+import { getPageMetadata, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo';
+import MartechFaqSection from '@/components/martech/MartechFaqSection';
+
+const WEB_AUDIT_URL = 'https://webaudit.flowproductions.pt/';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -37,6 +38,14 @@ export default async function AeoSeoGeoPage({
     { name: 'MarTech', url: `${SITE_URL}/${locale}/martech` },
     { name: t('hero.title'), url: `${SITE_URL}/${locale}/martech/aeo-seo-geo` },
   ]);
+  const schemaFaqs = t.raw('schemaFaqs') as Array<{ question: string; answer: string }>;
+  const faqSchema = faqJsonLd(schemaFaqs);
+  const serviceSchema = serviceJsonLd({
+    name: t('hero.title'),
+    description: t('metaDescription'),
+    url: `${SITE_URL}/${locale}/martech/aeo-seo-geo`,
+    serviceType: 'Search Engine Optimization',
+  });
 
   const whatIsItems = t.raw('whatIs.items') as Array<{ term: string; description: string }>;
   const forWhoItems = t.raw('forWho.items') as string[];
@@ -46,6 +55,8 @@ export default async function AeoSeoGeoPage({
   return (
     <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       {/* Intro Section */}
       <section className="py-20 px-4 bg-white">
@@ -107,9 +118,14 @@ export default async function AeoSeoGeoPage({
             <div className="mt-10 bg-[#5b54a0]/5 border border-[#5b54a0]/20 rounded-2xl p-8">
               <p className="font-semibold text-lg mb-3">{t('audit.title')}</p>
               <p className="text-gray-700 mb-6">{t('audit.description')}</p>
-              <ScrollToDiagnostic className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
+              <a
+                href={WEB_AUDIT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium"
+              >
                 {t('audit.cta')}
-              </ScrollToDiagnostic>
+              </a>
             </div>
           </AnimateIn>
         </div>
@@ -146,6 +162,8 @@ export default async function AeoSeoGeoPage({
         </div>
       </section>
 
+      <MartechFaqSection faqs={schemaFaqs} sectionTitle={t('faqSectionTitle')} />
+
       {/* CTA Section */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center md:text-left">
@@ -157,15 +175,18 @@ export default async function AeoSeoGeoPage({
               >
                 {t('cta1')}
               </Link>
-              <ScrollToDiagnostic className="px-8 py-3 border-2 border-[#5b54a0] text-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors font-medium">
+              <a
+                href={WEB_AUDIT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 border-2 border-[#5b54a0] text-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors font-medium"
+              >
                 {t('cta2')}
-              </ScrollToDiagnostic>
+              </a>
             </div>
           </AnimateIn>
         </div>
       </section>
-
-      <AeoSeoGeoDiagnostic locale={locale} />
     </div>
   );
 }

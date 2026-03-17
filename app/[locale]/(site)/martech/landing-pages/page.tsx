@@ -1,11 +1,10 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { Link } from '@/i18n/routing';
-import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
-import LandingPagesDiagnostic from '@/components/martech/LandingPagesDiagnostic';
+import { getPageMetadata, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo';
+import LandingPageAndAiOfferPlanner from '@/components/martech/LandingPageAndAiOfferPlanner';
+import MartechFaqSection from '@/components/martech/MartechFaqSection';
 import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
-import ActionPlanModal from '@/components/martech/ActionPlanModal';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -38,15 +37,24 @@ export default async function LandingPagesPage({
     { name: 'MarTech', url: `${SITE_URL}/${locale}/martech` },
     { name: t('hero.title'), url: `${SITE_URL}/${locale}/martech/landing-pages` },
   ]);
+  const schemaFaqs = t.raw('schemaFaqs') as Array<{ question: string; answer: string }>;
+  const faqSchema = faqJsonLd(schemaFaqs);
+  const serviceSchema = serviceJsonLd({
+    name: t('hero.title'),
+    description: t('metaDescription'),
+    url: `${SITE_URL}/${locale}/martech/landing-pages`,
+    serviceType: 'Landing Page Design',
+  });
 
   const forWhoItems = t.raw('forWho.items') as string[];
   const actionPlanItems = t.raw('actionPlan.items') as string[];
-  const actionPlanSections = t.raw('actionPlan.sections') as Array<{ title: string; points: string[] }>;
   const deliversItems = t.raw('delivers.items') as string[];
 
   return (
     <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       {/* Intro Section */}
       <section className="py-20 px-4 bg-white">
@@ -103,7 +111,7 @@ export default async function LandingPagesPage({
             <div className="bg-[#5b54a0]/5 border border-[#5b54a0]/20 rounded-2xl p-8 mb-8">
               <p className="font-semibold text-lg mb-3">{t('diagnostic.title')}</p>
               <p className="text-gray-700 mb-6">{t('diagnostic.description')}</p>
-              <ScrollToDiagnostic className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
+              <ScrollToDiagnostic targetId="landing-page-ai-offer-planner" className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
                 {t('diagnostic.cta')}
               </ScrollToDiagnostic>
             </div>
@@ -112,7 +120,7 @@ export default async function LandingPagesPage({
           <AnimateIn delay={0.2}>
             <div className="bg-gray-50 rounded-2xl p-8">
               <p className="font-semibold text-lg mb-6">{t('actionPlan.title')}</p>
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-3">
                 {actionPlanItems.map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-gray-700">
                     <span className="text-[#5b54a0] mt-1">→</span>
@@ -120,15 +128,6 @@ export default async function LandingPagesPage({
                   </li>
                 ))}
               </ul>
-              <ActionPlanModal
-                sectionTitle={t('actionPlan.sectionTitle')}
-                sectionSubtitle={t('actionPlan.sectionSubtitle')}
-                sections={actionPlanSections}
-                triggerLabel={t('actionPlan.cta')}
-                generatingLabel={t('actionPlan.generating')}
-                closeLabel={t('actionPlan.close')}
-                triggerClassName="inline-block px-8 py-3 border-2 border-[#5b54a0] text-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors font-medium"
-              />
             </div>
           </AnimateIn>
         </div>
@@ -151,7 +150,9 @@ export default async function LandingPagesPage({
         </div>
       </section>
 
-      <LandingPagesDiagnostic locale={locale} />
+      <MartechFaqSection faqs={schemaFaqs} sectionTitle={t('faqSectionTitle')} />
+
+      <LandingPageAndAiOfferPlanner locale={locale} />
     </div>
   );
 }
