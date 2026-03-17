@@ -1,9 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { Link } from '@/i18n/routing';
-import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
-import PaidMediaDiagnostic from '@/components/martech/PaidMediaDiagnostic';
+import { getPageMetadata, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo';
+import PaidMediaWasteAudit from '@/components/martech/PaidMediaWasteAudit';
+import MartechFaqSection from '@/components/martech/MartechFaqSection';
 import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -37,6 +37,14 @@ export default async function PaidMediaPage({
     { name: 'MarTech', url: `${SITE_URL}/${locale}/martech` },
     { name: t('hero.title'), url: `${SITE_URL}/${locale}/martech/paid-media` },
   ]);
+  const schemaFaqs = t.raw('schemaFaqs') as Array<{ question: string; answer: string }>;
+  const faqSchema = faqJsonLd(schemaFaqs);
+  const serviceSchema = serviceJsonLd({
+    name: t('hero.title'),
+    description: t('metaDescription'),
+    url: `${SITE_URL}/${locale}/martech/paid-media`,
+    serviceType: 'Paid Media',
+  });
 
   const whatIncludesItems = t.raw('whatIncludes.items') as string[];
   const forWhoItems = t.raw('forWho.items') as string[];
@@ -45,6 +53,8 @@ export default async function PaidMediaPage({
   return (
     <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       {/* Intro Section */}
       <section className="py-20 px-4 bg-white">
@@ -105,7 +115,7 @@ export default async function PaidMediaPage({
             <div className="bg-[#5b54a0]/5 border border-[#5b54a0]/20 rounded-2xl p-8">
               <p className="font-semibold text-lg mb-3">{t('audit.title')}</p>
               <p className="text-gray-700 mb-6">{t('audit.description')}</p>
-              <ScrollToDiagnostic className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
+              <ScrollToDiagnostic targetId="paid-media-waste-audit" className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
                 {t('audit.cta')}
               </ScrollToDiagnostic>
             </div>
@@ -130,7 +140,9 @@ export default async function PaidMediaPage({
         </div>
       </section>
 
-      <PaidMediaDiagnostic locale={locale} />
+      <MartechFaqSection faqs={schemaFaqs} sectionTitle={t('faqSectionTitle')} />
+
+      <PaidMediaWasteAudit locale={locale} />
     </div>
   );
 }

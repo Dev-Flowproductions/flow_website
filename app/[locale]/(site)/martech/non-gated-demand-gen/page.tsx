@@ -1,9 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { Link } from '@/i18n/routing';
-import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
-import DemandGenDiagnostic from '@/components/martech/DemandGenDiagnostic';
+import { getPageMetadata, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo';
+import MartechFaqSection from '@/components/martech/MartechFaqSection';
+import NonGatedDemandGenDiagnostic from '@/components/martech/NonGatedDemandGenDiagnostic';
 import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -37,6 +37,14 @@ export default async function NonGatedDemandGenPage({
     { name: 'MarTech', url: `${SITE_URL}/${locale}/martech` },
     { name: t('hero.title'), url: `${SITE_URL}/${locale}/martech/non-gated-demand-gen` },
   ]);
+  const schemaFaqs = t.raw('schemaFaqs') as Array<{ question: string; answer: string }>;
+  const faqSchema = faqJsonLd(schemaFaqs);
+  const serviceSchema = serviceJsonLd({
+    name: t('hero.title'),
+    description: t('metaDescription'),
+    url: `${SITE_URL}/${locale}/martech/non-gated-demand-gen`,
+    serviceType: 'Demand Generation',
+  });
 
   const forWhoItems = t.raw('forWho.items') as string[];
   const deliversItems = t.raw('delivers.items') as string[];
@@ -45,6 +53,8 @@ export default async function NonGatedDemandGenPage({
   return (
     <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       {/* Intro Section */}
       <section className="py-20 px-4 bg-white">
@@ -106,7 +116,7 @@ export default async function NonGatedDemandGenPage({
             <div className="bg-[#5b54a0]/5 border border-[#5b54a0]/20 rounded-2xl p-8">
               <p className="font-semibold text-lg mb-3">{t('diagnostic.title')}</p>
               <p className="text-gray-700 mb-6">{t('diagnostic.description')}</p>
-              <ScrollToDiagnostic className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
+              <ScrollToDiagnostic targetId="demand-gen-diagnostic" className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
                 {t('diagnostic.cta')}
               </ScrollToDiagnostic>
             </div>
@@ -131,7 +141,9 @@ export default async function NonGatedDemandGenPage({
         </div>
       </section>
 
-      <DemandGenDiagnostic locale={locale} />
+      <MartechFaqSection faqs={schemaFaqs} sectionTitle={t('faqSectionTitle')} />
+
+      <NonGatedDemandGenDiagnostic locale={locale} />
     </div>
   );
 }
