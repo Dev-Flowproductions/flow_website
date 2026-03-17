@@ -392,11 +392,11 @@ export default function PaidMediaWasteAudit({ locale }: Props) {
     doc.roundedRect(margin, yPos, btnW, btnH, radius, radius, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(10);
-    doc.setFont(undefined, 'bold');
+    doc.setFont('helvetica', 'bold');
     doc.text(t('result.pdfCtaButton'), margin + btnW / 2, yPos + btnH / 2 + 1.5, { align: 'center' });
     doc.link(margin, yPos, btnW, btnH, { url: sgaUrl });
     doc.setTextColor(0, 0, 0);
-    doc.setFont(undefined, 'normal');
+    doc.setFont('helvetica', 'normal');
     doc.save(filename);
   }, [result, lang, locale, t]);
 
