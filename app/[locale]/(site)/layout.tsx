@@ -26,7 +26,7 @@ export default async function SiteLayout({
       <SlugMapProvider>
         <MobileMenuProvider>
           <Header locale={locale} />
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen pt-20">{children}</main>
           <Footer locale={locale} />
           <CopyPageAsMarkdown />
           <SGAChatWidgetLoader />

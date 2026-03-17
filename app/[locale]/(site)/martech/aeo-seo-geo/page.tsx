@@ -1,9 +1,12 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
-import { Link } from '@/i18n/routing';
 import { getPageMetadata, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo';
 import MartechFaqSection from '@/components/martech/MartechFaqSection';
+import MartechServiceHero from '@/components/martech/MartechServiceHero';
+import MartechSection from '@/components/martech/MartechSection';
+import MartechContentList from '@/components/martech/MartechContentList';
+import MartechDiagnosticCta from '@/components/martech/MartechDiagnosticCta';
 
 const WEB_AUDIT_URL = 'https://webaudit.flowproductions.pt/';
 
@@ -53,140 +56,59 @@ export default async function AeoSeoGeoPage({
   const improvementsItems = t.raw('improvements.items') as string[];
 
   return (
-    <div className="bg-white">
+    <div className="bg-white min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
-      {/* Intro Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto text-center md:text-left">
-          <AnimateIn>
-            <div className="mb-12">
-              <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
-                {t('hero.label')}
-              </p>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                {t('hero.title')}
-              </h1>
-              <p className="text-xl text-gray-600">
-                {t('hero.subtitle')}
-              </p>
-            </div>
-          </AnimateIn>
+      <MartechServiceHero label={t('hero.label')} title={t('hero.title')} subtitle={t('hero.subtitle')} intro={t('intro.text')} />
 
-          <AnimateIn delay={0.1}>
-            <p className="text-gray-700 text-lg mb-10">{t('intro.text')}</p>
-          </AnimateIn>
-        </div>
-      </section>
-
-      {/* What is SEO/AEO/GEO */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center md:text-left">
-          <AnimateIn>
-            <h2 className="text-2xl md:text-3xl font-bold mb-8">{t('whatIs.title')}</h2>
-            <div className="space-y-6">
-              {whatIsItems.map((item, i) => (
-                <div key={i} className="border-l-4 border-[#5b54a0] pl-6">
-                  <p className="font-bold text-lg mb-1">{item.term}</p>
-                  <p className="text-gray-700">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </AnimateIn>
-        </div>
-      </section>
-
-      {/* For Who */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto text-center md:text-left">
-          <AnimateIn>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">{t('forWho.title')}</h2>
-            <p className="text-lg text-gray-600 mb-6">{t('forWho.subtitle')}</p>
-            <ul className="space-y-3">
-              {forWhoItems.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-700">
-                  <span className="text-[#5b54a0] mt-1">✓</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </AnimateIn>
-
-          <AnimateIn delay={0.1}>
-            <div className="mt-10 bg-[#5b54a0]/5 border border-[#5b54a0]/20 rounded-2xl p-8">
-              <p className="font-semibold text-lg mb-3">{t('audit.title')}</p>
-              <p className="text-gray-700 mb-6">{t('audit.description')}</p>
-              <a
-                href={WEB_AUDIT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium"
-              >
-                {t('audit.cta')}
-              </a>
-            </div>
-          </AnimateIn>
-        </div>
-      </section>
-
-      {/* Delivers + Improvements */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-10">
-            <AnimateIn>
-              <h2 className="text-2xl font-bold mb-6">{t('delivers.title')}</h2>
-              <ul className="space-y-3">
-                {deliversItems.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-gray-700">
-                    <span className="text-[#5b54a0] mt-1">→</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </AnimateIn>
-
-            <AnimateIn delay={0.1}>
-              <h2 className="text-2xl font-bold mb-6">{t('improvements.title')}</h2>
-              <ul className="space-y-3">
-                {improvementsItems.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-gray-700">
-                    <span className="text-green-500 mt-1">✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </AnimateIn>
+      <MartechSection variant="muted">
+        <AnimateIn>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">{t('whatIs.title')}</h2>
+          <div className="space-y-6">
+            {whatIsItems.map((item, i) => (
+              <div key={i} className="border-l-4 border-[#5b54a0] pl-6 py-1">
+                <p className="font-bold text-lg mb-1">{item.term}</p>
+                <p className="text-gray-700">{item.description}</p>
+              </div>
+            ))}
           </div>
+        </AnimateIn>
+      </MartechSection>
+
+      <MartechSection variant="default">
+        <AnimateIn>
+          <MartechContentList title={t('forWho.title')} subtitle={t('forWho.subtitle')} items={forWhoItems} icon="check" className="mb-10" />
+        </AnimateIn>
+        <MartechDiagnosticCta
+          title={t('audit.title')}
+          description={t('audit.description')}
+          cta={
+            <a
+              href={WEB_AUDIT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium shadow-md hover:shadow-lg"
+            >
+              {t('audit.cta')}
+            </a>
+          }
+        />
+      </MartechSection>
+
+      <MartechSection variant="muted" contentClassName="max-w-6xl">
+        <div className="grid sm:grid-cols-2 gap-10 items-start">
+          <AnimateIn className="min-w-0">
+            <MartechContentList title={t('delivers.title')} items={deliversItems} icon="arrow" className="min-w-0" />
+          </AnimateIn>
+          <AnimateIn delay={0.1} className="min-w-0">
+            <MartechContentList title={t('improvements.title')} items={improvementsItems} icon="check" iconClassName="text-green-600" className="min-w-0" />
+          </AnimateIn>
         </div>
-      </section>
+      </MartechSection>
 
       <MartechFaqSection faqs={schemaFaqs} sectionTitle={t('faqSectionTitle')} />
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto text-center md:text-left">
-          <AnimateIn>
-            <div className="flex flex-col sm:flex-row gap-4 items-center md:items-start">
-              <Link
-                href="/contactos"
-                className="px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium"
-              >
-                {t('cta1')}
-              </Link>
-              <a
-                href={WEB_AUDIT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 border-2 border-[#5b54a0] text-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors font-medium"
-              >
-                {t('cta2')}
-              </a>
-            </div>
-          </AnimateIn>
-        </div>
-      </section>
     </div>
   );
 }

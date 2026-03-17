@@ -3,6 +3,10 @@ import type { Metadata } from 'next';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { getPageMetadata, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo';
 import MartechFaqSection from '@/components/martech/MartechFaqSection';
+import MartechServiceHero from '@/components/martech/MartechServiceHero';
+import MartechSection from '@/components/martech/MartechSection';
+import MartechContentList from '@/components/martech/MartechContentList';
+import MartechDiagnosticCta from '@/components/martech/MartechDiagnosticCta';
 import NonGatedDemandGenDiagnostic from '@/components/martech/NonGatedDemandGenDiagnostic';
 import ScrollToDiagnostic from '@/components/martech/ScrollToDiagnostic';
 
@@ -51,95 +55,44 @@ export default async function NonGatedDemandGenPage({
   const improvementsItems = t.raw('improvements.items') as string[];
 
   return (
-    <div className="bg-white">
+    <div className="bg-white min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
-      {/* Intro Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto text-center md:text-left">
-          <AnimateIn>
-            <div className="mb-12">
-              <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
-                {t('hero.label')}
-              </p>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                {t('hero.title')}
-              </h1>
-              <p className="text-xl text-gray-600">
-                {t('hero.subtitle')}
-              </p>
-            </div>
-          </AnimateIn>
+      <MartechServiceHero
+        label={t('hero.label')}
+        title={t('hero.title')}
+        subtitle={t('hero.subtitle')}
+        intro={t('intro.text')}
+      />
 
-          <AnimateIn delay={0.1}>
-            <p className="text-gray-700 text-lg mb-10">{t('intro.text')}</p>
-          </AnimateIn>
-        </div>
-      </section>
+      <MartechSection variant="muted">
+        <AnimateIn>
+          <MartechContentList title={t('forWho.title')} subtitle={t('forWho.subtitle')} items={forWhoItems} icon="check" />
+        </AnimateIn>
+      </MartechSection>
 
-      {/* For Who */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center md:text-left">
-          <AnimateIn>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">{t('forWho.title')}</h2>
-            <p className="text-lg text-gray-600 mb-6">{t('forWho.subtitle')}</p>
-            <ul className="space-y-3">
-              {forWhoItems.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-700">
-                  <span className="text-[#5b54a0] mt-1">✓</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </AnimateIn>
-        </div>
-      </section>
+      <MartechSection variant="default">
+        <AnimateIn>
+          <MartechContentList title={t('delivers.title')} items={deliversItems} icon="arrow" className="mb-10" />
+        </AnimateIn>
+        <MartechDiagnosticCta
+          title={t('diagnostic.title')}
+          description={t('diagnostic.description')}
+          cta={
+            <ScrollToDiagnostic targetId="demand-gen-diagnostic" className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium shadow-md hover:shadow-lg">
+              {t('diagnostic.cta')}
+            </ScrollToDiagnostic>
+          }
+        />
+      </MartechSection>
 
-      {/* Delivers */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto text-center md:text-left">
-          <AnimateIn>
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">{t('delivers.title')}</h2>
-            <ul className="space-y-3 mb-10">
-              {deliversItems.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-700">
-                  <span className="text-[#5b54a0] mt-1">→</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </AnimateIn>
-
-          <AnimateIn delay={0.1}>
-            <div className="bg-[#5b54a0]/5 border border-[#5b54a0]/20 rounded-2xl p-8">
-              <p className="font-semibold text-lg mb-3">{t('diagnostic.title')}</p>
-              <p className="text-gray-700 mb-6">{t('diagnostic.description')}</p>
-              <ScrollToDiagnostic targetId="demand-gen-diagnostic" className="inline-block px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] transition-colors font-medium">
-                {t('diagnostic.cta')}
-              </ScrollToDiagnostic>
-            </div>
-          </AnimateIn>
-        </div>
-      </section>
-
-      {/* Improvements */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center md:text-left">
-          <AnimateIn>
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">{t('improvements.title')}</h2>
-            <ul className="space-y-3">
-              {improvementsItems.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-700">
-                  <span className="text-green-500 mt-1">✓</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </AnimateIn>
-        </div>
-      </section>
+      <MartechSection variant="muted">
+        <AnimateIn>
+          <MartechContentList title={t('improvements.title')} items={improvementsItems} icon="check" iconClassName="text-green-600" />
+        </AnimateIn>
+      </MartechSection>
 
       <MartechFaqSection faqs={schemaFaqs} sectionTitle={t('faqSectionTitle')} />
 
