@@ -48,12 +48,12 @@ export default async function MartechPage({
   const faqSchema = faqJsonLd(faqs);
 
   const servicesData = [
-    { key: 'aeo', hasDescription: false },
-    { key: 'demandGen', hasDescription: true },
-    { key: 'gtm', hasDescription: false },
-    { key: 'paidMedia', hasDescription: false },
-    { key: 'landingPages', hasDescription: false },
-    { key: 'aiAgents', hasDescription: false },
+    { key: 'aeo', hasDescription: false, slug: 'aeo-seo-geo' },
+    { key: 'demandGen', hasDescription: true, slug: 'non-gated-demand-gen' },
+    { key: 'gtm', hasDescription: false, slug: 'go-to-market' },
+    { key: 'paidMedia', hasDescription: false, slug: 'paid-media' },
+    { key: 'landingPages', hasDescription: false, slug: 'landing-pages' },
+    { key: 'aiAgents', hasDescription: false, slug: 'ai-agents' },
   ];
 
   return (
@@ -232,6 +232,12 @@ export default async function MartechPage({
                         <p className="text-sm text-[#5b54a0] font-semibold mb-1">0{i + 1}</p>
                         <h3 className="text-2xl font-bold">{t(`servicesSection.${service.key}.title`)}</h3>
                       </div>
+                      <Link
+                        href={`/martech/${service.slug}`}
+                        className="shrink-0 px-4 py-2 text-sm font-medium text-[#5b54a0] border border-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors"
+                      >
+                        {t('servicesSection.learnMore')}
+                      </Link>
                     </div>
                     <p className="text-gray-600 mb-4">{t(`servicesSection.${service.key}.subtitle`)}</p>
                     
