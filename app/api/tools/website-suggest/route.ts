@@ -13,6 +13,20 @@ function stripHtml(html: string): string {
   return text.slice(0, 15000);
 }
 
+/** Extract meta description, og:title, og:description and title for SPAs with little body text */
+function extractMetaText(html: string): string {
+  const parts: string[] = [];
+  const ogTitle = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i) || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:title["']/i);
+  if (ogTitle?.[1]) parts.push(ogTitle[1].trim());
+  const ogDesc = html.match(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["']/i) || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:description["']/i);
+  if (ogDesc?.[1]) parts.push(ogDesc[1].trim());
+  const metaDesc = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i) || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+name=["']description["']/i);
+  if (metaDesc?.[1]) parts.push(metaDesc[1].trim());
+  const title = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+  if (title?.[1]) parts.push(title[1].trim());
+  return parts.filter(Boolean).join(' ').slice(0, 8000);
+}
+
 const requestSchema = z.object({
   url: z.string().url(),
   language: z.enum(['en', 'pt', 'fr']).optional(),
@@ -64,9 +78,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Could not fetch website' }, { status: 422 });
     }
 
-    const text = stripHtml(html);
+    let text = stripHtml(html);
     if (!text || text.length < 100) {
-      return NextResponse.json({ error: 'Not enough content to analyse' }, { status: 422 });
+      const metaText = extractMetaText(html);
+      if (metaText.length >= 30) {
+        text = metaText;
+      } else {
+        return NextResponse.json(
+          { error: 'Not enough content to analyse. The site may be built with JavaScript that we cannot run; try a site that shows its main text in the initial page load.' },
+          { status: 422 }
+        );
+      }
     }
 
     const langInstruction =

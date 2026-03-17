@@ -147,6 +147,7 @@ export default function AiAgentOpportunityDiagnostic({ locale }: Props) {
       if (!res.ok) throw new Error(data.error || 'Request failed');
       if (data.industry) update('industry', data.industry);
       if (data.mainOffer) update('mainOffer', data.mainOffer);
+      autoAdvanceAfterSuggestRef.current = true;
     } catch {
       setSuggestError(t('suggestFromWebsiteError'));
     } finally {
@@ -155,6 +156,7 @@ export default function AiAgentOpportunityDiagnostic({ locale }: Props) {
   }, [lang, getSuggestedUrl, update, t]);
 
   const lastFetchedUrl = useRef<string | null>(null);
+  const autoAdvanceAfterSuggestRef = useRef(false);
 
   useEffect(() => {
     const raw = form.websiteUrl.trim();
@@ -176,6 +178,13 @@ export default function AiAgentOpportunityDiagnostic({ locale }: Props) {
     }, 1200);
     return () => clearTimeout(timer);
   }, [form.websiteUrl, getSuggestedUrl, fetchSuggestions]);
+
+  useEffect(() => {
+    if (!suggestLoading && autoAdvanceAfterSuggestRef.current && step === 'quiz' && quizStep === 1 && !suggestError) {
+      autoAdvanceAfterSuggestRef.current = false;
+      setQuizStep(2);
+    }
+  }, [suggestLoading, step, quizStep, suggestError]);
 
   const toggleOverloaded = useCallback((value: string) => {
     setForm((prev) => {
@@ -320,8 +329,10 @@ export default function AiAgentOpportunityDiagnostic({ locale }: Props) {
     };
 
     doc.setFontSize(18);
-    doc.text(result.pdfTitle ?? 'AI agent opportunity diagnostic report', margin, yPos);
-    yPos += lineHeight * 2;
+    const pdfTitle = result.pdfTitle ?? 'AI agent opportunity diagnostic report';
+    const titleLines = doc.splitTextToSize(pdfTitle, contentWidth);
+    doc.text(titleLines, margin, yPos);
+    yPos += titleLines.length * lineHeight * 1.5 + lineHeight * 0.5;
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     doc.text(new Date().toLocaleDateString(result.language === 'pt' ? 'pt-PT' : result.language === 'fr' ? 'fr-FR' : 'en-GB'), margin, yPos);
@@ -407,17 +418,25 @@ export default function AiAgentOpportunityDiagnostic({ locale }: Props) {
     yPos += lineHeight;
     doc.text(result.ctaText ?? t('result.ctaButton'), margin, yPos);
     yPos += lineHeight * 2;
-    checkPageBreak(lineHeight * 3);
+    checkPageBreak(lineHeight * 4);
+    const sgaUrl = 'https://sga.flowproductions.pt/';
+    doc.setFontSize(11);
+    doc.setTextColor(100, 100, 100);
+    const hintLines = doc.splitTextToSize(t('result.pdfCtaHint'), contentWidth);
+    doc.text(hintLines, margin, yPos);
+    yPos += hintLines.length * lineHeight + lineHeight * 0.5;
+    const btnW = 72;
+    const btnH = 11;
+    const radius = 5;
+    doc.setFillColor(91, 84, 160);
+    doc.roundedRect(margin, yPos, btnW, btnH, radius, radius, 'F');
+    doc.setTextColor(255, 255, 255);
     doc.setFontSize(10);
-    doc.setTextColor(0, 51, 153);
-    doc.textWithLink(t('result.pdfViewPageLink'), margin, yPos, { url: pageUrl });
+    doc.setFont(undefined, 'bold');
+    doc.text(t('result.pdfCtaButton'), margin + btnW / 2, yPos + btnH / 2 + 1.5, { align: 'center' });
+    doc.link(margin, yPos, btnW, btnH, { url: sgaUrl });
     doc.setTextColor(0, 0, 0);
-    yPos += lineHeight;
-    doc.setFontSize(9);
-    doc.setTextColor(120, 120, 120);
-    const urlLines = doc.splitTextToSize(pageUrl, contentWidth);
-    doc.text(urlLines, margin, yPos);
-    doc.setTextColor(0, 0, 0);
+    doc.setFont(undefined, 'normal');
     doc.save(filename);
   }, [result, lang, locale, t]);
 

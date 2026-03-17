@@ -715,7 +715,9 @@
       "actionsLabel": "Priority actions",
       "ctaButton": "Get a tailored demand gen action plan with our AI adviser",
       "downloadPdf": "Download PDF report",
-      "pdfViewPageLink": "View full page and take the diagnostic again"
+      "pdfViewPageLink": "View full page and take the diagnostic again",
+      "pdfCtaButton": "Book a Free Chat",
+      "pdfCtaHint": "If you need help, talk to Flowi, our specialized assistant."
     },
     "maturity": { "early": "Early", "emerging": "Emerging", "structured": "Structured", "advanced": "Advanced" },
     "severity": { "low": "Low", "medium": "Medium", "high": "High" },
@@ -824,7 +826,9 @@
       "actionsLabel": "Priority actions",
       "ctaButton": "Get a tailored Go-to-Market action plan with our AI adviser",
       "downloadPdf": "Download PDF report",
-      "pdfViewPageLink": "View full page and take the diagnostic again"
+      "pdfViewPageLink": "View full page and take the diagnostic again",
+      "pdfCtaButton": "Book a Free Chat",
+      "pdfCtaHint": "If you need help, talk to Flowi, our specialized assistant."
     },
     "readinessLevel": { "early": "Early", "forming": "Forming", "readyToRefine": "Ready to refine", "marketReady": "Market-ready" },
     "severity": { "low": "Low", "medium": "Medium", "high": "High" },
@@ -879,7 +883,9 @@
       "actionsLabel": "Priority actions",
       "ctaButton": "Get a tailored paid media action plan with our AI adviser",
       "downloadPdf": "Download PDF report",
-      "pdfViewPageLink": "View full page and take the audit again"
+      "pdfViewPageLink": "View full page and take the audit again",
+      "pdfCtaButton": "Book a Free Chat",
+      "pdfCtaHint": "If you need help, talk to Flowi, our specialized assistant."
     },
     "auditLevel": { "inefficient": "Inefficient", "unstable": "Unstable", "improving": "Improving", "efficientScalable": "Efficient and scalable" },
     "severity": { "low": "Low", "medium": "Medium", "high": "High" },
@@ -1010,7 +1016,9 @@
       "aiOfferLabel": "AI offer recommendation",
       "ctaButton": "Get a tailored landing page action plan with our AI adviser",
       "downloadPdf": "Download PDF report",
-      "pdfViewPageLink": "View full page and take the tool again"
+      "pdfViewPageLink": "View full page and take the tool again",
+      "pdfCtaButton": "Book a Free Chat",
+      "pdfCtaHint": "If you need help, talk to Flowi, our specialized assistant."
     },
     "resultLevel": { "weak": "Weak", "mixed": "Mixed", "promising": "Promising", "strong": "Strong" },
     "severity": { "low": "Low", "medium": "Medium", "high": "High" }
@@ -1185,7 +1193,9 @@
       "governanceLabel": "Governance and handoff",
       "ctaButton": "Get a tailored AI agent action plan with our AI adviser",
       "downloadPdf": "Download PDF report",
-      "pdfViewPageLink": "View full page and take the diagnostic again"
+      "pdfViewPageLink": "View full page and take the diagnostic again",
+      "pdfCtaButton": "Book a Free Chat",
+      "pdfCtaHint": "If you need help, talk to Flowi, our specialized assistant."
     },
     "readinessLevel": { "early": "Early", "emerging": "Emerging", "readyToPilot": "Ready to pilot", "readyToImplement": "Ready to implement" }
   },
