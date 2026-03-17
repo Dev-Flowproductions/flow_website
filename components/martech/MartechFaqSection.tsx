@@ -40,7 +40,7 @@ export default function MartechFaqSection({ faqs, sectionTitle }: MartechFaqSect
                     </svg>
                   </span>
                 </summary>
-                <div className="px-5 pb-5 pt-0 text-gray-700 border-t border-gray-100">
+                <div className="px-5 pt-6 pb-5 text-gray-700 border-t border-gray-100">
                   <p className="leading-relaxed">{item.answer}</p>
                 </div>
               </details>

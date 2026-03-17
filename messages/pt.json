@@ -715,7 +715,9 @@
       "actionsLabel": "Ações prioritárias",
       "ctaButton": "Recebe um plano de ação ajustado com o nosso consultor de IA",
       "downloadPdf": "Descarregar relatório PDF",
-      "pdfViewPageLink": "Ver página completa e refazer o diagnóstico"
+      "pdfViewPageLink": "Ver página completa e refazer o diagnóstico",
+      "pdfCtaButton": "Agendar conversa gratuita",
+      "pdfCtaHint": "Se precisar de ajuda, fale com a Flowi, a nossa assistente especializada."
     },
     "maturity": { "early": "Inicial", "emerging": "Emergente", "structured": "Estruturado", "advanced": "Avançado" },
     "severity": { "low": "Baixo", "medium": "Médio", "high": "Alto" },
@@ -824,7 +826,9 @@
       "actionsLabel": "Ações prioritárias",
       "ctaButton": "Recebe um plano de ação Go-to-Market ajustado com o nosso consultor de IA",
       "downloadPdf": "Descarregar relatório PDF",
-      "pdfViewPageLink": "Ver página completa e refazer o diagnóstico"
+      "pdfViewPageLink": "Ver página completa e refazer o diagnóstico",
+      "pdfCtaButton": "Agendar conversa gratuita",
+      "pdfCtaHint": "Se precisar de ajuda, fale com a Flowi, a nossa assistente especializada."
     },
     "readinessLevel": { "early": "Inicial", "forming": "Em formação", "readyToRefine": "Pronto para refinar", "marketReady": "Pronto para o mercado" },
     "severity": { "low": "Baixo", "medium": "Médio", "high": "Alto" },
@@ -879,7 +883,9 @@
       "actionsLabel": "Ações prioritárias",
       "ctaButton": "Recebe um plano de ação de paid media ajustado com o nosso consultor de IA",
       "downloadPdf": "Descarregar relatório PDF",
-      "pdfViewPageLink": "Ver página completa e refazer a auditoria"
+      "pdfViewPageLink": "Ver página completa e refazer a auditoria",
+      "pdfCtaButton": "Agendar conversa gratuita",
+      "pdfCtaHint": "Se precisar de ajuda, fale com a Flowi, a nossa assistente especializada."
     },
     "auditLevel": { "inefficient": "Ineficiente", "unstable": "Instável", "improving": "Em melhoria", "efficientScalable": "Eficiente e escalável" },
     "severity": { "low": "Baixo", "medium": "Médio", "high": "Alto" },
@@ -1010,7 +1016,9 @@
       "aiOfferLabel": "Recomendação de AI offer",
       "ctaButton": "Recebe um plano de ação ajustado para a tua landing page com o nosso consultor de IA",
       "downloadPdf": "Descarregar relatório PDF",
-      "pdfViewPageLink": "Ver página completa e refazer a ferramenta"
+      "pdfViewPageLink": "Ver página completa e refazer a ferramenta",
+      "pdfCtaButton": "Agendar conversa gratuita",
+      "pdfCtaHint": "Se precisar de ajuda, fale com a Flowi, a nossa assistente especializada."
     },
     "resultLevel": { "weak": "Fraco", "mixed": "Misto", "promising": "Promissor", "strong": "Forte" },
     "severity": { "low": "Baixo", "medium": "Médio", "high": "Alto" }
@@ -1185,7 +1193,9 @@
       "governanceLabel": "Governance e handoff",
       "ctaButton": "Recebe um plano de ação ajustado para AI Agents com o nosso consultor de IA",
       "downloadPdf": "Descarregar relatório PDF",
-      "pdfViewPageLink": "Ver página completa e refazer o diagnóstico"
+      "pdfViewPageLink": "Ver página completa e refazer o diagnóstico",
+      "pdfCtaButton": "Agendar conversa gratuita",
+      "pdfCtaHint": "Se precisar de ajuda, fale com a Flowi, a nossa assistente especializada."
     },
     "readinessLevel": { "early": "Inicial", "emerging": "Emergente", "readyToPilot": "Pronto para piloto", "readyToImplement": "Pronto para implementar" }
   },
