@@ -97,13 +97,13 @@ export default async function AeoSeoGeoPage({
         />
       </MartechSection>
 
-      <MartechSection variant="muted" contentClassName="max-w-6xl">
-        <div className="grid sm:grid-cols-2 gap-10 items-start">
-          <AnimateIn className="min-w-0">
-            <MartechContentList title={t('delivers.title')} items={deliversItems} icon="arrow" className="min-w-0" />
+      <MartechSection variant="muted">
+        <div className="flex flex-col gap-12">
+          <AnimateIn>
+            <MartechContentList title={t('delivers.title')} items={deliversItems} icon="arrow" />
           </AnimateIn>
-          <AnimateIn delay={0.1} className="min-w-0">
-            <MartechContentList title={t('improvements.title')} items={improvementsItems} icon="check" iconClassName="text-green-600" className="min-w-0" />
+          <AnimateIn delay={0.1}>
+            <MartechContentList title={t('improvements.title')} items={improvementsItems} icon="check" iconClassName="text-green-600" />
           </AnimateIn>
         </div>
       </MartechSection>
