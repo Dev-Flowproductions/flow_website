@@ -1266,5 +1266,47 @@
       { "question": "Um AI Agent substitui pessoas?", "answer": "Não. O objetivo é automatizar tarefas repetidas e qualificar antes de passar a um humano. O agente segue regras, regista o que aconteceu e faz handoff quando é preciso decisão ou relação humana." },
       { "question": "Como sei que agentes fazem sentido para mim?", "answer": "Com o diagnóstico gratuito da Flow recebes recomendações dos agentes com mais impacto na tua operação, prioridades de implementação e uma nota de controlo e governança." }
     ]
+  },
+  "websiteCampaign": {
+    "metaTitle": "Avaliação Gratuita de Website | Websites Ativos em 30 Dias",
+    "metaDescription": "Avaliação gratuita de desempenho do teu website. Descobre se o site é rápido, acessível, preparado para SEO e a trabalhar pelo teu negócio. E depois conhece a campanha Websites Ativos em 30 Dias.",
+    "hero": {
+      "label": "Avaliação gratuita",
+      "title": "Avalia o teu website. Gratuitamente.",
+      "subtitle": "Descobre se o teu site está mesmo a trabalhar pelo teu negócio."
+    },
+    "intro": "O teu website pode parecer \"suficiente\". Mas será que carrega rápido, é acessível, está bem preparado para SEO e AEO, funciona como um ativo real? Na Flow, criámos uma ferramenta gratuita de avaliação de desempenho de websites para te ajudar a perceber como está o teu site hoje e onde pode (e deve) evoluir.",
+    "whatAnalyzes": {
+      "title": "O que esta avaliação analisa",
+      "intro": "Em poucos minutos, recebes um relatório completo com indicadores essenciais para qualquer website moderno:",
+      "items": [
+        "Performance (velocidade, carregamento e estabilidade)",
+        "Acessibilidade (se o site é utilizável por todos)",
+        "SEO técnico (base para ser encontrado nos motores de pesquisa)",
+        "Boas práticas web (estrutura, segurança e experiência)"
+      ],
+      "outro": "Tudo apresentado de forma clara, para que possas entender o estado real do teu website."
+    },
+    "forWho": {
+      "title": "Para quem é esta ferramenta?",
+      "intro": "Esta avaliação é ideal se:",
+      "items": [
+        "Tens um website, mas não sabes se está otimizado",
+        "O site existe… mas não gera contactos",
+        "Sentes que a performance podia ser melhor",
+        "Queres dados concretos antes de tomar decisões",
+        "Estás a pensar evoluir o teu website, mas queres começar pelo diagnóstico"
+      ],
+      "outro": "Se o teu site é importante para o teu negócio, esta ferramenta é para ti."
+    },
+    "afterReport": {
+      "title": "E depois do relatório?",
+      "paragraph1": "É aqui que muitas marcas ficam presas. Têm dados… mas não sabem o que fazer com eles.",
+      "paragraph2": "Se, depois de veres o relatório, perceberes que o teu website podia comunicar melhor, ser mais rápido ou gerar mais resultados, podemos ajudar.",
+      "paragraph3": "Na Flow, criámos a campanha Websites Ativos em 30 Dias: um serviço pensado para transformar websites passivos em ativos digitais consistentes, rápidos e preparados para crescer.",
+      "paragraph4": "O relatório não é o fim. É o início.",
+      "cta": "Marca uma conversa connosco para vermos como podemos pôr o teu website a fluir."
+    },
+    "ctaButton": "Marcar conversa"
   }
 }
