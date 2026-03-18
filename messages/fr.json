@@ -1266,5 +1266,47 @@
       { "question": "Un AI Agent remplace-t-il des personnes?", "answer": "Non. L'objectif est d'automatiser les tâches répétées et de qualifier avant de passer à un humain. L'agent suit des règles, enregistre ce qui s'est passé et passe le relais quand une décision ou une relation humaine est nécessaire." },
       { "question": "Comment savoir quels agents ont du sens pour moi?", "answer": "Avec le diagnostic gratuit de Flow vous recevez des recommandations sur les agents qui auraient le plus d'impact sur votre opération, les priorités d'implémentation et une note sur le contrôle et la gouvernance." }
     ]
+  },
+  "websiteCampaign": {
+    "metaTitle": "Évaluation gratuite de site web | Sites actifs en 30 jours",
+    "metaDescription": "Évaluation gratuite des performances de votre site. Découvrez s'il est rapide, accessible, prêt pour le SEO et utile à votre activité. Puis découvrez la campagne Sites actifs en 30 jours.",
+    "hero": {
+      "label": "Évaluation gratuite",
+      "title": "Évaluez votre site web. Gratuitement.",
+      "subtitle": "Découvrez si votre site travaille vraiment pour votre entreprise."
+    },
+    "intro": "Votre site peut sembler \"suffisant\". Mais charge-t-il vite, est-il accessible, bien préparé pour le SEO et l'AEO, fonctionne-t-il comme un actif réel? Chez Flow, nous avons créé un outil gratuit d'évaluation des performances pour vous aider à voir où en est votre site et où il peut évoluer.",
+    "whatAnalyzes": {
+      "title": "Ce que cette évaluation analyse",
+      "intro": "En quelques minutes, vous recevez un rapport complet avec des indicateurs essentiels pour tout site moderne:",
+      "items": [
+        "Performance (vitesse, chargement et stabilité)",
+        "Accessibilité (si le site est utilisable par tous)",
+        "SEO technique (base pour être trouvé par les moteurs de recherche)",
+        "Bonnes pratiques web (structure, sécurité et expérience)"
+      ],
+      "outro": "Le tout présenté clairement pour que vous compreniez l'état réel de votre site."
+    },
+    "forWho": {
+      "title": "Pour qui est cet outil?",
+      "intro": "Cette évaluation est idéale si:",
+      "items": [
+        "Vous avez un site mais ne savez pas s'il est optimisé",
+        "Le site existe… mais ne génère pas de contacts",
+        "Vous sentez que les performances pourraient être meilleures",
+        "Vous voulez des données concrètes avant de décider",
+        "Vous pensez faire évoluer votre site mais voulez commencer par un diagnostic"
+      ],
+      "outro": "Si votre site compte pour votre activité, cet outil est pour vous."
+    },
+    "afterReport": {
+      "title": "Et après le rapport?",
+      "paragraph1": "C'est là que beaucoup de marques restent bloquées. Elles ont des données… mais ne savent pas quoi en faire.",
+      "paragraph2": "Si, après avoir vu le rapport, vous réalisez que votre site pourrait mieux communiquer, être plus rapide ou générer plus de résultats, nous pouvons vous aider.",
+      "paragraph3": "Chez Flow, nous avons créé la campagne Sites actifs en 30 jours: un service conçu pour transformer des sites passifs en actifs digitaux cohérents, rapides et prêts à croître.",
+      "paragraph4": "Le rapport n'est pas la fin. C'est le début.",
+      "cta": "Prenez rendez-vous avec nous pour mettre votre site en mouvement."
+    },
+    "ctaButton": "Prendre rendez-vous"
   }
 }

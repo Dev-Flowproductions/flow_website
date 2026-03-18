@@ -1266,5 +1266,47 @@
       { "question": "Does an AI Agent replace people?", "answer": "No. The goal is to automate repeated tasks and qualify before handing off to a human. The agent follows rules, records what happened and hands off when a human decision or relationship is needed." },
       { "question": "How do I know which agents make sense for me?", "answer": "With Flow's free diagnostic you get recommendations for the agents with the most impact on your operation, implementation priorities and a note on control and governance." }
     ]
+  },
+  "websiteCampaign": {
+    "metaTitle": "Free Website Assessment | 30 Days Active Websites",
+    "metaDescription": "Free website performance assessment. Find out if your site is fast, accessible, SEO-ready and working for your business. Then discover our 30 Days Active Websites campaign.",
+    "hero": {
+      "label": "Free assessment",
+      "title": "Evaluate your website. For free.",
+      "subtitle": "Find out if your site is really working for your business."
+    },
+    "intro": "Your website might look \"good enough\". But does it load fast, is it accessible, is it ready for SEO and AEO, does it work as a real asset? At Flow, we built a free website performance assessment tool to help you understand how your site stands today and where it can—and should—evolve.",
+    "whatAnalyzes": {
+      "title": "What this assessment covers",
+      "intro": "In a few minutes you get a full report with essential indicators for any modern website:",
+      "items": [
+        "Performance (speed, loading and stability)",
+        "Accessibility (whether the site is usable by everyone)",
+        "Technical SEO (foundation for being found on search engines)",
+        "Web best practices (structure, security and experience)"
+      ],
+      "outro": "All presented clearly so you can understand the real state of your website."
+    },
+    "forWho": {
+      "title": "Who is this tool for?",
+      "intro": "This assessment is ideal if:",
+      "items": [
+        "You have a website but don't know if it's optimized",
+        "The site exists… but doesn't generate contacts",
+        "You feel performance could be better",
+        "You want concrete data before making decisions",
+        "You're thinking of improving your website but want to start with a diagnosis"
+      ],
+      "outro": "If your site matters to your business, this tool is for you."
+    },
+    "afterReport": {
+      "title": "And after the report?",
+      "paragraph1": "This is where many brands get stuck. They have data… but don't know what to do with it.",
+      "paragraph2": "If, after seeing the report, you realise your website could communicate better, be faster or deliver more results, we can help.",
+      "paragraph3": "At Flow, we created the Active Websites in 30 Days campaign: a service designed to turn passive websites into consistent, fast digital assets ready to grow.",
+      "paragraph4": "The report isn't the end. It's the start.",
+      "cta": "Book a conversation with us so we can get your website flowing."
+    },
+    "ctaButton": "Book a conversation"
   }
 }
