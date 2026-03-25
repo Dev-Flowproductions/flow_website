@@ -208,7 +208,14 @@ export function serviceJsonLd(opts: {
   description: string;
   url: string;
   serviceType: string;
+  /** Extra GEO / entity signals for generative search (default: Portugal + Faro + Algarve). */
+  areaServed?: Array<{ '@type': string; name: string }>;
 }) {
+  const areaServed = opts.areaServed ?? [
+    { '@type': 'Country', name: 'Portugal' },
+    { '@type': 'City', name: 'Faro' },
+    { '@type': 'AdministrativeArea', name: 'Algarve' },
+  ];
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -217,7 +224,9 @@ export function serviceJsonLd(opts: {
     url: opts.url,
     serviceType: opts.serviceType,
     provider: { '@id': `${SITE_URL}/#organization` },
-    areaServed: { '@type': 'Country', name: 'Portugal' },
+    areaServed,
+    availableLanguage: ['Portuguese', 'English', 'French'],
+    category: opts.serviceType,
   };
 }
 

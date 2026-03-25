@@ -1,7 +1,8 @@
 'use client';
 
-import { StaggerItem, StaggerContainer } from '@/components/ui/AnimateIn';
-import { motion } from 'framer-motion';
+import { StaggerItem } from '@/components/ui/AnimateIn';
+import { Link } from '@/i18n/routing';
+import { getServiceItemHref } from '@/lib/serviceItemRoutes';
 
 interface Service {
   id: string;
@@ -12,6 +13,7 @@ interface Service {
     id: string;
     label: Record<string, string>;
     order: number;
+    href?: string;
   }>;
 }
 
@@ -46,11 +48,18 @@ export default function ServiceCard({ service, locale, number }: ServiceCardProp
             <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-center md:text-left">
               {sortedItems.map((item) => {
                 const label = item.label[locale] || item.label['pt'] || '';
+                const href = item.href ?? getServiceItemHref(service.key, item.order);
+                const className =
+                  'text-sm text-gray-700 hover:text-black transition-colors underline-offset-2 hover:underline';
+                if (href) {
+                  return (
+                    <Link key={item.id} href={href} className={className}>
+                      {label}
+                    </Link>
+                  );
+                }
                 return (
-                  <div
-                    key={item.id}
-                    className="text-sm text-gray-700 hover:text-black transition-colors"
-                  >
+                  <div key={item.id} className="text-sm text-gray-700">
                     {label}
                   </div>
                 );
