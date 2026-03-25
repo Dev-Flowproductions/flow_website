@@ -1,5 +1,6 @@
 import { getRequestConfig } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { servicePagesByLocale } from '@/lib/servicePagesMessages';
 
 // Import all locale files explicitly for edge runtime compatibility
 import pt from '@/messages/pt.json';
@@ -7,9 +8,9 @@ import en from '@/messages/en.json';
 import fr from '@/messages/fr.json';
 
 const messages = {
-  pt,
-  en,
-  fr,
+  pt: { ...pt, servicePages: servicePagesByLocale.pt },
+  en: { ...en, servicePages: servicePagesByLocale.en },
+  fr: { ...fr, servicePages: servicePagesByLocale.fr },
 };
 
 export default getRequestConfig(async ({ requestLocale }) => {
