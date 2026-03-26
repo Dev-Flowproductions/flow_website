@@ -91,12 +91,15 @@ export default async function BlogPostPage({
     published_at: string | null;
     updated_at: string | null;
     author_name: string | null;
+    author_job_title: string | null;
+    author_bio: string | null;
+    author_avatar_url: string | null;
   } | null = null;
 
   let allPosts: { id: string; slug: Record<string, string>; title: Record<string, string>; featured_image_path: string | null }[] = [];
 
   if (supabase) {
-    const selectFields = 'id, title, excerpt, content, featured_image_path, published_at, updated_at, author_name, slug';
+    const selectFields = 'id, title, excerpt, content, featured_image_path, published_at, updated_at, author_name, author_job_title, author_bio, author_avatar_url, slug';
 
     // Try current locale first, then fall back to any locale slug match
     const byLocaleSlug = await supabase
@@ -242,6 +245,38 @@ export default async function BlogPostPage({
           <p className="text-gray-600 text-lg leading-relaxed">{excerpt}</p>
         ) : (
           <p className="text-gray-400">{t('contentComingSoon')}</p>
+        )}
+
+        {/* Author block */}
+        {post.author_name && (
+          <div className="mt-10 pt-8 border-t border-gray-100">
+            <h2 className="text-lg font-bold text-black mb-4">{t('aboutAuthor')}</h2>
+            <div className="flex gap-4 items-start">
+              {post.author_avatar_url ? (
+                <img
+                  src={post.author_avatar_url}
+                  alt=""
+                  className="w-16 h-16 rounded-full object-cover flex-shrink-0"
+                />
+              ) : (
+                <div
+                  className="w-16 h-16 rounded-full flex-shrink-0 flex items-center justify-center text-xl font-semibold bg-gray-100 text-gray-400"
+                  aria-hidden
+                >
+                  {post.author_name.charAt(0).toUpperCase()}
+                </div>
+              )}
+              <div className="min-w-0">
+                <p className="font-semibold text-black">{post.author_name}</p>
+                {post.author_job_title && (
+                  <p className="text-sm text-gray-500 mt-0.5">{post.author_job_title}</p>
+                )}
+                {post.author_bio && (
+                  <p className="text-sm text-gray-600 mt-2 leading-relaxed">{post.author_bio}</p>
+                )}
+              </div>
+            </div>
+          </div>
         )}
       </div>
 

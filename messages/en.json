@@ -203,7 +203,8 @@
     "contentComingSoon": "Content coming soon.",
     "youMayAlsoLike": "You May Also Like",
     "next": "Next",
-    "noSlugTitle": "Post has no slug defined"
+    "noSlugTitle": "Post has no slug defined",
+    "aboutAuthor": "About the author"
   },
   "contact": {
     "metaTitle": "Contact - Flow Productions",

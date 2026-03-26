@@ -104,6 +104,9 @@ export async function POST(req: NextRequest) {
   // ── Multi-locale payload: { post: { translations: { pt: {...}, en: {...} } } }
   const translations = post.translations as Record<string, Record<string, unknown>> | undefined;
 
+  // Author info sent from the CMS (profile data)
+  const postAuthor = post.author as { name?: string | null; jobTitle?: string | null; bio?: string | null; avatarUrl?: string | null } | null | undefined;
+
   const title:           Record<string, string>  = {};
   const slug:            Record<string, string>  = {};
   const excerpt:         Record<string, string>  = {};
@@ -191,6 +194,12 @@ export async function POST(req: NextRequest) {
         json_ld:             mergedJsonLd,
         status:              'published',
         updated_at:          now,
+        ...(postAuthor ? {
+          author_name:        postAuthor.name      ?? undefined,
+          author_job_title:   postAuthor.jobTitle  ?? undefined,
+          author_bio:         postAuthor.bio       ?? undefined,
+          author_avatar_url:  postAuthor.avatarUrl ?? undefined,
+        } : {}),
       })
       .eq('id', existing.id);
 
@@ -218,6 +227,10 @@ export async function POST(req: NextRequest) {
       status:              'published',
       published_at:        now,
       updated_at:          now,
+      author_name:         postAuthor?.name      ?? null,
+      author_job_title:    postAuthor?.jobTitle  ?? null,
+      author_bio:          postAuthor?.bio       ?? null,
+      author_avatar_url:   postAuthor?.avatarUrl ?? null,
     });
 
   if (error) {
