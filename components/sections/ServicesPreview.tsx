@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn';
+import { getServiceCategoryHref } from '@/lib/serviceCategoryHref';
 
 interface Service {
   id: string;
@@ -90,7 +91,7 @@ export default function ServicesPreview({ services, locale }: ServicesPreviewPro
             const description = serviceDescriptions[service.key]?.[locale] || 
                               serviceDescriptions[service.key]?.['pt'] || '';
             const number = String(index + 1).padStart(2, '0');
-            const href = service.key === 'martech' ? '/martech' : '/servicos';
+            const href = getServiceCategoryHref(service.key) ?? '/servicos';
 
             return (
               <StaggerItem key={service.id}>
@@ -101,7 +102,7 @@ export default function ServicesPreview({ services, locale }: ServicesPreviewPro
                       {number}
                     </div>
                     {/* Title */}
-                    <h3 className="text-xl font-bold group-hover:text-gray-700 transition-colors">
+                    <h3 className="text-xl font-bold no-underline group-hover:underline group-hover:underline-offset-4 group-hover:decoration-current group-hover:text-gray-700 transition-colors">
                       {title}
                     </h3>
                     {/* Description */}

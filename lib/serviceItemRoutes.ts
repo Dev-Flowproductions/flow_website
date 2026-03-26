@@ -1,44 +1,51 @@
 /**
  * Maps Supabase `services.key` + `service_items.order` to internal paths (no locale prefix).
  *
- * Expected keys: `design`, `marketing`, `audiovisual`, `animacao` (see `services.key` in Supabase).
- * Order values must match `service_items.order` for each category (1-based, as returned by the API).
- * No seed for these tables ships in this repo—after deploy, confirm ordering in Supabase Studio
- * or the public `/servicos` grid and adjust this map if items were reordered.
+ * Keys: design, marketing, audiovisual, animacao, martech (synthetic items in ServicesGrid).
+ * Order must match `service_items.order` in Supabase and the EN item lists under
+ * `services` in messages (en.json: design.items, marketing.items, etc.).
  */
 export const SERVICE_ITEM_HREF: Record<string, Record<number, string>> = {
   design: {
     1: '/servicos/branding',
-    2: '/servicos/web-design',
-    3: '/servicos/packaging-design',
-    4: '/servicos/ilustracao',
-    5: '/servicos/design-editorial',
-    6: '/servicos/ux-ui-design',
-    7: '/servicos/social-media-design',
+    2: '/servicos/design-editorial',
+    3: '/servicos/web-design',
+    4: '/servicos/ux-ui-design',
+    5: '/servicos/packaging-design',
+    6: '/servicos/social-media-design',
+    7: '/servicos/ilustracao',
     8: '/servicos/space-branding',
   },
   marketing: {
     1: '/servicos/content-strategy',
-    2: '/servicos/copywriting',
-    3: '/servicos/blog-content-writing',
-    4: '/servicos/storytelling',
-    5: '/servicos/brand-strategy',
-    6: '/servicos/social-media-content',
-    7: '/servicos/digital-advertising',
+    2: '/servicos/brand-strategy',
+    3: '/servicos/copywriting',
+    4: '/servicos/social-media-content',
+    5: '/servicos/blog-content-writing',
+    6: '/servicos/digital-advertising',
+    7: '/servicos/storytelling',
     8: '/servicos/consultoria',
   },
   audiovisual: {
     1: '/servicos/storytelling-audiovisual',
-    2: '/servicos/fotografia',
-    3: '/servicos/video',
+    2: '/servicos/video',
+    3: '/servicos/fotografia',
     4: '/servicos/cobertura-eventos',
   },
   animacao: {
     1: '/servicos/motion-graphics',
-    2: '/servicos/animacao-corporativa-educativa',
-    3: '/servicos/efeitos-especiais',
-    4: '/servicos/animacao-produto',
-    5: '/servicos/animacao-publicitaria-social',
+    2: '/servicos/animacao-produto',
+    3: '/servicos/animacao-corporativa-educativa',
+    4: '/servicos/animacao-publicitaria-social',
+    5: '/servicos/efeitos-especiais',
+  },
+  martech: {
+    1: '/martech/aeo-seo-geo',
+    2: '/martech/non-gated-demand-gen',
+    3: '/martech/go-to-market',
+    4: '/martech/paid-media',
+    5: '/martech/landing-pages',
+    6: '/martech/ai-agents',
   },
 };
 

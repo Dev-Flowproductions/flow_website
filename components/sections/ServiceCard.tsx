@@ -3,6 +3,7 @@
 import { StaggerItem } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
 import { getServiceItemHref } from '@/lib/serviceItemRoutes';
+import { getServiceCategoryHref } from '@/lib/serviceCategoryHref';
 
 interface Service {
   id: string;
@@ -13,7 +14,6 @@ interface Service {
     id: string;
     label: Record<string, string>;
     order: number;
-    href?: string;
   }>;
 }
 
@@ -26,6 +26,7 @@ interface ServiceCardProps {
 export default function ServiceCard({ service, locale, number }: ServiceCardProps) {
   const title = service.title[locale] || service.title['pt'] || service.key;
   const sortedItems = [...service.service_items].sort((a, b) => a.order - b.order);
+  const categoryHref = getServiceCategoryHref(service.key);
 
   return (
     <StaggerItem>
@@ -40,7 +41,18 @@ export default function ServiceCard({ service, locale, number }: ServiceCardProp
 
           {/* Title */}
           <div className="md:col-span-3 text-center md:text-left">
-            <h3 className="text-2xl md:text-3xl font-bold">{title}</h3>
+            {categoryHref ? (
+              <h3 className="text-2xl md:text-3xl font-bold">
+                <Link
+                  href={categoryHref}
+                  className="no-underline hover:underline hover:underline-offset-4 hover:decoration-[#5b54a0] hover:text-[#5b54a0] transition-colors"
+                >
+                  {title}
+                </Link>
+              </h3>
+            ) : (
+              <h3 className="text-2xl md:text-3xl font-bold">{title}</h3>
+            )}
           </div>
 
           {/* Items */}
@@ -48,12 +60,14 @@ export default function ServiceCard({ service, locale, number }: ServiceCardProp
             <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-center md:text-left">
               {sortedItems.map((item) => {
                 const label = item.label[locale] || item.label['pt'] || '';
-                const href = item.href ?? getServiceItemHref(service.key, item.order);
-                const className =
-                  'text-sm text-gray-700 hover:text-black transition-colors underline-offset-2 hover:underline';
-                if (href) {
+                const itemHref = getServiceItemHref(service.key, item.order);
+                if (itemHref) {
                   return (
-                    <Link key={item.id} href={href} className={className}>
+                    <Link
+                      key={item.id}
+                      href={itemHref}
+                      className="text-sm text-gray-700 no-underline hover:underline hover:underline-offset-2 hover:decoration-black hover:text-black transition-colors block"
+                    >
                       {label}
                     </Link>
                   );
