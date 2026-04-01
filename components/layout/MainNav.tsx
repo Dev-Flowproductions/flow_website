@@ -159,6 +159,9 @@ export default function MainNav() {
       <Link href="/blog" className={navLinkClass('/blog', pathname)}>
         {t('blog')}
       </Link>
+      <Link href="/ecoris" className={navLinkClass('/ecoris', pathname)}>
+        {t('ecoris')}
+      </Link>
     </nav>
   );
 }

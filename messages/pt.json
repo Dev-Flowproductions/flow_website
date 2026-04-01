@@ -6,11 +6,15 @@
     "martech": "MarTech",
     "projects": "Projetos",
     "blog": "Blog Flow",
+    "ecoris": "Ecoris",
     "contact": "Contactos",
     "close": "Fechar"
   },
   "footer": {
     "addressLabel": "Endereço",
+    "addressFaroLabel": "Faro",
+    "addressLisbonLabel": "Lisboa",
+    "addressLisbon": "Unicorn Factory Lisboa\nAv. Infante Dom Henrique 143\n1950-406 Lisboa, Portugal",
     "fichaDoProjeto": "Ficha do Projeto",
     "emailLabel": "Email",
     "address": "Edifício Ualg Tec, Campus da Penha, 8005-139 Faro",
@@ -205,6 +209,19 @@
     "next": "Próximo",
     "noSlugTitle": "Artigo sem slug definido",
     "aboutAuthor": "Sobre o autor"
+  },
+  "ecoris": {
+    "metaTitle": "Ecoris — jogo sobre conservação da água",
+    "metaDescription": "Ecoris é um jogo de aventura e quebra-cabeças para sensibilizar crianças e jovens para a poupança de água e pegadas hídricas. Projeto Flow Productions.",
+    "breadcrumbName": "Ecoris",
+    "bannerAlt": "Ilustração do jogo Ecoris: castor canalizador e cenário à volta da água e da comunidade",
+    "title": "Ecoris",
+    "whatIsTitle": "O que é o Ecoris?",
+    "whatIsBody": "Ecoris é um jogo de aventura e quebra-cabeças, criado para ensinar os mais novos a importância da conservação da água de forma interativa, abordando também as várias pegadas hídricas. Através de uma narrativa envolvente, pretendemos sensibilizar os mais novos para a necessidade da poupança da água.",
+    "whatToDoTitle": "O que fazer?",
+    "whatToDoBody": "Em Ecoris, assumes o papel de um castor canalizador que enfrenta o desafio de salvar a sua vila de animais de problemas graves relacionados com o desperdício de água. Desde consertar torneiras até aproveitar a água da humidade das casas, cada tarefa é um passo para preservar os recursos preciosos da tua comunidade.",
+    "cta": "Visitar ecoris.pt",
+    "credit": "Produzido pela Flow Productions."
   },
   "contact": {
     "metaTitle": "Contactos - Flow Productions",

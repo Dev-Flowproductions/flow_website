@@ -25,12 +25,23 @@ export default function Footer({ locale }: { locale: string }) {
             </Link>
           </div>
 
-          {/* Column 2 - Address + Social */}
+          {/* Column 2 - Address */}
           <div className="space-y-4 text-center md:text-left">
             <h4 className="font-semibold text-sm">{t('addressLabel')}</h4>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              {t('address')}
-            </p>
+            <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-800 mb-1">
+                  {t('addressLisbonLabel')}
+                </p>
+                <p className="whitespace-pre-line">{t('addressLisbon')}</p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-800 mb-1">
+                  {t('addressFaroLabel')}
+                </p>
+                <p>{t('address')}</p>
+              </div>
+            </div>
             <a
               href="/13587_Ficha Webiste.pdf"
               target="_blank"
@@ -39,9 +50,25 @@ export default function Footer({ locale }: { locale: string }) {
             >
               {t('fichaDoProjeto')}
             </a>
+          </div>
 
-            {/* Social Icons */}
-            <div className="flex gap-2 pt-2 justify-center md:justify-start">
+          {/* Column 3 - Email, Phone & Social */}
+          <div className="space-y-4 text-center md:text-left">
+            <h4 className="font-semibold text-sm">{t('emailLabel')}</h4>
+            <a
+              href={`mailto:${t('email')}`}
+              className="text-sm text-gray-600 hover:text-black transition-colors block underline"
+            >
+              {t('email')}
+            </a>
+            <a
+              href={`tel:${t('phone')}`}
+              className="text-sm font-bold text-black hover:text-gray-700 transition-colors block mt-2"
+            >
+              {t('phone')}
+            </a>
+
+            <div className="flex gap-2 pt-4 justify-center md:justify-start">
               <a
                 href="https://www.facebook.com/flowproductions.pt"
                 target="_blank"
@@ -87,23 +114,6 @@ export default function Footer({ locale }: { locale: string }) {
                 </svg>
               </a>
             </div>
-          </div>
-
-          {/* Column 3 - Email & Phone */}
-          <div className="space-y-4 text-center md:text-left">
-            <h4 className="font-semibold text-sm">{t('emailLabel')}</h4>
-            <a
-              href={`mailto:${t('email')}`}
-              className="text-sm text-gray-600 hover:text-black transition-colors block underline"
-            >
-              {t('email')}
-            </a>
-            <a
-              href={`tel:${t('phone')}`}
-              className="text-sm font-bold text-black hover:text-gray-700 transition-colors block mt-2"
-            >
-              {t('phone')}
-            </a>
           </div>
 
         </div>

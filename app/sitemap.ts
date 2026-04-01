@@ -38,6 +38,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...buildUrls('projetos-sociais', 0.8, 'monthly'),
     // Blog
     ...buildUrls('blog', 0.8, 'daily'),
+    // Ecoris
+    ...buildUrls('ecoris', 0.7, 'monthly'),
   ];
 
   // Dynamic blog posts (from Supabase)

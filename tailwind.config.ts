@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      /** Desktop navbar: full inline nav from this width (fits extra links without using xl). */
+      screens: {
+        nav: '1080px',
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

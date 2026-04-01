@@ -70,7 +70,7 @@ export default function MobileMenu({
     <>
       {/* Full-screen dark panel from left */}
       <div
-        className="lg:hidden fixed inset-0 z-[9999] bg-gray-900 flex flex-col overflow-y-auto"
+        className="nav:hidden fixed inset-0 z-[9999] bg-gray-900 flex flex-col overflow-y-auto"
         role="dialog"
         aria-modal
         aria-label="Menu"
@@ -201,6 +201,9 @@ export default function MobileMenu({
 
           <Link href="/blog" onClick={onClose} className={linkClass('/blog')}>
             {t('blog')}
+          </Link>
+          <Link href="/ecoris" onClick={onClose} className={linkClass('/ecoris')}>
+            {t('ecoris')}
           </Link>
           <Link href="/contactos" onClick={onClose} className={linkClass('/contactos')}>
             {t('contact')}

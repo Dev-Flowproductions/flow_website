@@ -167,7 +167,7 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Team Section - 9 Members Grid */}
+      {/* Team Section - 10 Members Grid */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <AnimateIn>
@@ -188,13 +188,19 @@ export default async function AboutPage({
               { name: 'Maeva Ferrand', role: 'Branding & Design', slug: 'maeva-ferrand' },
               { name: 'Inês Navrat', role: 'Filmmaker & Photographer', slug: 'ines-navrat' },
               { name: 'Guilherme Bordoni', role: 'Video Producer', slug: 'guilherme-bordoni' },
+              {
+                name: 'Carlos',
+                role: 'Innovation Lead | AI & MarTech',
+                slug: 'carlos-mar-tech',
+                image: '/images/team/member-10.jpeg',
+              },
             ].map((member, index) => (
               <AnimateIn key={index} delay={0.1 * (index + 1)}>
                 <Link href={`/team/${member.slug}`} className="block group cursor-pointer">
                   {/* Square photo */}
                   <div className="aspect-square overflow-hidden relative">
                     <Image
-                      src={`/images/team/member-${index + 1}.jpg`}
+                      src={'image' in member && member.image ? member.image : `/images/team/member-${index + 1}.jpg`}
                       alt={member.name}
                       fill
                       sizes="(max-width: 768px) 50vw, 33vw"
