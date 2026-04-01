@@ -6,11 +6,15 @@
     "martech": "MarTech",
     "projects": "Projects",
     "blog": "Blog Flow",
+    "ecoris": "Ecoris",
     "contact": "Contact",
     "close": "Close"
   },
   "footer": {
     "addressLabel": "Address",
+    "addressFaroLabel": "Faro",
+    "addressLisbonLabel": "Lisbon",
+    "addressLisbon": "Unicorn Factory Lisboa\nAv. Infante Dom Henrique 143\n1950-406 Lisboa, Portugal",
     "fichaDoProjeto": "Project Sheet",
     "emailLabel": "Email",
     "address": "Edifício Ualg Tec, Campus da Penha, 8005-139 Faro",
@@ -205,6 +209,19 @@
     "next": "Next",
     "noSlugTitle": "Post has no slug defined",
     "aboutAuthor": "About the author"
+  },
+  "ecoris": {
+    "metaTitle": "Ecoris — game about water conservation",
+    "metaDescription": "Ecoris is an adventure and puzzle game that teaches young people about saving water and water footprints in an interactive way. A Flow Productions project.",
+    "breadcrumbName": "Ecoris",
+    "bannerAlt": "Ecoris game illustration: beaver plumber and a colourful water and community scene",
+    "title": "Ecoris",
+    "whatIsTitle": "What is Ecoris?",
+    "whatIsBody": "Ecoris is an adventure and puzzle game created to teach children and young people about the importance of water conservation in an interactive way, covering different water footprints. Through an engaging narrative, we aim to raise awareness of the need to save water.",
+    "whatToDoTitle": "What do you do?",
+    "whatToDoBody": "In Ecoris, you play as a plumber beaver facing the challenge of saving your animal village from serious problems linked to water waste. From fixing taps to using water from home humidity, each task is a step towards preserving your community's precious resources.",
+    "cta": "Visit ecoris.pt",
+    "credit": "Produced by Flow Productions."
   },
   "contact": {
     "metaTitle": "Contact - Flow Productions",

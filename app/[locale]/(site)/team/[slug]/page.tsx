@@ -13,21 +13,21 @@ const teamMembers = [
     description: {
       pt: `Fundador da Flow Productions e verdadeiro motor do nosso movimento, o Ricardo é quem orienta a equipa com visão, cuidado e foco no crescimento da marca e das pessoas que a fazem acontecer.
 
-A sua grande paixão é a animação 2D e motion graphics, área onde começou a dar forma ao sonho que hoje é a Flow. Sempre em busca de novas formas de evoluir, acredita no self-improvement constante e em manter a criatividade em fluxo.
+A sua grande paixão é a animação 2D e motion graphics, área onde começou a dar forma ao sonho que hoje é a Flow.
 
 O nosso boss é movido a cafeína e nunca recusa um docinho. Sempre em busca de novas formas de evoluir, acredita no self-improvement constante e em manter a criatividade em fluxo.
 
 Com o Ricardo, a Flow nunca fica parada: há sempre uma nova ideia, um novo caminho e muita energia em movimento.`,
       en: `Founder of Flow Productions and the true driving force behind our movement, Ricardo guides the team with vision, care, and a focus on brand growth and the people who make it happen.
 
-His greatest passion is 2D animation and motion graphics — the area where he first began shaping the dream that is now Flow. Always seeking new ways to evolve, he believes in constant self-improvement and keeping creativity in flow.
+His greatest passion is 2D animation and motion graphics — the area where he first began shaping the dream that is now Flow.
 
 Our boss runs on caffeine and never turns down a sweet treat. Always searching for new ways to grow, he believes in constant self-improvement and keeping creativity flowing.
 
 With Ricardo, Flow never stands still: there's always a new idea, a new path, and plenty of energy in motion.`,
       fr: `Fondateur de Flow Productions et véritable moteur de notre mouvement, Ricardo guide l'équipe avec vision, bienveillance et focus sur la croissance de la marque et des personnes qui la font exister.
 
-Sa grande passion est l'animation 2D et le motion graphics — le domaine dans lequel il a commencé à donner forme au rêve qui est aujourd'hui Flow. Toujours à la recherche de nouvelles façons d'évoluer, il croit en l'amélioration constante de soi et en maintenir la créativité en flux.
+Sa grande passion est l'animation 2D et le motion graphics — le domaine dans lequel il a commencé à donner forme au rêve qui est aujourd'hui Flow.
 
 Notre boss fonctionne à la caféine et ne refuse jamais une douceur. Toujours en quête de nouvelles façons de progresser, il croit en l'amélioration constante et en la créativité en mouvement.
 
@@ -161,7 +161,7 @@ Avec António, chaque projet gagne en personnalité et une identité visuelle qu
     role: 'Branding & Design',
     image: '/images/team/member-7.jpg',
     description: {
-      pt: `A Maeva é quem mistura cor, equilíbrio e propósito em cada uma das suas criações. Com um olhar afinado para branding e social media design, aplica as suas ideias em peças que comunicam com clareza, harmonia e impacto. Pensa e prepara dos seus projetos ao detalhe, sempre com a missão de alinhar estética e estratégia.
+      pt: `A Maeva é quem mistura cor, equilíbrio e propósito em cada uma das suas criações. Com um olhar afinado para branding e social media design, aplica as suas ideias em peças que comunicam com clareza, harmonia e impacto. Pensa e prepara os seus projetos ao detalhe, sempre com a missão de alinhar estética e estratégia.
 
 Fora do ecrã, é especialista em journaling e scrapbooking, tem um conhecimento infindável sobre geografia e partilha o dia a dia com o seu companheiro de quatro patas, o Teo. É fã de saladinhas e comida saudável, além de leitora ávida, sempre em busca de inspiração nas páginas que percorre.
 
@@ -222,6 +222,23 @@ With Guilherme, ideas come to life with a healthy dose of creativity.`,
 Passionné de musique, il joue du saxophone et a le don de reconnaître une chanson dès les premières notes (ce n'est pas un mythe — c'est un vrai talent). Hors caméra, il échange le trépied pour les sports collectifs : football, volleyball, natation ou dodgeball — tout sauf la salle de sport.
 
 Avec Guilherme, les idées prennent vie avec une bonne dose de créativité.`,
+    },
+  },
+  {
+    slug: 'carlos-mar-tech',
+    name: 'Carlos',
+    role: 'Innovation Lead | AI & MarTech',
+    image: '/images/team/member-10.jpeg',
+    description: {
+      pt: `O Carlos lidera a vertente de inovação da Flow, com foco em Inteligência Artificial e MarTech. Trabalha na interseção entre estratégia e execução, desenvolvendo soluções práticas: desde automação e agentes de IA até ferramentas que ajudam marcas e equipas a ganhar mais velocidade, consistência e escala.
+
+Com um percurso entre Portugal, Inglaterra e Brasil, traz uma visão prática e global ao que faz. Gosta de transformar ideias em soluções reais, desafiar-se (dentro e fora do trabalho) e manter disciplina através de rotinas que incluem leitura, reflexão e prática de defesa pessoal.`,
+      en: `Carlos leads Flow's innovation strand, with a focus on Artificial Intelligence and MarTech. He works at the intersection of strategy and execution, developing practical solutions — from automation and AI agents to tools that help brands and teams gain more speed, consistency, and scale.
+
+With experience across Portugal, England, and Brazil, he brings a practical, global outlook to his work. He enjoys turning ideas into real solutions, challenging himself in and out of work, and staying disciplined through routines that include reading, reflection, and personal defence practice.`,
+      fr: `Carlos dirige le volet innovation de Flow, avec un focus sur l'intelligence artificielle et le MarTech. Il travaille à l'intersection de la stratégie et de l'exécution, en développant des solutions concrètes : de l'automatisation et des agents IA aux outils qui aident les marques et les équipes à gagner en vélocité, cohérence et ampleur.
+
+Avec un parcours entre le Portugal, l'Angleterre et le Brésil, il apporte une vision pratique et globale à son travail. Il aime transformer les idées en solutions réelles, se challenger au travail comme ailleurs, et cultiver la discipline grâce à des routines qui incluent lecture, réflexion et pratique d'autodéfense.`,
     },
   },
 ];

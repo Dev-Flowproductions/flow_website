@@ -28,7 +28,7 @@ export default function Header({ locale }: { locale: string }) {
             </Link>
 
           {/* Center Navigation + CTA + Locale - Desktop */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden nav:flex items-center gap-6">
             <MainNav />
             <LocaleSwitcher locale={locale} />
             <Link
@@ -40,7 +40,7 @@ export default function Header({ locale }: { locale: string }) {
           </div>
 
             {/* Mobile: Locale + Hamburger */}
-            <div className="flex lg:hidden items-center gap-3">
+            <div className="flex nav:hidden items-center gap-3">
               <LocaleSwitcher locale={locale} />
               <button
                 className="p-2"

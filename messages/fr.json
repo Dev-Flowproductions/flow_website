@@ -6,11 +6,15 @@
     "martech": "MarTech",
     "projects": "Projets",
     "blog": "Blog Flow",
+    "ecoris": "Ecoris",
     "contact": "Contact",
     "close": "Fermer"
   },
   "footer": {
     "addressLabel": "Adresse",
+    "addressFaroLabel": "Faro",
+    "addressLisbonLabel": "Lisbonne",
+    "addressLisbon": "Unicorn Factory Lisboa\nAv. Infante Dom Henrique 143\n1950-406 Lisboa, Portugal",
     "fichaDoProjeto": "Fiche du Projet",
     "emailLabel": "Email",
     "address": "Edifício Ualg Tec, Campus da Penha, 8005-139 Faro",
@@ -205,6 +209,19 @@
     "next": "Suivant",
     "noSlugTitle": "L'article n'a pas de slug défini",
     "aboutAuthor": "À propos de l'auteur"
+  },
+  "ecoris": {
+    "metaTitle": "Ecoris — jeu sur la conservation de l'eau",
+    "metaDescription": "Ecoris est un jeu d'aventure et de puzzles pour sensibiliser les jeunes à l'économie d'eau et aux empreintes hydriques. Un projet Flow Productions.",
+    "breadcrumbName": "Ecoris",
+    "bannerAlt": "Illustration du jeu Ecoris : castor plombier et scène colorée autour de l'eau",
+    "title": "Ecoris",
+    "whatIsTitle": "Qu'est-ce qu'Ecoris ?",
+    "whatIsBody": "Ecoris est un jeu d'aventure et de puzzles, créé pour enseigner aux plus jeunes l'importance de la conservation de l'eau de manière interactive, en abordant aussi les différentes empreintes hydriques. Grâce à une narrative engageante, nous voulons sensibiliser les jeunes à la nécessité d'économiser l'eau.",
+    "whatToDoTitle": "Que faire ?",
+    "whatToDoBody": "Dans Ecoris, vous incarnez un castor plombier qui doit sauver son village d'animaux face à de graves problèmes liés au gaspillage d'eau. De la réparation des robinets à la récupération de l'humidité des maisons, chaque mission contribue à préserver les ressources précieuses de votre communauté.",
+    "cta": "Visiter ecoris.pt",
+    "credit": "Produit par Flow Productions."
   },
   "contact": {
     "metaTitle": "Contact - Flow Productions",
