@@ -1,7 +1,9 @@
 'use client';
 
-import { StaggerItem, StaggerContainer } from '@/components/ui/AnimateIn';
-import { motion } from 'framer-motion';
+import { StaggerItem } from '@/components/ui/AnimateIn';
+import { Link } from '@/i18n/routing';
+import { getServiceCategoryHref } from '@/lib/serviceCategoryHref';
+import { getServiceItemHref } from '@/lib/serviceItemRoutes';
 
 interface Service {
   id: string;
@@ -21,9 +23,13 @@ interface ServiceCardProps {
   number: string;
 }
 
+const itemLinkClass =
+  'text-sm text-gray-700 hover:text-black transition-colors no-underline hover:underline hover:underline-offset-4 decoration-current';
+
 export default function ServiceCard({ service, locale, number }: ServiceCardProps) {
   const title = service.title[locale] || service.title['pt'] || service.key;
   const sortedItems = [...service.service_items].sort((a, b) => a.order - b.order);
+  const categoryHref = getServiceCategoryHref(service.key) ?? '/servicos';
 
   return (
     <StaggerItem>
@@ -38,7 +44,14 @@ export default function ServiceCard({ service, locale, number }: ServiceCardProp
 
           {/* Title */}
           <div className="md:col-span-3 text-center md:text-left">
-            <h3 className="text-2xl md:text-3xl font-bold">{title}</h3>
+            <h3 className="text-2xl md:text-3xl font-bold">
+              <Link
+                href={categoryHref}
+                className="no-underline hover:underline hover:underline-offset-4 decoration-current text-inherit"
+              >
+                {title}
+              </Link>
+            </h3>
           </div>
 
           {/* Items */}
@@ -46,13 +59,18 @@ export default function ServiceCard({ service, locale, number }: ServiceCardProp
             <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-center md:text-left">
               {sortedItems.map((item) => {
                 const label = item.label[locale] || item.label['pt'] || '';
+                const href = getServiceItemHref(service.key, item.order);
+                if (href) {
+                  return (
+                    <Link key={item.id} href={href} className={itemLinkClass}>
+                      {label}
+                    </Link>
+                  );
+                }
                 return (
-                  <div
-                    key={item.id}
-                    className="text-sm text-gray-700 hover:text-black transition-colors"
-                  >
+                  <span key={item.id} className="text-sm text-gray-700">
                     {label}
-                  </div>
+                  </span>
                 );
               })}
             </div>
