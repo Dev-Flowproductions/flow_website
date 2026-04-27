@@ -118,8 +118,11 @@ export default function Footer({ locale }: { locale: string }) {
 
         </div>
 
-        {/* Bottom Border */}
-        <div className="border-t border-gray-200 pt-6">
+        {/* Startup recognition + copyright */}
+        <div className="border-t border-gray-200 pt-6 space-y-4">
+          <p className="text-xs text-gray-600 leading-relaxed text-center md:text-left max-w-4xl mx-auto md:mx-0">
+            {t('startupNotice')}
+          </p>
           <div className="flex justify-end">
             <p className="text-xs text-gray-400">{t('rights')}</p>
           </div>
