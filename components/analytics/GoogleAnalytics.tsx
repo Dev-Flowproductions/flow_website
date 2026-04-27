@@ -4,6 +4,12 @@ import Script from 'next/script';
 import { usePathname } from '@/i18n/routing';
 import { useEffect, useRef } from 'react';
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 /**
  * GA4 web stream Measurement ID (format `G-XXXXXXXXXX`), from:
  * Admin → Property → Data streams → Web → Measurement ID.
@@ -26,8 +32,9 @@ export default function GoogleAnalytics() {
       return;
     }
 
-    if (typeof window.gtag !== 'function') return;
-    window.gtag('config', measurementId, { page_path: path });
+    const gtag = window.gtag;
+    if (typeof gtag !== 'function') return;
+    gtag('config', measurementId, { page_path: path });
   }, [pathname, measurementId]);
 
   if (!measurementId) {
