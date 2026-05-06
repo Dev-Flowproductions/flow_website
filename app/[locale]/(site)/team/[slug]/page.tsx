@@ -226,17 +226,17 @@ Avec Guilherme, les idées prennent vie avec une bonne dose de créativité.`,
   },
   {
     slug: 'carlos-mar-tech',
-    name: 'Carlos',
+    name: 'Carlos Justino',
     role: 'Innovation Lead | AI & MarTech',
     image: '/images/team/member-10.jpeg',
     description: {
-      pt: `O Carlos lidera a vertente de inovação da Flow, com foco em Inteligência Artificial e MarTech. Trabalha na interseção entre estratégia e execução, desenvolvendo soluções práticas: desde automação e agentes de IA até ferramentas que ajudam marcas e equipas a ganhar mais velocidade, consistência e escala.
+      pt: `O Carlos Justino lidera a vertente de inovação da Flow, com foco em Inteligência Artificial e MarTech. Trabalha na interseção entre estratégia e execução, desenvolvendo soluções práticas: desde automação e agentes de IA até ferramentas que ajudam marcas e equipas a ganhar mais velocidade, consistência e escala.
 
 Com um percurso entre Portugal, Inglaterra e Brasil, traz uma visão prática e global ao que faz. Gosta de transformar ideias em soluções reais, desafiar-se (dentro e fora do trabalho) e manter disciplina através de rotinas que incluem leitura, reflexão e prática de defesa pessoal.`,
-      en: `Carlos leads Flow's innovation strand, with a focus on Artificial Intelligence and MarTech. He works at the intersection of strategy and execution, developing practical solutions — from automation and AI agents to tools that help brands and teams gain more speed, consistency, and scale.
+      en: `Carlos Justino leads Flow's innovation strand, with a focus on Artificial Intelligence and MarTech. He works at the intersection of strategy and execution, developing practical solutions — from automation and AI agents to tools that help brands and teams gain more speed, consistency, and scale.
 
 With experience across Portugal, England, and Brazil, he brings a practical, global outlook to his work. He enjoys turning ideas into real solutions, challenging himself in and out of work, and staying disciplined through routines that include reading, reflection, and personal defence practice.`,
-      fr: `Carlos dirige le volet innovation de Flow, avec un focus sur l'intelligence artificielle et le MarTech. Il travaille à l'intersection de la stratégie et de l'exécution, en développant des solutions concrètes : de l'automatisation et des agents IA aux outils qui aident les marques et les équipes à gagner en vélocité, cohérence et ampleur.
+      fr: `Carlos Justino dirige le volet innovation de Flow, avec un focus sur l'intelligence artificielle et le MarTech. Il travaille à l'intersection de la stratégie et de l'exécution, en développant des solutions concrètes : de l'automatisation et des agents IA aux outils qui aident les marques et les équipes à gagner en vélocité, cohérence et ampleur.
 
 Avec un parcours entre le Portugal, l'Angleterre et le Brésil, il apporte une vision pratique et globale à son travail. Il aime transformer les idées en solutions réelles, se challenger au travail comme ailleurs, et cultiver la discipline grâce à des routines qui incluent lecture, réflexion et pratique d'autodéfense.`,
     },

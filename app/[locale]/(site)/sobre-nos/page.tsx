@@ -189,7 +189,7 @@ export default async function AboutPage({
               { name: 'Inês Navrat', role: 'Filmmaker & Photographer', slug: 'ines-navrat' },
               { name: 'Guilherme Bordoni', role: 'Video Producer', slug: 'guilherme-bordoni' },
               {
-                name: 'Carlos',
+                name: 'Carlos Justino',
                 role: 'Innovation Lead | AI & MarTech',
                 slug: 'carlos-mar-tech',
                 image: '/images/team/member-10.jpeg',
