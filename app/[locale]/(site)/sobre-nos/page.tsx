@@ -167,7 +167,7 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Team Section - 10 Members Grid */}
+      {/* Team Section - members grid */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <AnimateIn>
@@ -193,6 +193,12 @@ export default async function AboutPage({
                 role: 'Innovation Lead | AI & MarTech',
                 slug: 'carlos-mar-tech',
                 image: '/images/team/member-10.jpeg',
+              },
+              {
+                name: 'Leandro Justino',
+                role: 'AI Product Engineer',
+                slug: 'leandro-justino',
+                image: '/images/team/member-11.jpg',
               },
             ].map((member, index) => (
               <AnimateIn key={index} delay={0.1 * (index + 1)}>
