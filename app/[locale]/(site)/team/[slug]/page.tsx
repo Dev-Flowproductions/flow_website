@@ -241,6 +241,29 @@ With experience across Portugal, England, and Brazil, he brings a practical, glo
 Avec un parcours entre le Portugal, l'Angleterre et le Brésil, il apporte une vision pratique et globale à son travail. Il aime transformer les idées en solutions réelles, se challenger au travail comme ailleurs, et cultiver la discipline grâce à des routines qui incluent lecture, réflexion et pratique d'autodéfense.`,
     },
   },
+  {
+    slug: 'leandro-justino',
+    name: 'Leandro Justino',
+    role: 'AI Product Engineer',
+    image: '/images/team/member-11.jpg',
+    description: {
+      pt: `O Leandro é AI Product Engineer na Flow, focado no desenvolvimento de websites, aplicações e ferramentas com recurso a Inteligência Artificial. Trabalha na criação de soluções práticas e escaláveis, transformando ideias em produtos funcionais através de uma abordagem orientada à execução.
+
+Fora do código, tem um percurso sólido em defesa pessoal, com mais de 8 anos de treino e cinturão castanho. Divide o tempo entre jogos, séries, anime e música (com preferência por rock) e mantém um gosto especial pelo Japão, o seu país de eleição.
+
+Com o Leandro, as ideias ganham vida rápida e passam do conceito ao produto com muito flow.`,
+      en: `Leandro is AI Product Engineer at Flow, focused on developing websites, applications and tools powered by Artificial Intelligence. He works on building practical, scalable solutions, turning ideas into functional products through an execution-driven approach.
+
+Outside of code, he has a strong background in personal defence, with over eight years of training and a brown belt. He splits his time between games, series, anime and music (with a soft spot for rock), and has a special love for Japan — his country of choice.
+
+With Leandro, ideas come to life quickly and move from concept to product with real flow.`,
+      fr: `Leandro est AI Product Engineer chez Flow, axé sur le développement de sites web, d'applications et d'outils s'appuyant sur l'intelligence artificielle. Il conçoit des solutions concrètes et évolutives, transformant les idées en produits fonctionnels avec une approche tournée vers l'exécution.
+
+Hors du code, il a un solide parcours en autodéfense, avec plus de huit ans de pratique et une ceinture marron. Il partage son temps entre jeux, séries, anime et musique (avec une préférence pour le rock), et garde un attachement particulier pour le Japon, son pays de cœur.
+
+Avec Leandro, les idées prennent vie vite et passent du concept au produit avec beaucoup de flow.`,
+    },
+  },
 ];
 
 export function generateStaticParams() {
