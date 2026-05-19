@@ -4,6 +4,9 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 
+const ALGARVE2030_LOGO_SRC =
+  '/images/logos/Barras%20de%20Assinaturas%20Algarve2030_Positivo.svg';
+
 export default function Footer({ locale }: { locale: string }) {
   const t = useTranslations('footer');
 
@@ -46,7 +49,7 @@ export default function Footer({ locale }: { locale: string }) {
               href="/13587_Ficha Webiste.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-gray-400 hover:text-gray-600 transition-colors block"
+              className="text-xs text-gray-400 hover:text-gray-600 transition-colors inline-block w-fit mx-auto md:mx-0"
             >
               {t('fichaDoProjeto')}
             </a>
@@ -116,6 +119,20 @@ export default function Footer({ locale }: { locale: string }) {
             </div>
           </div>
 
+        </div>
+
+        {/* Algarve 2030 co-financing signature bars */}
+        <div className="mb-8 flex justify-center px-2">
+          {/* eslint-disable-next-line @next/next/no-img-element -- wide SVG banner */}
+          <img
+            src={ALGARVE2030_LOGO_SRC}
+            alt={t('algarve2030LogoAlt')}
+            width={357}
+            height={34}
+            className="h-auto w-full max-w-[220px] sm:max-w-[260px] md:max-w-[300px]"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         {/* Startup recognition + copyright */}
