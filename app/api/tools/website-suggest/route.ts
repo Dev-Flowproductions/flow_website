@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-
-const GEMINI_MODEL = 'gemini-3.1-flash-lite-preview';
+import { extractJsonObject, generateLlmText, getOpenAIApiKey } from '@/lib/openai';
 const MAX_HTML_LENGTH = 50000;
 const FETCH_TIMEOUT_MS = 8000;
 
@@ -39,9 +37,8 @@ const responseSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json({ error: 'API not configured' }, { status: 500 });
+    if (!getOpenAIApiKey()) {
+      return NextResponse.json({ error: 'OpenAI API not configured' }, { status: 500 });
     }
 
     const body = await request.json();
@@ -94,8 +91,6 @@ export async function POST(request: NextRequest) {
     const langInstruction =
       language === 'pt' ? 'Return industry and mainOffer in Portuguese.' : language === 'fr' ? 'Return industry and mainOffer in French.' : 'Return industry and mainOffer in English.';
 
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
     const prompt = `You are analysing a company website to extract two short facts. Return only valid JSON, no markdown, no explanation.
 ${langInstruction}
 
@@ -107,13 +102,8 @@ ${text.slice(0, 12000)}
 
 Return only the JSON object.`;
 
-    const result = await model.generateContent(prompt);
-    const output = result.response.text();
-    if (!output || !output.trim()) {
-      return NextResponse.json({ error: 'No suggestion from AI' }, { status: 502 });
-    }
-
-    const cleaned = output.replace(/^[\s\S]*?\{/, '{').replace(/\}[\s\S]*$/, '}').trim();
+    const output = await generateLlmText(prompt);
+    const cleaned = extractJsonObject(output);
     let json: unknown;
     try {
       json = JSON.parse(cleaned);

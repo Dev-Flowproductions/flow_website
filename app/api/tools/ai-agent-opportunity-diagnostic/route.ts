@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import {
+  extractJsonObject,
+  generateLlmText,
+  getOpenAIApiKey,
+  LlmBlockedError,
+} from '@/lib/openai';
 
 function normalizeUrl(val: string): string {
   const s = val.trim();
@@ -56,8 +61,6 @@ const responseSchema = z.object({
 
 export type AiAgentOpportunityResponse = z.infer<typeof responseSchema>;
 
-const GEMINI_MODEL = 'gemini-3.1-flash-lite-preview';
-
 function buildPrompt(lang: string, payload: z.infer<typeof requestSchema>): string {
   const langInstruction =
     lang === 'pt' ? 'Write all output in Portuguese (Portugal).' : lang === 'fr' ? 'Write all output in French.' : 'Write all output in English.';
@@ -109,9 +112,8 @@ Return only the JSON object.`;
 
 export async function POST(request: NextRequest) {
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json({ error: 'Gemini API not configured' }, { status: 500 });
+    if (!getOpenAIApiKey()) {
+      return NextResponse.json({ error: 'OpenAI API not configured' }, { status: 500 });
     }
 
     const body = await request.json();
@@ -124,35 +126,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
     const prompt = buildPrompt(parsed.data.language, parsed.data);
 
     let text: string;
     try {
-      const result = await model.generateContent(prompt);
-      text = result.response.text();
+      text = await generateLlmText(prompt);
     } catch (genErr: unknown) {
-      const msg = genErr instanceof Error ? genErr.message : String(genErr);
-      console.error('Gemini generateContent error:', msg);
-      if (/blocked|safety|valid Part|no candidate/i.test(msg)) {
-        return NextResponse.json({ error: 'Response was blocked or empty. Try again.' }, { status: 502 });
+      if (genErr instanceof LlmBlockedError) {
+        return NextResponse.json({ error: genErr.message }, { status: 502 });
       }
       throw genErr;
     }
-    if (!text?.trim()) {
-      return NextResponse.json({ error: 'Empty response from AI. Try again.' }, { status: 502 });
-    }
 
-    let rawJson = text.trim();
-    const codeBlockMatch = rawJson.match(/```(?:json)?\s*([\s\S]*?)```/);
-    if (codeBlockMatch) rawJson = codeBlockMatch[1].trim();
-    const firstBrace = rawJson.indexOf('{');
-    const lastBrace = rawJson.lastIndexOf('}');
-    if (firstBrace !== -1 && lastBrace > firstBrace) {
-      rawJson = rawJson.slice(firstBrace, lastBrace + 1);
-    }
-
+    const rawJson = extractJsonObject(text);
     let json: unknown;
     try {
       json = JSON.parse(rawJson);
