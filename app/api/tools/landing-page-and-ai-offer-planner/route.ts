@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import {
+  extractJsonObject,
+  generateLlmText,
+  getOpenAIApiKey,
+  LlmBlockedError,
+} from '@/lib/openai';
 
 function normalizeUrl(val: string): string {
   const s = val.trim();
@@ -95,8 +100,6 @@ export type LandingPageAuditResponse = z.infer<typeof auditResponseSchema>;
 export type LandingPagePlanResponse = z.infer<typeof planResponseSchema>;
 export type LandingPagePlannerResponse = LandingPageAuditResponse | LandingPagePlanResponse;
 
-const GEMINI_MODEL = 'gemini-3.1-flash-lite-preview';
-
 function buildAuditPrompt(lang: string, payload: z.infer<typeof auditRequestSchema>): string {
   const langInstruction =
     lang === 'pt' ? 'Write all output in Portuguese (Portugal).' : lang === 'fr' ? 'Write all output in French.' : 'Write all output in English.';
@@ -176,20 +179,11 @@ ${context ? context + '\n' : ''}
 Return only the JSON object.`;
 }
 
-function extractJson(text: string): string {
-  let raw = text.trim();
-  const codeBlockMatch = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
-  if (codeBlockMatch) raw = codeBlockMatch[1].trim();
-  const firstBrace = raw.indexOf('{');
-  const lastBrace = raw.lastIndexOf('}');
-  if (firstBrace !== -1 && lastBrace > firstBrace) raw = raw.slice(firstBrace, lastBrace + 1);
-  return raw;
-}
-
 export async function POST(request: NextRequest) {
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) return NextResponse.json({ error: 'Gemini API not configured' }, { status: 500 });
+    if (!getOpenAIApiKey()) {
+      return NextResponse.json({ error: 'OpenAI API not configured' }, { status: 500 });
+    }
 
     const body = await request.json();
     const parsed = requestSchema.safeParse(body);
@@ -198,28 +192,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid request', details: flat, fieldErrors: flat.fieldErrors }, { status: 400 });
     }
 
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
-
     const prompt = parsed.data.mode === 'audit'
       ? buildAuditPrompt(parsed.data.language, parsed.data)
       : buildPlanPrompt(parsed.data.language, parsed.data);
 
     let text: string;
     try {
-      const result = await model.generateContent(prompt);
-      text = result.response.text();
+      text = await generateLlmText(prompt);
     } catch (genErr: unknown) {
-      const msg = genErr instanceof Error ? genErr.message : String(genErr);
-      console.error('Gemini generateContent error:', msg);
-      if (/blocked|safety|valid Part|no candidate/i.test(msg)) {
-        return NextResponse.json({ error: 'Response was blocked or empty. Try again.' }, { status: 502 });
+      if (genErr instanceof LlmBlockedError) {
+        return NextResponse.json({ error: genErr.message }, { status: 502 });
       }
       throw genErr;
     }
-    if (!text?.trim()) return NextResponse.json({ error: 'Empty response from AI. Try again.' }, { status: 502 });
 
-    const rawJson = extractJson(text);
+    const rawJson = extractJsonObject(text);
     let json: unknown;
     try {
       json = JSON.parse(rawJson);
