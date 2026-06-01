@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
+import { designCarouselProjects } from '@/lib/designCarouselProjects';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -32,20 +33,6 @@ const logos = [
   { name: 'CCDR',                   src: '/images/logos/ccdr.png' },
   { name: 'Nature Soul Food',        src: '/images/logos/nature.png' },
   { name: 'New Balance',            src: '/images/logos/new-balance.png' },
-];
-
-const designProjects = [
-  { slug: 'zion-creative-artisans',   title: 'ZION Creative Artisans',   img: '/images/projects/design-carousel/zion-carousel.webp' },
-  { slug: 'dom-jose-beach-hotel',     title: 'Dom José Beach Hotel',     img: '/images/projects/design-carousel/dom-jose-carousel.png' },
-  { slug: '100lixo',                  title: '100LIXO',                  img: '/images/projects/design-carousel/100lixo-carousel.png' },
-  { slug: 'witfy',                    title: 'Witfy',                    img: '/images/projects/design-carousel/witfy-carousel.png' },
-  { slug: 'albufeira-digital-nomads', title: 'Albufeira Digital Nomads', img: '/images/projects/design-carousel/albufeira-dn-carousel.png' },
-  { slug: 'urlegfix',                 title: 'URLEGFIX',                 img: '/images/projects/design-carousel/urlegfix-carousel.jpg' },
-  { slug: 'cesarius',                 title: 'Cesarius',                 img: '/images/projects/design-carousel/cesarius-carousel.png' },
-  { slug: 'jardim-aurora',            title: 'Jardim Aurora',            img: '/images/projects/design-carousel/jardim-aurora-carousel.png' },
-  { slug: 'nature-soul-food',         title: 'Nature Soul Food',         img: '/images/projects/design-carousel/nature-sf-carousel.jpg' },
-  { slug: 'rocket-booster',           title: 'Rocket Booster',           img: '/images/projects/design-carousel/rocket-booster-carousel.png' },
-  { slug: 'pizza-lab',                title: 'Pizza Lab',                img: '/images/projects/design-carousel/pizza-lab-carousel.jpg' },
 ];
 
 const serviceSchema = serviceJsonLd({
@@ -126,7 +113,7 @@ export default async function DesignProjectsPage({
         </div>
       </section>
 
-      <ProjectCarousel projects={designProjects} />
+      <ProjectCarousel projects={designCarouselProjects} />
 
       <section className="bg-black py-16 overflow-hidden">
         <div className="animate-marquee">
