@@ -1,6 +1,7 @@
 import { marked } from 'marked';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { extractCoverImageUrl } from '@/lib/blogCms';
+import { parseCmsAuthor, type BlogAuthorLocales } from '@/lib/blogAuthor';
 
 async function mdToHtml(md: string): Promise<string> {
   if (!md) return '';
@@ -12,6 +13,45 @@ export type BlogWebhookPayload = {
   event?: string;
   post?: Record<string, unknown>;
 };
+
+function collectAuthorsFromPost(post: Record<string, unknown>): BlogAuthorLocales {
+  const authors: BlogAuthorLocales = {};
+  const translations = post.translations as Record<string, Record<string, unknown>> | undefined;
+  const topAuthor = parseCmsAuthor(post.author);
+  const primaryLocale = (post.locale as string) || 'en';
+
+  if (translations && Object.keys(translations).length > 0) {
+    for (const locale of Object.keys(translations)) {
+      const t = translations[locale];
+      const fromTranslation = parseCmsAuthor(t.author);
+      if (fromTranslation) {
+        authors[locale] = fromTranslation;
+      } else if (locale === primaryLocale && topAuthor) {
+        authors[locale] = topAuthor;
+      }
+    }
+  } else if (topAuthor) {
+    authors[primaryLocale] = topAuthor;
+  }
+
+  if (topAuthor && !authors[primaryLocale]) {
+    authors[primaryLocale] = topAuthor;
+  }
+
+  return authors;
+}
+
+function legacyAuthorColumns(authors: BlogAuthorLocales, primaryLocale: string) {
+  const primary =
+    authors[primaryLocale] ?? authors.en ?? authors.pt ?? authors.fr ?? Object.values(authors)[0];
+  if (!primary) return {};
+  return {
+    author_name: primary.name ?? null,
+    author_job_title: primary.jobTitle ?? null,
+    author_bio: primary.bio ?? null,
+    author_avatar_url: primary.avatarUrl ?? null,
+  };
+}
 
 export async function syncBlogPostFromCms(
   supabase: SupabaseClient,
@@ -25,12 +65,10 @@ export async function syncBlogPostFromCms(
   const cmsId = post.id as string | undefined;
   const cmsSlug = post.slug as string | undefined;
   const coverImage = extractCoverImageUrl(post);
+  const primaryLocale = (post.locale as string) || 'en';
+  const incomingAuthors = collectAuthorsFromPost(post);
 
   const translations = post.translations as Record<string, Record<string, unknown>> | undefined;
-  const postAuthor = post.author as
-    | { name?: string | null; jobTitle?: string | null; bio?: string | null; avatarUrl?: string | null }
-    | null
-    | undefined;
 
   const title: Record<string, string> = {};
   const slug: Record<string, string> = {};
@@ -52,7 +90,7 @@ export async function syncBlogPostFromCms(
       if (t.json_ld) json_ld[locale] = t.json_ld;
     }
   } else {
-    const locale = (post.locale as string) || 'pt';
+    const locale = primaryLocale;
     title[locale] = (post.title as string) ?? '';
     slug[locale] = (post.slug as string) ?? '';
     excerpt[locale] = (post.excerpt as string) ?? '';
@@ -64,7 +102,7 @@ export async function syncBlogPostFromCms(
 
   const now = new Date().toISOString();
 
-  let existing: {
+  type ExistingPost = {
     id: string;
     slug: Record<string, string>;
     title: Record<string, string>;
@@ -74,31 +112,33 @@ export async function syncBlogPostFromCms(
     meta_description: Record<string, string> | null;
     json_ld: Record<string, unknown> | null;
     featured_image_path: string | null;
+    author: BlogAuthorLocales | null;
     published_at: string | null;
-  } | null = null;
+  };
+
+  let existing: ExistingPost | null = null;
+
+  const existingSelect =
+    'id, slug, title, content, excerpt, seo_title, meta_description, json_ld, featured_image_path, author, published_at';
 
   if (cmsId) {
     const byCmsId = await supabase
       .from('blog_posts')
-      .select(
-        'id, slug, title, content, excerpt, seo_title, meta_description, json_ld, featured_image_path, published_at',
-      )
+      .select(existingSelect)
       .eq('cms_id', cmsId)
       .maybeSingle();
-    if (byCmsId.data) existing = byCmsId.data;
+    if (byCmsId.data) existing = byCmsId.data as ExistingPost;
   }
 
   if (!existing && cmsSlug) {
     for (const l of ['pt', 'en', 'fr']) {
       const bySlug = await supabase
         .from('blog_posts')
-        .select(
-          'id, slug, title, content, excerpt, seo_title, meta_description, json_ld, featured_image_path, published_at',
-        )
+        .select(existingSelect)
         .eq(`slug->>${l}`, cmsSlug)
         .maybeSingle();
       if (bySlug.data) {
-        existing = bySlug.data;
+        existing = bySlug.data as ExistingPost;
         break;
       }
     }
@@ -116,13 +156,12 @@ export async function syncBlogPostFromCms(
 
   const featuredImagePath = coverImage ?? existing?.featured_image_path ?? null;
 
-  const authorFields = postAuthor
-    ? {
-        author_name: postAuthor.name ?? undefined,
-        author_job_title: postAuthor.jobTitle ?? undefined,
-        author_bio: postAuthor.bio ?? undefined,
-        author_avatar_url: postAuthor.avatarUrl ?? undefined,
-      }
+  const mergedAuthor: BlogAuthorLocales | null = Object.keys(incomingAuthors).length
+    ? { ...(existing?.author ?? {}), ...incomingAuthors }
+    : (existing?.author ?? null);
+
+  const authorColumns = mergedAuthor
+    ? legacyAuthorColumns(mergedAuthor, primaryLocale)
     : {};
 
   if (existing) {
@@ -135,12 +174,13 @@ export async function syncBlogPostFromCms(
         excerpt: { ...existing.excerpt, ...excerpt },
         slug: { ...(existing.slug ?? {}), ...slug },
         featured_image_path: featuredImagePath,
+        author: mergedAuthor,
         seo_title: mergedSeoTitle,
         meta_description: mergedMetaDescription,
         json_ld: mergedJsonLd,
         status: 'published',
         updated_at: now,
-        ...authorFields,
+        ...authorColumns,
       })
       .eq('id', existing.id);
 
@@ -158,16 +198,14 @@ export async function syncBlogPostFromCms(
     excerpt,
     slug,
     featured_image_path: featuredImagePath,
+    author: mergedAuthor,
     seo_title: mergedSeoTitle,
     meta_description: mergedMetaDescription,
     json_ld: mergedJsonLd,
     status: 'published',
     published_at: now,
     updated_at: now,
-    author_name: postAuthor?.name ?? null,
-    author_job_title: postAuthor?.jobTitle ?? null,
-    author_bio: postAuthor?.bio ?? null,
-    author_avatar_url: postAuthor?.avatarUrl ?? null,
+    ...authorColumns,
   });
 
   if (error) {

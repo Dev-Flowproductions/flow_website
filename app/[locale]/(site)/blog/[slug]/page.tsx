@@ -8,6 +8,7 @@ import { getTranslations } from 'next-intl/server';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { marked } from 'marked';
 import RegisterSlugMap from '@/components/blog/RegisterSlugMap';
+import { resolveBlogAuthor, type BlogAuthorLocales } from '@/lib/blogAuthor';
 import { resolveBlogCoverImage } from '@/lib/blogCoverImage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -101,6 +102,7 @@ export default async function BlogPostPage({
     cms_id: string | null;
     published_at: string | null;
     updated_at: string | null;
+    author: BlogAuthorLocales | null;
     author_name: string | null;
     author_job_title: string | null;
     author_bio: string | null;
@@ -118,7 +120,7 @@ export default async function BlogPostPage({
 
   if (supabase) {
     const selectFields =
-      'id, title, excerpt, content, featured_image_path, cms_id, published_at, updated_at, author_name, author_job_title, author_bio, author_avatar_url, slug';
+      'id, title, excerpt, content, featured_image_path, cms_id, published_at, updated_at, author, author_name, author_job_title, author_bio, author_avatar_url, slug';
 
     // Try current locale first, then fall back to any locale slug match
     const byLocaleSlug = await supabase
@@ -188,6 +190,7 @@ export default async function BlogPostPage({
     : contentRaw;
   const coverImage = await resolveBlogCoverImage(post);
   const seoImage = coverImage || '/images/og-default.jpg';
+  const author = resolveBlogAuthor(post, locale);
 
   const currentIndex = allPosts.findIndex((p) =>
     isUuid(slug) ? p.id === slug : (p.slug?.[locale] === slug || p.slug?.pt === slug)
@@ -204,7 +207,7 @@ export default async function BlogPostPage({
     image: seoImage,
     datePublished: post.published_at || new Date().toISOString(),
     dateModified: post.updated_at || post.published_at || new Date().toISOString(),
-    authorName: post.author_name || undefined,
+    authorName: author?.name || undefined,
   });
 
   const breadcrumbSchema = breadcrumbJsonLd([
@@ -280,14 +283,13 @@ export default async function BlogPostPage({
           <p className="text-gray-400">{t('contentComingSoon')}</p>
         )}
 
-        {/* Author block */}
-        {post.author_name && (
+        {author?.name && (
           <div className="mt-10 pt-8 border-t border-gray-100">
             <h2 className="text-lg font-bold text-black mb-4">{t('aboutAuthor')}</h2>
             <div className="flex gap-4 items-start">
-              {post.author_avatar_url ? (
+              {author.avatarUrl ? (
                 <img
-                  src={post.author_avatar_url}
+                  src={author.avatarUrl}
                   alt=""
                   className="w-16 h-16 rounded-full object-cover flex-shrink-0"
                 />
@@ -296,16 +298,16 @@ export default async function BlogPostPage({
                   className="w-16 h-16 rounded-full flex-shrink-0 flex items-center justify-center text-xl font-semibold bg-gray-100 text-gray-400"
                   aria-hidden
                 >
-                  {post.author_name.charAt(0).toUpperCase()}
+                  {author.name.charAt(0).toUpperCase()}
                 </div>
               )}
               <div className="min-w-0">
-                <p className="font-semibold text-black">{post.author_name}</p>
-                {post.author_job_title && (
-                  <p className="text-sm text-gray-500 mt-0.5">{post.author_job_title}</p>
+                <p className="font-semibold text-black">{author.name}</p>
+                {author.jobTitle && (
+                  <p className="text-sm text-gray-500 mt-0.5">{author.jobTitle}</p>
                 )}
-                {post.author_bio && (
-                  <p className="text-sm text-gray-600 mt-2 leading-relaxed">{post.author_bio}</p>
+                {author.bio && (
+                  <p className="text-sm text-gray-600 mt-2 leading-relaxed">{author.bio}</p>
                 )}
               </div>
             </div>
