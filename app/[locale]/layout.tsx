@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing';
 import { Poppins } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
 import { getSEOConfig, organizationJsonLd, websiteJsonLd } from '@/lib/seo';
+import { Analytics } from '@vercel/analytics/next';
 import '../globals.css';
 
 const poppins = Poppins({
@@ -73,6 +74,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
