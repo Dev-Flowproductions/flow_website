@@ -8,6 +8,7 @@ import { getTranslations } from 'next-intl/server';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { marked } from 'marked';
 import RegisterSlugMap from '@/components/blog/RegisterSlugMap';
+import { resolveBlogCoverImage } from '@/lib/blogCoverImage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
 
@@ -25,11 +26,19 @@ export async function generateMetadata({
   const supabase = await createClient();
 
   if (supabase) {
-    let post: { title: Record<string, string>; excerpt: Record<string, string> | null; slug?: Record<string, string>; featured_image_path: string | null; published_at: string | null; updated_at: string | null } | null = null;
+    let post: {
+      title: Record<string, string>;
+      excerpt: Record<string, string> | null;
+      slug?: Record<string, string>;
+      featured_image_path: string | null;
+      cms_id: string | null;
+      published_at: string | null;
+      updated_at: string | null;
+    } | null = null;
 
     const bySlug = await supabase
       .from('blog_posts')
-      .select('title, excerpt, slug, featured_image_path, published_at, updated_at')
+      .select('title, excerpt, slug, featured_image_path, cms_id, published_at, updated_at')
       .eq(`slug->>${locale}`, slug)
       .eq('status', 'published')
       .maybeSingle();
@@ -38,7 +47,7 @@ export async function generateMetadata({
     if (!post && isUuid(slug)) {
       const byId = await supabase
         .from('blog_posts')
-        .select('title, excerpt, slug, featured_image_path, published_at, updated_at')
+        .select('title, excerpt, slug, featured_image_path, cms_id, published_at, updated_at')
         .eq('id', slug)
         .eq('status', 'published')
         .maybeSingle();
@@ -49,11 +58,12 @@ export async function generateMetadata({
       const title = post.title?.[locale] || post.title?.pt || '';
       const description = post.excerpt?.[locale] || post.excerpt?.pt || '';
       const canonicalSlug = post.slug?.[locale] || post.slug?.pt || post.slug?.en || post.slug?.fr || slug;
+      const coverImage = await resolveBlogCoverImage(post);
       return getPageMetadata(locale, {
         title,
         description,
         path: `blog/${canonicalSlug}`,
-        image: post.featured_image_path || undefined,
+        image: coverImage || undefined,
         type: 'article',
         publishedTime: post.published_at || undefined,
         modifiedTime: post.updated_at || undefined,
@@ -88,6 +98,7 @@ export default async function BlogPostPage({
     excerpt: Record<string, string> | null;
     content: Record<string, string> | null;
     featured_image_path: string | null;
+    cms_id: string | null;
     published_at: string | null;
     updated_at: string | null;
     author_name: string | null;
@@ -96,10 +107,18 @@ export default async function BlogPostPage({
     author_avatar_url: string | null;
   } | null = null;
 
-  let allPosts: { id: string; slug: Record<string, string>; title: Record<string, string>; featured_image_path: string | null }[] = [];
+  let allPosts: {
+    id: string;
+    slug: Record<string, string>;
+    title: Record<string, string>;
+    featured_image_path: string | null;
+    cms_id: string | null;
+    coverImage: string | null;
+  }[] = [];
 
   if (supabase) {
-    const selectFields = 'id, title, excerpt, content, featured_image_path, published_at, updated_at, author_name, author_job_title, author_bio, author_avatar_url, slug';
+    const selectFields =
+      'id, title, excerpt, content, featured_image_path, cms_id, published_at, updated_at, author_name, author_job_title, author_bio, author_avatar_url, slug';
 
     // Try current locale first, then fall back to any locale slug match
     const byLocaleSlug = await supabase
@@ -140,11 +159,23 @@ export default async function BlogPostPage({
 
     const { data: posts } = await supabase
       .from('blog_posts')
-      .select('id, slug, title, featured_image_path')
+      .select('id, slug, title, featured_image_path, cms_id')
       .eq('status', 'published')
       .order('published_at', { ascending: false })
       .limit(20);
-    allPosts = (posts || []) as { id: string; slug: Record<string, string>; title: Record<string, string>; featured_image_path: string | null }[];
+    const related = (posts || []) as {
+      id: string;
+      slug: Record<string, string>;
+      title: Record<string, string>;
+      featured_image_path: string | null;
+      cms_id: string | null;
+    }[];
+    allPosts = await Promise.all(
+      related.map(async (p) => ({
+        ...p,
+        coverImage: await resolveBlogCoverImage(p),
+      })),
+    );
   }
 
   if (!post) notFound();
@@ -152,11 +183,11 @@ export default async function BlogPostPage({
   const title = post.title?.[locale] || post.title?.pt || '';
   const excerpt = post.excerpt?.[locale] || post.excerpt?.pt || '';
   const contentRaw = post.content?.[locale] || post.content?.pt || '';
-  // Parse markdown to HTML if the content looks like markdown (not already HTML)
   const content = contentRaw && !contentRaw.trimStart().startsWith('<')
     ? await marked(contentRaw, { gfm: true, breaks: true })
     : contentRaw;
-  const image = post.featured_image_path || '/images/og-default.jpg';
+  const coverImage = await resolveBlogCoverImage(post);
+  const seoImage = coverImage || '/images/og-default.jpg';
 
   const currentIndex = allPosts.findIndex((p) =>
     isUuid(slug) ? p.id === slug : (p.slug?.[locale] === slug || p.slug?.pt === slug)
@@ -170,7 +201,7 @@ export default async function BlogPostPage({
     title,
     description: excerpt,
     url: `${SITE_URL}/${locale}/blog/${canonicalSlug}`,
-    image,
+    image: seoImage,
     datePublished: post.published_at || new Date().toISOString(),
     dateModified: post.updated_at || post.published_at || new Date().toISOString(),
     authorName: post.author_name || undefined,
@@ -188,17 +219,18 @@ export default async function BlogPostPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Hero image - Full width on desktop, fixed 2:1 aspect ratio */}
-      <div className="hidden md:block relative w-full aspect-[2/1] overflow-hidden bg-gray-200">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-        />
-      </div>
+      {coverImage && (
+        <div className="hidden md:block relative w-full aspect-[2/1] overflow-hidden bg-gray-200">
+          <Image
+            src={coverImage}
+            alt={title}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
 
       {/* Content */}
       <div className="max-w-3xl mx-auto px-4 pt-8 md:pt-14 pb-14">
@@ -210,17 +242,18 @@ export default async function BlogPostPage({
           ]}
         />
 
-        {/* Mobile hero image - below breadcrumb */}
-        <div className="md:hidden relative w-full aspect-video overflow-hidden bg-gray-200 rounded-xl my-6">
-          <Image
-            src={image}
-            alt={title}
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
-        </div>
+        {coverImage && (
+          <div className="md:hidden relative w-full aspect-video overflow-hidden bg-gray-200 rounded-xl my-6">
+            <Image
+              src={coverImage}
+              alt={title}
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
 
         {post.published_at && (
           <p className="text-sm text-gray-400 mb-4">{formatDate(post.published_at, locale)}</p>
@@ -314,9 +347,9 @@ export default async function BlogPostPage({
                 return pSlug ? (
                   <Link key={p.id} href={`/blog/${pSlug}`} className="group block">
                     <div className="aspect-[16/10] overflow-hidden mb-3 bg-gray-100 relative">
-                      {p.featured_image_path && (
+                      {p.coverImage && (
                         <Image
-                          src={p.featured_image_path}
+                          src={p.coverImage}
                           alt={pTitle}
                           fill
                           sizes="(max-width: 640px) 100vw, 50vw"
@@ -331,9 +364,9 @@ export default async function BlogPostPage({
                 ) : (
                   <div key={p.id} className="group block opacity-90">
                     <div className="aspect-[16/10] overflow-hidden mb-3 bg-gray-100 relative">
-                      {p.featured_image_path && (
+                      {p.coverImage && (
                         <Image
-                          src={p.featured_image_path}
+                          src={p.coverImage}
                           alt={pTitle}
                           fill
                           sizes="(max-width: 640px) 100vw, 50vw"

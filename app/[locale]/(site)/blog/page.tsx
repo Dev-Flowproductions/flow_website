@@ -3,6 +3,7 @@ import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
 import { createClient } from '@/lib/supabase/server';
+import { resolveBlogCoverImage } from '@/lib/blogCoverImage';
 import { getTranslations } from 'next-intl/server';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -52,23 +53,30 @@ export default async function BlogPage({
     title: Record<string, string>;
     slug: Record<string, string>;
     featured_image_path: string | null;
+    cms_id: string | null;
     published_at: string | null;
+    coverImage: string | null;
   }[] = [];
 
   if (supabase) {
     const { data } = await supabase
       .from('blog_posts')
-      .select('id, title, slug, featured_image_path, published_at')
+      .select('id, title, slug, featured_image_path, cms_id, published_at')
       .eq('status', 'published')
       .not('title', 'is', null)
       .not('slug', 'is', null)
       .order('published_at', { ascending: false });
-    posts = (data || []).filter((p) => {
-      // Skip posts with no resolvable title or slug
+    const filtered = (data || []).filter((p) => {
       const hasTitle = p.title?.pt || p.title?.en || p.title?.fr;
-      const hasSlug  = p.slug?.pt  || p.slug?.en  || p.slug?.fr;
+      const hasSlug = p.slug?.pt || p.slug?.en || p.slug?.fr;
       return hasTitle && hasSlug;
     });
+    posts = await Promise.all(
+      filtered.map(async (p) => ({
+        ...p,
+        coverImage: await resolveBlogCoverImage(p),
+      })),
+    );
   }
 
   const breadcrumbSchema = breadcrumbJsonLd([
@@ -102,9 +110,9 @@ export default async function BlogPage({
             const card = (
               <>
                 <div className="aspect-video overflow-hidden mb-4 bg-gray-100 relative">
-                  {post.featured_image_path ? (
+                  {post.coverImage ? (
                     <Image
-                      src={post.featured_image_path}
+                      src={post.coverImage}
                       alt={title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
