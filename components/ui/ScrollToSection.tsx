@@ -3,19 +3,19 @@
 import type { ReactNode } from 'react';
 import { scrollToSection } from '@/lib/scrollToSection';
 
-interface ScrollToDiagnosticProps {
+interface ScrollToSectionProps {
   children: ReactNode;
   className?: string;
-  targetId?: string;
+  targetId: string;
   center?: boolean;
 }
 
-export default function ScrollToDiagnostic({
+export default function ScrollToSection({
   children,
   className,
-  targetId = 'diagnostico',
+  targetId,
   center = true,
-}: ScrollToDiagnosticProps) {
+}: ScrollToSectionProps) {
   return (
     <button
       type="button"
