@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn';
 import { useTranslations } from 'next-intl';
+import { HOME_PROJECT_SHOWCASE } from '@/lib/homeProjectShowcase';
 
 interface Tag {
   key: string;
@@ -21,59 +22,69 @@ interface Project {
 }
 
 interface ProjectsPreviewProps {
-  projects: Project[];
-  locale: string;
+  projects?: Project[];
+  locale?: string;
   columns?: 2 | 3;
   showTitles?: boolean;
+  variant?: 'grid' | 'categories';
 }
 
-const fallbackProjects = [
-  {
-    id: '1',
-    title: { pt: 'MIA' },
-    slug: { pt: 'mia' },
-    featured_image_path: '/images/projects/mia.webp',
-    tags: ['Animação', 'Content Writing'],
-  },
-  {
-    id: '2',
-    title: { pt: 'PRO AM – Vilamoura' },
-    slug: { pt: 'pro-am-vilamoura' },
-    featured_image_path: '/images/projects/pro-am-vilamoura.jpeg',
-    tags: ['Content Writing', 'Vídeo'],
-  },
-  {
-    id: '3',
-    title: { pt: 'Ria Shopping' },
-    slug: { pt: 'ria-shopping' },
-    featured_image_path: '/images/projects/ria-shopping.jpg',
-    tags: ['Content Writing', 'Vídeo'],
-  },
-  {
-    id: '4',
-    title: { pt: 'ZION Creative Artisans' },
-    slug: { pt: 'zion-creative-artisans' },
-    featured_image_path: '/images/projects/zion-creative-artisans.webp',
-    tags: ['Design'],
-  },
-  {
-    id: '5',
-    title: { pt: '100LIXO' },
-    slug: { pt: '100lixo' },
-    featured_image_path: '/images/projects/100lixo.png',
-    tags: ['Design'],
-  },
-  {
-    id: '6',
-    title: { pt: 'Albufeira Digital Nomads' },
-    slug: { pt: 'albufeira-digital-nomads' },
-    featured_image_path: '/images/projects/albufeira-digital-nomads.png',
-    tags: ['Design'],
-  },
-];
-
-export default function ProjectsPreview({ projects, locale, columns = 3, showTitles = true }: ProjectsPreviewProps) {
+export default function ProjectsPreview({
+  projects = [],
+  locale = 'pt',
+  columns = 3,
+  showTitles = true,
+  variant = 'categories',
+}: ProjectsPreviewProps) {
   const t = useTranslations('home.projects');
+  const categories = t.raw('categories') as Record<string, string>;
+
+  if (variant === 'categories') {
+    return (
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <AnimateIn>
+            <div className="text-center mb-16">
+              <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">
+                {t('label')}
+              </p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 max-w-4xl mx-auto">
+                {t('title')}
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                {t('description')}
+              </p>
+            </div>
+          </AnimateIn>
+
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+            {HOME_PROJECT_SHOWCASE.map((item) => (
+              <StaggerItem key={item.key}>
+                <Link href={item.href} className="group block">
+                  <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative rounded-lg">
+                    <Image
+                      src={item.image}
+                      alt={categories[item.key] || item.imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 20vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <p className="text-white font-bold text-sm md:text-base">
+                        {categories[item.key]}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+    );
+  }
+
   const hasRealProjects = projects.length > 0;
   const gridClass = columns === 2
     ? 'grid grid-cols-1 md:grid-cols-2 gap-4'
@@ -82,14 +93,13 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
   return (
     <section className="py-20 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <AnimateIn>
           <div className="text-center mb-16">
             <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">
               {t('label')}
             </p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              {t('title')} <span className="text-gray-300">{t('titleHighlight')}</span>
+              {t('title')}
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               {t('description')}
@@ -97,14 +107,14 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
           </div>
         </AnimateIn>
 
-        {hasRealProjects ? (
+        {hasRealProjects && (
           <StaggerContainer className={gridClass}>
             {projects.slice(0, 6).map((project) => {
               const title = project.title?.[locale] || project.title?.['pt'] || 'Untitled';
-              const slug  = project.slug?.[locale]  || project.slug?.['pt']  || project.id;
-              const tags  = project.project_project_tags
+              const slug = project.slug?.[locale] || project.slug?.['pt'] || project.id;
+              const tags = project.project_project_tags
                 ?.flatMap(r => Array.isArray(r.project_tags) ? r.project_tags : [r.project_tags])
-                .filter((t): t is Tag => t != null) ?? [];
+                .filter((tag): tag is Tag => tag != null) ?? [];
               const hasVideo = !!project.gallery?.video_url;
 
               return (
@@ -148,42 +158,6 @@ export default function ProjectsPreview({ projects, locale, columns = 3, showTit
                             ))}
                           </p>
                         )}
-                      </>
-                    )}
-                  </Link>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-        ) : (
-          /* Fallback: hardcoded 6 real projects */
-          <StaggerContainer className={gridClass}>
-            {fallbackProjects.map((project) => {
-              return (
-                <StaggerItem key={project.id}>
-                  <Link href={`/projetos/${project.slug.pt}`} className="group block">
-                    <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                      <Image
-                        src={project.featured_image_path}
-                        alt={project.title.pt}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    {showTitles && (
-                      <>
-                        <h3 className="text-lg font-bold text-black group-hover:text-gray-500 transition-colors mb-1">
-                          {project.title.pt}
-                        </h3>
-                        <p className="text-xs text-gray-400 uppercase tracking-widest">
-                          {project.tags.map((tag, i) => (
-                            <span key={tag}>
-                              {i > 0 && <span className="mx-1">·</span>}
-                              {tag}
-                            </span>
-                          ))}
-                        </p>
                       </>
                     )}
                   </Link>

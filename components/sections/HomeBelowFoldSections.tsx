@@ -1,42 +1,26 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-
-const TestimonialCarousel = dynamic(
-  () => import('@/components/sections/TestimonialCarousel'),
-  { ssr: false }
-);
-
-const ContactCTA = dynamic(
-  () => import('@/components/sections/ContactCTA'),
-  { ssr: false }
-);
-
-const ProjectsPreview = dynamic(
-  () => import('@/components/sections/ProjectsPreview'),
-  { ssr: false }
-);
-
-interface Testimonial {
-  id: string;
-  quote: Record<string, string>;
-  person_name: string;
-  company_name: string;
-  avatar_path?: string;
-  order: number;
-}
+import { useTranslations } from 'next-intl';
+import HomeHowWeWork from '@/components/sections/HomeHowWeWork';
+import ProjectsPreview from '@/components/sections/ProjectsPreview';
+import HomeFaqSection from '@/components/sections/HomeFaqSection';
+import HomeFinalIntro from '@/components/sections/HomeFinalIntro';
+import ContactCTA from '@/components/sections/ContactCTA';
 
 interface Props {
-  testimonials: Testimonial[];
   locale: string;
 }
 
-export default function HomeBelowFoldSections({ testimonials, locale }: Props) {
+export default function HomeBelowFoldSections({ locale }: Props) {
+  const t = useTranslations('home.finalCta');
+
   return (
     <>
-      <TestimonialCarousel testimonials={testimonials} locale={locale} />
-      <ProjectsPreview projects={[]} locale={locale} columns={2} showTitles={false} />
-      <ContactCTA />
+      <HomeHowWeWork />
+      <ProjectsPreview locale={locale} variant="categories" />
+      <HomeFaqSection />
+      <HomeFinalIntro />
+      <ContactCTA submitLabel={t('ctaPrimary')} />
     </>
   );
 }

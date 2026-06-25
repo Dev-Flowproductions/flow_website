@@ -1,6 +1,5 @@
 'use client';
 
-import { Link } from '@/i18n/routing';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -13,8 +12,13 @@ function getMessage(t: (key: string) => string, key: string, fallback: string): 
   }
 }
 
-export default function ContactCTA() {
+interface ContactCTAProps {
+  submitLabel?: string;
+}
+
+export default function ContactCTA({ submitLabel }: ContactCTAProps) {
   const t = useTranslations('contact');
+  const formT = useTranslations('contact.form');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -45,11 +49,11 @@ export default function ContactCTA() {
           if (response.status === 400 && Array.isArray(data.details) && data.details.length > 0) {
           const first = data.details[0];
           if (first.path?.[0] === 'message' && first.code === 'too_small') {
-            setValidationError(getMessage(t, 'form.messageTooShort', 'Message must be at least 10 characters.'));
+            setValidationError(getMessage(formT, 'messageTooShort', 'Message must be at least 10 characters.'));
           } else if (first.path?.[0] === 'consent') {
-            setValidationError(getMessage(t, 'form.consentRequired', 'You must accept data collection to submit.'));
+            setValidationError(getMessage(formT, 'consentRequired', 'You must accept data collection to submit.'));
           } else {
-            setValidationError(first.message || t('form.error'));
+            setValidationError(first.message || formT('error'));
           }
         } else {
           setValidationError(null);
@@ -63,10 +67,9 @@ export default function ContactCTA() {
   };
 
   return (
-    <section className="py-20 px-4 bg-white">
+    <section id="home-contact-form" className="py-20 px-4 bg-white scroll-mt-24">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8 md:gap-16">
-          {/* Left - Info */}
           <AnimateIn>
             <div className="text-center md:text-left">
               <p className="text-xs uppercase tracking-widest text-gray-600 mb-4">
@@ -106,17 +109,15 @@ export default function ContactCTA() {
             </div>
           </AnimateIn>
 
-          {/* Right - Form */}
           <AnimateIn delay={0.2}>
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name */}
               <div className="relative">
                 <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 <input
                   type="text"
-                  placeholder={t('form.name')}
+                  placeholder={formT('name')}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
@@ -124,7 +125,6 @@ export default function ContactCTA() {
                 />
               </div>
 
-              {/* Email */}
               <div className="relative">
                 <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -139,14 +139,13 @@ export default function ContactCTA() {
                 />
               </div>
 
-              {/* Message */}
               <div>
                 <div className="relative">
                   <svg className="absolute left-4 top-4 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
                   <textarea
-                    placeholder={t('form.message')}
+                    placeholder={formT('message')}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={4}
@@ -157,11 +156,10 @@ export default function ContactCTA() {
                   />
                 </div>
                 <p id="cta-message-hint" className="mt-1 text-xs text-gray-500">
-                  {getMessage(t, 'form.messageHint', 'Minimum 10 characters')}
+                  {getMessage(formT, 'messageHint', 'Minimum 10 characters')}
                 </p>
               </div>
 
-              {/* Consent */}
               <div className="flex items-start gap-3">
                 <input
                   type="checkbox"
@@ -172,11 +170,10 @@ export default function ContactCTA() {
                   className="mt-1 w-4 h-4 cursor-pointer"
                 />
                 <label htmlFor="cta-consent" className="text-sm text-gray-700 cursor-pointer">
-                  {t('form.consent')}
+                  {formT('consent')}
                 </label>
               </div>
 
-              {/* Submit */}
               <button
                 type="submit"
                 disabled={status === 'loading'}
@@ -186,15 +183,15 @@ export default function ContactCTA() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M22 2L11 13" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M22 2L15 22 11 13 2 9l20-7z" />
                 </svg>
-                {status === 'loading' ? t('form.loading') : t('form.submit')}
+                {status === 'loading' ? formT('loading') : submitLabel ?? formT('submit')}
               </button>
 
               {status === 'success' && (
-                <p className="text-green-600 text-sm">{t('form.success')}</p>
+                <p className="text-green-600 text-sm">{formT('success')}</p>
               )}
               {status === 'error' && (
                 <p className="text-red-600 text-sm">
-                  {validationError ?? t('form.error')}
+                  {validationError ?? formT('error')}
                 </p>
               )}
             </form>

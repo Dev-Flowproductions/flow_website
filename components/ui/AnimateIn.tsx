@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { ReactNode, useRef } from 'react';
 
 interface AnimateInProps {
   children: ReactNode;
@@ -11,17 +11,22 @@ interface AnimateInProps {
   priority?: boolean;
 }
 
+const inViewOptions = { once: true, amount: 0.1 };
+
 export function AnimateIn({ children, delay = 0, className = '', priority = false }: AnimateInProps) {
   const shouldReduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, inViewOptions);
 
   if (priority || shouldReduceMotion) {
     return <div className={className}>{children}</div>;
   }
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6, delay }}
       className={className}
     >
@@ -32,12 +37,14 @@ export function AnimateIn({ children, delay = 0, className = '', priority = fals
 
 export function FadeIn({ children, delay = 0, className = '' }: AnimateInProps) {
   const shouldReduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, inViewOptions);
 
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: '-100px' }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: shouldReduceMotion ? 0.3 : 0.8, delay }}
       className={className}
     >
@@ -53,6 +60,8 @@ export function SlideIn({
   className = '',
 }: AnimateInProps & { direction?: 'up' | 'down' | 'left' | 'right' }) {
   const shouldReduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, inViewOptions);
 
   const directionOffset = {
     up: { y: 40 },
@@ -63,12 +72,16 @@ export function SlideIn({
 
   return (
     <motion.div
+      ref={ref}
       initial={{
         opacity: 0,
         ...(shouldReduceMotion ? {} : directionOffset[direction]),
       }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
+      animate={
+        isInView
+          ? { opacity: 1, x: 0, y: 0 }
+          : { opacity: 0, ...(shouldReduceMotion ? {} : directionOffset[direction]) }
+      }
       transition={{ duration: 0.6, delay }}
       className={className}
     >
@@ -87,12 +100,14 @@ export function StaggerContainer({
   staggerDelay?: number;
 }) {
   const shouldReduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, inViewOptions);
 
   return (
     <motion.div
+      ref={ref}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
+      animate={isInView ? 'visible' : 'hidden'}
       variants={{
         visible: {
           transition: {
@@ -132,12 +147,14 @@ export function StaggerItem({
 
 export function ScaleIn({ children, delay = 0, className = '' }: AnimateInProps) {
   const shouldReduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, inViewOptions);
 
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '-100px' }}
+      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: shouldReduceMotion ? 1 : 0.9 }}
       transition={{ duration: 0.5, delay }}
       className={className}
     >

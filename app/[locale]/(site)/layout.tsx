@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import SGAChatWidgetLoader from '@/components/widgets/SGAChatWidgetLoader';
 import DeferredCopyPageAsMarkdown from '@/components/layout/DeferredCopyPageAsMarkdown';
+import HashScrollOnLoad from '@/components/ui/HashScrollOnLoad';
 import { MobileMenuProvider } from '@/components/context/MobileMenuContext';
 import { SlugMapProvider } from '@/components/context/SlugMapContext';
 
@@ -18,6 +19,7 @@ export default async function SiteLayout({
   return (
     <>
       <GoogleAnalytics />
+      <HashScrollOnLoad />
       <SlugMapProvider>
         <MobileMenuProvider>
           <Header locale={locale} />

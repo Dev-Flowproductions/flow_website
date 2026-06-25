@@ -26,33 +26,124 @@
   },
   "home": {
     "hero": {
-      "label": "Flow with us",
-      "title": "We are Flow: Creativity in motion",
-      "description": "We are a creative agency in Faro and Lisbon specialized in design, marketing, audiovisual production, 2D and 3D animation, branding and digital products. More than executing projects, we create stories that flow, connect people and make your brand move forward.",
-      "cta": "About Flow"
+      "label": "Creative technology innovation agency",
+      "title": "Creativity and Innovation in Motion",
+      "description": "We combine MarTech, Artificial Intelligence, marketing, design and creative production to build digital systems that help brands grow, get discovered and build stronger relationships with their customers.",
+      "ctaPrimary": "Assess digital maturity",
+      "ctaSecondary": "See innovation cases"
     },
     "team": {
-      "label": "The Team",
-      "title": "We are Flow:",
-      "subtitle": "Creativity in motion",
-      "description": "We are a creative agency in Faro and Lisbon specialized in design, marketing, audiovisual production, 2D and 3D animation, branding and digital products. More than executing projects, we create stories that flow, connect people and make your brand move forward.",
+      "label": "About us",
+      "title": "We are Flow: Creativity and Innovation in Motion",
+      "description": "We are a creative agency with teams in Faro and Lisbon, specialised in MarTech, Artificial Intelligence, marketing, design, audiovisual production and animation.",
+      "description2": "We are not mere project executors; we create systems, content and experiences that move brands forward. We combine creativity, technology and data to turn challenges into solutions that drive growth, efficiency and real impact.",
+      "description3": "Today, communicating well is no longer enough. Brands need to be found, understood and remembered by people and by AI engines.",
       "cta": "About Flow"
     },
     "servicesPreview": {
       "label": "How we flow",
-      "title": "Our services"
+      "title": "Our services",
+      "items": [
+        {
+          "key": "martech",
+          "title": "MarTech & AI",
+          "description": "We connect marketing and technology to build systems that work for your business. Everything designed to make brand growth more predictable and optimised."
+        },
+        {
+          "key": "marketing",
+          "title": "Marketing & Social Media",
+          "description": "We create strategies and content that bring brands closer to people. From social media management to digital campaigns, we work to build awareness, community and real demand."
+        },
+        {
+          "key": "design",
+          "title": "Design",
+          "description": "A strong brand starts here. We develop branding, UX/UI, web design and visual systems that help companies communicate consistently and memorably."
+        },
+        {
+          "key": "animacao",
+          "title": "Animation",
+          "description": "We give movement to ideas, products and stories. We create 2D and 3D animation, motion graphics and visual content that explain, engage and leave a mark."
+        },
+        {
+          "key": "audiovisual",
+          "title": "Audiovisual",
+          "description": "Stories gain another level of impact when seen and heard. We produce video, photography, event coverage and content tailored to different platforms and goals."
+        }
+      ]
+    },
+    "howWeWork": {
+      "label": "How we work",
+      "title": "From strategy to execution, everything flows together.",
+      "intro": "We don't believe in isolated pieces. Every project starts from an integrated vision where creativity, technology and data work side by side to create experiences that are more efficient, relevant and ready for the future.",
+      "steps": [
+        {
+          "title": "Strategy",
+          "description": "We understand the business, goals and challenges."
+        },
+        {
+          "title": "Technology",
+          "description": "We build systems, automations and digital infrastructure."
+        },
+        {
+          "title": "Content",
+          "description": "We develop brands, stories and experiences that connect with people."
+        },
+        {
+          "title": "Growth",
+          "description": "We measure, learn and evolve continuously."
+        }
+      ]
     },
     "testimonials": {
       "title": "Brands that flow",
       "titleHighlight": "with us"
     },
     "projects": {
-      "label": "Work that speaks for itself",
-      "title": "Projects with",
-      "titleHighlight": "Flow",
-      "description": "From concept to execution, we make ideas take shape and movement. This is our portfolio of projects, where design, marketing, audiovisual and animation come to life.",
-      "cta": "See More",
-      "videoLabel": "Video"
+      "label": "Projects with Flow",
+      "title": "Creative and technological systems that move brands forward.",
+      "description": "Every project tells a different story, but all share the same principle: solving real problems through creativity and innovation.",
+      "cta": "View portfolio",
+      "videoLabel": "Video",
+      "categories": {
+        "martech": "MarTech & AI",
+        "marketing": "Marketing & Social Media",
+        "design": "Design",
+        "animacao": "Animation",
+        "audiovisual": "Audiovisual"
+      }
+    },
+    "faqs": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "What does Flow Productions do?",
+          "answer": "We are a creative agency with teams in Faro and Lisbon. We combine MarTech, Artificial Intelligence, marketing, design, audiovisual and animation to create systems and content that help brands grow and get discovered."
+        },
+        {
+          "question": "What services do you offer?",
+          "answer": "We work across five areas: MarTech & AI, Marketing & Social Media, Design, Animation and Audiovisual. Each area can be hired individually or integrated into a broader project."
+        },
+        {
+          "question": "Do you only work in the Algarve?",
+          "answer": "No. We have teams in Faro and Lisbon and work with clients across Portugal and internationally, both in person and remotely."
+        },
+        {
+          "question": "What is MarTech and how can it help my business?",
+          "answer": "MarTech is the bridge between marketing and technology — systems, automations and data that make growth more predictable. We help companies get found by people and AI engines, automate processes and measure results with greater clarity."
+        },
+        {
+          "question": "How can I start a project with Flow?",
+          "answer": "You can contact us via the form on this page, by email or phone. You can also start with our MarTech digital maturity diagnostic to identify opportunities before moving forward."
+        }
+      ]
+    },
+    "finalCta": {
+      "label": "Contact us",
+      "title": "Ready to get your brand flowing?",
+      "description": "We create creative and technological systems that help brands grow, connect with people and keep pace with the evolving digital world.",
+      "description2": "The future doesn't separate creativity and innovation. It puts them to work together.",
+      "ctaPrimary": "Talk to Flow",
+      "ctaSecondary": "Assess digital maturity"
     },
     "keyFacts": {
       "title": "Flow by the numbers",
@@ -64,16 +155,15 @@
       "languagesValue": "3"
     },
     "martech": {
-      "label": "MARTECH & ARTIFICIAL INTELLIGENCE",
-      "title": "The way people discover brands is changing.",
-      "subtitle": "Marketing too.",
-      "description": "We combine strategy, data and Artificial Intelligence to create systems that:",
+      "label": "MarTech and Artificial Intelligence",
+      "title": "The way people discover brands is changing. Marketing is too.",
+      "intro": "People discover brands through Google, social media, ChatGPT, Gemini and the recommendations they receive every day. We help companies adapt to this new reality by creating strategies, content and systems built to:",
       "bullets": [
-        "generate real demand",
-        "automate processes",
-        "make growth more predictable"
+        "Be found by people and AI engines",
+        "Automate sales and marketing processes",
+        "Measure, learn and optimise continuously"
       ],
-      "paragraph": "From Demand Generation (non-gated) to AI-ready websites, we help medium and large companies work with more efficiency and less noise.",
+      "paragraph": "We help your company work with more efficiency and less noise.",
       "cta": "Explore MarTech",
       "servicesTitle": "Our MarTech Services",
       "servicesDescription": "We create digital infrastructures that connect strategy, technology and data. Everything designed to make growth more predictable, concise and efficient."

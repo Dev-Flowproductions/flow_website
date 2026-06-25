@@ -1,6 +1,7 @@
 'use client';
 
 import { StaggerContainer } from '@/components/ui/AnimateIn';
+import { HOME_SERVICE_ORDER } from '@/lib/homeProjectShowcase';
 import ServiceCard from './ServiceCard';
 
 interface Service {
@@ -36,16 +37,15 @@ const martechService: Service = {
 };
 
 export default function ServicesGrid({ services, locale }: ServicesGridProps) {
-  const sortedDbServices = [...services].sort((a, b) => a.order - b.order);
-  
-  // Insert MarTech after Design (index 1)
-  const allServices: Service[] = [];
-  sortedDbServices.forEach((service, i) => {
-    allServices.push(service);
-    if (i === 0) {
-      allServices.push(martechService);
-    }
-  });
+  const servicesByKey = new Map<string, Service>();
+  for (const service of services) {
+    servicesByKey.set(service.key, service);
+  }
+  servicesByKey.set('martech', martechService);
+
+  const allServices = HOME_SERVICE_ORDER.map((key) => servicesByKey.get(key)).filter(
+    (service): service is Service => service != null
+  );
 
   return (
     <StaggerContainer className="max-w-4xl mx-auto space-y-12">
