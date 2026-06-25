@@ -1,23 +1,13 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import { createClient } from '@/lib/supabase/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
+import HomeHeroVideo from '@/components/sections/HomeHeroVideo';
+import HomeBelowFoldSections from '@/components/sections/HomeBelowFoldSections';
 import ServicesPreview from '@/components/sections/ServicesPreview';
-import ProjectsPreview from '@/components/sections/ProjectsPreview';
 import { getPageMetadata } from '@/lib/seo';
-
-const TestimonialCarousel = dynamic(
-  () => import('@/components/sections/TestimonialCarousel'),
-  { ssr: true }
-);
-
-const ContactCTA = dynamic(
-  () => import('@/components/sections/ContactCTA'),
-  { ssr: true }
-);
 
 export async function generateMetadata({
   params,
@@ -89,27 +79,14 @@ export default async function HomePage({
   return (
     <div>
       {/* Hero Section - Video Only, Hidden on mobile */}
-      <section className="hidden md:block relative w-full overflow-hidden bg-gray-900">
-        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="/videos/hero/home.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </section>
+      <HomeHeroVideo />
 
       {/* Team Section - "Somos Flow" */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Team Image */}
-            <AnimateIn>
+            <AnimateIn priority>
               <div className="relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg overflow-hidden">
                 <Image
                   src="/images/team/team-1.jpg"
@@ -207,8 +184,7 @@ export default async function HomePage({
         <ServicesPreview services={services} locale={locale} />
       )}
 
-      {/* Testimonials Section */}
-      <TestimonialCarousel
+      <HomeBelowFoldSections
         testimonials={testimonials && testimonials.length > 0 ? testimonials : [
           { id: '1', quote: { pt: 'Obrigado pela abordagem profissional da Flow ao nosso projeto! Foi um prazer trabalhar com a equipa!', en: 'Thank you for Flow\'s professional approach to our project! It was a pleasure working with the team!', fr: 'Merci pour l\'approche professionnelle de Flow sur notre projet ! Ce fut un plaisir de travailler avec l\'équipe !' }, person_name: 'André Oliveira', company_name: 'Zion Creative Artisans', avatar_path: '/images/testimonials/zion.png', order: 1 },
           { id: '2', quote: { pt: 'Recebi muito mais do que estava à espera — encontrei uma identidade única para a minha marca.', en: 'I received much more than I expected — I found a unique identity for my brand.', fr: 'J\'ai reçu bien plus que ce à quoi je m\'attendais — j\'ai trouvé une identité unique pour ma marque.' }, person_name: 'Sandra Romão', company_name: 'Nature Soul Food', avatar_path: '/images/testimonials/nature-soul-food.jpg', order: 2 },
@@ -217,12 +193,6 @@ export default async function HomePage({
         ]}
         locale={locale}
       />
-
-      {/* Projects Preview Section */}
-      <ProjectsPreview projects={[]} locale={locale} columns={2} showTitles={false} />
-
-      {/* Contact CTA Section */}
-      <ContactCTA />
     </div>
   );
 }

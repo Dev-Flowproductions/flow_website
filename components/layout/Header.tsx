@@ -23,6 +23,7 @@ export default function Header({ locale }: { locale: string }) {
                 alt="Flow Productions"
                 width={160}
                 height={40}
+                priority
                 className="h-10 w-auto"
               />
             </Link>
