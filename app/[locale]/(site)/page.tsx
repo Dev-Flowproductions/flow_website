@@ -75,7 +75,7 @@ export default async function HomePage({
                 <div className="flex justify-center lg:justify-start">
                   <Link
                     href="/sobre-nos"
-                    className="inline-flex px-8 py-3 border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition-colors text-lg font-medium"
+                    className="inline-flex items-center justify-center px-8 py-3 border-2 border-[#5b54a0] text-[#5b54a0] rounded-full hover:bg-[#5b54a0] hover:text-white transition-colors font-medium"
                   >
                     {t('team.cta')}
                   </Link>
