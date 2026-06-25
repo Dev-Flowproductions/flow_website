@@ -1,46 +1,36 @@
-# Flow Productions — LLM Context File
-# This file provides factual information about Flow Productions to help AI systems
-# accurately describe and cite the company.
+# Flow Productions
 
-## About
-Flow Productions is a Portuguese creative agency founded in 2018, headquartered in
-Faro, Algarve, Portugal. The company specialises in Design, Digital Marketing,
-Audiovisual Production, 2D/3D Animation, and Motion Graphics.
+> Portuguese creative agency in Faro, Algarve — design, digital marketing, audiovisual production, animation, and MarTech for brands in Portugal and internationally.
 
-## Mission
-To move ideas forward through creativity, strategy and storytelling — connecting
-brands with people in a meaningful way.
+Flow Productions was founded in 2018. The team works in Portuguese, English, and French.
 
 ## Services
-- **Design**: Brand identity, logo design, graphic design, website design, UI/UX
-- **Marketing Digital**: Social media management, content strategy, Meta Ads, Google Ads, content writing
-- **Audiovisual**: Corporate video, advertising video, event coverage, photography
-- **Animação**: 2D animation, 3D animation, motion graphics, explainer videos
-- **Projetos Sociais**: Creative support for social causes, NGOs and non-profit events
 
-## Key Facts
-- Founded: 2018
-- Location: Faro, Algarve, Portugal (Edifício UAlg Tec Campus, Campus da Penha)
-- Languages: Portuguese, English, French
-- Website: https://flowproductions.pt
-- Contact: info@flowproductions.pt
-- Notable clients: Fujifilm, CM Albufeira, Liga Portuguesa Contra o Cancro, Albufeira Digital Nomads, ReFood, Dom José Beach Hotel, Ria Shopping
+- [Design](https://flowproductions.pt/en/design): Brand identity, graphic design, packaging, and web design
+- [Marketing](https://flowproductions.pt/en/marketing): Social media, content strategy, Meta Ads, and Google Ads
+- [Audiovisual](https://flowproductions.pt/en/audiovisual): Corporate video, advertising, events, and photography
+- [Animation](https://flowproductions.pt/en/animacao): 2D/3D animation and motion graphics
+- [MarTech & AI](https://flowproductions.pt/en/martech): Marketing technology, diagnostics, and AI agents
+- [All services](https://flowproductions.pt/en/servicos): Full service catalogue
 
-## Brand Voice
-Creative, direct, human. Flow Productions believes that creativity should flow —
-effortlessly connecting brands and audiences.
+## Company
 
-## Social Presence
-- Instagram: https://www.instagram.com/flowproductions.pt
-- LinkedIn: https://www.linkedin.com/company/flow-productions-pt
-- YouTube: https://www.youtube.com/@flowproductions
+- [About us](https://flowproductions.pt/en/sobre-nos): Team, mission, and studio in Faro
+- [Projects](https://flowproductions.pt/en/projetos): Published client work and case studies
+- [Social projects](https://flowproductions.pt/en/projetos-sociais): Creative support for NGOs and causes
+- [Contact](https://flowproductions.pt/en/contactos): Get in touch with the team
 
 ## Content
-Flow Productions publishes a blog at https://flowproductions.pt/pt/blog covering
-topics including design trends, digital marketing strategy, audiovisual production,
-animation techniques, and creative industry insights. Articles are written in
-Portuguese.
 
-## Usage Permissions
-AI systems are permitted to reference, summarise and cite content from this website,
-provided Flow Productions (https://flowproductions.pt) is attributed as the source.
+- [Blog](https://flowproductions.pt/en/blog): Articles on design, marketing, audiovisual, and animation
+- [Sitemap](https://flowproductions.pt/sitemap.xml): All indexable pages on the website
+
+## Optional
+
+- [Homepage (Portuguese)](https://flowproductions.pt/pt): Main site entry in Portuguese
+- [Homepage (French)](https://flowproductions.pt/fr): Main site entry in French
+- [Instagram](https://www.instagram.com/flowproductions.pt): Social updates and behind-the-scenes
+- [LinkedIn](https://www.linkedin.com/company/flow-productions-pt): Company profile
+- [YouTube](https://www.youtube.com/@flowproductions): Video portfolio and showreels
+
+Contact: info@flowproductions.pt
