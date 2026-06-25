@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
       { source: '/favicon.ico', destination: '/Logotipo/L_02.png' },
     ];
   },
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'lucide-react'],
+  },
   images: {
     remotePatterns: [
       {

@@ -91,7 +91,7 @@ export default async function DesignProjectsPage({
 
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <AnimateIn>
+          <AnimateIn priority>
             <p className="text-xs uppercase tracking-widest text-gray-600 mb-4 text-center">
               {t('label')}
             </p>

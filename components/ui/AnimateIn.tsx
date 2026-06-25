@@ -7,11 +7,16 @@ interface AnimateInProps {
   children: ReactNode;
   delay?: number;
   className?: string;
+  /** Skip motion wrapper so above-the-fold content paints immediately (LCP). */
+  priority?: boolean;
 }
 
-export function AnimateIn({ children, delay = 0, className = '' }: AnimateInProps) {
+export function AnimateIn({ children, delay = 0, className = '', priority = false }: AnimateInProps) {
   const shouldReduceMotion = useReducedMotion();
 
+  if (priority || shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
   return (
     <motion.div
       initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
