@@ -38,40 +38,47 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing slug or id' }, { status: 400 });
     }
 
-    let rowId: string | null = null;
+    const rowIds = new Set<string>();
 
     if (cmsId) {
-      const byCmsId = await supabase.from('blog_posts').select('id').eq('cms_id', cmsId).maybeSingle();
-      if (byCmsId.data) rowId = byCmsId.data.id;
+      const { data, error: lookupError } = await supabase
+        .from('blog_posts')
+        .select('id')
+        .eq('cms_id', cmsId);
+      if (lookupError) {
+        console.error('[blog-webhook] Delete lookup error:', lookupError.message);
+        return NextResponse.json(
+          { error: 'DB lookup failed', detail: lookupError.message },
+          { status: 500 },
+        );
+      }
+      for (const row of data ?? []) rowIds.add(row.id);
     }
 
-    if (!rowId && slug) {
+    if (slug) {
       for (const l of ['pt', 'en', 'fr']) {
-        const bySlug = await supabase
+        const { data } = await supabase
           .from('blog_posts')
           .select('id')
-          .eq(`slug->>${l}`, slug)
-          .maybeSingle();
-        if (bySlug.data) {
-          rowId = bySlug.data.id;
-          break;
-        }
+          .eq(`slug->>${l}`, slug);
+        for (const row of data ?? []) rowIds.add(row.id);
       }
     }
 
-    if (!rowId) {
+    if (rowIds.size === 0) {
       console.warn(`[blog-webhook] Delete: no post found for cmsId="${cmsId}" slug="${slug}"`);
       return NextResponse.json({ ok: true, action: 'not_found' });
     }
 
-    const { error } = await supabase.from('blog_posts').delete().eq('id', rowId);
+    const ids = [...rowIds];
+    const { error } = await supabase.from('blog_posts').delete().in('id', ids);
     if (error) {
       console.error('[blog-webhook] Delete error:', error.message);
       return NextResponse.json({ error: 'DB delete failed', detail: error.message }, { status: 500 });
     }
 
-    console.log(`[blog-webhook] Deleted post id="${rowId}" slug="${slug}"`);
-    return NextResponse.json({ ok: true, action: 'deleted', deleted: slug });
+    console.log(`[blog-webhook] Deleted ${ids.length} post row(s) slug="${slug}" cmsId="${cmsId}"`);
+    return NextResponse.json({ ok: true, action: 'deleted', deleted: slug, count: ids.length });
   }
 
   if (!isBlogSyncEvent(bodyEvent, bodyAction)) {
