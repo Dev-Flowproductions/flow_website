@@ -110,29 +110,6 @@ Avec Mariana, chaque mot trouve son flux.`,
     },
   },
   {
-    slug: 'jessica-sousa',
-    name: 'Jéssica Sousa',
-    role: 'Social Media Manager',
-    image: '/images/team/member-5.jpg',
-    description: {
-      pt: `A Jéssica é a mente analítica e criativa que mantém o digital da Flow sempre em movimento. Especialista em social media marketing, transforma briefings em ideias e ideias em conteúdo e estratégias em impacto. Do planeamento de campanhas às métricas, garante que cada conteúdo chega ao público certo.
-
-No lado pessoal, é a protetora oficial dos animais, fã tanto de filmes de terror como de reality shows, não dispensa tempo em família e nunca acerta num provérbio.
-
-Com a Jéssica, o digital deixa de ser apenas presença online para se tornar movimento, proximidade e resultados reais.`,
-      en: `Jéssica is the analytical and creative mind that keeps Flow's digital presence always in motion. A social media marketing specialist, she transforms briefs into ideas, ideas into content, and strategies into impact. From campaign planning to metrics, she ensures every piece of content reaches the right audience.
-
-On a personal level, she's the official animal protector, a fan of both horror films and reality shows, never misses family time, and can never get a proverb quite right.
-
-With Jéssica, digital stops being just an online presence and becomes movement, connection, and real results.`,
-      fr: `Jéssica est l'esprit analytique et créatif qui maintient la présence digitale de Flow toujours en mouvement. Spécialiste en social media marketing, elle transforme les briefs en idées, les idées en contenu et les stratégies en impact. De la planification des campagnes aux métriques, elle s'assure que chaque contenu atteint le bon public.
-
-Sur le plan personnel, c'est la protectrice officielle des animaux, fan autant de films d'horreur que de reality shows, ne manque jamais un moment en famille et ne réussit jamais un proverbe.
-
-Avec Jéssica, le digital cesse d'être simplement une présence en ligne pour devenir mouvement, proximité et résultats réels.`,
-    },
-  },
-  {
     slug: 'antonio-fernandes',
     name: 'António Fernandes',
     role: 'Design & Branding',
@@ -176,29 +153,6 @@ With Maeva, design breathes freshness, balance, and details that make a differen
 Hors écran, elle est experte en journaling et scrapbooking, possède une connaissance infinie de la géographie et partage son quotidien avec son compagnon à quatre pattes, Teo. Elle est fan de salades et de nourriture saine, et lectrice avide, toujours en quête d'inspiration dans les pages qu'elle parcourt.
 
 Avec Maeva, le design respire fraîcheur, équilibre et des détails qui font la différence aussi bien dans le feed qu'en dehors.`,
-    },
-  },
-  {
-    slug: 'ines-navrat',
-    name: 'Inês Navrat',
-    role: 'Filmmaker & Photographer',
-    image: '/images/team/member-8.jpg',
-    description: {
-      pt: `A Inês é quem dá vida e ritmo às histórias da Flow. Especialista em edição de vídeo, molda cada frame numa narrativa envolvente. Com um olhar cinematográfico, capta momentos autênticos e traduz emoções em imagens dignas de cinema.
-
-A nossa Wednesday Addams é apaixonada por filmes da Disney, fã de dramas coreanos e, se ouvires um barulho inesperado no estúdio, há uma grande probabilidade de ter sido ela.
-
-Com a Inês, as emoções não se cortam: fluem de cena em cena como se fosse magia.`,
-      en: `Inês is the one who gives life and rhythm to Flow's stories. A video editing specialist, she shapes every frame into a compelling narrative. With a cinematic eye, she captures authentic moments and translates emotions into images worthy of the big screen.
-
-Our very own Wednesday Addams, she's passionate about Disney films, a fan of Korean dramas, and if you hear an unexpected noise in the studio, there's a good chance it was her.
-
-With Inês, emotions aren't cut — they flow from scene to scene as if by magic.`,
-      fr: `Inês est celle qui donne vie et rythme aux histoires de Flow. Spécialiste en montage vidéo, elle façonne chaque image en un récit captivant. Avec un regard cinématographique, elle capte des moments authentiques et traduit des émotions en images dignes du grand écran.
-
-Notre propre Wednesday Addams, elle est passionnée par les films Disney, fan de dramas coréens et, si vous entendez un bruit inattendu dans le studio, il y a de fortes chances que ce soit elle.
-
-Avec Inês, les émotions ne se coupent pas : elles coulent de scène en scène comme par magie.`,
     },
   },
   {
