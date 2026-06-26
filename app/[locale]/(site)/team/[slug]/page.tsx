@@ -264,6 +264,58 @@ Hors du code, il a un solide parcours en autodéfense, avec plus de huit ans de 
 Avec Leandro, les idées prennent vie vite et passent du concept au produit avec beaucoup de flow.`,
     },
   },
+  {
+    slug: 'beatriz',
+    name: 'Beatriz',
+    role: 'Illustrator | Animator',
+    image: '/images/team/member-12.jpeg',
+    description: {
+      pt: `Na Flow, a Beatriz move-se entre a ilustração, a animação e tudo o que envolva dar forma a uma boa ideia. Embora participe em diferentes áreas criativas, é na ilustração que mais se destaca, transformando conceitos em imagens cheias de personalidade, intenção e detalhe. Com uma curiosidade quase incansável, procura sempre aprofundar cada projeto para garantir que tudo faz sentido visualmente e para lá do que está à vista.
+
+Fora do trabalho, a criatividade continua a acompanhá-la. Já foi campeã nacional de arco e flecha, é apaixonada por animais e conquistou o título não oficial de "Pokédex de cães" graças ao conhecimento impressionante sobre raças caninas. Entre videojogos, filmes, séries e animes, há ainda espaço para uma assumida curiosidade pelo universo do terror e do true crime.
+
+Com a Beatriz, cada projeto ganha profundidade, detalhe e aquela vontade constante de transformar boas ideias em algo que fica na memória.`,
+      en: `At Flow, Beatriz moves between illustration, animation, and everything involved in giving shape to a good idea. Although she takes part in different creative areas, it's in illustration that she stands out most, turning concepts into images full of personality, intention, and detail. With an almost tireless curiosity, she always seeks to deepen each project to ensure everything makes visual sense — and goes beyond what's on the surface.
+
+Outside of work, creativity continues to follow her. She was once a national archery champion, is passionate about animals, and earned the unofficial title of "canine Pokédex" thanks to her impressive knowledge of dog breeds. Between video games, films, series, and anime, there's still room for a declared curiosity about the worlds of horror and true crime.
+
+With Beatriz, every project gains depth, detail, and that constant drive to turn good ideas into something that stays in memory.`,
+      fr: `Chez Flow, Beatriz évolue entre l'illustration, l'animation et tout ce qui consiste à donner forme à une bonne idée. Bien qu'elle participe à différents domaines créatifs, c'est dans l'illustration qu'elle se distingue le plus, transformant des concepts en images pleines de personnalité, d'intention et de détail. Avec une curiosité presque inépuisable, elle cherche toujours à approfondir chaque projet pour garantir que tout ait du sens visuellement — et au-delà de ce qui est visible.
+
+En dehors du travail, la créativité continue de l'accompagner. Elle a été championne nationale de tir à l'arc, est passionnée par les animaux et a conquis le titre officieux de "Pokédex canin" grâce à sa connaissance impressionnante des races de chiens. Entre jeux vidéo, films, séries et animes, il reste encore de la place pour une curiosité assumée pour l'univers de l'horreur et du true crime.
+
+Avec Beatriz, chaque projet gagne en profondeur, en détail et en cette volonté constante de transformer de bonnes idées en quelque chose qui reste en mémoire.`,
+    },
+  },
+  {
+    slug: 'isabela',
+    name: 'Isabela',
+    role: '2D Animator | Illustrator',
+    image: '/images/team/member-13.jpeg',
+    description: {
+      pt: `Na Flow, a Isabela dá vida a histórias através da animação. Especialista em animação 2D e ilustração, acompanha cada projeto desde as primeiras ideias até ao último frame, criando personagens e narrativas que aproximam emoções e pessoas.
+
+Mas o seu trabalho vai muito além do movimento. É apaixonada por storytelling e acredita que são os pequenos gestos, as expressões e os detalhes que tornam uma história memorável. Em todos os seus projetos procura criar ligações genuínas e dar personalidade a tudo o que passa pelas suas mãos.
+
+Fora do ecrã, encontra inspiração no cinema, nos animes, nos manga e no mundo animal, fascinada pela forma como diferentes universos conseguem transmitir emoções e criar empatia. Observadora por natureza, valoriza ambientes positivos, a partilha de ideias e as ligações que se constroem ao longo do caminho.
+
+Com a Isabela, cada personagem ganha alma, cada movimento conta uma história e cada projeto flui com criatividade, sensibilidade e atenção ao detalhe.`,
+      en: `At Flow, Isabela brings stories to life through animation. A specialist in 2D animation and illustration, she follows each project from the earliest ideas to the final frame, creating characters and narratives that bring emotions and people closer together.
+
+But her work goes far beyond movement. She is passionate about storytelling and believes it's the small gestures, expressions, and details that make a story memorable. In every project, she seeks to create genuine connections and give personality to everything that passes through her hands.
+
+Off-screen, she finds inspiration in cinema, anime, manga, and the animal world, fascinated by how different universes can convey emotions and create empathy. Observant by nature, she values positive environments, the sharing of ideas, and the connections built along the way.
+
+With Isabela, every character gains soul, every movement tells a story, and every project flows with creativity, sensitivity, and attention to detail.`,
+      fr: `Chez Flow, Isabela donne vie aux histoires à travers l'animation. Spécialiste en animation 2D et illustration, elle accompagne chaque projet des premières idées jusqu'à la dernière image, créant des personnages et des récits qui rapprochent émotions et personnes.
+
+Mais son travail va bien au-delà du mouvement. Passionnée de storytelling, elle croit que ce sont les petits gestes, les expressions et les détails qui rendent une histoire mémorable. Dans tous ses projets, elle cherche à créer des liens authentiques et à donner de la personnalité à tout ce qui passe entre ses mains.
+
+Hors écran, elle trouve son inspiration au cinéma, dans les animes, les mangas et le monde animal, fascinée par la façon dont différents univers parviennent à transmettre des émotions et à créer de l'empathie. Observatrice par nature, elle valorise les environnements positifs, le partage d'idées et les liens qui se construisent au fil du chemin.
+
+Avec Isabela, chaque personnage prend une âme, chaque mouvement raconte une histoire et chaque projet coule avec créativité, sensibilité et attention au détail.`,
+    },
+  },
 ];
 
 export function generateStaticParams() {

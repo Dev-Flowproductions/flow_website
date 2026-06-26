@@ -200,6 +200,18 @@ export default async function AboutPage({
                 slug: 'leandro-justino',
                 image: '/images/team/member-11.jpg',
               },
+              {
+                name: 'Beatriz',
+                role: 'Illustrator | Animator',
+                slug: 'beatriz',
+                image: '/images/team/member-12.jpeg',
+              },
+              {
+                name: 'Isabela',
+                role: '2D Animator | Illustrator',
+                slug: 'isabela',
+                image: '/images/team/member-13.jpeg',
+              },
             ].map((member, index) => (
               <AnimateIn key={index} delay={0.1 * (index + 1)}>
                 <Link href={`/team/${member.slug}`} className="block group cursor-pointer">
