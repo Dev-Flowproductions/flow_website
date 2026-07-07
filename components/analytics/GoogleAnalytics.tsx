@@ -10,16 +10,33 @@ declare global {
   }
 }
 
+const DEFAULT_GA4_MEASUREMENT_ID = 'G-1051059133566371';
+
+function resolveMeasurementId(rawId: string | undefined): string | undefined {
+  if (!rawId) {
+    return DEFAULT_GA4_MEASUREMENT_ID;
+  }
+
+  const trimmed = rawId.trim();
+  if (!trimmed) {
+    return DEFAULT_GA4_MEASUREMENT_ID;
+  }
+
+  if (/^(G|GT|AW|DC)-/.test(trimmed)) {
+    return trimmed;
+  }
+
+  return `G-${trimmed}`;
+}
+
 /**
- * GA4 web stream Measurement ID (format `G-XXXXXXXXXX`), from:
+ * GA4 / Google tag ID (format `G-XXXXXXXXXX`), from:
  * Admin → Property → Data streams → Web → Measurement ID.
- * This is NOT the numeric Property ID (e.g. 393702295) shown in the account picker.
  *
- * Set in hosting env as `NEXT_PUBLIC_GA4_MEASUREMENT_ID` and redeploy — if unset,
- * this component renders nothing and no hits are sent.
+ * Override in hosting env via `NEXT_PUBLIC_GA4_MEASUREMENT_ID` if needed.
  */
 export default function GoogleAnalytics() {
-  const measurementId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
+  const measurementId = resolveMeasurementId(process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID);
   const pathname = usePathname();
   const isFirstPathEffect = useRef(true);
 
@@ -37,17 +54,13 @@ export default function GoogleAnalytics() {
     gtag('config', measurementId, { page_path: path });
   }, [pathname, measurementId]);
 
-  if (!measurementId) {
-    return null;
-  }
-
   return (
     <>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-        strategy="lazyOnload"
+        strategy="afterInteractive"
       />
-      <Script id="google-analytics" strategy="lazyOnload">
+      <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
