@@ -7,6 +7,12 @@
 }
 
 @layer base {
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
   body {
     color: #171717;
     background: #ffffff;

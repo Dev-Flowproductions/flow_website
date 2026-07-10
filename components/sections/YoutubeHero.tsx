@@ -50,9 +50,9 @@ export default function YoutubeHero({ videoId, label, title, titleAccent, descri
         </section>
       )}
 
-      <section className="hidden md:block relative w-full overflow-hidden bg-gray-900">
-        <div ref={containerRef} className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <section className="relative w-full max-w-full overflow-hidden bg-gray-900">
+        <div ref={containerRef} className="relative w-full max-w-full aspect-video lg:aspect-auto lg:pb-[56.25%]">
+          <div className="absolute inset-0 overflow-hidden">
             {shouldLoad ? (
               <iframe
                 src={embedUrl}
@@ -60,22 +60,18 @@ export default function YoutubeHero({ videoId, label, title, titleAccent, descri
                 loading="lazy"
                 allow="autoplay; encrypted-media"
                 allowFullScreen={false}
-                className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-full min-w-[177.78%]"
-                style={{
-                  transform: 'translate(-50%, -50%)',
-                  border: 'none',
-                }}
+                className="absolute top-1/2 left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 border-0 lg:h-auto lg:w-[177.78%] lg:min-h-full lg:min-w-[177.78%]"
               />
             ) : (
               <div className="absolute inset-0 bg-gray-900" aria-hidden />
             )}
           </div>
 
-          <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-black via-black/70 to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-black via-black/70 to-transparent pointer-events-none hidden lg:block" />
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
 
           {hasOverlayText && (
-            <div className="absolute inset-0 flex flex-col justify-center text-left px-12 lg:px-20 max-w-3xl">
+            <div className="absolute inset-0 hidden lg:flex flex-col justify-center text-left px-12 xl:px-20 max-w-3xl">
               {label && <p className="text-xs uppercase tracking-widest text-white/60 mb-4">{label}</p>}
               {title && (
                 <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4">

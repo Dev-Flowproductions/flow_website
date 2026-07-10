@@ -98,7 +98,7 @@ export default async function AudiovisualProjectsPage({
   const t = await getTranslations({ locale, namespace: 'audiovisual' });
 
   return (
-    <div>
+    <div className="overflow-x-hidden max-w-full">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
@@ -117,13 +117,13 @@ export default async function AudiovisualProjectsPage({
         dark={true}
       />
 
-      <section className="bg-gray-50 py-16 px-8 md:px-12">
+      <section className="bg-gray-50 py-16 px-4 md:px-12">
         <AnimateIn>
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
             {t('photographyTitle')} <span className="text-gray-300">{t('photographyTitleHighlight')}</span>
           </h2>
         </AnimateIn>
-        <div className="grid grid-cols-3 gap-4 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
           {fotografias.slice(0, 6).map((p, i) => (
             <div key={i} className="overflow-hidden bg-gray-200 relative aspect-square">
               <Image
