@@ -17,15 +17,35 @@ interface Props {
   dark?: boolean;
 }
 
+function getVisibleCount(width: number): number {
+  if (width >= 1024) return 3;
+  if (width >= 768) return 2;
+  return 1;
+}
+
 export default function MultiSlideCarousel({ projects, title, dark = false }: Props) {
   const [current, setCurrent] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(1);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hoveringRef = useRef(false);
 
-  const visibleCount = 3;
   const maxIndex = Math.max(0, projects.length - visibleCount);
   const canScroll = maxIndex > 0;
+
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      setVisibleCount(getVisibleCount(window.innerWidth));
+    };
+
+    updateVisibleCount();
+    window.addEventListener('resize', updateVisibleCount);
+    return () => window.removeEventListener('resize', updateVisibleCount);
+  }, []);
+
+  useEffect(() => {
+    setCurrent((index) => Math.min(index, maxIndex));
+  }, [maxIndex]);
 
   const clearAutoplay = useCallback(() => {
     if (intervalRef.current) {
@@ -83,14 +103,15 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
     };
   }, [startAutoplay, clearAutoplay, clearResumeTimeout]);
 
-  const slideW = 100 / visibleCount;
+  const trackWidthPercent = (projects.length * 100) / visibleCount;
+  const trackSlidePercent = 100 / projects.length;
 
   const navBtnClass =
     'flex h-11 w-11 md:h-12 md:w-12 touch-manipulation items-center justify-center rounded-full border border-white/50 bg-black/45 text-white shadow-lg backdrop-blur-sm transition-colors hover:bg-black/60 hover:border-white/80 disabled:opacity-35 disabled:pointer-events-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
 
   return (
     <div
-      className={`py-10 ${dark ? 'bg-gradient-to-b from-gray-900 to-gray-50' : 'bg-gray-50'}`}
+      className={`py-10 overflow-x-hidden max-w-full ${dark ? 'bg-gradient-to-b from-gray-900 to-gray-50' : 'bg-gray-50'}`}
       onMouseEnter={() => {
         hoveringRef.current = true;
         clearAutoplay();
@@ -101,56 +122,53 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
         startAutoplay();
       }}
     >
-      <div className="flex items-center px-8 md:px-12 mb-6">
-        <div className="flex items-center gap-2 flex-shrink-0 invisible" aria-hidden="true">
-          <div className="h-11 w-11 md:h-12 md:w-12" />
-          <div className="h-11 w-11 md:h-12 md:w-12" />
-        </div>
-        <h2 className={`text-xl md:text-2xl font-bold flex-1 text-center ${dark ? 'text-white' : 'text-black'}`}>
+      <div className="grid grid-cols-[auto_1fr_auto] items-center gap-2 px-4 sm:px-8 md:px-12 mb-6 max-w-full">
+        <button
+          type="button"
+          onPointerDown={(event) => {
+            event.preventDefault();
+            goTo('prev');
+          }}
+          aria-label="Previous"
+          disabled={!canScroll}
+          className={navBtnClass}
+        >
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <h2 className={`text-lg sm:text-xl md:text-2xl font-bold text-center min-w-0 px-1 ${dark ? 'text-white' : 'text-black'}`}>
           {title}
         </h2>
-        <div className="flex items-center gap-3 flex-shrink-0">
-          <button
-            type="button"
-            onPointerDown={(event) => {
-              event.preventDefault();
-              goTo('prev');
-            }}
-            aria-label="Previous"
-            disabled={!canScroll}
-            className={navBtnClass}
-          >
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onPointerDown={(event) => {
-              event.preventDefault();
-              goTo('next');
-            }}
-            aria-label="Next"
-            disabled={!canScroll}
-            className={navBtnClass}
-          >
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        </div>
+        <button
+          type="button"
+          onPointerDown={(event) => {
+            event.preventDefault();
+            goTo('next');
+          }}
+          aria-label="Next"
+          disabled={!canScroll}
+          className={navBtnClass}
+        >
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
       </div>
 
-      <div className="overflow-hidden px-8 md:px-12">
+      <div className="overflow-hidden px-4 sm:px-8 md:px-12 max-w-full">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${current * slideW}%)` }}
+          className="flex w-full transition-transform duration-500 ease-in-out"
+          style={{
+            width: `${trackWidthPercent}%`,
+            transform: `translateX(-${current * trackSlidePercent}%)`,
+          }}
         >
           {projects.map((p, i) => (
             <div
               key={`${p.slug}-${i}`}
-              className="flex-shrink-0 pr-3"
-              style={{ width: `${slideW}%` }}
+              className="flex-shrink-0 box-border pr-3"
+              style={{ width: `${trackSlidePercent}%` }}
             >
               <Link href={`/projetos/${p.slug}`} className="group block" draggable={false}>
                 <div className="relative overflow-hidden bg-gray-800" style={{ aspectRatio: '16/9' }}>
@@ -158,11 +176,11 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
                     src={p.img}
                     alt={p.title}
                     fill
-                    sizes="33vw"
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     draggable={false}
                     className="object-cover transition-transform duration-500 select-none"
                   />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center px-4">
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex flex-col items-center justify-center px-4">
                     <p className="text-white font-bold text-base md:text-lg text-center leading-snug mb-1">
                       {p.title}
                     </p>
@@ -170,12 +188,20 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
                       <p className="text-white/60 text-xs text-center">{p.tags}</p>
                     )}
                   </div>
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-white/20 border border-white/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-white/20 border border-white/40 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="7" y1="17" x2="17" y2="7" />
                       <polyline points="7 7 17 7 17 17" />
                     </svg>
                   </div>
+                </div>
+                <div className="md:hidden mt-3 text-center">
+                  <p className={`font-bold text-sm leading-snug ${dark ? 'text-white' : 'text-black'}`}>
+                    {p.title}
+                  </p>
+                  {p.tags && (
+                    <p className={`text-xs mt-1 ${dark ? 'text-white/70' : 'text-gray-500'}`}>{p.tags}</p>
+                  )}
                 </div>
               </Link>
             </div>

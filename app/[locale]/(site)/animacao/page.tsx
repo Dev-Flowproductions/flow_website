@@ -72,7 +72,7 @@ export default async function AnimacaoProjectsPage({
   const t = await getTranslations({ locale, namespace: 'animacao' });
 
   return (
-    <div>
+    <div className="overflow-x-hidden max-w-full">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
