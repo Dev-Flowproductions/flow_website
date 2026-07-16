@@ -130,9 +130,9 @@ export function organizationJsonLd() {
     },
     sameAs: [
       'https://www.instagram.com/flowproductions.pt',
-      'https://www.linkedin.com/company/flow-productions-pt',
+      'https://www.linkedin.com/company/productions-flow/posts/?feedView=all',
       'https://www.facebook.com/flowproductions.pt',
-      'https://www.youtube.com/@flowproductions',
+      'https://www.youtube.com/@flowproductions1370',
     ],
     foundingDate: '2018',
     areaServed: ['PT', 'EU'],

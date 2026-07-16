@@ -95,7 +95,7 @@ export default function Footer({ locale }: { locale: string }) {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/company/flow-productions"
+                href="https://www.linkedin.com/company/productions-flow/posts/?feedView=all"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:border-black hover:bg-black hover:text-white transition-all"
@@ -106,7 +106,7 @@ export default function Footer({ locale }: { locale: string }) {
                 </svg>
               </a>
               <a
-                href="https://www.youtube.com/@flowproductions"
+                href="https://www.youtube.com/@flowproductions1370"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:border-black hover:bg-black hover:text-white transition-all"
