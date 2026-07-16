@@ -34,6 +34,7 @@ const animacoesPromocionais = [
   { slug: 'emjogo',                title: 'EmJogo',               tags: 'Animação',                  img: '/images/projects/animacao-carousel/emjogo.webp' },
   { slug: 'travel-tech-partners',  title: 'Travel Tech Partners', tags: 'Animação',                  img: '/images/projects/animacao-carousel/travel-tech-partners.webp' },
   { slug: 'toma-la-da-ca',         title: 'Toma lá, dá cá',      tags: 'Animação',                  img: '/images/projects/animacao-carousel/toma-la-da-ca.webp' },
+  { slug: 'pizza-lab',             title: 'Pizza Lab',            tags: 'Animação',                  img: '/images/projects/design-carousel/pizza-lab-carousel.jpg' },
 ];
 
 const serviceSchema = serviceJsonLd({

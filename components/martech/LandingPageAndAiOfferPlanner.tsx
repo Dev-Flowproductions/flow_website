@@ -193,7 +193,7 @@ export default function LandingPageAndAiOfferPlanner({ locale }: Props) {
     }
     if (path === 'plan') {
       switch (quizStep) {
-        case 1: return !suggestLoading;
+        case 1: return planForm.websiteUrl.trim().length > 0;
         case 2: return !!planForm.pageGoal;
         case 3: return planForm.offerDescription.trim().length > 0;
         case 4: return planForm.targetAudience.trim().length > 0;
@@ -205,7 +205,7 @@ export default function LandingPageAndAiOfferPlanner({ locale }: Props) {
       }
     }
     return false;
-  }, [path, quizStep, auditForm, planForm, suggestLoading]);
+  }, [path, quizStep, auditForm, planForm]);
 
   const buildAuditPayload = useCallback(() => {
     const m = { pageGoal: AUDIT_PAGE_GOAL, trafficSources: AUDIT_TRAFFIC, biggestIssue: AUDIT_ISSUE, multipleCampaignsToSamePage: AUDIT_MULTIPLE, testingDiscipline: AUDIT_TESTING, actionClarity: AUDIT_ACTION_CLARITY } as const;
@@ -255,6 +255,7 @@ export default function LandingPageAndAiOfferPlanner({ locale }: Props) {
   };
 
   const handleNext = useCallback(async () => {
+    autoAdvanceAfterSuggestRef.current = false;
     if (!canProceed() && (path === 'audit' ? quizStep !== AUDIT_STEPS : quizStep !== PLAN_STEPS)) return;
     const isLastStep = path === 'audit' ? quizStep === AUDIT_STEPS : quizStep === PLAN_STEPS;
     if (isLastStep) {
@@ -808,8 +809,6 @@ export default function LandingPageAndAiOfferPlanner({ locale }: Props) {
 
   if (step === 'quiz' && path) {
     const isLastStep = path === 'audit' ? quizStep === AUDIT_STEPS : quizStep === PLAN_STEPS;
-    const disableNext = path === 'plan' && quizStep === 1 && suggestLoading;
-
     return (
       <section id="landing-page-ai-offer-planner" className="py-20 px-4 bg-gray-50" aria-labelledby="lp-quiz-heading">
         <div className="max-w-3xl mx-auto">
@@ -828,8 +827,12 @@ export default function LandingPageAndAiOfferPlanner({ locale }: Props) {
               {quizStep > 1 && (
                 <button type="button" onClick={handleBack} className="px-6 py-3 border-2 border-gray-300 text-gray-600 rounded-full hover:border-gray-400 transition-colors font-medium">{t('back')}</button>
               )}
-              <button type="button" onClick={handleNext} disabled={!canProceed() || disableNext} aria-disabled={disableNext} className="ml-auto px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none transition-colors font-medium">
-                {isLastStep ? t('submit') : t('next')}
+              <button type="button" onClick={handleNext} disabled={!canProceed()} className="ml-auto px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium">
+                {path === 'plan' && quizStep === 1 && suggestLoading
+                  ? t('suggestFromWebsiteLoading')
+                  : isLastStep
+                    ? t('submit')
+                    : t('next')}
               </button>
             </div>
           </motion.div>

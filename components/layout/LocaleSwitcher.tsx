@@ -32,6 +32,7 @@ export default function LocaleSwitcher({
   const others = locales.filter((l) => l.code !== locale);
 
   function switchLocale(nextLocale: string) {
+    if (isPending || nextLocale === locale) return;
     setOpen(false);
     startTransition(() => {
       if (slugMap) {
@@ -62,9 +63,11 @@ export default function LocaleSwitcher({
     <div ref={ref} className="relative flex items-center">
       {/* Active locale trigger */}
       <button
+        type="button"
         onClick={() => setOpen((o) => !o)}
-        disabled={isPending}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-black/10 transition-colors whitespace-nowrap"
+        aria-expanded={open}
+        aria-busy={isPending}
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-black/10 transition-colors whitespace-nowrap ${isPending ? 'opacity-70' : ''}`}
       >
         <Image src={active.flag} alt={active.label} width={20} height={14} className="rounded-sm object-cover" />
         <span>{active.label}</span>
@@ -84,9 +87,10 @@ export default function LocaleSwitcher({
           {others.map((loc) => (
             <button
               key={loc.code}
+              type="button"
               onClick={() => switchLocale(loc.code)}
-              disabled={isPending}
-              className="flex items-center gap-2 px-3 py-1.5 text-gray-800 text-xs font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap w-full"
+              aria-busy={isPending}
+              className={`flex items-center gap-2 px-3 py-1.5 text-gray-800 text-xs font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap w-full ${isPending ? 'opacity-70' : ''}`}
             >
               <Image src={loc.flag} alt={loc.label} width={20} height={14} className="rounded-sm object-cover" />
               <span>{loc.label}</span>

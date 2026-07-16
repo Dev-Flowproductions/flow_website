@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
+import { registerSgaChatConsumer } from '@/lib/openSgaChat';
 import { useMobileMenu } from '@/components/context/MobileMenuContext';
 
 const SGA_URL = 'https://sga.flowproductions.pt/';
@@ -18,13 +19,10 @@ export default function SGAChatWidget() {
   }, []);
 
   useEffect(() => {
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ diagnosticContext?: Record<string, unknown> }>).detail;
+    return registerSgaChatConsumer((detail) => {
       if (detail?.diagnosticContext) setDiagnosticContext(detail.diagnosticContext);
       open();
-    };
-    window.addEventListener('open-sga-chat', handler);
-    return () => window.removeEventListener('open-sga-chat', handler);
+    });
   }, [open]);
 
   useEffect(() => {

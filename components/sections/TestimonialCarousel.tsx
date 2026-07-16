@@ -111,6 +111,7 @@ export default function TestimonialCarousel({
           {sortedTestimonials.length > 1 && (
             <>
               <button
+                type="button"
                 onClick={prevTestimonial}
                 className="absolute left-0 top-1/2 -translate-y-1/2 p-2 hover:bg-gray-100 rounded-full transition-colors"
                 aria-label="Previous testimonial"
@@ -130,6 +131,7 @@ export default function TestimonialCarousel({
                 </svg>
               </button>
               <button
+                type="button"
                 onClick={nextTestimonial}
                 className="absolute right-0 top-1/2 -translate-y-1/2 p-2 hover:bg-gray-100 rounded-full transition-colors"
                 aria-label="Next testimonial"
@@ -155,9 +157,11 @@ export default function TestimonialCarousel({
         {/* Next Arrow (decorative) */}
         {sortedTestimonials.length > 1 && (
           <div className="flex justify-center mt-12">
-            <div
-              aria-hidden
-              className="w-12 h-12 rounded-full bg-black flex items-center justify-center cursor-default"
+            <button
+              type="button"
+              onClick={nextTestimonial}
+              aria-label="Next testimonial"
+              className="w-12 h-12 rounded-full bg-black flex items-center justify-center hover:bg-gray-800 transition-colors"
             >
               <svg
                 className="w-5 h-5 text-white"
@@ -167,10 +171,11 @@ export default function TestimonialCarousel({
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 viewBox="0 0 24 24"
+                aria-hidden
               >
                 <path d="M12 5v14M5 12l7 7 7-7" />
               </svg>
-            </div>
+            </button>
           </div>
         )}
       </div>

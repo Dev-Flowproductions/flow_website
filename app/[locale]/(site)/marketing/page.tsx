@@ -27,7 +27,6 @@ const redesSociais = [
   { slug: 'albufeira-digital-nomads', title: 'Albufeira Digital Nomads',  img: '/images/projects/marketing-carousel/sociais-albufeira-dn.png' },
   { slug: 'kubidoce',                 title: 'Kubidoce',                  img: '/images/projects/marketing-carousel/sociais-kubidoce.png' },
   { slug: 'rb-woodfinish',            title: 'RB Woodfinish',             img: '/images/projects/marketing-carousel/sociais-rb-woodfinish.jpg' },
-  { slug: 'missao-conducao',          title: 'Missão Condução',           img: '/images/projects/marketing-carousel/sociais-missao-conducao.jpg' },
   { slug: 'adm-24',                   title: "ADM 24'",                   img: '/images/projects/marketing-carousel/sociais-adm-24.jpg' },
   { slug: 'nature-soul-food',         title: 'Nature Soul Food',          img: '/images/projects/marketing-carousel/sociais-nature-soul-food.jpg' },
   { slug: 'jardim-aurora',            title: 'Jardim Aurora',             img: '/images/projects/marketing-carousel/sociais-jardim-aurora.jpg' },

@@ -184,6 +184,7 @@ export default function ServiceSlugAiTool({ locale, serviceSlug, serviceTitle }:
   };
 
   const handleNext = useCallback(async () => {
+    autoAdvanceAfterSuggestRef.current = false;
     if (!canProceed()) return;
     if (quizStep === TOTAL_STEPS) {
       setError(null);
@@ -735,11 +736,14 @@ export default function ServiceSlugAiTool({ locale, serviceSlug, serviceTitle }:
                 <button
                   type="button"
                   onClick={handleNext}
-                  disabled={!canProceed() || (quizStep === 1 && useWebsiteSuggest && suggestLoading)}
-                  aria-disabled={quizStep === 1 && useWebsiteSuggest && suggestLoading}
-                  className="ml-auto px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none transition-colors font-medium"
+                  disabled={!canProceed()}
+                  className="ml-auto px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
                 >
-                  {quizStep === TOTAL_STEPS ? chrome.submitButton : chrome.next}
+                  {quizStep === 1 && useWebsiteSuggest && suggestLoading
+                    ? chrome.suggestFromWebsiteLoading
+                    : quizStep === TOTAL_STEPS
+                      ? chrome.submitButton
+                      : chrome.next}
                 </button>
               </div>
             </motion.div>

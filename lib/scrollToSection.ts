@@ -5,10 +5,7 @@ export interface PendingScroll {
   center?: boolean;
 }
 
-export function scrollToSection(targetId: string, center = false) {
-  const element = document.getElementById(targetId);
-  if (!element) return;
-
+function scrollElementIntoView(element: HTMLElement, center: boolean) {
   if (center) {
     const elementRect = element.getBoundingClientRect();
     const elementHeight = elementRect.height;
@@ -29,6 +26,21 @@ export function scrollToSection(targetId: string, center = false) {
     top: elementPosition - headerOffset,
     behavior: 'smooth',
   });
+}
+
+export function scrollToSection(targetId: string, center = false, maxAttempts = 12) {
+  const attempt = (remaining: number) => {
+    const element = document.getElementById(targetId);
+    if (element) {
+      scrollElementIntoView(element, center);
+      return;
+    }
+    if (remaining > 0) {
+      window.setTimeout(() => attempt(remaining - 1), 100);
+    }
+  };
+
+  attempt(maxAttempts);
 }
 
 export function normalizeRoutePath(path: string) {
