@@ -5,6 +5,8 @@ import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, creativeWorkJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { renderInlineBold } from '@/lib/renderInlineBold';
+import { normalizeProjectYear, yearFromPublishedAt } from '@/lib/projectYear';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -44,20 +46,6 @@ function getYouTubeEmbedUrl(url: string): string | null {
   return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=0&rel=0` : null;
 }
 
-function formatDate(dateStr: string, locale: string): string {
-  const date = new Date(dateStr);
-  const localeMap: Record<string, string> = {
-    pt: 'pt-PT',
-    en: 'en-GB',
-    fr: 'fr-FR',
-  };
-  return date.toLocaleDateString(localeMap[locale] || 'en-GB', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
-
 export default async function ProjectDetailPage({
   params,
 }: {
@@ -87,7 +75,7 @@ export default async function ProjectDetailPage({
   const title     = project.title?.[locale]   || project.title?.['pt']   || 'Projeto';
   const summary   = project.summary?.[locale] || project.summary?.['pt'] || '';
   const content   = project.content?.[locale] || project.content?.['pt'] || '';
-  const yearLabel = project.year_label || '';
+  const yearLabel = normalizeProjectYear(project.year_label);
 
   const videoUrl: string | null = project.gallery?.video_url || null;
   const embedUrl = videoUrl ? getYouTubeEmbedUrl(videoUrl) : null;
@@ -97,7 +85,7 @@ export default async function ProjectDetailPage({
       ?.map((r: { project_tags: { id: string; key: string; label: Record<string, string> } }) => r.project_tags)
       .filter(Boolean) ?? [];
 
-  const publishedDate = project.published_at ? formatDate(project.published_at, locale) : '';
+  const publishedYear = project.published_at ? yearFromPublishedAt(project.published_at) : '';
 
   // Fetch sibling projects sharing the first tag for prev/next navigation
   let prevProject: { title: Record<string, string>; slug: Record<string, string> } | null = null;
@@ -177,10 +165,10 @@ export default async function ProjectDetailPage({
                     <span className="text-sm text-gray-500">{yearLabel}</span>
                   </div>
                 )}
-                {!yearLabel && publishedDate && (
+                {!yearLabel && publishedYear && (
                   <div className="flex items-baseline gap-4">
                     <span className="text-sm font-bold text-black w-20">{t('year')}</span>
-                    <span className="text-sm text-gray-500">{publishedDate}</span>
+                    <span className="text-sm text-gray-500">{publishedYear}</span>
                   </div>
                 )}
                 {tags.length > 0 && (
@@ -222,9 +210,13 @@ export default async function ProjectDetailPage({
               )}
 
               {content && (
-                <p className="text-sm text-gray-600 leading-relaxed pt-2">
-                  {content}
-                </p>
+                <div className="space-y-4 pt-2">
+                  {content.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="text-sm text-gray-600 leading-relaxed">
+                      {renderInlineBold(paragraph)}
+                    </p>
+                  ))}
+                </div>
               )}
             </div>
           </div>

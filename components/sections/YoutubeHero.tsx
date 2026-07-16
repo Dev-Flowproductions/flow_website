@@ -1,20 +1,47 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { getGoogleDriveVideoSrc } from '@/lib/googleDrive';
+import {
+  createSeamlessLoopHandlers,
+  loadYoutubeIframeApi,
+  type YoutubePlayerInstance,
+} from '@/lib/youtubeIframeApi';
 
 interface Props {
-  videoId: string;
+  videoId?: string;
+  videoSrc?: string;
+  driveFileId?: string;
   label?: string;
   title?: string;
   titleAccent?: string;
   description?: string;
 }
 
-export default function YoutubeHero({ videoId, label, title, titleAccent, description }: Props) {
+const playerShellClass =
+  'pointer-events-none absolute top-1/2 left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 [&_iframe]:pointer-events-none [&_iframe]:h-full [&_iframe]:w-full [&_iframe]:border-0 lg:[&_iframe]:h-auto lg:[&_iframe]:w-[177.78%] lg:[&_iframe]:min-h-full lg:[&_iframe]:min-w-[177.78%]';
+
+const driveVideoClass =
+  'pointer-events-none absolute top-1/2 left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover lg:h-auto lg:w-[177.78%] lg:min-h-full lg:min-w-[177.78%]';
+
+export default function YoutubeHero({
+  videoId,
+  videoSrc,
+  driveFileId,
+  label,
+  title,
+  titleAccent,
+  description,
+}: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const playerMountRef = useRef<HTMLDivElement>(null);
+  const driveVideoRef = useRef<HTMLVideoElement>(null);
+  const playerRef = useRef<YoutubePlayerInstance | null>(null);
+  const loopHandlersRef = useRef<ReturnType<typeof createSeamlessLoopHandlers> | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&rel=0&modestbranding=1&playsinline=1`;
   const hasOverlayText = label || title || description;
+  const usesLocalVideo = Boolean(videoSrc);
+  const usesDrive = Boolean(driveFileId) && !usesLocalVideo;
 
   useEffect(() => {
     const node = containerRef.current;
@@ -33,6 +60,73 @@ export default function YoutubeHero({ videoId, label, title, titleAccent, descri
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!shouldLoad || usesDrive || usesLocalVideo || !videoId || !playerMountRef.current) return;
+
+    let cancelled = false;
+
+    loadYoutubeIframeApi()
+      .then((YT) => {
+        if (cancelled || !playerMountRef.current) return;
+
+        const loopHandlers = createSeamlessLoopHandlers(YT);
+        loopHandlersRef.current = loopHandlers;
+
+        playerRef.current = new YT.Player(playerMountRef.current, {
+          videoId,
+          playerVars: {
+            autoplay: 1,
+            mute: 1,
+            controls: 0,
+            disablekb: 1,
+            fs: 0,
+            rel: 0,
+            modestbranding: 1,
+            playsinline: 1,
+            iv_load_policy: 3,
+            enablejsapi: 1,
+            origin: window.location.origin,
+          },
+          events: {
+            onReady: loopHandlers.onReady,
+            onStateChange: loopHandlers.onStateChange,
+          },
+        });
+      })
+      .catch(() => {
+        // Keep the black placeholder if the API fails to load.
+      });
+
+    return () => {
+      cancelled = true;
+      loopHandlersRef.current?.destroy();
+      loopHandlersRef.current = null;
+      playerRef.current?.destroy();
+      playerRef.current = null;
+    };
+  }, [shouldLoad, usesDrive, usesLocalVideo, videoId]);
+
+  useEffect(() => {
+    if (!shouldLoad || (!usesDrive && !usesLocalVideo)) return;
+
+    const video = driveVideoRef.current;
+    if (!video) return;
+
+    const tryPlay = () => {
+      void video.play().catch(() => {});
+    };
+
+    video.addEventListener('loadeddata', tryPlay);
+    video.addEventListener('canplay', tryPlay);
+    video.load();
+    tryPlay();
+
+    return () => {
+      video.removeEventListener('loadeddata', tryPlay);
+      video.removeEventListener('canplay', tryPlay);
+    };
+  }, [shouldLoad, usesDrive, usesLocalVideo, driveFileId, videoSrc]);
 
   return (
     <>
@@ -54,14 +148,28 @@ export default function YoutubeHero({ videoId, label, title, titleAccent, descri
         <div ref={containerRef} className="relative w-full max-w-full aspect-video lg:aspect-auto lg:pb-[56.25%]">
           <div className="absolute inset-0 overflow-hidden">
             {shouldLoad ? (
-              <iframe
-                src={embedUrl}
-                title={title || 'Hero video'}
-                loading="lazy"
-                allow="autoplay; encrypted-media"
-                allowFullScreen={false}
-                className="absolute top-1/2 left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 border-0 lg:h-auto lg:w-[177.78%] lg:min-h-full lg:min-w-[177.78%]"
-              />
+              <>
+                {usesLocalVideo || usesDrive ? (
+                  <video
+                    ref={driveVideoRef}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    aria-label={title || 'Hero video'}
+                    className={driveVideoClass}
+                    src={usesLocalVideo ? videoSrc : getGoogleDriveVideoSrc(driveFileId!)}
+                  />
+                ) : (
+                  <div
+                    ref={playerMountRef}
+                    className={playerShellClass}
+                    aria-label={title || 'Hero video'}
+                  />
+                )}
+                <div className="absolute inset-0 z-[1]" aria-hidden tabIndex={-1} />
+              </>
             ) : (
               <div className="absolute inset-0 bg-gray-900" aria-hidden />
             )}

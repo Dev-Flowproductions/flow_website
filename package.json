@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare-hero-videos": "node scripts/prepare-hero-videos.mjs",
+    "update-av-animation-copy": "node scripts/update-av-animation-copy.mjs"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.4",

@@ -15,7 +15,7 @@ interface Props {
   projects: CarouselProject[];
   title: string;
   dark?: boolean;
-  /** Color the dark gradient lands on — match the section below. */
+  /** Background below the image row — match the next section. */
   fadeTo?: 'white' | 'gray-50';
 }
 
@@ -25,11 +25,11 @@ function getVisibleCount(width: number): number {
   return 1;
 }
 
-const darkGradients = {
+const imageGradients = {
   white:
-    'bg-[linear-gradient(to_bottom,#000_0%,#0f0f0f_15%,#3f3f3f_40%,#9ca3af_70%,#e5e7eb_88%,#fff_100%)]',
+    'bg-[linear-gradient(to_bottom,#000_0%,#6b7280_42%,#d1d5db_78%,#fff_100%)]',
   'gray-50':
-    'bg-[linear-gradient(to_bottom,#000_0%,#0f0f0f_15%,#3f3f3f_40%,#9ca3af_70%,#e5e7eb_88%,#f9fafb_100%)]',
+    'bg-[linear-gradient(to_bottom,#000_0%,#6b7280_42%,#d1d5db_78%,#f9fafb_100%)]',
 } as const;
 
 export default function MultiSlideCarousel({
@@ -125,7 +125,7 @@ export default function MultiSlideCarousel({
 
   return (
     <div
-      className={`py-10 overflow-x-hidden max-w-full ${dark ? darkGradients[fadeTo] : 'bg-gray-50'}`}
+      className={`overflow-x-hidden max-w-full ${dark ? '' : 'bg-gray-50 py-10'}`}
       onMouseEnter={() => {
         hoveringRef.current = true;
         clearAutoplay();
@@ -136,7 +136,9 @@ export default function MultiSlideCarousel({
         startAutoplay();
       }}
     >
-      <div className="grid grid-cols-[auto_1fr_auto] items-center gap-2 px-4 sm:px-8 md:px-12 mb-6 max-w-full">
+      <div
+        className={`grid grid-cols-[auto_1fr_auto] items-center gap-2 px-4 sm:px-8 md:px-12 max-w-full ${dark ? 'bg-black pt-10 pb-6' : 'mb-6'}`}
+      >
         <button
           type="button"
           onClick={() => goTo('prev')}
@@ -164,9 +166,10 @@ export default function MultiSlideCarousel({
         </button>
       </div>
 
-      <div className="overflow-hidden px-4 sm:px-8 md:px-12 max-w-full">
-        <div
-          className="flex w-full transition-transform duration-500 ease-in-out"
+      <div className={dark ? `pb-10 ${imageGradients[fadeTo]}` : undefined}>
+        <div className="overflow-hidden px-4 sm:px-8 md:px-12 max-w-full">
+          <div
+            className="flex w-full transition-transform duration-500 ease-in-out"
           style={{
             width: `${trackWidthPercent}%`,
             transform: `translateX(-${current * trackSlidePercent}%)`,
@@ -204,16 +207,17 @@ export default function MultiSlideCarousel({
                   </div>
                 </div>
                 <div className="md:hidden mt-3 text-center">
-                  <p className={`font-bold text-sm leading-snug ${dark ? 'text-white' : 'text-black'}`}>
+                  <p className="font-bold text-sm leading-snug text-black">
                     {p.title}
                   </p>
                   {p.tags && (
-                    <p className={`text-xs mt-1 ${dark ? 'text-white/70' : 'text-gray-500'}`}>{p.tags}</p>
+                    <p className="text-xs mt-1 text-gray-500">{p.tags}</p>
                   )}
                 </div>
               </Link>
             </div>
           ))}
+          </div>
         </div>
       </div>
     </div>
