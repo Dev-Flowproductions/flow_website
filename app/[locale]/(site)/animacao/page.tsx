@@ -23,18 +23,18 @@ export async function generateMetadata({
 }
 
 const animacoesPromocionais = [
-  { slug: 'ultima-gota',           title: 'Última Gota',          tags: 'Animação',                  img: '/images/projects/animacao-carousel/ultima-gota.webp' },
-  { slug: 'likewise',              title: 'Likewise',             tags: 'Animação',                  img: '/images/projects/animacao-carousel/likewise.jpg' },
-  { slug: 'medwater',              title: 'Medwater',             tags: 'Animação',                  img: '/images/projects/animacao-carousel/medwater.webp' },
-  { slug: 'one-select-properties', title: 'One Select Properties',tags: 'Animação',                  img: '/images/projects/animacao-carousel/one-select.jpg' },
-  { slug: 'mia',                   title: 'MIA',                  tags: 'Animação, Content Writing', img: '/images/projects/animacao-carousel/mia.webp' },
-  { slug: 'barturs',               title: 'Barturs',              tags: 'Animação',                  img: '/images/projects/animacao-carousel/barturs.png' },
-  { slug: 'lets-communicate',      title: "Let's Communicate",    tags: 'Animação',                  img: '/images/projects/animacao-carousel/lets-communicate.jpg' },
-  { slug: 'kipt',                  title: 'KIPT',                 tags: 'Animação',                  img: '/images/projects/animacao-carousel/kipt.webp' },
-  { slug: 'emjogo',                title: 'EmJogo',               tags: 'Animação',                  img: '/images/projects/animacao-carousel/emjogo.webp' },
-  { slug: 'travel-tech-partners',  title: 'Travel Tech Partners', tags: 'Animação',                  img: '/images/projects/animacao-carousel/travel-tech-partners.webp' },
-  { slug: 'toma-la-da-ca',         title: 'Toma lá, dá cá',      tags: 'Animação',                  img: '/images/projects/animacao-carousel/toma-la-da-ca.webp' },
-  { slug: 'pizza-lab',             title: 'Pizza Lab',            tags: 'Animação',                  img: '/images/projects/design-carousel/pizza-lab-carousel.jpg' },
+  { slug: 'ultima-gota',           title: 'Última Gota',          img: '/images/projects/animacao-carousel/ultima-gota.webp' },
+  { slug: 'likewise',              title: 'Likewise',             img: '/images/projects/animacao-carousel/likewise.jpg' },
+  { slug: 'medwater',              title: 'Medwater',             img: '/images/projects/animacao-carousel/medwater.webp' },
+  { slug: 'one-select-properties', title: 'One Select Properties',img: '/images/projects/animacao-carousel/one-select.jpg' },
+  { slug: 'mia',                   title: 'MIA',                  img: '/images/projects/animacao-carousel/mia.webp' },
+  { slug: 'barturs',               title: 'Barturs',              img: '/images/projects/animacao-carousel/barturs.png' },
+  { slug: 'lets-communicate',      title: "Let's Communicate",    img: '/images/projects/animacao-carousel/lets-communicate.jpg' },
+  { slug: 'kipt',                  title: 'KIPT',                 img: '/images/projects/animacao-carousel/kipt.webp' },
+  { slug: 'emjogo',                title: 'EmJogo',               img: '/images/projects/animacao-carousel/emjogo.webp' },
+  { slug: 'travel-tech-partners',  title: 'Travel Tech Partners', img: '/images/projects/animacao-carousel/travel-tech-partners.webp' },
+  { slug: 'toma-la-da-ca',         title: 'Toma lá, dá cá',      img: '/images/projects/animacao-carousel/toma-la-da-ca.webp' },
+  { slug: 'pizza-lab',             title: 'Pizza Lab',            img: '/images/projects/design-carousel/pizza-lab-carousel.jpg' },
 ];
 
 const serviceSchema = serviceJsonLd({
