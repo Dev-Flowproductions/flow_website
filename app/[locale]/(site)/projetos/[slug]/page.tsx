@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
 import { Link } from '@/i18n/routing';
 import { getPageMetadata, creativeWorkJsonLd, breadcrumbJsonLd } from '@/lib/seo';
-import { renderInlineBold } from '@/lib/renderInlineBold';
+import { formatBoldHtml } from '@/lib/formatBoldHtml';
 import { normalizeProjectYear, yearFromPublishedAt } from '@/lib/projectYear';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 
@@ -74,7 +74,7 @@ export default async function ProjectDetailPage({
 
   const title     = project.title?.[locale]   || project.title?.['pt']   || 'Projeto';
   const summary   = project.summary?.[locale] || project.summary?.['pt'] || '';
-  const content   = project.content?.[locale] || project.content?.['pt'] || '';
+  const content = String(project.content?.[locale] ?? project.content?.['pt'] ?? '');
   const yearLabel = normalizeProjectYear(project.year_label);
 
   const videoUrl: string | null = project.gallery?.video_url || null;
@@ -211,10 +211,12 @@ export default async function ProjectDetailPage({
 
               {content && (
                 <div className="space-y-4 pt-2">
-                  {content.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="text-sm text-gray-600 leading-relaxed">
-                      {renderInlineBold(paragraph)}
-                    </p>
+                  {content.split('\n\n').map((paragraph: string, index: number) => (
+                    <p
+                      key={index}
+                      className="text-sm text-gray-600 leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: formatBoldHtml(paragraph) }}
+                    />
                   ))}
                 </div>
               )}
