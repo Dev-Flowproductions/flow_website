@@ -15,6 +15,8 @@ interface Props {
   projects: CarouselProject[];
   title: string;
   dark?: boolean;
+  /** Color the dark gradient lands on — match the section below. */
+  fadeTo?: 'white' | 'gray-50';
 }
 
 function getVisibleCount(width: number): number {
@@ -23,7 +25,19 @@ function getVisibleCount(width: number): number {
   return 1;
 }
 
-export default function MultiSlideCarousel({ projects, title, dark = false }: Props) {
+const darkGradients = {
+  white:
+    'bg-[linear-gradient(to_bottom,#000_0%,#0f0f0f_15%,#3f3f3f_40%,#9ca3af_70%,#e5e7eb_88%,#fff_100%)]',
+  'gray-50':
+    'bg-[linear-gradient(to_bottom,#000_0%,#0f0f0f_15%,#3f3f3f_40%,#9ca3af_70%,#e5e7eb_88%,#f9fafb_100%)]',
+} as const;
+
+export default function MultiSlideCarousel({
+  projects,
+  title,
+  dark = false,
+  fadeTo = 'white',
+}: Props) {
   const [current, setCurrent] = useState(0);
   const [visibleCount, setVisibleCount] = useState(1);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -107,11 +121,11 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
   const trackSlidePercent = 100 / projects.length;
 
   const navBtnClass =
-    'flex h-11 w-11 md:h-12 md:w-12 touch-manipulation items-center justify-center rounded-full border border-white/50 bg-black/45 text-white shadow-lg backdrop-blur-sm transition-colors hover:bg-black/60 hover:border-white/80 disabled:opacity-35 disabled:pointer-events-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
+    'flex h-11 w-11 md:h-12 md:w-12 touch-manipulation items-center justify-center rounded-full border border-white/50 bg-black/45 text-white shadow-lg backdrop-blur-sm transition-colors hover:bg-black/60 hover:border-white/80 disabled:opacity-35 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
 
   return (
     <div
-      className={`py-10 overflow-x-hidden max-w-full ${dark ? 'bg-gradient-to-b from-gray-900 to-gray-50' : 'bg-gray-50'}`}
+      className={`py-10 overflow-x-hidden max-w-full ${dark ? darkGradients[fadeTo] : 'bg-gray-50'}`}
       onMouseEnter={() => {
         hoveringRef.current = true;
         clearAutoplay();
@@ -125,10 +139,7 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
       <div className="grid grid-cols-[auto_1fr_auto] items-center gap-2 px-4 sm:px-8 md:px-12 mb-6 max-w-full">
         <button
           type="button"
-          onPointerDown={(event) => {
-            event.preventDefault();
-            goTo('prev');
-          }}
+          onClick={() => goTo('prev')}
           aria-label="Previous"
           disabled={!canScroll}
           className={navBtnClass}
@@ -142,10 +153,7 @@ export default function MultiSlideCarousel({ projects, title, dark = false }: Pr
         </h2>
         <button
           type="button"
-          onPointerDown={(event) => {
-            event.preventDefault();
-            goTo('next');
-          }}
+          onClick={() => goTo('next')}
           aria-label="Next"
           disabled={!canScroll}
           className={navBtnClass}

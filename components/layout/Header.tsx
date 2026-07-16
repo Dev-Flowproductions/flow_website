@@ -12,7 +12,7 @@ export default function Header({ locale }: { locale: string }) {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#EDEDED] backdrop-blur-sm">
+      <header className={`fixed top-0 left-0 right-0 backdrop-blur-sm bg-[#EDEDED] ${mobileMenuOpen ? 'z-[10000]' : 'z-50'}`}>
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-between h-20">
@@ -44,9 +44,11 @@ export default function Header({ locale }: { locale: string }) {
             <div className="flex nav:hidden items-center gap-3">
               <LocaleSwitcher locale={locale} />
               <button
+                type="button"
                 className="p-2"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle menu"
+                aria-expanded={mobileMenuOpen}
               >
                 <svg
                   className="w-6 h-6"

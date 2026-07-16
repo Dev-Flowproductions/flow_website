@@ -18,7 +18,7 @@ const SLIDE_W = 55;
 const OFFSET = (100 - SLIDE_W) / 2;
 
 const carouselNavBtn =
-  'flex-shrink-0 flex h-11 w-11 md:h-12 md:w-12 touch-manipulation items-center justify-center rounded-full border border-white/50 bg-black/45 text-white shadow-lg backdrop-blur-sm transition-colors hover:bg-black/60 hover:border-white/80 disabled:opacity-35 disabled:pointer-events-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
+  'flex-shrink-0 flex h-11 w-11 md:h-12 md:w-12 touch-manipulation items-center justify-center rounded-full border border-white/50 bg-black/45 text-white shadow-lg backdrop-blur-sm transition-colors hover:bg-black/60 hover:border-white/80 disabled:opacity-35 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
 
 export default function ProjectCarousel({ projects }: Props) {
   const [current, setCurrent] = useState(0);
@@ -106,10 +106,7 @@ export default function ProjectCarousel({ projects }: Props) {
       <div className="flex items-center gap-3 md:gap-4 max-w-7xl mx-auto">
         <button
           type="button"
-          onPointerDown={(event) => {
-            event.preventDefault();
-            handleNav('prev');
-          }}
+          onClick={() => handleNav('prev')}
           aria-label="Previous"
           disabled={!canScroll}
           className={carouselNavBtn}
@@ -129,7 +126,7 @@ export default function ProjectCarousel({ projects }: Props) {
               return (
                 <div
                   key={`${p.slug}-${i}`}
-                  className={`flex-shrink-0 px-2 flex flex-col ${isActive ? '' : 'pointer-events-none'}`}
+                  className="flex-shrink-0 px-2 flex flex-col"
                   style={{ width: `${SLIDE_W}%` }}
                 >
                   <Link href={`/projetos/${p.slug}`} className="group block relative" draggable={false}>
@@ -187,10 +184,7 @@ export default function ProjectCarousel({ projects }: Props) {
 
         <button
           type="button"
-          onPointerDown={(event) => {
-            event.preventDefault();
-            handleNav('next');
-          }}
+          onClick={() => handleNav('next')}
           aria-label="Next"
           disabled={!canScroll}
           className={carouselNavBtn}

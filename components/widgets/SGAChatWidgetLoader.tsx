@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import { installOpenSgaChatBridge } from '@/lib/openSgaChat';
 
 const SGAChatWidget = dynamic(
   () => import('@/components/widgets/SGAChatWidget'),
@@ -10,6 +11,10 @@ const SGAChatWidget = dynamic(
 
 export default function SGAChatWidgetLoader() {
   const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    return installOpenSgaChatBridge();
+  }, []);
 
   useEffect(() => {
     const enable = () => setReady(true);

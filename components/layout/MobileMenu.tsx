@@ -90,6 +90,7 @@ export default function MobileMenu({
             <LocaleSwitcher locale={locale} />
           </div>
           <button
+            type="button"
             onClick={onClose}
             className="flex items-center gap-2 text-white text-sm font-medium hover:text-gray-300 transition-colors"
             aria-label={t('close')}

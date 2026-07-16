@@ -92,7 +92,7 @@ export default function MainNav() {
 
       {/* MarTech with Dropdown */}
       <div
-        className="relative"
+        className="relative flex items-center"
         onMouseEnter={handleMartechMouseEnter}
         onMouseLeave={handleMartechMouseLeave}
       >
@@ -101,10 +101,24 @@ export default function MainNav() {
           className={`${navLinkClass('/martech', pathname)} flex items-center gap-1`}
         >
           {t('martech')}
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        </Link>
+        <button
+          type="button"
+          className="p-1 -ml-1 rounded hover:bg-black/5"
+          aria-expanded={martechOpen}
+          aria-label={`${t('martech')} submenu`}
+          onClick={() => setMartechOpen((open) => !open)}
+        >
+          <svg
+            className={`w-3 h-3 transition-transform ${martechOpen ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
-        </Link>
+        </button>
 
         {martechOpen && (
           <div className="absolute top-full left-0 pt-2 z-50">
@@ -114,6 +128,7 @@ export default function MainNav() {
                   key={service.key}
                   href={`/martech/${service.key}`}
                   className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                  onClick={() => setMartechOpen(false)}
                 >
                   {tMartech(service.labelKey)}
                 </Link>
@@ -125,7 +140,7 @@ export default function MainNav() {
 
       {/* Projects with Dropdown */}
       <div
-        className="relative"
+        className="relative flex items-center"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -134,10 +149,24 @@ export default function MainNav() {
           className={`${navLinkClass('/projetos', pathname)} flex items-center gap-1`}
         >
           {t('projects')}
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        </Link>
+        <button
+          type="button"
+          className="p-1 -ml-1 rounded hover:bg-black/5"
+          aria-expanded={projectsOpen}
+          aria-label={`${t('projects')} submenu`}
+          onClick={() => setProjectsOpen((open) => !open)}
+        >
+          <svg
+            className={`w-3 h-3 transition-transform ${projectsOpen ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
-        </Link>
+        </button>
 
         {projectsOpen && (
           <div className="absolute top-full left-0 pt-2 z-50">
@@ -147,6 +176,7 @@ export default function MainNav() {
                   key={category.key}
                   href={`/${category.key}`}
                   className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                  onClick={() => setProjectsOpen(false)}
                 >
                   {tCat(category.labelKey)}
                 </Link>

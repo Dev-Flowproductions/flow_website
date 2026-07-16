@@ -23,7 +23,7 @@ export default async function SiteLayout({
       <SlugMapProvider>
         <MobileMenuProvider>
           <Header locale={locale} />
-          <main className="min-h-screen pt-20 overflow-x-hidden max-w-full">{children}</main>
+          <main className="pt-20 pb-24 overflow-x-hidden max-w-full">{children}</main>
           <Footer locale={locale} />
           <DeferredCopyPageAsMarkdown />
           <SGAChatWidgetLoader />

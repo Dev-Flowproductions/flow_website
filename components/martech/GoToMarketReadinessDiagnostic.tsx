@@ -154,7 +154,7 @@ export default function GoToMarketReadinessDiagnostic({ locale }: Props) {
 
   const canProceed = useCallback((): boolean => {
     switch (quizStep) {
-      case 1: return form.websiteUrl.trim().length > 0 && !suggestLoading;
+      case 1: return form.websiteUrl.trim().length > 0;
       case 2: return form.offerDescription.trim().length > 0;
       case 3: return !!form.currentSituation;
       case 4: return !!form.offerClarity;
@@ -166,7 +166,7 @@ export default function GoToMarketReadinessDiagnostic({ locale }: Props) {
       case 10: return !!form.teamAlignment;
       default: return false;
     }
-  }, [quizStep, form, suggestLoading]);
+  }, [quizStep, form]);
 
   const handleStart = () => {
     setStep('quiz');
@@ -175,6 +175,7 @@ export default function GoToMarketReadinessDiagnostic({ locale }: Props) {
   };
 
   const handleNext = useCallback(async () => {
+    autoAdvanceAfterSuggestRef.current = false;
     if (!canProceed() && quizStep !== 10) return;
     if (quizStep === 10) {
       setError(null);
@@ -567,8 +568,8 @@ export default function GoToMarketReadinessDiagnostic({ locale }: Props) {
                 {quizStep > 1 && (
                   <button type="button" onClick={handleBack} className="px-6 py-3 border-2 border-gray-300 text-gray-600 rounded-full hover:border-gray-400 transition-colors font-medium">{t('back')}</button>
                 )}
-                <button type="button" onClick={handleNext} disabled={!canProceed() || (quizStep === 1 && suggestLoading)} aria-disabled={quizStep === 1 && suggestLoading} className="ml-auto px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none transition-colors font-medium">
-                  {quizStep === 10 ? t('submit') : t('next')}
+                <button type="button" onClick={handleNext} disabled={!canProceed()} className="ml-auto px-8 py-3 bg-[#5b54a0] text-white rounded-full hover:bg-[#4a4480] disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium">
+                  {quizStep === 1 && suggestLoading ? t('suggestFromWebsiteLoading') : quizStep === 10 ? t('submit') : t('next')}
                 </button>
               </div>
             </motion.div>
