@@ -6,6 +6,7 @@ import {
   getOpenAIApiKey,
   LlmBlockedError,
 } from '@/lib/openai';
+import { assertPublicToolAccess } from '@/lib/publicApiGuard';
 import { SERVICE_PAGE_SLUGS, type ServicePageSlug } from '@/lib/serviceItemRoutes';
 import type { ServicePageCategory } from '@/lib/servicePagesMessages';
 import { getServiceSlugDiagnostic } from '@/lib/serviceSlugDiagnostics/registry';
@@ -151,6 +152,9 @@ Return only the JSON object.`;
 
 export async function POST(request: NextRequest) {
   try {
+    const blocked = assertPublicToolAccess(request);
+    if (blocked) return blocked;
+
     if (!getOpenAIApiKey()) {
       return NextResponse.json({ error: 'OpenAI API not configured' }, { status: 500 });
     }

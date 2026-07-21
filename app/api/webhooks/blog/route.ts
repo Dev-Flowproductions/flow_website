@@ -3,14 +3,17 @@ import { createServiceClient } from '@/lib/supabase/service';
 import { isBlogDeleteEvent, isBlogSyncEvent } from '@/lib/blogCms';
 import { syncBlogPostFromCms } from '@/lib/blogWebhookSync';
 
-const WEBHOOK_SECRET = process.env.CMS_WEBHOOK_SECRET;
+const WEBHOOK_SECRET = process.env.CMS_WEBHOOK_SECRET?.trim();
 
 export async function POST(req: NextRequest) {
-  if (WEBHOOK_SECRET) {
-    const incoming = req.headers.get('x-webhook-secret');
-    if (incoming !== WEBHOOK_SECRET) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  if (!WEBHOOK_SECRET) {
+    console.error('[blog-webhook] CMS_WEBHOOK_SECRET is not configured');
+    return NextResponse.json({ error: 'Webhook not configured' }, { status: 500 });
+  }
+
+  const incoming = req.headers.get('x-webhook-secret');
+  if (incoming !== WEBHOOK_SECRET) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   let body: Record<string, unknown>;

@@ -3,6 +3,9 @@ import https from 'https';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { requireSupabaseServiceEnv } from './load-env.mjs';
+
+const { hostname: HOST, key: KEY } = requireSupabaseServiceEnv();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
@@ -87,8 +90,6 @@ function downloadImage(url, destPath, redirectCount = 0) {
 
 async function run() {
   const results = {};
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9saHBycWdueHNiZWt4Y2lqZXVxIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MTQ5NzgzMywiZXhwIjoyMDg3MDczODMzfQ.-WTOSRHYRE3NL_a4NSRojR-8WTXCrJoMxL9AgTqMDo0';
-
   // Fetch all pages concurrently (in batches of 10)
   console.log('Fetching project pages...\n');
   const BATCH = 10;
@@ -115,9 +116,9 @@ async function run() {
   // Get all projects from Supabase to map slug → id
   const projectsRes = await new Promise((resolve, reject) => {
     https.get({
-      hostname: 'olhprqgnxsbekxcijeuq.supabase.co',
+      hostname: HOST,
       path: '/rest/v1/projects?select=id,slug,featured_image_path',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY },
+      headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY },
     }, res => {
       let d = ''; res.on('data', c => d += c); res.on('end', () => resolve(JSON.parse(d)));
     }).on('error', reject);
@@ -159,11 +160,11 @@ async function run() {
       await new Promise((resolve, reject) => {
         const body = JSON.stringify(patch);
         const req = https.request({
-          hostname: 'olhprqgnxsbekxcijeuq.supabase.co',
+          hostname: HOST,
           path: `/rest/v1/projects?id=eq.${project.id}`,
           method: 'PATCH',
           headers: {
-            'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY,
+            'apikey': KEY, 'Authorization': 'Bearer ' + KEY,
             'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body),
           },
         }, res => { res.resume(); res.on('end', resolve); });

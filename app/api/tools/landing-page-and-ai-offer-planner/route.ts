@@ -6,6 +6,7 @@ import {
   getOpenAIApiKey,
   LlmBlockedError,
 } from '@/lib/openai';
+import { assertPublicToolAccess } from '@/lib/publicApiGuard';
 
 function normalizeUrl(val: string): string {
   const s = val.trim();
@@ -181,6 +182,9 @@ Return only the JSON object.`;
 
 export async function POST(request: NextRequest) {
   try {
+    const blocked = assertPublicToolAccess(request);
+    if (blocked) return blocked;
+
     if (!getOpenAIApiKey()) {
       return NextResponse.json({ error: 'OpenAI API not configured' }, { status: 500 });
     }

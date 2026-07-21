@@ -1,8 +1,8 @@
 // Run with: node scripts/seed-social-projects.mjs
 import https from 'https';
+import { requireSupabaseServiceEnv } from './load-env.mjs';
 
-const KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9saHBycWdueHNiZWt4Y2lqZXVxIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MTQ5NzgzMywiZXhwIjoyMDg3MDczODMzfQ.-WTOSRHYRE3NL_a4NSRojR-8WTXCrJoMxL9AgTqMDo0';
-const HOST = 'olhprqgnxsbekxcijeuq.supabase.co';
+const { hostname: HOST, key: KEY } = requireSupabaseServiceEnv();
 
 // Existing IDs
 const SOCIAL_SECTION_ID = 'd62a5160-c6c7-4b24-a0b8-5674bbdf68f9';

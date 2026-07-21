@@ -3,11 +3,12 @@ import https from 'https';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { requireSupabaseServiceEnv } from './load-env.mjs';
+
+const { hostname: HOST, key: KEY } = requireSupabaseServiceEnv();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
-const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9saHBycWdueHNiZWt4Y2lqZXVxIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MTQ5NzgzMywiZXhwIjoyMDg3MDczODMzfQ.-WTOSRHYRE3NL_a4NSRojR-8WTXCrJoMxL9AgTqMDo0';
-
 function fetchHtml(url) {
   return new Promise((resolve) => {
     https.get(url, { headers: { 'User-Agent': 'Mozilla/5.0' } }, res => {
@@ -50,7 +51,7 @@ function supabasePatch(projectId, patch) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify(patch);
     const req = https.request({
-      hostname: 'olhprqgnxsbekxcijeuq.supabase.co',
+      hostname: HOST,
       path: `/rest/v1/projects?id=eq.${projectId}`,
       method: 'PATCH',
       headers: {
@@ -67,7 +68,7 @@ function supabasePatch(projectId, patch) {
 async function getProjectBySlug(slug) {
   return new Promise((resolve, reject) => {
     https.get({
-      hostname: 'olhprqgnxsbekxcijeuq.supabase.co',
+      hostname: HOST,
       path: `/rest/v1/projects?slug->>pt=eq.${encodeURIComponent(slug)}&select=id,slug,featured_image_path`,
       headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY },
     }, res => {

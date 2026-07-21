@@ -1,15 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveGoogleDriveVideoUrl } from '@/lib/resolveGoogleDriveVideoUrl';
+import { getClientIp, rateLimit } from '@/lib/publicApiGuard';
 
 export const dynamic = 'force-dynamic';
 
 const FORWARDED_HEADERS = ['content-type', 'content-length', 'content-range', 'accept-ranges'] as const;
+const FILE_ID_RE = /^[a-zA-Z0-9_-]{10,128}$/;
 
 export async function GET(request: NextRequest) {
   const fileId = request.nextUrl.searchParams.get('fileId');
 
-  if (!fileId) {
-    return NextResponse.json({ error: 'Missing fileId' }, { status: 400 });
+  if (!fileId || !FILE_ID_RE.test(fileId)) {
+    return NextResponse.json({ error: 'Missing or invalid fileId' }, { status: 400 });
+  }
+
+  const ip = getClientIp(request);
+  if (!rateLimit(`drive-video:${ip}`, { limit: 60, windowMs: 60_000 })) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
   }
 
   try {

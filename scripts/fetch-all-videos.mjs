@@ -3,9 +3,9 @@
 // flowproductions.pt and PATCHes Supabase — non-destructive (skips if already set).
 
 import https from 'https';
+import { requireSupabaseServiceEnv } from './load-env.mjs';
 
-const KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9saHBycWdueHNiZWt4Y2lqZXVxIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MTQ5NzgzMywiZXhwIjoyMDg3MDczODMzfQ.-WTOSRHYRE3NL_a4NSRojR-8WTXCrJoMxL9AgTqMDo0';
-const HOST = 'olhprqgnxsbekxcijeuq.supabase.co';
+const { hostname: HOST, key: KEY } = requireSupabaseServiceEnv();
 
 // WordPress slugs differ from our DB slugs for a handful of projects
 const SLUG_OVERRIDES = {

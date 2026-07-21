@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { extractJsonObject, generateLlmText, getOpenAIApiKey } from '@/lib/openai';
+import { assertPublicToolAccess } from '@/lib/publicApiGuard';
 const MAX_HTML_LENGTH = 50000;
 const FETCH_TIMEOUT_MS = 8000;
 
@@ -37,6 +38,9 @@ const responseSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    const blocked = assertPublicToolAccess(request);
+    if (blocked) return blocked;
+
     if (!getOpenAIApiKey()) {
       return NextResponse.json({ error: 'OpenAI API not configured' }, { status: 500 });
     }
@@ -48,12 +52,33 @@ export async function POST(request: NextRequest) {
     }
 
     const { url, language = 'en' } = parsed.data;
+    let parsedUrl: URL;
+    try {
+      parsedUrl = new URL(url);
+    } catch {
+      return NextResponse.json({ error: 'Invalid URL' }, { status: 400 });
+    }
+    if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
+      return NextResponse.json({ error: 'Only http(s) URLs are allowed' }, { status: 400 });
+    }
+    const host = parsedUrl.hostname.toLowerCase();
+    if (
+      host === 'localhost' ||
+      host === '127.0.0.1' ||
+      host === '::1' ||
+      host.endsWith('.local') ||
+      host.endsWith('.internal') ||
+      /^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[0-1])\.)/.test(host)
+    ) {
+      return NextResponse.json({ error: 'URL not allowed' }, { status: 400 });
+    }
+
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
     let html: string;
     try {
-      const res = await fetch(url, {
+      const res = await fetch(parsedUrl.toString(), {
         signal: controller.signal,
         headers: {
           'User-Agent': 'Mozilla/5.0 (compatible; FlowDiagnostic/1.0; +https://flowproductions.pt)',
