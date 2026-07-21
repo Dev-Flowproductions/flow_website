@@ -13,7 +13,6 @@ const ANIMACAO_SLUGS = [
   'emjogo',
   'travel-tech-partners',
   'toma-la-da-ca',
-  'pizza-lab',
 ];
 
 const AUDIOVISUAL_SLUGS = [

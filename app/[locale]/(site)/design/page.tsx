@@ -113,7 +113,7 @@ export default async function DesignProjectsPage({
         </div>
       </section>
 
-      <ProjectCarousel projects={designCarouselProjects} />
+      <ProjectCarousel projects={designCarouselProjects} navigationCategory="design" />
 
       <section className="bg-black py-16 overflow-hidden">
         <div className="animate-marquee">

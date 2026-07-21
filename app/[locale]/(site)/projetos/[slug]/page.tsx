@@ -7,6 +7,13 @@ import { Link } from '@/i18n/routing';
 import { getPageMetadata, creativeWorkJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import { formatBoldHtml } from '@/lib/formatBoldHtml';
 import { normalizeProjectYear, yearFromPublishedAt } from '@/lib/projectYear';
+import {
+  categoryPageHref,
+  categoryPageLabel,
+  fetchAdjacentProjectsInCategory,
+  projectDetailHref,
+  resolveProjectNavigationCategory,
+} from '@/lib/projectCategoryNavigation';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -42,16 +49,21 @@ export async function generateMetadata({
 }
 
 function getYouTubeEmbedUrl(url: string): string | null {
-  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/]+)/);
+  const match = url.match(
+    /(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&?/]+)/
+  );
   return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=0&rel=0` : null;
 }
 
 export default async function ProjectDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string; slug: string }>;
+  searchParams: Promise<{ categoria?: string }>;
 }) {
   const { locale, slug } = await params;
+  const { categoria } = await searchParams;
   const t = await getTranslations({ locale, namespace: 'projectDetail' });
   const tNav = await getTranslations({ locale, namespace: 'nav' });
   const supabase = await createClient();
@@ -86,32 +98,17 @@ export default async function ProjectDetailPage({
       .filter(Boolean) ?? [];
 
   const publishedYear = project.published_at ? yearFromPublishedAt(project.published_at) : '';
+  const ptSlug = project.slug?.pt || slug;
+  const tagKeys = tags.map((tag) => tag.key);
+  const navigationCategory = resolveProjectNavigationCategory(ptSlug, tagKeys, categoria);
 
-  // Fetch sibling projects sharing the first tag for prev/next navigation
   let prevProject: { title: Record<string, string>; slug: Record<string, string> } | null = null;
   let nextProject: { title: Record<string, string>; slug: Record<string, string> } | null = null;
 
-  if (tags.length > 0) {
-    const primaryTagId = tags[0].id;
-
-    const { data: siblings } = await supabase!
-      .from('projects')
-      .select(`
-        id,
-        title,
-        slug,
-        published_at,
-        project_project_tags!inner ( tag_id )
-      `)
-      .eq('project_project_tags.tag_id', primaryTagId)
-      .eq('status', 'published')
-      .order('published_at', { ascending: true });
-
-    if (siblings && siblings.length > 1) {
-      const currentIndex = siblings.findIndex((p) => p.id === project.id);
-      if (currentIndex > 0) prevProject = siblings[currentIndex - 1];
-      if (currentIndex < siblings.length - 1) nextProject = siblings[currentIndex + 1];
-    }
+  if (navigationCategory) {
+    const adjacent = await fetchAdjacentProjectsInCategory(supabase, ptSlug, navigationCategory);
+    prevProject = adjacent.prev;
+    nextProject = adjacent.next;
   }
 
   const creativeWorkSchema = creativeWorkJsonLd({
@@ -123,10 +120,16 @@ export default async function ProjectDetailPage({
     client: project.client_name || undefined,
   });
 
+  const categoryHref = navigationCategory ? categoryPageHref(navigationCategory) : '/projetos';
+  const categoryLabel = navigationCategory
+    ? categoryPageLabel(navigationCategory, locale)
+    : t('backToProjects');
+  const projectHref = projectDetailHref(slug, navigationCategory ?? undefined);
+
   const breadcrumbSchema = breadcrumbJsonLd([
     { name: 'Flow Productions', url: `${SITE_URL}/${locale}` },
-    { name: t('backToProjects'), url: `${SITE_URL}/${locale}/projetos` },
-    { name: title, url: `${SITE_URL}/${locale}/projetos/${slug}` },
+    { name: categoryLabel, url: `${SITE_URL}/${locale}${categoryHref}` },
+    { name: title, url: `${SITE_URL}/${locale}${projectHref}` },
   ]);
 
   return (
@@ -140,8 +143,8 @@ export default async function ProjectDetailPage({
           <Breadcrumb
             items={[
               { name: tNav('home'), href: '/' },
-              { name: t('backToProjects'), href: '/projetos' },
-              { name: title, href: `/projetos/${slug}` },
+              { name: categoryLabel, href: categoryHref },
+              { name: title, href: projectHref },
             ]}
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start">
@@ -231,7 +234,10 @@ export default async function ProjectDetailPage({
           <div className="max-w-5xl mx-auto px-4 py-8 flex items-stretch justify-between gap-4">
             {prevProject ? (
               <Link
-                href={`/projetos/${prevProject.slug?.[locale] || prevProject.slug?.['pt'] || ''}`}
+                href={projectDetailHref(
+                  prevProject.slug?.[locale] || prevProject.slug?.['pt'] || '',
+                  navigationCategory ?? undefined
+                )}
                 className="group flex items-center gap-3 text-left max-w-[45%]"
               >
                 <span className="shrink-0 text-gray-400 group-hover:text-black transition-colors text-xl leading-none">←</span>
@@ -248,7 +254,10 @@ export default async function ProjectDetailPage({
 
             {nextProject ? (
               <Link
-                href={`/projetos/${nextProject.slug?.[locale] || nextProject.slug?.['pt'] || ''}`}
+                href={projectDetailHref(
+                  nextProject.slug?.[locale] || nextProject.slug?.['pt'] || '',
+                  navigationCategory ?? undefined
+                )}
                 className="group flex items-center gap-3 text-right max-w-[45%] ml-auto"
               >
                 <span className="flex flex-col items-end">

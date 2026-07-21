@@ -119,6 +119,7 @@ export default async function AudiovisualProjectsPage({
         title={t('carouselTitle')}
         dark={true}
         fadeTo="gray-50"
+        navigationCategory="audiovisual"
       />
 
       <section className="bg-gray-50 py-16 px-4 md:px-12">

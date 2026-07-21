@@ -139,7 +139,7 @@ export default async function MarketingProjectsPage({
             </h2>
           </AnimateIn>
         </div>
-        <ProjectCarousel projects={redesSociais} />
+        <ProjectCarousel projects={redesSociais} navigationCategory="marketing-social" />
       </section>
 
       <section className="bg-gray-50 pb-4">
@@ -150,7 +150,7 @@ export default async function MarketingProjectsPage({
             </h2>
           </AnimateIn>
         </div>
-        <ProjectCarousel projects={contentWriting} />
+        <ProjectCarousel projects={contentWriting} navigationCategory="marketing-content" />
       </section>
 
       <section className="bg-black py-16 overflow-hidden">

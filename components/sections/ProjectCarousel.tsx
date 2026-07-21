@@ -3,6 +3,10 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from '@/i18n/routing';
+import {
+  projectDetailHref,
+  type ProjectNavigationCategory,
+} from '@/lib/projectCategoryNavigation';
 
 export interface CarouselProject {
   slug: string;
@@ -12,6 +16,7 @@ export interface CarouselProject {
 
 interface Props {
   projects: CarouselProject[];
+  navigationCategory?: ProjectNavigationCategory;
 }
 
 const SLIDE_W = 55;
@@ -20,7 +25,7 @@ const OFFSET = (100 - SLIDE_W) / 2;
 const carouselNavBtn =
   'flex-shrink-0 flex h-11 w-11 md:h-12 md:w-12 touch-manipulation items-center justify-center rounded-full border border-white/50 bg-black/45 text-white shadow-lg backdrop-blur-sm transition-colors hover:bg-black/60 hover:border-white/80 disabled:opacity-35 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
 
-export default function ProjectCarousel({ projects }: Props) {
+export default function ProjectCarousel({ projects, navigationCategory }: Props) {
   const [current, setCurrent] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -129,7 +134,11 @@ export default function ProjectCarousel({ projects }: Props) {
                   className="flex-shrink-0 px-2 flex flex-col"
                   style={{ width: `${SLIDE_W}%` }}
                 >
-                  <Link href={`/projetos/${p.slug}`} className="group block relative" draggable={false}>
+                  <Link
+                    href={projectDetailHref(p.slug, navigationCategory)}
+                    className="group block relative"
+                    draggable={false}
+                  >
                     <div
                       className="relative overflow-hidden bg-gray-50 transition-transform duration-500"
                       style={{

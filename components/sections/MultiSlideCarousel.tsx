@@ -3,6 +3,10 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from '@/i18n/routing';
+import {
+  projectDetailHref,
+  type ProjectNavigationCategory,
+} from '@/lib/projectCategoryNavigation';
 
 export interface CarouselProject {
   slug: string;
@@ -17,6 +21,7 @@ interface Props {
   dark?: boolean;
   /** Background below the image row — match the next section. */
   fadeTo?: 'white' | 'gray-50';
+  navigationCategory?: ProjectNavigationCategory;
 }
 
 function getVisibleCount(width: number): number {
@@ -37,6 +42,7 @@ export default function MultiSlideCarousel({
   title,
   dark = false,
   fadeTo = 'white',
+  navigationCategory,
 }: Props) {
   const [current, setCurrent] = useState(0);
   const [visibleCount, setVisibleCount] = useState(1);
@@ -181,7 +187,11 @@ export default function MultiSlideCarousel({
               className="flex-shrink-0 box-border pr-3"
               style={{ width: `${trackSlidePercent}%` }}
             >
-              <Link href={`/projetos/${p.slug}`} className="group block" draggable={false}>
+              <Link
+                href={projectDetailHref(p.slug, navigationCategory)}
+                className="group block"
+                draggable={false}
+              >
                 <div className="relative overflow-hidden bg-gray-800" style={{ aspectRatio: '16/9' }}>
                   <Image
                     src={p.img}

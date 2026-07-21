@@ -34,7 +34,6 @@ const animacoesPromocionais = [
   { slug: 'emjogo',                title: 'EmJogo',               img: '/images/projects/animacao-carousel/emjogo.webp' },
   { slug: 'travel-tech-partners',  title: 'Travel Tech Partners', img: '/images/projects/animacao-carousel/travel-tech-partners.webp' },
   { slug: 'toma-la-da-ca',         title: 'Toma lá, dá cá',      img: '/images/projects/animacao-carousel/toma-la-da-ca.webp' },
-  { slug: 'pizza-lab',             title: 'Pizza Lab',            img: '/images/projects/design-carousel/pizza-lab-carousel.jpg' },
 ];
 
 const serviceSchema = serviceJsonLd({
@@ -90,6 +89,7 @@ export default async function AnimacaoProjectsPage({
         projects={animacoesPromocionais}
         title={t('carouselTitle')}
         dark={true}
+        navigationCategory="animacao"
       />
     </div>
   );
