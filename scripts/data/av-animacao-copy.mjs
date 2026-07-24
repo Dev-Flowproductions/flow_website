@@ -127,8 +127,8 @@ export const AUDIOVISUAL_PROJECTS = [
     title: { pt: "Liga Portuguesa Contra o Cancro", en: "Portuguese League Against Cancer", fr: "Ligue Portugaise Contre le Cancer" },
     summary: { pt: "Apoio a um evento para comunicar com propósito", en: "Supporting an event to communicate with purpose", fr: "Soutenir un événement pour communiquer avec sens" },
     content: { pt: "A Flow teve o privilégio de **acompanhar e apoiar um evento promovido pela Liga Portuguesa Contra o Cancro – Núcleo Regional do Sul**, em **Faro**, juntando-se à causa como **entidade patrocinadora e responsável pela cobertura audiovisual**.\n\nMais do que registar momentos, quisemos **dar visibilidade ao impacto real** de quem trabalha todos os dias pela prevenção, apoio e sensibilização. Foi uma experiência que nos recordou que comunicar também é um ato de empatia e compromisso com a comunidade.", en: "Flow had the privilege of attending and supporting an event promoted by the Portuguese League Against Cancer – Southern Regional Branch, in **Faro**, joining the cause as a sponsoring entity and responsible for audiovisual coverage.\n\nMore than recording moments, we wanted to give visibility to the real impact of those who work every day on prevention, support and awareness. It was an experience that reminded us that communicating is also an act of empathy and commitment to the community.", fr: "Flow a eu le privilège d’accompagner et de soutenir un événement promu par la Ligue Portugaise Contre le Cancer – Antenne Régionale du Sud, à **Faro**, en rejoignant la cause en tant qu’entité sponsor et responsable de la couverture audiovisuelle.\n\nPlus qu’enregistrer des moments, nous avons voulu donner de la visibilité à l’impact réel de ceux qui travaillent chaque jour à la prévention, au soutien et à la sensibilisation. Ce fut une expérience qui nous a rappelé que communiquer est aussi un acte d’empathie et d’engagement envers la communauté." },
-    categories: ["audiovisual"],
-    tags: ["video"],
+    categories: ["projetos-sociais"],
+    tags: ["projetos-sociais"],
     featuredImage: "/images/projects/social-carousel/liga-portuguesa-contra-o-cancro.jpg",
   },
   {

@@ -27,7 +27,7 @@ const videosPromocionais = [
   { slug: 'witfy',                    title: 'Witfy',                    img: '/images/projects/audiovisual-carousel/witfy.jpg' },
   { slug: 'dias-medievais-de-castro-marim', title: 'Dias Medievais de Castro Marim', img: '/images/projects/marketing-carousel/content-dias-medievais.webp' },
   { slug: 'details-old-course-vilamoura', title: 'Details / Old Course Vilamoura', img: '/images/projects/audiovisual-carousel/pro-am.jpeg' },
-  { slug: 'pro-am-vilamoura',         title: 'PRO AM – Vilamoura',       img: '/images/projects/audiovisual-carousel/pro-am.jpeg' },
+  { slug: 'pro-am-vilamoura',         title: 'PRO AM – Vilamoura',       img: '/images/projects/audiovisual-carousel/pro-am-portugal-invitational.png' },
   { slug: 'dom-jose-beach-hotel',     title: 'Dom José Beach Hotel',     img: '/images/projects/audiovisual-carousel/dom-jose.jpg' },
   { slug: 'designer-outlet-algarve',  title: 'Designer Outlet Algarve',  img: '/images/projects/audiovisual-carousel/designer-outlet.jpg' },
   { slug: 'ibc-security',             title: 'IBC Security',             img: '/images/projects/audiovisual-carousel/ibc-security.jpg' },
@@ -41,7 +41,6 @@ const videosPromocionais = [
   { slug: 'parque-mineiro-aljustrel', title: 'Parque Mineiro Aljustrel', img: '/images/projects/audiovisual-carousel/aljustrel.webp' },
   { slug: 'fujifilm',                 title: 'Fujifilm',                 img: '/images/projects/audiovisual-carousel/fujifilm.jpg' },
   { slug: 'algarseafood',             title: 'Algarseafood',             img: '/images/projects/audiovisual-carousel/algarseafood.webp' },
-  { slug: 'liga-portuguesa-contra-o-cancro', title: 'Liga Portuguesa Contra o Cancro', img: '/images/projects/social-carousel/liga-portuguesa-contra-o-cancro.jpg' },
 ];
 
 const fotografias = [

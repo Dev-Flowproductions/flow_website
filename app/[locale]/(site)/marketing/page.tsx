@@ -36,7 +36,7 @@ const contentWriting = [
   { slug: 'dias-medievais-de-castro-marim', title: 'Dias Medievais de Castro Marim', img: '/images/projects/marketing-carousel/content-dias-medievais.webp' },
   { slug: 'mia',                            title: 'MIA',                             img: '/images/projects/marketing-carousel/content-mia.webp' },
   { slug: 'witfy',                          title: 'Witfy',                           img: '/images/projects/marketing-carousel/content-witfy.jpg' },
-  { slug: 'pro-am-vilamoura',               title: 'PRO AM – Vilamoura',              img: '/images/projects/marketing-carousel/content-pro-am-vilamoura.jpeg' },
+  { slug: 'pro-am-vilamoura',               title: 'PRO AM – Vilamoura',              img: '/images/projects/marketing-carousel/content-pro-am-portugal-invitational.png' },
   { slug: 'dom-jose-beach-hotel',           title: 'Dom José Beach Hotel',            img: '/images/projects/marketing-carousel/content-dom-jose.jpg' },
   { slug: 'ria-shopping',                   title: 'Ria Shopping',                    img: '/images/projects/marketing-carousel/content-ria-shopping.jpg' },
 ];

@@ -33,7 +33,6 @@ const AUDIOVISUAL_SLUGS = [
   'parque-mineiro-aljustrel',
   'fujifilm',
   'algarseafood',
-  'liga-portuguesa-contra-o-cancro',
 ];
 
 const TAG_IDS = {

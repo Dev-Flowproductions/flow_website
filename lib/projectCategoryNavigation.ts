@@ -40,7 +40,6 @@ export const PROJECT_CATEGORY_SLUG_ORDER: Record<ProjectNavigationCategory, read
     'parque-mineiro-aljustrel',
     'fujifilm',
     'algarseafood',
-    'liga-portuguesa-contra-o-cancro',
   ],
   design: designCarouselProjects.map((project) => project.slug),
   'marketing-social': [

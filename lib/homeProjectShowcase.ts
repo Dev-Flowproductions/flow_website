@@ -27,7 +27,7 @@ export const HOME_PROJECT_SHOWCASE = [
   {
     key: 'audiovisual',
     href: '/audiovisual',
-    image: '/images/projects/pro-am-vilamoura.jpeg',
+    image: '/images/projects/pro-am-portugal-invitational.png',
     imageAlt: 'Audiovisual',
   },
 ] as const;
