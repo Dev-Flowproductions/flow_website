@@ -25,13 +25,13 @@ export async function generateMetadata({
 
 const videosPromocionais = [
   { slug: 'witfy',                    title: 'Witfy',                    img: '/images/projects/audiovisual-carousel/witfy.jpg' },
-  { slug: 'dias-medievais-de-castro-marim', title: 'Dias Medievais de Castro Marim', img: '/images/projects/marketing-carousel/content-dias-medievais.webp' },
   { slug: 'details-old-course-vilamoura', title: 'Details / Old Course Vilamoura', img: '/images/projects/audiovisual-carousel/pro-am.jpeg' },
   { slug: 'pro-am-vilamoura',         title: 'PRO AM – Vilamoura',       img: '/images/projects/audiovisual-carousel/pro-am-portugal-invitational.png' },
   { slug: 'dom-jose-beach-hotel',     title: 'Dom José Beach Hotel',     img: '/images/projects/audiovisual-carousel/dom-jose.jpg' },
   { slug: 'designer-outlet-algarve',  title: 'Designer Outlet Algarve',  img: '/images/projects/audiovisual-carousel/designer-outlet.jpg' },
   { slug: 'ibc-security',             title: 'IBC Security',             img: '/images/projects/audiovisual-carousel/ibc-security.jpg' },
   { slug: 'indasa',                   title: 'Indasa',                   img: '/images/projects/audiovisual-carousel/indasa.jpg' },
+  { slug: 'dias-medievais-de-castro-marim', title: 'Dias Medievais de Castro Marim', img: '/images/projects/marketing-carousel/content-dias-medievais.webp' },
   { slug: 'rocamar-beach-hotel',      title: 'Rocamar Beach Hotel',      img: '/images/projects/audiovisual-carousel/rocamar.png' },
   { slug: 'kubidoce',                 title: 'Kubidoce',                 img: '/images/projects/audiovisual-carousel/kubidoce.jpg' },
   { slug: 'odyssea',                  title: 'Odyssea',                  img: '/images/projects/audiovisual-carousel/odyssea.jpg' },
