@@ -23,6 +23,7 @@ export async function generateMetadata({
 }
 
 const animacoesPromocionais = [
+  { slug: 'witfy-animation',       title: 'Witfy Animation',      img: '/images/projects/design-carousel/witfy-carousel.png' },
   { slug: 'ultima-gota',           title: 'Última Gota',          img: '/images/projects/animacao-carousel/ultima-gota.webp' },
   { slug: 'likewise',              title: 'Likewise',             img: '/images/projects/animacao-carousel/likewise.jpg' },
   { slug: 'medwater',              title: 'Medwater',             img: '/images/projects/animacao-carousel/medwater.webp' },

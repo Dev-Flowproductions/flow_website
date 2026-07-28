@@ -10,6 +10,7 @@ export type ProjectNavigationCategory =
 
 export const PROJECT_CATEGORY_SLUG_ORDER: Record<ProjectNavigationCategory, readonly string[]> = {
   animacao: [
+    'witfy-animation',
     'ultima-gota',
     'likewise',
     'medwater',

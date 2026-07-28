@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import https from 'node:https';
 
 const ANIMACAO_SLUGS = [
+  'witfy-animation',
   'ultima-gota',
   'likewise',
   'medwater',
