@@ -21,6 +21,7 @@ const AUDIOVISUAL_SLUGS = [
   'dias-medievais-de-castro-marim',
   'details-old-course-vilamoura',
   'pro-am-vilamoura',
+  'chef-shirley-alves',
   'dom-jose-beach-hotel',
   'designer-outlet-algarve',
   'ibc-security',

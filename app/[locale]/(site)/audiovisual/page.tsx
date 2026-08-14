@@ -25,8 +25,9 @@ export async function generateMetadata({
 
 const videosPromocionais = [
   { slug: 'witfy',                    title: 'Witfy',                    img: '/images/projects/audiovisual-carousel/witfy.jpg' },
-  { slug: 'details-old-course-vilamoura', title: 'Details / Old Course Vilamoura', img: '/images/projects/audiovisual-carousel/pro-am.jpeg' },
-  { slug: 'pro-am-vilamoura',         title: 'PRO AM – Vilamoura',       img: '/images/projects/audiovisual-carousel/pro-am-portugal-invitational.png' },
+  { slug: 'details-old-course-vilamoura', title: 'Vilamoura Pro-Am - GreenKeeping', img: '/images/projects/audiovisual-carousel/pro-am.jpeg' },
+  { slug: 'pro-am-vilamoura',         title: 'Portugal Invitational 2026 - FOOH', img: '/images/projects/audiovisual-carousel/pro-am-portugal-invitational.png' },
+  { slug: 'chef-shirley-alves',       title: 'Chef Shirley Alves',       img: '/images/projects/audiovisual-carousel/chef-shirley-alves.jpg' },
   { slug: 'dom-jose-beach-hotel',     title: 'Dom José Beach Hotel',     img: '/images/projects/audiovisual-carousel/dom-jose.jpg' },
   { slug: 'designer-outlet-algarve',  title: 'Designer Outlet Algarve',  img: '/images/projects/audiovisual-carousel/designer-outlet.jpg' },
   { slug: 'ibc-security',             title: 'IBC Security',             img: '/images/projects/audiovisual-carousel/ibc-security.jpg' },

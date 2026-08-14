@@ -27,6 +27,7 @@ export const PROJECT_CATEGORY_SLUG_ORDER: Record<ProjectNavigationCategory, read
     'witfy',
     'details-old-course-vilamoura',
     'pro-am-vilamoura',
+    'chef-shirley-alves',
     'dom-jose-beach-hotel',
     'designer-outlet-algarve',
     'ibc-security',
