@@ -47,15 +47,17 @@ export default async function HomePage({
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <AnimateIn priority>
-              <div className="relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg overflow-hidden">
-                <Image
-                  src="/images/about_us_creativo.png"
-                  alt="Flow Productions Team"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                  priority
-                />
+              <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-white p-6">
+                <div className="relative h-full w-full">
+                  <Image
+                    src="/images/about_us_creativo.png"
+                    alt="Flow Productions Team"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-contain"
+                    priority
+                  />
+                </div>
               </div>
             </AnimateIn>
 
