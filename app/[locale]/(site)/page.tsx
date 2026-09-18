@@ -49,7 +49,7 @@ export default async function HomePage({
             <AnimateIn priority>
               <div className="relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/team/team-1.jpg"
+                  src="/images/about_us_creativo.png"
                   alt="Flow Productions Team"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
