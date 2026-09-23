@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { Link } from '@/i18n/routing';
+import ClientLogosCarousel from '@/components/sections/ClientLogosCarousel';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -153,6 +154,8 @@ export default async function ProjectsPage({
           )}
         </div>
       </section>
+
+      <ClientLogosCarousel />
     </div>
   );
 }

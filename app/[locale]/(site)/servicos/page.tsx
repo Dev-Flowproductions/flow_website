@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import ServicesGrid from '@/components/sections/ServicesGrid';
+import ClientLogosCarousel from '@/components/sections/ClientLogosCarousel';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { getPageMetadata, breadcrumbJsonLd } from '@/lib/seo';
 
@@ -110,6 +111,8 @@ export default async function ServicesPage({
           <ServicesGrid services={servicesData} locale={locale} />
         </div>
       </section>
+
+      <ClientLogosCarousel />
     </div>
   );
 }
