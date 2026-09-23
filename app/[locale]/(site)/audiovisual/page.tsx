@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import MultiSlideCarousel from '@/components/sections/MultiSlideCarousel';
 import YoutubeHero from '@/components/sections/YoutubeHero';
+import ClientLogosCarousel from '@/components/sections/ClientLogosCarousel';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -51,18 +52,6 @@ const fotografias = [
   { slug: 'audiovisual', title: 'Fotografia', img: '/images/projects/audiovisual-carousel/foto-4.webp' },
   { slug: 'audiovisual', title: 'Fotografia', img: '/images/projects/audiovisual-carousel/foto-5.webp' },
   { slug: 'audiovisual', title: 'Fotografia', img: '/images/projects/audiovisual-carousel/foto-6.webp' },
-];
-
-const logos = [
-  { name: 'ZION',                    src: '/images/logos/zion.png' },
-  { name: 'Albufeira Digital Nomads', src: '/images/logos/albufeira-dn.png' },
-  { name: 'CM Albufeira',            src: '/images/logos/cm-albufeira.png' },
-  { name: 'Fujifilm',                src: '/images/logos/fujifilm.png' },
-  { name: 'Faro',                    src: '/images/logos/faro.png' },
-  { name: 'Inframoura',              src: '/images/logos/inframoura.png' },
-  { name: 'CCDR',                    src: '/images/logos/ccdr.png' },
-  { name: 'Nature Soul Food',        src: '/images/logos/nature.png' },
-  { name: 'New Balance',             src: '/images/logos/new-balance.png' },
 ];
 
 const serviceSchema = serviceJsonLd({
@@ -143,26 +132,7 @@ export default async function AudiovisualProjectsPage({
         </div>
       </section>
 
-      <section className="bg-black py-16 overflow-hidden">
-        <div className="animate-marquee">
-          {[...logos, ...logos].map((logo, i) => (
-            <div
-              key={i}
-              className="inline-flex items-center justify-center flex-shrink-0 mx-8 relative"
-              style={{ height: '110px', width: '220px' }}
-            >
-              <Image
-                src={logo.src}
-                alt={logo.name}
-                fill
-                sizes="220px"
-                className="object-contain"
-                style={{ filter: 'brightness(0) invert(1)', opacity: 0.8 }}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
+      <ClientLogosCarousel />
     </div>
   );
 }

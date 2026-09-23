@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
+import ClientLogosCarousel from '@/components/sections/ClientLogosCarousel';
 import { designCarouselProjects } from '@/lib/designCarouselProjects';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
@@ -22,18 +23,6 @@ export async function generateMetadata({
     image: `${SITE_URL}/images/hero/design-og.jpg`,
   });
 }
-
-const logos = [
-  { name: 'ZION',                   src: '/images/logos/zion.png' },
-  { name: 'Albufeira Digital Nomads', src: '/images/logos/albufeira-dn.png' },
-  { name: 'CM Albufeira',            src: '/images/logos/cm-albufeira.png' },
-  { name: 'Fujifilm',               src: '/images/logos/fujifilm.png' },
-  { name: 'Faro',                   src: '/images/logos/faro.png' },
-  { name: 'Inframoura',             src: '/images/logos/inframoura.png' },
-  { name: 'CCDR',                   src: '/images/logos/ccdr.png' },
-  { name: 'Nature Soul Food',        src: '/images/logos/nature.png' },
-  { name: 'New Balance',            src: '/images/logos/new-balance.png' },
-];
 
 const serviceSchema = serviceJsonLd({
   name: 'Design Gráfico e Identidade Visual',
@@ -115,25 +104,7 @@ export default async function DesignProjectsPage({
 
       <ProjectCarousel projects={designCarouselProjects} navigationCategory="design" />
 
-      <section className="bg-black py-16 overflow-hidden">
-        <div className="animate-marquee">
-          {[...logos, ...logos].map((logo, i) => (
-            <div
-              key={i}
-              className="inline-flex items-center justify-center flex-shrink-0 mx-4 md:mx-8 h-16 w-36 md:h-[110px] md:w-[220px] relative"
-            >
-              <Image
-                src={logo.src}
-                alt={logo.name}
-                fill
-                sizes="140px"
-                className="object-contain"
-                style={{ filter: 'brightness(0) invert(1)', opacity: 0.8 }}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
+      <ClientLogosCarousel />
     </div>
   );
 }

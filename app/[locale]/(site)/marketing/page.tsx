@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import ProjectCarousel from '@/components/sections/ProjectCarousel';
+import ClientLogosCarousel from '@/components/sections/ClientLogosCarousel';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -39,18 +40,6 @@ const contentWriting = [
   { slug: 'pro-am-vilamoura',               title: 'Portugal Invitational 2026 - FOOH', img: '/images/projects/marketing-carousel/content-pro-am-portugal-invitational.png' },
   { slug: 'dom-jose-beach-hotel',           title: 'Dom José Beach Hotel',            img: '/images/projects/marketing-carousel/content-dom-jose.jpg' },
   { slug: 'ria-shopping',                   title: 'Ria Shopping',                    img: '/images/projects/marketing-carousel/content-ria-shopping.jpg' },
-];
-
-const logos = [
-  { name: 'ZION',                    src: '/images/logos/zion.png' },
-  { name: 'Albufeira Digital Nomads', src: '/images/logos/albufeira-dn.png' },
-  { name: 'CM Albufeira',            src: '/images/logos/cm-albufeira.png' },
-  { name: 'Fujifilm',                src: '/images/logos/fujifilm.png' },
-  { name: 'Faro',                    src: '/images/logos/faro.png' },
-  { name: 'Inframoura',              src: '/images/logos/inframoura.png' },
-  { name: 'CCDR',                    src: '/images/logos/ccdr.png' },
-  { name: 'Nature Soul Food',        src: '/images/logos/nature.png' },
-  { name: 'New Balance',             src: '/images/logos/new-balance.png' },
 ];
 
 const serviceSchema = serviceJsonLd({
@@ -153,26 +142,7 @@ export default async function MarketingProjectsPage({
         <ProjectCarousel projects={contentWriting} navigationCategory="marketing-content" />
       </section>
 
-      <section className="bg-black py-16 overflow-hidden">
-        <div className="animate-marquee">
-          {[...logos, ...logos].map((logo, i) => (
-            <div
-              key={i}
-              className="inline-flex items-center justify-center flex-shrink-0 mx-8 relative"
-              style={{ height: '110px', width: '220px' }}
-            >
-              <Image
-                src={logo.src}
-                alt={logo.name}
-                fill
-                sizes="220px"
-                className="object-contain"
-                style={{ filter: 'brightness(0) invert(1)', opacity: 0.8 }}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
+      <ClientLogosCarousel />
     </div>
   );
 }

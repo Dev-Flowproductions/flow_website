@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import MultiSlideCarousel from '@/components/sections/MultiSlideCarousel';
 import YoutubeHero from '@/components/sections/YoutubeHero';
+import ClientLogosCarousel from '@/components/sections/ClientLogosCarousel';
 import { getPageMetadata, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flowproductions.pt';
@@ -92,6 +93,8 @@ export default async function AnimacaoProjectsPage({
         dark={true}
         navigationCategory="animacao"
       />
+
+      <ClientLogosCarousel />
     </div>
   );
 }
