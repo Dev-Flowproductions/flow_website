@@ -28,7 +28,6 @@ const AUDIOVISUAL_SLUGS = [
   'ibc-security',
   'indasa',
   'rocamar-beach-hotel',
-  'kubidoce',
   'odyssea',
   'the-originals',
   'ria-shopping',

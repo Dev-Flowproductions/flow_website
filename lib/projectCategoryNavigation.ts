@@ -35,7 +35,6 @@ export const PROJECT_CATEGORY_SLUG_ORDER: Record<ProjectNavigationCategory, read
     'indasa',
     'dias-medievais-de-castro-marim',
     'rocamar-beach-hotel',
-    'kubidoce',
     'odyssea',
     'the-originals',
     'ria-shopping',
@@ -48,7 +47,6 @@ export const PROJECT_CATEGORY_SLUG_ORDER: Record<ProjectNavigationCategory, read
   'marketing-social': [
     'dental-hpa',
     'albufeira-digital-nomads',
-    'kubidoce',
     'rb-woodfinish',
     'adm-24',
     'nature-soul-food',

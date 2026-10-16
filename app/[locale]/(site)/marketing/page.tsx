@@ -26,7 +26,6 @@ export async function generateMetadata({
 const redesSociais = [
   { slug: 'dental-hpa',               title: 'DENTAL HPA',               img: '/images/projects/marketing-carousel/sociais-dental-hpa.jpg' },
   { slug: 'albufeira-digital-nomads', title: 'Albufeira Digital Nomads',  img: '/images/projects/marketing-carousel/sociais-albufeira-dn.png' },
-  { slug: 'kubidoce',                 title: 'Kubidoce',                  img: '/images/projects/marketing-carousel/sociais-kubidoce.png' },
   { slug: 'rb-woodfinish',            title: 'RB Woodfinish',             img: '/images/projects/marketing-carousel/sociais-rb-woodfinish.jpg' },
   { slug: 'adm-24',                   title: "ADM 24'",                   img: '/images/projects/marketing-carousel/sociais-adm-24.jpg' },
   { slug: 'nature-soul-food',         title: 'Nature Soul Food',          img: '/images/projects/marketing-carousel/sociais-nature-soul-food.jpg' },

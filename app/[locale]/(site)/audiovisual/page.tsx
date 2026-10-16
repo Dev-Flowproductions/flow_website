@@ -36,7 +36,6 @@ const videosPromocionais = [
   { slug: 'indasa',                   title: 'Indasa',                   img: '/images/projects/audiovisual-carousel/indasa.jpg' },
   { slug: 'dias-medievais-de-castro-marim', title: 'Dias Medievais de Castro Marim', img: '/images/projects/marketing-carousel/content-dias-medievais.webp' },
   { slug: 'rocamar-beach-hotel',      title: 'Rocamar Beach Hotel',      img: '/images/projects/audiovisual-carousel/rocamar.png' },
-  { slug: 'kubidoce',                 title: 'Kubidoce',                 img: '/images/projects/audiovisual-carousel/kubidoce.jpg' },
   { slug: 'odyssea',                  title: 'Odyssea',                  img: '/images/projects/audiovisual-carousel/odyssea.jpg' },
   { slug: 'the-originals',            title: 'The Originals',            img: '/images/projects/audiovisual-carousel/the-originals.jpg' },
   { slug: 'ria-shopping',             title: 'Ria Shopping',             img: '/images/projects/audiovisual-carousel/ria-shopping.jpg' },
