@@ -29,6 +29,7 @@ const videosPromocionais = [
   { slug: 'details-old-course-vilamoura', title: 'Vilamoura Pro-Am - GreenKeeping', img: '/images/projects/audiovisual-carousel/pro-am.jpeg' },
   { slug: 'pro-am-vilamoura',         title: 'Portugal Invitational 2026 - FOOH', img: '/images/projects/audiovisual-carousel/pro-am-portugal-invitational.png' },
   { slug: 'chef-shirley-alves',       title: 'As Casas + A Ver Tavira - Chef Shirley Alves', img: '/images/projects/audiovisual-carousel/chef-shirley-alves.jpg' },
+  { slug: 'clds-olhao-social',        title: 'CLDS 5.0 Olhão Social - Estudar com novas tecnologias', img: '/images/projects/audiovisual-carousel/clds-olhao-social.jpg' },
   { slug: 'dom-jose-beach-hotel',     title: 'Dom José Beach Hotel',     img: '/images/projects/audiovisual-carousel/dom-jose.jpg' },
   { slug: 'designer-outlet-algarve',  title: 'Designer Outlet Algarve',  img: '/images/projects/audiovisual-carousel/designer-outlet.jpg' },
   { slug: 'ibc-security',             title: 'IBC Security',             img: '/images/projects/audiovisual-carousel/ibc-security.jpg' },

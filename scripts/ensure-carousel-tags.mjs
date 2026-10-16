@@ -22,6 +22,7 @@ const AUDIOVISUAL_SLUGS = [
   'details-old-course-vilamoura',
   'pro-am-vilamoura',
   'chef-shirley-alves',
+  'clds-olhao-social',
   'dom-jose-beach-hotel',
   'designer-outlet-algarve',
   'ibc-security',
