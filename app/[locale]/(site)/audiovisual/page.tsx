@@ -28,6 +28,7 @@ const videosPromocionais = [
   { slug: 'witfy',                    title: 'Witfy',                    img: '/images/projects/audiovisual-carousel/witfy.jpg' },
   { slug: 'details-old-course-vilamoura', title: 'Vilamoura Pro-Am - GreenKeeping', img: '/images/projects/audiovisual-carousel/pro-am.jpeg' },
   { slug: 'pro-am-vilamoura',         title: 'Portugal Invitational 2026 - FOOH', img: '/images/projects/audiovisual-carousel/pro-am-portugal-invitational.png' },
+  { slug: 'portugal-golf',            title: 'Open de Portugal 2026',     img: '/images/projects/audiovisual-carousel/portugal-golf.jpg' },
   { slug: 'chef-shirley-alves',       title: 'As Casas + A Ver Tavira - Chef Shirley Alves', img: '/images/projects/audiovisual-carousel/chef-shirley-alves.jpg' },
   { slug: 'clds-olhao-social',        title: 'CLDS 5.0 Olhão Social - Estudar com novas tecnologias', img: '/images/projects/audiovisual-carousel/clds-olhao-social.jpg' },
   { slug: 'dom-jose-beach-hotel',     title: 'Dom José Beach Hotel',     img: '/images/projects/audiovisual-carousel/dom-jose.jpg' },
